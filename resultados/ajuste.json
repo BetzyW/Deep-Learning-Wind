@@ -1,0 +1,262 @@
+[
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 64,
+   "dropout": 0.0,
+   "lr": 0.001
+  },
+  "rmse_val": 0.8098557591438293,
+  "epocas": 6,
+  "segundos": 3.0674540996551514,
+  "parametros": 377473
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 128,
+   "dropout": 0.0,
+   "lr": 0.001
+  },
+  "rmse_val": 0.8101831078529358,
+  "epocas": 6,
+  "segundos": 2.919623851776123,
+  "parametros": 205313
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 128,
+   "dropout": 0.3,
+   "lr": 0.003
+  },
+  "rmse_val": 0.7969619631767273,
+  "epocas": 5,
+  "segundos": 2.5081608295440674,
+  "parametros": 205313
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 256,
+   "dropout": 0.3,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.7948796153068542,
+  "epocas": 10,
+  "segundos": 5.3557868003845215,
+  "parametros": 476161
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 128,
+   "dropout": 0.0,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.7941300272941589,
+  "epocas": 5,
+  "segundos": 2.3531837463378906,
+  "parametros": 410369
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 256,
+   "dropout": 0.3,
+   "lr": 0.003
+  },
+  "rmse_val": 0.8051900863647461,
+  "epocas": 8,
+  "segundos": 3.8587865829467773,
+  "parametros": 119425
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 128,
+   "dropout": 0.1,
+   "lr": 0.003
+  },
+  "rmse_val": 0.7980064749717712,
+  "epocas": 5,
+  "segundos": 2.4468564987182617,
+  "parametros": 102785
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 128,
+   "dropout": 0.1,
+   "lr": 0.001
+  },
+  "rmse_val": 0.801655650138855,
+  "epocas": 6,
+  "segundos": 2.8995416164398193,
+  "parametros": 205313
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 64,
+   "dropout": 0.0,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.8015119433403015,
+  "epocas": 8,
+  "segundos": 3.4591333866119385,
+  "parametros": 94465
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 128,
+   "dropout": 0.0,
+   "lr": 0.001
+  },
+  "rmse_val": 0.8074589967727661,
+  "epocas": 6,
+  "segundos": 2.704038143157959,
+  "parametros": 410369
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 128,
+   "dropout": 0.3,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.798128068447113,
+  "epocas": 11,
+  "segundos": 5.478717088699341,
+  "parametros": 102785
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 128,
+   "dropout": 0.3,
+   "lr": 0.001
+  },
+  "rmse_val": 0.7949634790420532,
+  "epocas": 10,
+  "segundos": 4.891282796859741,
+  "parametros": 205313
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 64,
+   "dropout": 0.1,
+   "lr": 0.001
+  },
+  "rmse_val": 0.7965459823608398,
+  "epocas": 8,
+  "segundos": 3.80061674118042,
+  "parametros": 94465
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 128,
+   "dropout": 0.1,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.7935420274734497,
+  "epocas": 10,
+  "segundos": 4.760651350021362,
+  "parametros": 102785
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 64,
+   "dropout": 0.3,
+   "lr": 0.003
+  },
+  "rmse_val": 0.7977523803710938,
+  "epocas": 5,
+  "segundos": 2.4005444049835205,
+  "parametros": 377473
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 256,
+   "dropout": 0.1,
+   "lr": 0.001
+  },
+  "rmse_val": 0.7974010705947876,
+  "epocas": 5,
+  "segundos": 2.4329540729522705,
+  "parametros": 476161
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 512,
+   "h2": 128,
+   "dropout": 0.1,
+   "lr": 0.001
+  },
+  "rmse_val": 0.797002375125885,
+  "epocas": 5,
+  "segundos": 2.4065098762512207,
+  "parametros": 410369
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 256,
+   "dropout": 0.0,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.7964900135993958,
+  "epocas": 5,
+  "segundos": 2.2468478679656982,
+  "parametros": 238337
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 256,
+   "h2": 256,
+   "dropout": 0.1,
+   "lr": 0.0003
+  },
+  "rmse_val": 0.7961735725402832,
+  "epocas": 5,
+  "segundos": 2.4414515495300293,
+  "parametros": 238337
+ },
+ {
+  "modelo": "MLP",
+  "hp": {
+   "h1": 128,
+   "h2": 64,
+   "dropout": 0.0,
+   "lr": 0.003
+  },
+  "rmse_val": 0.8154442310333252,
+  "epocas": 6,
+  "segundos": 2.7807767391204834,
+  "parametros": 94465
+ }
+]

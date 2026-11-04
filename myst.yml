@@ -1,0 +1,22 @@
+# Jupyter Book 2 (MyST). Construir localmente: jupyter-book build --html  (requiere Node.js)
+version: 1
+project:
+  title: Pronóstico de viento a 24 h con Deep Learning
+  authors:
+    - name: Betzaida Ruiz
+  license: CC-BY-4.0
+  bibliography:
+    - referencias.bib
+  numbering:
+    headings: true
+    equation: true
+  toc:
+    - file: index.md
+    - file: 01_problema.md
+    - file: 02_eda.ipynb
+    - file: 03_literatura.md
+    - file: 04_modelos.ipynb
+    - file: 05_benchmark.ipynb
+    - file: 06_discusion.md
+site:
+  template: book-theme

@@ -1,0 +1,19 @@
+{
+  "panel": "datos/panel_multivariado_causal.csv",
+  "columnas": [
+    "vel",
+    "dir_sin",
+    "dir_cos",
+    "temp",
+    "pres"
+  ],
+  "L": 168,
+  "H": 24,
+  "ffill_max_horas": 3,
+  "entrenamiento_hasta": 2023,
+  "validacion": 2024,
+  "prueba": 2025,
+  "excluir_estaciones": [
+    "1501500054"
+  ]
+}

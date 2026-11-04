@@ -1,0 +1,414 @@
+[
+{
+"id": "http://arxiv.org/abs/2306.01986v2",
+"titulo": "A Novel Correlation-optimized Deep Learning Method for Wind Speed Forecast",
+"anio": 2023,
+"autores": [
+"Yang Yang",
+"Jin Lang",
+"Jian Wu"
+],
+"resumen": "The increasing installation rate of wind power poses great challenges to the global power system. In order to ensure the reliable operation of the power system, it is necessary to accurately forecast the wind speed and power of the wind turbines. At present, deep learning is progressively applied to the wind speed prediction. Nevertheless, the recent deep learning methods still reflect the embarrassment for practical applications due to model interpretability and hardware limitation. To this end, a novel deep knowledge-based learning method is proposed in this paper. The proposed method hybridizes pre-training method and auto-encoder structure to improve data representation and modeling of the deep knowledge-based learning framework. In order to form knowledge and corresponding absorbers, the original data is preprocessed by an optimization model based on correlation to construct multi-layer networks (knowledge) which are absorbed by sequence to sequence (Seq2Seq) models. Specifically, new cognition and memory units (CMU) are designed to reinforce traditional deep learning framework. Finally, the effectiveness of the proposed method is verified by three wind prediction cases from a wind farm in Liaoning, China. Experimental results show that the proposed method increases the stability and training efficiency compared to the traditional LSTM method and LSTM/GRU-based Seq2Seq method for applications of wind speed forecasting."
+},
+{
+"id": "http://arxiv.org/abs/2109.15239v2",
+"titulo": "Multi Scale Graph Wavenet for Wind Speed Forecasting",
+"anio": 2021,
+"autores": [
+"Neetesh Rathore",
+"Pradeep Rathore",
+"Arghya Basak"
+],
+"resumen": "Geometric deep learning has gained tremendous attention in both academia and industry due to its inherent capability of representing arbitrary structures. Due to exponential increase in interest towards renewable sources of energy, especially wind energy, accurate wind speed forecasting has become very important. . In this paper, we propose a novel deep learning architecture, Multi Scale Graph Wavenet for wind speed forecasting. It is based on a graph convolutional neural network and captures both spatial and temporal relationships in multivariate time series weather data for wind speed forecasting. We especially took inspiration from dilated convolutions, skip connections and the inception network to capture temporal relationships and graph convolutional networks for capturing spatial relationships in the data. We conducted experiments on real wind speed data measured at different cities in Denmark and compared our results with the state-of-the-art baseline models. Our novel architecture outperformed the state-of-the-art methods on wind speed forecasting for multiple forecast horizons by 4-5%."
+},
+{
+"id": "http://arxiv.org/abs/2401.08233v1",
+"titulo": "Enhancing Wind Speed and Wind Power Forecasting Using Shape-Wise Feature Engineering: A Novel Approach for Improved Accuracy and Robustness",
+"anio": 2024,
+"autores": [
+"Mulomba Mukendi Christian",
+"Yun Seon Kim",
+"Hyebong Choi"
+],
+"resumen": "Accurate prediction of wind speed and power is vital for enhancing the efficiency of wind energy systems. Numerous solutions have been implemented to date, demonstrating their potential to improve forecasting. Among these, deep learning is perceived as a revolutionary approach in the field. However, despite their effectiveness, the noise present in the collected data remains a significant challenge. This noise has the potential to diminish the performance of these algorithms, leading to inaccurate predictions. In response to this, this study explores a novel feature engineering approach. This approach involves altering the data input shape in both Convolutional Neural Network-Long Short-Term Memory (CNN-LSTM) and Autoregressive models for various forecasting horizons. The results reveal substantial enhancements in model resilience against noise resulting from step increases in data. The approach could achieve an impressive 83% accuracy in predicting unseen data up to the 24th steps. Furthermore, this method consistently provides high accuracy for short, mid, and long-term forecasts, outperforming the performance of individual models. These findings pave the way for further research on noise reduction strategies at different forecasting horizons through shape-wise feature engineering."
+},
+{
+"id": "http://arxiv.org/abs/2505.18284v1",
+"titulo": "Tube Loss based Deep Networks For Improving the Probabilistic Forecasting of Wind Speed",
+"anio": 2025,
+"autores": [
+"Pritam Anand",
+"Aadesh Minz",
+"Asish Joel"
+],
+"resumen": "Uncertainty Quantification (UQ) in wind speed forecasting is a critical challenge in wind power production due to the inherently volatile nature of wind. By quantifying the associated risks and returns, UQ supports more effective decision-making for grid operations and participation in the electricity market. In this paper, we design a sequence of deep learning based probabilistic forecasting methods by using the Tube loss function for wind speed forecasting. The Tube loss function is a simple and model agnostic Prediction Interval (PI) estimation approach and can obtain the narrow PI with asymptotical coverage guarantees without any distribution assumption. Our deep probabilistic forecasting models effectively incorporate popular architectures such as LSTM, GRU, and TCN within the Tube loss framework. We further design a simple yet effective heuristic for tuning the $δ$ parameter of the Tube loss function so that our deep forecasting models obtain the narrower PI without compromising its calibration ability. We have considered three wind datasets, containing the hourly recording of the wind speed, collected from three distinct location namely Jaisalmer, Los Angeles and San Fransico. Our numerical results demonstrate that the proposed deep forecasting models produce more reliable and narrower PIs compared to recently developed probabilistic wind forecasting methods."
+},
+{
+"id": "http://arxiv.org/abs/2208.13585v2",
+"titulo": "Spatio-Temporal Wind Speed Forecasting using Graph Networks and Novel Transformer Architectures",
+"anio": 2022,
+"autores": [
+"Lars Ødegaard Bentsen",
+"Narada Dilp Warakagoda",
+"Roy Stenbro"
+],
+"resumen": "This study focuses on multi-step spatio-temporal wind speed forecasting for the Norwegian continental shelf. The study aims to leverage spatial dependencies through the relative physical location of different measurement stations to improve local wind forecasts. Our multi-step forecasting models produce either 10-minute, 1- or 4-hour forecasts, with 10-minute resolution, meaning that the models produce more informative time series for predicted future trends. A graph neural network (GNN) architecture was used to extract spatial dependencies, with different update functions to learn temporal correlations. These update functions were implemented using different neural network architectures. One such architecture, the Transformer, has become increasingly popular for sequence modelling in recent years. Various alterations have been proposed to better facilitate time series forecasting, of which this study focused on the Informer, LogSparse Transformer and Autoformer. This is the first time the LogSparse Transformer and Autoformer have been applied to wind forecasting and the first time any of these or the Informer have been formulated in a spatio-temporal setting for wind forecasting. By comparing against spatio-temporal Long Short-Term Memory (LSTM) and Multi-Layer Perceptron (MLP) models, the study showed that the models using the altered Transformer architectures as update functions in GNNs were able to outperform these. Furthermore, we propose the Fast Fourier Transformer (FFTransformer), which is a novel Transformer architecture based on signal decomposition and consists of two separate streams that analyse the trend and periodic components separately. The FFTransformer and Autoformer were found to achieve superior results for the 10-minute and 1-hour ahead forecasts, with the FFTransformer significantly outperforming all other models for the 4-hour ahead forecasts."
+},
+{
+"id": "http://arxiv.org/abs/2311.16198v2",
+"titulo": "Ultra-short-term multi-step wind speed prediction for wind farms based on adaptive noise reduction technology and temporal convolutional network",
+"anio": 2023,
+"autores": [
+"Haojian Huang"
+],
+"resumen": "As an important clean and renewable kind of energy, wind power plays an important role in coping with energy crisis and environmental pollution. However, the volatility and intermittency of wind speed restrict the development of wind power. To improve the utilization of wind power, this study proposes a new wind speed prediction model based on data noise reduction technology, temporal convolutional network (TCN), and gated recurrent unit (GRU). Firstly, an adaptive data noise reduction algorithm P-SSA is proposed based on singular spectrum analysis (SSA) and Pearson correlation coefficient. The original wind speed is decomposed into multiple subsequences by SSA and then reconstructed. When the Pearson correlation coefficient between the reconstructed sequence and the original sequence is greater than 0.99, other noise subsequences are deleted to complete the data denoising. Then, the receptive field of the samples is expanded through the causal convolution and dilated convolution of TCN, and the characteristics of wind speed change are extracted. Then, the time feature information of the sequence is extracted by GRU, and then the wind speed is predicted to form the wind speed sequence prediction model of P-SSA-TCN-GRU. The proposed model was validated on three wind farms in Shandong Province. The experimental results show that the prediction performance of the proposed model is better than that of the traditional model and other models based on TCN, and the wind speed prediction of wind farms with high precision and strong stability is realized. The wind speed predictions of this model have the potential to become the data that support the operation and management of wind farms. The code is available at https://github.com/JethroJames/Wind-Speed-Forecast-TCN_GRU"
+},
+{
+"id": "http://arxiv.org/abs/2007.12567v1",
+"titulo": "Wind speed prediction using multidimensional convolutional neural networks",
+"anio": 2020,
+"autores": [
+"Kevin Trebing",
+"Siamak Mehrkanoon"
+],
+"resumen": "Accurate wind speed forecasting is of great importance for many economic, business and management sectors. This paper introduces a new model based on convolutional neural networks (CNNs) for wind speed prediction tasks. In particular, we show that compared to classical CNN-based models, the proposed model is able to better characterise the spatio-temporal evolution of the wind data by learning the underlying complex input-output relationships from multiple dimensions (views) of the input data. The proposed model exploits the spatio-temporal multivariate multidimensional historical weather data for learning new representations used for wind forecasting. We conduct experiments on two real-life weather datasets. The datasets are measurements from cities in Denmark and in the Netherlands. The proposed model is compared with traditional 2- and 3-dimensional CNN models, a 2D-CNN model with an attention layer and a 2D-CNN model equipped with upscaling and depthwise separable convolutions."
+},
+{
+"id": "http://arxiv.org/abs/2005.12401v1",
+"titulo": "Wind Speed Prediction and Visualization Using Long Short-Term Memory Networks (LSTM)",
+"anio": 2020,
+"autores": [
+"Md Amimul Ehsan",
+"Amir Shahirinia",
+"Nian Zhang"
+],
+"resumen": "Climate change is one of the most concerning issues of this century. Emission from electric power generation is a crucial factor that drives the concern to the next level. Renewable energy sources are widespread and available globally, however, one of the major challenges is to understand their characteristics in a more informative way. This paper proposes the prediction of wind speed that simplifies wind farm planning and feasibility study. Twelve artificial intelligence algorithms were used for wind speed prediction from collected meteorological parameters. The model performances were compared to determine the wind speed prediction accuracy. The results show a deep learning approach, long short-term memory (LSTM) outperforms other models with the highest accuracy of 97.8%."
+},
+{
+"id": "http://arxiv.org/abs/2404.11422v2",
+"titulo": "Short-term wind speed forecasting model based on an attention-gated recurrent neural network and error correction strategy",
+"anio": 2024,
+"autores": [
+"Haojian Huang"
+],
+"resumen": "The accurate wind speed series forecast is very pivotal to security of grid dispatching and the application of wind power. Nevertheless, on account of their nonlinear and non-stationary nature, their short-term forecast is extremely challenging. Therefore, this dissertation raises one short-term wind speed forecast pattern on the foundation of attention with an improved gated recurrent neural network (AtGRU) and a tactic of error correction. That model uses the AtGRU model as the preliminary predictor and the GRU model as the error corrector. At the beginning, SSA (singular spectrum analysis) is employed in previous wind speed series for lessening the noise. Subsequently, historical wind speed series is going to be used for the predictor training. During this process, the prediction can have certain errors. The sequence of these errors processed by variational modal decomposition (VMD) is used to train the corrector of error. The eventual forecast consequence is just the sum of predictor forecast and error corrector. The proposed SSA-AtGRU-VMD-GRU model outperforms the compared models in three case studies on Woodburn, St. Thomas, and Santa Cruz. It is indicated that the model evidently enhances the correction of the wind speed forecast."
+},
+{
+"id": "http://arxiv.org/abs/2007.04005v2",
+"titulo": "Statistical post-processing of wind speed forecasts using convolutional neural networks",
+"anio": 2020,
+"autores": [
+"Simon Veldkamp",
+"Kirien Whan",
+"Sjoerd Dirksen"
+],
+"resumen": "Current statistical post-processing methods for probabilistic weather forecasting are not capable of using full spatial patterns from the numerical weather prediction (NWP) model. In this paper we incorporate spatial wind speed information by using convolutional neural networks (CNNs) and obtain probabilistic wind speed forecasts in the Netherlands for 48 hours ahead, based on KNMI's deterministic Harmonie-Arome NWP model. The probabilistic forecasts from the CNNs are shown to have higher Brier skill scores for medium to higher wind speeds, as well as a better continuous ranked probability score (CRPS) and logarithmic score, than the forecasts from fully connected neural networks and quantile regression forests. As a secondary result, we have compared the CNNs using 3 different density estimation methods (quantized softmax (QS), kernel mixture networks, and fitting a truncated normal distribution), and found the probabilistic forecasts based on the QS method to be best."
+},
+{
+"id": "http://arxiv.org/abs/2002.12592v2",
+"titulo": "Wind Speed Prediction using Deep Ensemble Learning with a Jet-like Architecture",
+"anio": 2020,
+"autores": [
+"Aqsa Saeed Qureshi",
+"Asifullah Khan",
+"Muhammad Waleed Khan"
+],
+"resumen": "The wind is one of the most increasingly used renewable energy resources. Accurate and reliable forecast of wind speed is necessary for efficient power production; however, it is not an easy task because it depends upon meteorological features of the surrounding region. Deep learning is extensively used these days for performing feature extraction. It has also been observed that the integration of several learning models, known as ensemble learning, generally gives better performance compared to a single model. The design of wings, tail, and nose of a jet improves the aerodynamics resulting in a smooth and controlled flight of the jet against the variations of the air currents. Inspired by the shape and working of a jet, a novel Deep Ensemble Learning using Jet-like Architecture (DEL-Jet) technique is proposed to enhance the diversity and robustness of a learning system against the variations in the input space. The diverse feature spaces of the base-regressors are exploited using the jet-like ensemble architecture. Two Convolutional Neural Networks (as jet wings) and one deep Auto-Encoder (as jet tail) are used to extract the diverse feature spaces from the input data. After that, nonlinear PCA (as jet main body) is employed to reduce the dimensionality of extracted feature space. Finally, both the reduced and the original feature spaces are exploited to train the meta-regressor (as jet nose) for forecasting the wind speed. The performance of the proposed DEL-Jet technique is evaluated for ten independent runs and shows that the deep and jet-like architecture helps in improving the robustness and generalization of the learning system."
+},
+{
+"id": "http://arxiv.org/abs/2002.09106v1",
+"titulo": "An Evolutionary Deep Learning Method for Short-term Wind Speed Prediction: A Case Study of the Lillgrund Offshore Wind Farm",
+"anio": 2020,
+"autores": [
+"Mehdi Neshat",
+"Meysam Majidi Nezhad",
+"Ehsan Abbasnejad"
+],
+"resumen": "Accurate short-term wind speed forecasting is essential for large-scale integration of wind power generation. However, the seasonal and stochastic characteristics of wind speed make forecasting a challenging task. This study uses a new hybrid evolutionary approach that uses a popular evolutionary search algorithm, CMA-ES, to tune the hyper-parameters of two Long short-term memory(LSTM) ANN models for wind prediction. The proposed hybrid approach is trained on data gathered from an offshore wind turbine installed in a Swedish wind farm located in the Baltic Sea. Two forecasting horizons including ten-minutes ahead (absolute short term) and one-hour ahead (short term) are considered in our experiments. Our experimental results indicate that the new approach is superior to five other applied machine learning models, i.e., polynomial neural network (PNN), feed-forward neural network (FNN), nonlinear autoregressive neural network (NAR) and adaptive neuro-fuzzy inference system (ANFIS), as measured by five performance criteria."
+},
+{
+"id": "http://arxiv.org/abs/1905.13290v3",
+"titulo": "Seeing the Wind: Visual Wind Speed Prediction with a Coupled Convolutional and Recurrent Neural Network",
+"anio": 2019,
+"autores": [
+"Jennifer L Cardona",
+"Michael F Howland",
+"John O Dabiri"
+],
+"resumen": "Wind energy resource quantification, air pollution monitoring, and weather forecasting all rely on rapid, accurate measurement of local wind conditions. Visual observations of the effects of wind---the swaying of trees and flapping of flags, for example---encode information regarding local wind conditions that can potentially be leveraged for visual anemometry that is inexpensive and ubiquitous. Here, we demonstrate a coupled convolutional neural network and recurrent neural network architecture that extracts the wind speed encoded in visually recorded flow-structure interactions of a flag and tree in naturally occurring wind. Predictions for wind speeds ranging from 0.75-11 m/s showed agreement with measurements from a cup anemometer on site, with a root-mean-squared error approaching the natural wind speed variability due to atmospheric turbulence. Generalizability of the network was demonstrated by successful prediction of wind speed based on recordings of other flags in the field and in a controlled wind tunnel test. Furthermore, physics-based scaling of the flapping dynamics accurately predicts the dependence of the network performance on the video frame rate and duration."
+},
+{
+"id": "http://arxiv.org/abs/2211.14434v2",
+"titulo": "Multi-Step Short-Term Wind Speed Prediction with Rank Pooling and Fast Fourier Transformation",
+"anio": 2022,
+"autores": [
+"Hailong Shu"
+],
+"resumen": "Short-term wind speed prediction is essential for economical wind power utilization. The real-world wind speed data is typically intermittent and fluctuating, presenting great challenges to existing shallow models. In this paper, we present a novel deep hybrid model for multi-step wind speed prediction, namely LR-FFT-RP-MLP/LSTM (Linear Fast Fourier Transformation Rank Pooling Multiple-Layer Perception/Long Short-Term Memory). Our hybrid model processes the local and global input features simultaneously. We leverage Rank Pooling (RP) for the local feature extraction to capture the temporal structure while maintaining the temporal order. Besides, to understand the wind periodic patterns, we exploit Fast Fourier Transformation (FFT) to extract global features and relevant frequency components in the wind speed data. The resulting local and global features are respectively integrated with the original data and are fed into an MLP/LSTM layer for the initial wind speed predictions. Finally, we leverage a linear regression layer to collaborate these initial predictions to produce the final wind speed prediction. The proposed hybrid model is evaluated using real wind speed data collected from 2010 to 2020, demonstrating superior forecasting capabilities when compared to state-of-the-art single and hybrid models. Overall, this study presents a promising approach for improving the accuracy of wind speed forecasting."
+},
+{
+"id": "http://arxiv.org/abs/2408.15554v1",
+"titulo": "A Novel Denoising Technique and Deep Learning Based Hybrid Wind Speed Forecasting Model for Variable Terrain Conditions",
+"anio": 2024,
+"autores": [
+"Sourav Malakar",
+"Saptarsi Goswami",
+"Amlan Chakrabarti"
+],
+"resumen": "Wind flow can be highly unpredictable and can suffer substantial fluctuations in speed and direction due to the shape and height of hills, mountains, and valleys, making accurate wind speed (WS) forecasting essential in complex terrain. This paper presents a novel and adaptive model for short-term forecasting of WS. The paper's key contributions are as follows: (a) The Partial Auto Correlation Function (PACF) is utilised to minimise the dimension of the set of Intrinsic Mode Functions (IMF), hence reducing training time; (b) The sample entropy (SampEn) was used to calculate the complexity of the reduced set of IMFs. The proposed technique is adaptive since a specific Deep Learning (DL) model-feature combination was chosen based on complexity; (c) A novel bidirectional feature-LSTM framework for complicated IMFs has been suggested, resulting in improved forecasting accuracy; (d) The proposed model shows superior forecasting performance compared to the persistence, hybrid, Ensemble empirical mode decomposition (EEMD), and Variational Mode Decomposition (VMD)-based deep learning models. It has achieved the lowest variance in terms of forecasting accuracy between simple and complex terrain conditions 0.70%. Dimension reduction of IMF's and complexity-based model-feature selection helps reduce the training time by 68.77% and improve forecasting quality by 58.58% on average."
+},
+{
+"id": "http://arxiv.org/abs/2207.14679v2",
+"titulo": "Leveraging data from nearby stations to improve short-term wind speed forecasts",
+"anio": 2022,
+"autores": [
+"Rachel Baïle",
+"Jean-François Muzy"
+],
+"resumen": "In this paper, we address the issue of short-term wind speed prediction at a given site. We show that, when one uses spatiotemporal information as provided by wind data of neighboring stations, one significantly improves the prediction quality. Our methodology does not focus on any peculiar forecasting model but rather considers a set of various prediction methods, from a very basic linear regression to different machine learning models. In each case, our approach consists in specifically and incrementally studying the benefits of using wind data of the surrounding stations. We show that, at all horizons ranging from 1 to 6 hours ahead, the relative gain on the RMSE of the predicted wind speed can increase up to 20 %. For all the considered forecasting methods, we show that such a gain is far better than the one obtained by considering other kind of information like local weather variables or seeking for an optimal deep learning model. Moreover we provide evidence that non-linear models, as neural networks or gradient boosting methods, significantly outperform linear regression. These conclusions are simply interpreted as resulting from the ability of a method to capture the transport of the information by the main flow in the upwind direction."
+},
+{
+"id": "http://arxiv.org/abs/2107.06182v1",
+"titulo": "Predictive models for wind speed using artificial intelligence and copula",
+"anio": 2021,
+"autores": [
+"Md Amimul Ehsan"
+],
+"resumen": "Electricity generation from burning fossil fuels is one of the major contributors to global warming. Renewable energy sources are a viable alternative to produce electrical energy and to reduce the emission from the power industry. These energy sources are the building blocks of green energy, which all have different characteristics. Their availabilities are also diverse, depending on geographical locations and other parameters. Low implementation cost and distributed availability all over the world uplifts their popularity exponentially. Therefore, it has unlocked opportunities for consumers to produce electricity locally and use it on-site, which reduces dependency on centralized utility companies. The research considers two main objectives: the prediction of wind speed that simplifies wind farm planning and feasibility study. Secondly, the need to understand the dependency structure of the wind speeds of multiple distant locations. To address the first objective, twelve artificial intelligence algorithms were used for wind speed prediction from collected meteorological parameters. The model performances were compared to determine the wind speed prediction accuracy. The results show a deep learning approach, long short-term memory (LSTM) outperforms other models with the highest accuracy of 97.8%. For dependency, a multivariate cumulative distribution function, Copula, was used to find the joint distribution of two or more distant location wind speeds, followed by a case study. We found that the appropriate copula family and the parameters vary based on the distance in between. For the case study, Joe-Frank (BB8) copula shows an efficient joint distribution fit for a wind speed pair with a standard error of 0.0094. Finally, some insights about the uncertainty aspects of wind speed dependency were addressed."
+},
+{
+"id": "http://arxiv.org/abs/2204.09019v1",
+"titulo": "Hybrid Transformer Network for Different Horizons-based Enriched Wind Speed Forecasting",
+"anio": 2022,
+"autores": [
+"M. Madhiarasan",
+"Partha Pratim Roy"
+],
+"resumen": "Highly accurate different horizon-based wind speed forecasting facilitates a better modern power system. This paper proposed a novel astute hybrid wind speed forecasting model and applied it to different horizons. The proposed hybrid forecasting model decomposes the original wind speed data into IMFs (Intrinsic Mode Function) using Improved Complete Ensemble Empirical Mode Decomposition with Adaptive Noise (ICEEMDAN). We fed the obtained subseries from ICEEMDAN to the transformer network. Each transformer network computes the forecast subseries and then passes to the fusion phase. Get the primary wind speed forecasting from the fusion of individual transformer network forecast subseries. Estimate the residual error values and predict errors using a multilayer perceptron neural network. The forecast error is added to the primary forecast wind speed to leverage the high accuracy of wind speed forecasting. Comparative analysis with real-time Kethanur, India wind farm dataset results reveals the proposed ICEEMDAN-TNF-MLPN-RECS hybrid model's superior performance with MAE=1.7096*10^-07, MAPE=2.8416*10^-06, MRE=2.8416*10^-08, MSE=5.0206*10^-14, and RMSE=2.2407*10^-07 for case study 1 and MAE=6.1565*10^-07, MAPE=9.5005*10^-06, MRE=9.5005*10^-08, MSE=8.9289*10^-13, and RMSE=9.4493*10^-07 for case study 2 enriched wind speed forecasting than state-of-the-art methods and reduces the burden on the power system engineer."
+},
+{
+"id": "http://arxiv.org/abs/2408.15737v1",
+"titulo": "TCNFormer: Temporal Convolutional Network Former for Short-Term Wind Speed Forecasting",
+"anio": 2024,
+"autores": [
+"Abid Hasan Zim",
+"Aquib Iqbal",
+"Asad Malik"
+],
+"resumen": "Global environmental challenges and rising energy demands have led to extensive exploration of wind energy technologies. Accurate wind speed forecasting (WSF) is crucial for optimizing wind energy capture and ensuring system stability. However, predicting wind speed remains challenging due to its inherent randomness, fluctuation, and unpredictability. This study proposes the Temporal Convolutional Network Former (TCNFormer) for short-term (12-hour) wind speed forecasting. The TCNFormer integrates the Temporal Convolutional Network (TCN) and transformer encoder to capture the spatio-temporal features of wind speed. The transformer encoder consists of two distinct attention mechanisms: causal temporal multi-head self-attention (CT-MSA) and temporal external attention (TEA). CT-MSA ensures that the output of a step derives only from previous steps, i.e., causality. Locality is also introduced to improve efficiency. TEA explores potential relationships between different sample sequences in wind speed data. This study utilizes wind speed data from the NASA Prediction of Worldwide Energy Resources (NASA POWER) of Patenga Sea Beach, Chittagong, Bangladesh (latitude 22.2352° N, longitude 91.7914° E) over a year (six seasons). The findings indicate that the TCNFormer outperforms state-of-the-art models in prediction accuracy. The proposed TCNFormer presents a promising method for spatio-temporal WSF and may achieve desirable performance in real-world applications of wind power systems."
+},
+{
+"id": "http://arxiv.org/abs/2507.17298v1",
+"titulo": "Multi-modal encoder-decoder neural network for forecasting solar wind speed at L1",
+"anio": 2025,
+"autores": [
+"Dattaraj B. Dhuri",
+"Shravan M. Hanasoge",
+"Harsh Joon"
+],
+"resumen": "The solar wind, accelerated within the solar corona, sculpts the heliosphere and continuously interacts with planetary atmospheres. On Earth, high-speed solar-wind streams may lead to severe disruption of satellite operations and power grids. Accurate and reliable forecasting of the ambient solar-wind speed is therefore highly desirable. This work presents an encoder-decoder neural-network framework for simultaneously forecasting the daily averaged solar-wind speed for the subsequent four days. The encoder-decoder framework is trained with the two different modes of solar observations. The history of solar-wind observations from prior solar-rotations and EUV coronal observations up to four days prior to the current time form the input to two different encoders. The decoder is designed to output the daily averaged solar-wind speed from four days prior to the current time to four days into the future. Our model outputs the solar-wind speed with Root-Mean-Square Errors (RMSEs) of 55 km/s, 58 km/s, 58 km/s, and 58 km/s and Pearson correlations of 0.78, 0.66, 0.64 and 0.63 for one to four days in advance respectively. While the model is trained and validated on observations between 2010 - 2018, we demonstrate its robustness via application on unseen test data between 2019 - 2023, yielding RMSEs of 53 km/s and Pearson correlations 0.55 for a four-day advance prediction. Our encoder-decoder model thus produces much improved RMSE values compared to the previous works and paves the way for developing comprehensive multimodal deep learning models for operational solar wind forecasting."
+},
+{
+"id": "http://arxiv.org/abs/2101.10041v1",
+"titulo": "Deep Graph Convolutional Networks for Wind Speed Prediction",
+"anio": 2021,
+"autores": [
+"Tomasz Stańczyk",
+"Siamak Mehrkanoon"
+],
+"resumen": "Wind speed prediction and forecasting is important for various business and management sectors. In this paper, we introduce new models for wind speed prediction based on graph convolutional networks (GCNs). Given hourly data of several weather variables acquired from multiple weather stations, wind speed values are predicted for multiple time steps ahead. In particular, the weather stations are treated as nodes of a graph whose associated adjacency matrix is learnable. In this way, the network learns the graph spatial structure and determines the strength of relations between the weather stations based on the historical weather data. We add a self-loop connection to the learnt adjacency matrix and normalize the adjacency matrix. We examine two scenarios with the self-loop connection setting (two separate models). In the first scenario, the self-loop connection is imposed as a constant additive. In the second scenario a learnable parameter is included to enable the network to decide about the self-loop connection strength. Furthermore, we incorporate data from multiple time steps with temporal convolution, which together with spatial graph convolution constitutes spatio-temporal graph convolution. We perform experiments on real datasets collected from weather stations located in cities in Denmark and the Netherlands. The numerical experiments show that our proposed models outperform previously developed baseline models on the referenced datasets. We provide additional insights by visualizing learnt adjacency matrices from each layer of our models."
+},
+{
+"id": "http://arxiv.org/abs/2411.19077v2",
+"titulo": "Improving sub-seasonal wind-speed forecasts in Europe with a non-linear model",
+"anio": 2024,
+"autores": [
+"Ganglin Tian",
+"Camille Le Coz",
+"Anastase Alexandre Charantonis"
+],
+"resumen": "Sub-seasonal wind speed forecasts provide valuable guidance for wind power system planning and operations, yet the forecast skills of surface winds decrease sharply after two weeks. However, large-scale variables exhibit greater predictability on this time scale. This study explores the potential of leveraging non-linear relationships between 500 hPa geopotential height (Z500) and surface wind speed to improve sub-seasonal wind speed forecast skills in Europe. Our proposed framework uses a Multiple Linear Regression (MLR) or a Convolutional Neural Network (CNN) to regress surface wind speed from Z500. Evaluations on ERA5 reanalysis indicate that the CNN performs better due to its non-linearity. Applying these models to sub-seasonal forecasts from the European Centre for Medium-Range Weather Forecasts, various verification metrics demonstrate the advantages of non-linearity. Yet, this is partly explained by the fact that these statistical models are under-dispersive since they explain only a fraction of the target variable variance. Introducing stochastic perturbations to represent the stochasticity of the unexplained part from the signal helps compensate for this issue. Results show that the perturbed CNN performs better than the perturbed MLR only in the first weeks, while the perturbed MLR's performance converges towards that of the perturbed CNN after two weeks. The study finds that introducing stochastic perturbations can address the issue of insufficient spread in these statistical models, with improvements from the non-linearity varying with the lead time of the forecasts."
+},
+{
+"id": "http://arxiv.org/abs/2108.07063v3",
+"titulo": "Multistream Graph Attention Networks for Wind Speed Forecasting",
+"anio": 2021,
+"autores": [
+"Dogan Aykas",
+"Siamak Mehrkanoon"
+],
+"resumen": "Reliable and accurate wind speed prediction has significant impact in many industrial sectors such as economic, business and management among others. This paper presents a new model for wind speed prediction based on Graph Attention Networks (GAT). In particular, the proposed model extends GAT architecture by equipping it with a learnable adjacency matrix as well as incorporating a new attention mechanism with the aim of obtaining attention scores per weather variable. The output of the GAT based model is combined with the LSTM layer in order to exploit both the spatial and temporal characteristics of the multivariate multidimensional historical weather data. Real weather data collected from several cities in Denmark and Netherlands are used to conduct the experiments and evaluate the performance of the proposed model. We show that in comparison to previous architectures used for wind speed prediction, the proposed model is able to better learn the complex input-output relationships of the weather data. Furthermore, thanks to the learned attention weights, the model provides an additional insights on the most important weather variables and cities for the studied prediction task."
+},
+{
+"id": "http://arxiv.org/abs/2304.01234v1",
+"titulo": "Prediction of solar wind speed by applying convolutional neural network to potential field source surface (PFSS) magnetograms",
+"anio": 2023,
+"autores": [
+"Rong Lin",
+"Zhekai Luo",
+"Jiansen He"
+],
+"resumen": "An accurate solar wind speed model is important for space weather predictions, catastrophic event warnings, and other issues concerning solar wind - magnetosphere interaction. In this work, we construct a model based on convolutional neural network (CNN) and Potential Field Source Surface (PFSS) magnetograms, considering a solar wind source surface of $R_{\\rm SS}=2.5R_\\odot$, aiming to predict the solar wind speed at the Lagrange 1 (L1) point of the Sun-Earth system. The input of our model consists of four Potential Field Source Surface (PFSS) magnetograms at $R_{\\rm SS}$, which are 7, 6, 5, and 4 days before the target epoch. Reduced magnetograms are used to promote the model's efficiency. We use the Global Oscillation Network Group (GONG) photospheric magnetograms and the potential field extrapolation model to generate PFSS magnetograms at the source surface. The model provides predictions of the continuous test dataset with an averaged correlation coefficient (CC) of 0.52 and a root mean square error (RMSE) of 80.8 km/s in an eight-fold validation training scheme with the time resolution of the data as small as one hour. The model also has the potential to forecast high speed streams of the solar wind, which can be quantified with a general threat score of 0.39."
+},
+{
+"id": "http://arxiv.org/abs/2102.10570v2",
+"titulo": "Symbolic regression for scientific discovery: an application to wind speed forecasting",
+"anio": 2021,
+"autores": [
+"Ismail Alaoui Abdellaoui",
+"Siamak Mehrkanoon"
+],
+"resumen": "Symbolic regression corresponds to an ensemble of techniques that allow to uncover an analytical equation from data. Through a closed form formula, these techniques provide great advantages such as potential scientific discovery of new laws, as well as explainability, feature engineering as well as fast inference. Similarly, deep learning based techniques has shown an extraordinary ability of modeling complex patterns. The present paper aims at applying a recent end-to-end symbolic regression technique, i.e. the equation learner (EQL), to get an analytical equation for wind speed forecasting. We show that it is possible to derive an analytical equation that can achieve reasonable accuracy for short term horizons predictions only using few number of features."
+},
+{
+"id": "http://arxiv.org/abs/2510.16958v1",
+"titulo": "Quantile Regression, Variational Autoencoders, and Diffusion Models for Uncertainty Quantification: A Spatial Analysis of Sub-seasonal Wind Speed Prediction",
+"anio": 2025,
+"autores": [
+"Ganglin Tian",
+"Anastase Alexandre Charantonis",
+"Camille Le Coz"
+],
+"resumen": "This study aims to improve the spatial representation of uncertainties when regressing surface wind speeds from large-scale atmospheric predictors for sub-seasonal forecasting. Sub-seasonal forecasting often relies on large-scale atmospheric predictors such as 500 hPa geopotential height (Z500), which exhibit higher predictability than surface variables and can be downscaled to obtain more localised information. Previous work by Tian et al. (2024) demonstrated that stochastic perturbations based on model residuals can improve ensemble dispersion representation in statistical downscaling frameworks, but this method fails to represent spatial correlations and physical consistency adequately. More sophisticated approaches are needed to capture the complex relationships between large-scale predictors and local-scale predictands while maintaining physical consistency. Probabilistic deep learning models offer promising solutions for capturing complex spatial dependencies. This study evaluates three probabilistic methods with distinct uncertainty quantification mechanisms: Quantile Regression Neural Network that directly models distribution quantiles, Variational Autoencoders that leverage latent space sampling, and Diffusion Models that utilise iterative denoising. These models are trained on ERA5 reanalysis data and applied to ECMWF sub-seasonal hindcasts to regress probabilistic wind speed ensembles. Our results show that probabilistic downscaling approaches provide more realistic spatial uncertainty representations compared to simpler stochastic methods, with each probabilistic model offering different strengths in terms of ensemble dispersion, deterministic skill, and physical consistency. These findings establish probabilistic downscaling as an effective enhancement to operational sub-seasonal wind forecasts for renewable energy planning and risk assessment."
+},
+{
+"id": "http://arxiv.org/abs/1811.09735v1",
+"titulo": "A Multi-variable Stacked Long-Short Term Memory Network for Wind Speed Forecasting",
+"anio": 2018,
+"autores": [
+"Sisheng Liang",
+"Long Nguyen",
+"Fang Jin"
+],
+"resumen": "Precisely forecasting wind speed is essential for wind power producers and grid operators. However, this task is challenging due to the stochasticity of wind speed. To accurately predict short-term wind speed under uncertainties, this paper proposed a multi-variable stacked LSTMs model (MSLSTM). The proposed method utilizes multiple historical meteorological variables, such as wind speed, temperature, humidity, pressure, dew point and solar radiation to accurately predict wind speeds. The prediction performance is extensively assessed using real data collected in West Texas, USA. The experimental results show that the proposed MSLSTM can preferably capture and learn uncertainties while output competitive performance."
+},
+{
+"id": "http://arxiv.org/abs/2104.00538v1",
+"titulo": "Prediction of Wind Speed Using Artificial Neural Networks and ANFIS Methods (Observation Buoy Example)",
+"anio": 2021,
+"autores": [
+"Inan Timur",
+"Baba Ahmet Fevzi"
+],
+"resumen": "Estimation of the wind speed plays an important role in many issues such as route determination of ships, efficient use of wind roses, and correct planning of agricultural activities. In this study, wind velocity estimation is calculated using artificial neural networks (ANN) and adaptive artificial neural fuzzy inference system (ANFIS) methods. The data required for estimation was obtained from the float named E1M3A, which is a float inside the POSEIDON float system. The proposed ANN is a Nonlinear Auto Regressive with External Input (NARX) type of artificial neural network with 3 layers, 50 neurons, 6 inputs and 1 output. The ANFIS system introduced is a fuzzy inference system with 6 inputs, 1 output, and 3 membership functions (MF) per input. The proposed systems were trained to make wind speed estimates after 3 hours and the data obtained were obtained and the successes of the systems were revealed by comparing the obtained values with real measurements. Mean Squarred Error (MSE) and the regression between the predictions and expected values (R) were used to evaluate the success of the estimation values obtained from the systems. According to estimation results, ANN achieved 2.19 MSE and 0.897 R values in training, 2.88 MSE and 0.866 R values in validation, and 2.93 MSE and 0.857 R values in testing. ANFIS method has obtained 0.31634 MSE and 0.99 R values"
+},
+{
+"id": "http://arxiv.org/abs/2311.08550v2",
+"titulo": "A Hybrid Approach using ARIMA, Kalman Filter and LSTM for Accurate Wind Speed Forecasting",
+"anio": 2023,
+"autores": [
+"Manas Ranjan Mohapatra",
+"Rahul Radhakrishnan",
+"Raj Mani Shukla"
+],
+"resumen": "Present energy demand and modernization are leading to greater fossil fuel consumption, which has increased environmental pollution and led to climate change. Hence to decrease dependency on conventional energy sources, renewable energy sources are considered. Wind energy is a long-term renewable energy resource but its intermittent nature makes it difficult in harnessing it. Since wind speed prediction is vital there are different methodologies for wind speed estimation available in the literature. In this work, a new hybrid model is proposed by combining auto-regressive integrated moving average (ARIMA), Kalman filter and long short-term memory (LSTM) for estimating wind speed which works more accurately than the existing methods proposed in the literature. From simulations, it is observed that the proposed method works with better accuracy when compared to the existing methods."
+},
+{
+"id": "http://arxiv.org/abs/2503.18797v2",
+"titulo": "Local wind speed forecasting at short time horizons based on Numerical Weather Prediction and observations from surrounding stations",
+"anio": 2025,
+"autores": [
+"Roberta Baggio",
+"Killian Pujol",
+"Florian Pantillon"
+],
+"resumen": "This study presents a hybrid neural network model for short-term (1-6 hours ahead) surface wind speed forecasting, combining Numerical Weather Prediction (NWP) with observational data from ground weather stations. It relies on the MeteoNet dataset, which includes data from global (ARPEGE) and regional (AROME) NWP models of the French weather service and meteorological observations from ground stations in the French Mediterranean. The proposed neural network architecture integrates recent past station observations (over last few hours) and AROME and ARPEGE predictions on a small subgrid around the target location. The model is designed to provide both deterministic and probabilistic forecasts, with the latter predicting the parameters of a suitable probability distribution that notably allows us to capture extreme wind events. Our results demonstrate that the hybrid model significantly outperforms baseline methods, including raw NWP predictions, persistence models, and linear regression, across all forecast horizons. For instance, the model reduces RMSE by up 30\\% compared to AROME predictions. Probabilistic forecasting further enhances performance, particularly for extreme quantiles, by estimating conditional quantiles rather than relying solely on the conditional mean. Fine-tuning the model for specific stations, such as those in the Mediterranean island of Corsica, further improves forecasting accuracy. Our study highlights the importance of integrating multiple data sources and probabilistic approaches to improve short-term wind speed forecasting. It defines an effective approach, even in a complex terrain like Corsica where localized wind variations are significant"
+},
+{
+"id": "http://arxiv.org/abs/2408.17185v1",
+"titulo": "Short-term Wind Speed Forecasting for Power Integration in Smart Grids based on Hybrid LSSVM-SVMD Method",
+"anio": 2024,
+"autores": [
+"Ephrem Admasu Yekun",
+"Alem H. Fitwib",
+"Selvi Karpaga Subramaniand"
+],
+"resumen": "Owing to its minimal pollution and efficient energy use, wind energy has become one of the most widely exploited renewable energy resources. The successful integration of wind power into the grid system is contingent upon accurate wind speed forecasting models. However, the task of wind speed forecasting is challenging due to the inherent intermittent characteristics of wind speed. In this paper, a hybrid machine learning approach is developed for predicting short-term wind speed. First, the wind data was decomposed into modal components using Successive Variational Mode Decomposition (SVMD). Then, each sub-signal was fitted into a Least Squares Support Vector Machines (LSSVM) model, with its hyperparameter optimized by a novel variant of Quantum-behaved Particle Swarm Optimization (QPSO), QPSO with elitist breeding (EBQPSO). Second, the residuals making up for the differences between the original wind series and the aggregate of the SVMD modes were modeled using long short-term model (LSTM). Then, the overall predicted values were computed using the aggregate of the LSSVM and the LSTM models. Finally, the performance of the proposed model was compared against state-of-the-art benchmark models for forecasting wind speed using two separate data sets collected from a local wind farm. Empirical results show significant improvement in performance by the proposed method, achieving a 1.21% to 32.76% reduction in root mean square error (RMSE) and a 2.05% to 40.75% reduction in mean average error (MAE) compared to the benchmark methods. The entire code implementation of this work is freely available in Github."
+},
+{
+"id": "http://arxiv.org/abs/2409.09263v3",
+"titulo": "Operational Wind Speed Forecasts for Chile's Electric Power Sector Using a Hybrid ML Model",
+"anio": 2024,
+"autores": [
+"Dhruv Suri",
+"Praneet Dutta",
+"Flora Xue"
+],
+"resumen": "As Chile's electric power sector advances toward a future powered by renewable energy, accurate forecasting of renewable generation is essential for managing grid operations. The integration of renewable energy sources is particularly challenging due to the operational difficulties of managing their power generation, which is highly variable compared to fossil fuel sources, delaying the availability of clean energy. To mitigate this, we quantify the impact of increasing intermittent generation from wind and solar on thermal power plants in Chile and introduce a hybrid wind speed forecasting methodology which combines two custom ML models for Chile. The first model is based on TiDE, an MLP-based ML model for short-term forecasts, and the second is based on a graph neural network, GraphCast, for medium-term forecasts up to 10 days. Our hybrid approach outperforms the most accurate operational deterministic systems by 4-21% for short-term forecasts and 5-23% for medium-term forecasts and can directly lower the impact of wind generation on thermal ramping, curtailment, and system-level emissions in Chile."
+},
+{
+"id": "http://arxiv.org/abs/2609.26683v1",
+"titulo": "PROSWIN: Probabilistic Solar Wind Speed Forecasting Using Deep Distributional Regression From Solar Images",
+"anio": 2026,
+"autores": [
+"Daniel Collin",
+"Yuri Shprits",
+"Luca Chiarabini"
+],
+"resumen": "Accurately predicting fast solar wind conditions is challenging, as uncertainties are large and unquantified by traditional single-value prediction models. In particular, the risks of high-speed solar wind streams (HSSs), which can cause damage to technological infrastructure, cannot be reliably assessed without probabilistic forecasts. We present PROSWIN, a probabilistic machine learning model that forecasts the hourly solar wind speed (SWS) at Earth with a four-day lead time. The approach combines solar images and magnetograms using a deep neural network coupled to a distributional regression algorithm. Because standard error metrics underweight the relevance of HSS peaks, we further introduce the prediction score, a model-selection metric that jointly rewards timeline and HSS peak accuracy. On 14 years of data, our forecast achieves very well-calibrated uncertainties (<1% average deviation). Using the continuous ranked probability score (CRPS), a metric that assesses distributional accuracy, we obtain a timeline CRPS of 41.0 km/s, an HSS peak CRPS of 45.3 km/s, and a prediction score of 42.3 km/s. We find that the 171 Å channel is an important complement to the typically used 193 Å and 211 Å channels and that the prediction score for model selection improves the applicability of the model. Compared to selected models from the literature, ours is the only one that is accurate for both timeline and HSS peak values, rather than trading one off against the other. These results support the advantages of probabilistic over single-value solar wind models. The introduced methods are also transferable to other forecasting problems."
+},
+{
+"id": "http://arxiv.org/abs/2310.12088v3",
+"titulo": "Improving probabilistic wind speed forecasting using M-Rice distribution and spatial data integration",
+"anio": 2023,
+"autores": [
+"Roberta Baggio",
+"Jean-François Muzy"
+],
+"resumen": "We consider the problem of short-term forecasting of surface wind speed probability distribution. Our approach consists in predicting the parameters of a given probability density function by training a neural network model whose loss function is the corresponding log-likelihood. We compare different possibilities among a set of distributions that have been previously considered in the context of modeling wind fluctuations. Our results rely on two wind datasets recorded respectively by Météo-France in Corsica (South France) and by KNMI over the Netherlands. A first part of our work globally unveils the superiority of the so-called \"Multifractal Rice\" (M-Rice) distribution over alternative parametric models, showcasing its potential as a reliable tool for wind speed forecasting. This family ofdistributions relies on a random cascade model model for wind speeds along the same picture as fully developed turbulence. For all stations in both regions, it consistently provides better results regardless of the considered scoring rule or forecasting horizon. Our second findings demonstrate significant enhancements in forecasting accuracy when one incorporates wind speed data from proximate weather stations, in full agreement with former results for point-wise wind speed prediction. Moreover, we reveal that the incorporation of ERA5 reanalysis of 10 m wind data from neighboring grid points contributes to a substantial improvement mostly at longest time horizons ($h=6$ h). It turns out that accounting for pertinent explanatory factors, notably those related the spatial distribution and wind speed and direction, emerges as a more critical factor in enhancing accuracy than the choice of the \"optimal\" parametric distribution. We also find out that such explanatory factors mainly increases the resolution performances while it does not change the reliability contribution to the CRPS score."
+},
+{
+"id": "http://arxiv.org/abs/2305.11526v2",
+"titulo": "Enhancing Short-Term Wind Speed Forecasting using Graph Attention and Frequency-Enhanced Mechanisms",
+"anio": 2023,
+"autores": [
+"Hao Liu",
+"Huimin Ma",
+"Tianyu Hu"
+],
+"resumen": "The safe and stable operation of power systems is greatly challenged by the high variability and randomness of wind power in large-scale wind-power-integrated grids. Wind power forecasting is an effective solution to tackle this issue, with wind speed forecasting being an essential aspect. In this paper, a Graph-attentive Frequency-enhanced Spatial-Temporal Wind Speed Forecasting model based on graph attention and frequency-enhanced mechanisms, i.e., GFST-WSF, is proposed to improve the accuracy of short-term wind speed forecasting. The GFST-WSF comprises a Transformer architecture for temporal feature extraction and a Graph Attention Network (GAT) for spatial feature extraction. The GAT is specifically designed to capture the complex spatial dependencies among wind speed stations to effectively aggregate information from neighboring nodes in the graph, thus enhancing the spatial representation of the data. To model the time lag in wind speed correlation between adjacent wind farms caused by geographical factors, a dynamic complex adjacency matrix is formulated and utilized by the GAT. Benefiting from the effective spatio-temporal feature extraction and the deep architecture of the Transformer, the GFST-WSF outperforms other baselines in wind speed forecasting for the 6-24 hours ahead forecast horizon in case studies."
+},
+{
+"id": "http://arxiv.org/abs/2203.15298v1",
+"titulo": "A Wavelet, AR and SVM based hybrid method for short-term wind speed prediction",
+"anio": 2022,
+"autores": [
+"G. V. Drisya",
+"K. Satheesh Kumar"
+],
+"resumen": "Wind speed modelling and prediction has been gaining importance because of its significant roles in various stages of wind energy management. In this paper, we propose a hybrid model, based on wavelet transform to improve the accuracy of the short-term forecast. The wind speed time series are split into various frequency components using wavelet decomposition technique, and each frequency components are modelled separately. Since the components associated with the high- frequency range shows stochastic nature, we modelled them with autoregressive (AR) method and rest of low-frequency components modelled with support vector machine (SVM). The results of the hybrid method show a promising improvement in accuracy of wind speed prediction compared to that of stand-alone AR or SVM model."
+},
+{
+"id": "http://arxiv.org/abs/2412.13957v2",
+"titulo": "Self-attentive Transformer for Fast and Accurate Postprocessing of Temperature and Wind Speed Forecasts",
+"anio": 2024,
+"autores": [
+"Aaron Van Poecke",
+"Tobias Sebastian Finn",
+"Ruoke Meng"
+],
+"resumen": "Current postprocessing techniques often require separate models for each lead time and disregard possible inter-ensemble relationships by either correcting each member separately or by employing distributional approaches. In this work, we tackle these shortcomings with an innovative, fast and accurate Transformer which postprocesses each ensemble member individually while allowing information exchange across variables, spatial dimensions and lead times by means of multi-headed self-attention. Weather forecasts are postprocessed over 20 lead times simultaneously while including up to fifteen meteorological predictors. We use the EUPPBench dataset for training which contains ensemble predictions from the European Center for Medium-range Weather Forecasts' integrated forecasting system alongside corresponding observations. The work presented here is the first to postprocess the ten and one hundred-meter wind speed forecasts within this benchmark dataset, while also correcting two-meter temperature. Our approach significantly improves the original forecasts, as measured by the CRPS, with 16.5\\% for two-meter temperature, 10\\% for ten-meter wind speed and 9\\% for one hundred-meter wind speed, outperforming a classical member-by-member approach employed as a competitive benchmark. Furthermore, being up to six times faster, it fulfills the demand for rapid operational weather forecasts in various downstream applications, including renewable energy forecasting."
+},
+{
+"id": "http://arxiv.org/abs/2401.14065v1",
+"titulo": "Novel application of Relief Algorithm in cascaded artificial neural network to predict wind speed for wind power resource assessment in India",
+"anio": 2024,
+"autores": [
+"Hasmat Malik",
+"Amit Kumar Yadav",
+"Fausto Pedro García Márquez"
+],
+"resumen": "Wind power generated by wind has non-schedule nature due to stochastic nature of meteorological variable. Hence energy business and control of wind power generation requires prediction of wind speed (WS) from few seconds to different time steps in advance. To deal with prediction shortcomings, various WS prediction methods have been used. Predictive data mining offers variety of methods for WS predictions where artificial neural network (ANN) is one of the reliable and accurate methods. It is observed from the result of this study that ANN gives better accuracy in comparison conventional model. The accuracy of WS prediction models is found to be dependent on input parameters and architecture type algorithms utilized. So the selection of most relevant input parameters is important research area in WS predicton field. The objective of the paper is twofold: first extensive review of ANN for wind power and WS prediction is carried out. Discussion and analysis of feature selection using Relief Algorithm (RA) in WS prediction are considered for different Indian sites. RA identify atmospheric pressure, solar radiation and relative humidity are relevant input variables. Based on relevant input variables Cascade ANN model is developed and prediction accuracy is evaluated. It is found that root mean square error (RMSE) for comparison between predicted and measured WS for training and testing wind speed are found to be 1.44 m/s and 1.49 m/s respectively. The developed cascade ANN model can be used to predict wind speed for sites where there are not WS measuring instruments are installed in India."
+},
+{
+"id": "http://arxiv.org/abs/2108.00859v2",
+"titulo": "Spatio-temporal estimation of wind speed and wind power using machine learning: predictions, uncertainty and technical potential",
+"anio": 2021,
+"autores": [
+"Federico Amato",
+"Fabian Guignard",
+"Alina Walch"
+],
+"resumen": "The growth of wind generation capacities in the past decades has shown that wind energy can contribute to the energy transition in many parts of the world. Being highly variable and complex to model, the quantification of the spatio-temporal variation of wind power and the related uncertainty is highly relevant for energy planners. Machine Learning has become a popular tool to perform wind-speed and power predictions. However, the existing approaches have several limitations. These include (i) insufficient consideration of spatio-temporal correlations in wind-speed data, (ii) a lack of existing methodologies to quantify the uncertainty of wind speed prediction and its propagation to the wind-power estimation, and (iii) a focus on less than hourly frequencies. To overcome these limitations, we introduce a framework to reconstruct a spatio-temporal field on a regular grid from irregularly distributed wind-speed measurements. After decomposing data into temporally referenced basis functions and their corresponding spatially distributed coefficients, the latter are spatially modelled using Extreme Learning Machines. Estimates of both model and prediction uncertainties, and of their propagation after the transformation of wind speed into wind power, are then provided without any assumptions on distribution patterns of the data. The methodology is applied to the study of hourly wind power potential on a grid of 250 by 250 squared meters for turbines of 100 meters hub height in Switzerland, generating the first dataset of its type for the country. The potential wind power generation is combined with the available area for wind turbine installations to yield an estimate of the technical potential for wind power in Switzerland. The wind power estimate presented here represents an important input for planners to support the design of future energy systems with increased wind power generation."
+}
+]
