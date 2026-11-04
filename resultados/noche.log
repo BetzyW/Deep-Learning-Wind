@@ -1,0 +1,68 @@
+== Ajuste Wed Nov  4 07:26:27 HPS 2026
+LSTM  {'h': 128, 'capas': 2, 'dropout': 0.2, 'lr': 0.0003} | RMSE val 0.7991 | épocas 10 | 220 s
+LSTM  {'h': 128, 'capas': 2, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.7955 | épocas 17 | 357 s
+LSTM  {'h': 32, 'capas': 2, 'dropout': 0.2, 'lr': 0.003} | RMSE val 0.7885 | épocas 12 | 56 s
+LSTM  {'h': 32, 'capas': 1, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.8009 | épocas 30 | 60 s
+LSTM  {'h': 128, 'capas': 2, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7904 | épocas 9 | 189 s
+LSTM  {'h': 32, 'capas': 2, 'dropout': 0.2, 'lr': 0.0003} | RMSE val 0.7938 | épocas 22 | 103 s
+LSTM  {'h': 64, 'capas': 1, 'dropout': 0.2, 'lr': 0.001} | RMSE val 0.7970 | épocas 12 | 44 s
+LSTM  {'h': 32, 'capas': 1, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7902 | épocas 22 | 44 s
+LSTM  {'h': 32, 'capas': 1, 'dropout': 0.2, 'lr': 0.0003} | RMSE val 0.8009 | épocas 30 | 60 s
+LSTM  {'h': 128, 'capas': 1, 'dropout': 0.2, 'lr': 0.003} | RMSE val 0.7927 | épocas 8 | 84 s
+LSTM  {'h': 128, 'capas': 2, 'dropout': 0.2, 'lr': 0.001} | RMSE val 0.7905 | épocas 9 | 193 s
+LSTM  {'h': 32, 'capas': 1, 'dropout': 0.0, 'lr': 0.003} | RMSE val 0.7945 | épocas 19 | 36 s
+LSTM  {'h': 64, 'capas': 2, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.7977 | épocas 17 | 99 s
+LSTM  {'h': 64, 'capas': 2, 'dropout': 0.2, 'lr': 0.0003} | RMSE val 0.7937 | épocas 19 | 135 s
+LSTM  {'h': 32, 'capas': 2, 'dropout': 0.2, 'lr': 0.001} | RMSE val 0.7936 | épocas 19 | 84 s
+LSTM  {'h': 64, 'capas': 2, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7900 | épocas 14 | 81 s
+LSTM  {'h': 128, 'capas': 1, 'dropout': 0.0, 'lr': 0.003} | RMSE val 0.7927 | épocas 8 | 80 s
+CNN   {'c1': 64, 'c2': 32, 'k': 3, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.8043 | épocas 18 | 40 s
+CNN   {'c1': 32, 'c2': 32, 'k': 5, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.7946 | épocas 24 | 30 s
+CNN   {'c1': 64, 'c2': 128, 'k': 7, 'dropout': 0.3, 'lr': 0.003} | RMSE val 0.7947 | épocas 13 | 62 s
+CNN   {'c1': 16, 'c2': 128, 'k': 5, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.8075 | épocas 17 | 51 s
+CNN   {'c1': 16, 'c2': 128, 'k': 7, 'dropout': 0.3, 'lr': 0.0003} | RMSE val 0.8048 | épocas 15 | 48 s
+CNN   {'c1': 32, 'c2': 64, 'k': 7, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7942 | épocas 14 | 27 s
+CNN   {'c1': 32, 'c2': 128, 'k': 5, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.8001 | épocas 8 | 47 s
+CNN   {'c1': 32, 'c2': 32, 'k': 3, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.8041 | épocas 28 | 37 s
+CNN   {'c1': 64, 'c2': 64, 'k': 3, 'dropout': 0.1, 'lr': 0.0003} | RMSE val 0.8016 | épocas 22 | 56 s
+CNN   {'c1': 32, 'c2': 128, 'k': 3, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.7993 | épocas 15 | 48 s
+CNN   {'c1': 64, 'c2': 64, 'k': 3, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7959 | épocas 19 | 49 s
+CNN   {'c1': 32, 'c2': 32, 'k': 5, 'dropout': 0.1, 'lr': 0.0003} | RMSE val 0.8121 | épocas 22 | 27 s
+CNN   {'c1': 64, 'c2': 32, 'k': 7, 'dropout': 0.3, 'lr': 0.003} | RMSE val 0.7992 | épocas 12 | 29 s
+CNN   {'c1': 64, 'c2': 64, 'k': 5, 'dropout': 0.0, 'lr': 0.001} | RMSE val 0.7970 | épocas 12 | 33 s
+CNN   {'c1': 32, 'c2': 128, 'k': 7, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.7985 | épocas 7 | 44 s
+CNN   {'c1': 32, 'c2': 64, 'k': 7, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.8069 | épocas 17 | 35 s
+CNN   {'c1': 32, 'c2': 128, 'k': 5, 'dropout': 0.0, 'lr': 0.0003} | RMSE val 0.8044 | épocas 15 | 92 s
+CNN   {'c1': 16, 'c2': 32, 'k': 7, 'dropout': 0.1, 'lr': 0.0003} | RMSE val 0.8038 | épocas 28 | 28 s
+CNN   {'c1': 32, 'c2': 64, 'k': 5, 'dropout': 0.1, 'lr': 0.001} | RMSE val 0.7976 | épocas 15 | 29 s
+CNN   {'c1': 16, 'c2': 32, 'k': 7, 'dropout': 0.3, 'lr': 0.001} | RMSE val 0.7963 | épocas 19 | 19 s
+Mejores: {'MLP': {'h1': 128, 'h2': 128, 'dropout': 0.1, 'lr': 0.0003}, 'LSTM': {'h': 32, 'capas': 2, 'dropout': 0.2, 'lr': 0.003}, 'CNN': {'c1': 32, 'c2': 64, 'k': 7, 'dropout': 0.0, 'lr': 0.001}}
+== Corridas (relanzado)
+MLP   semilla 1000 | RMSE val 0.7933 | épocas 13 | 7 s
+LSTM  semilla 1000 | RMSE val 0.7922 | épocas 11 | 52 s
+CNN   semilla 1000 | RMSE val 0.7950 | épocas 14 | 29 s
+MLP   semilla 1001 | RMSE val 0.7952 | épocas 11 | 6 s
+LSTM  semilla 1001 | RMSE val 0.7878 | épocas 14 | 66 s
+CNN   semilla 1001 | RMSE val 0.7947 | épocas 18 | 37 s
+MLP   semilla 1002 | RMSE val 0.7927 | épocas 14 | 7 s
+LSTM  semilla 1002 | RMSE val 0.7955 | épocas 13 | 61 s
+CNN   semilla 1002 | RMSE val 0.8015 | épocas 18 | 37 s
+MLP   semilla 1003 | RMSE val 0.7936 | épocas 12 | 6 s
+LSTM  semilla 1003 | RMSE val 0.7930 | épocas 11 | 51 s
+CNN   semilla 1003 | RMSE val 0.8005 | épocas 11 | 23 s
+MLP   semilla 1004 | RMSE val 0.7940 | épocas 17 | 8 s
+LSTM  semilla 1004 | RMSE val 0.7921 | épocas 11 | 51 s
+CNN   semilla 1004 | RMSE val 0.7954 | épocas 14 | 29 s
+MLP   semilla 1005 | RMSE val 0.7936 | épocas 11 | 5 s
+LSTM  semilla 1005 | RMSE val 0.7907 | épocas 14 | 65 s
+CNN   semilla 1005 | RMSE val 0.7935 | épocas 14 | 29 s
+== Sensibilidad
+MLP   semilla 1000 | RMSE val 0.8095 | épocas 13 | 5 s
+LSTM  semilla 1000 | RMSE val 0.8102 | épocas 13 | 52 s
+CNN   semilla 1000 | RMSE val 0.8161 | épocas 15 | 25 s
+MLP   semilla 1001 | RMSE val 0.8095 | épocas 13 | 5 s
+LSTM  semilla 1001 | RMSE val 0.8075 | épocas 17 | 66 s
+CNN   semilla 1001 | RMSE val 0.8153 | épocas 15 | 24 s
+MLP   semilla 1002 | RMSE val 0.8096 | épocas 10 | 4 s
+LSTM  semilla 1002 | RMSE val 0.8076 | épocas 17 | 65 s
+CNN   semilla 1002 | RMSE val 0.8140 | épocas 16 | 26 s

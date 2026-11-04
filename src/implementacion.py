@@ -6,12 +6,11 @@
 # ventanas y parada temprana por el RMSE de validación (2024). La prueba (2025) no se usa en este capítulo.
 
 # %%
-import json, inspect, sys
+import json, sys
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
-sys.path.insert(0, "src")
-import modelos
 plt.rcParams.update({"figure.dpi": 110, "axes.spines.top": False, "axes.spines.right": False})
-print(inspect.getsource(modelos.MLP)); print(inspect.getsource(modelos.LSTM)); print(inspect.getsource(modelos.CNN))
+fuente = open("src/modelos.py", encoding="utf-8").read()
+print(fuente[fuente.index("class MLP"):fuente.index("MODELOS =")])
 
 # %% [markdown]
 # ## Control de la aleatoriedad
@@ -51,7 +50,8 @@ print(f"σ_d máxima = {sd_max:.4f} → R = {R} → se usan R = {R_final} semill
 print(f"Diferencia mínima detectable con R = {R_final}: {(1.96 + 0.84) * sd_max / np.sqrt(R_final):.4f} m/s")
 
 # %% [markdown]
-# El resultado se registró en `prerregistro.md` antes de las corridas definitivas.
+# El resultado se registró en el [prerregistro](https://github.com/BetzyW/Deep-Learning-Wind/blob/main/prerregistro.md)
+# antes del ajuste de hiperparámetros y de evaluar el conjunto de prueba: modelos, métrica, margen, número de semillas y pruebas estadísticas quedaron fijados de antemano.
 #
 # ## Ajuste de hiperparámetros con el mismo presupuesto
 #
@@ -84,3 +84,18 @@ for a_, (m, g) in zip(ax, co.groupby("modelo")):
 plt.tight_layout(); plt.show()
 print(co.groupby("modelo").agg(RMSE_val=("rmse_val", "mean"), de=("rmse_val", "std"), epocas=("epocas", "mean"),
                                segundos=("segundos", "mean"), parametros=("parametros", "first")).round(4))
+
+# %% [markdown]
+# ## Sensibilidad: con presión como quinta variable
+#
+# En el EDA se descartó la presión por su faltante no aleatorio. Para medir cuánto se pierde, se repitió el
+# entrenamiento con la configuración `configs/datos_con_presion.json` (3 semillas por modelo, solo validación).
+# Como esa configuración tiene menos estaciones, la comparación es orientativa.
+
+# %%
+import os
+if os.path.exists("resultados/sensibilidad_presion.json"):
+    se = pd.DataFrame(json.load(open("resultados/sensibilidad_presion.json")))
+    comp = pd.DataFrame({"sin presión (4 variables)": co.groupby("modelo").rmse_val.mean(),
+                         "con presión (5 variables)": se.groupby("modelo").rmse_val.mean()})
+    print(comp.round(4))

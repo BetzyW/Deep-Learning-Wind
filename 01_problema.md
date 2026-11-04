@@ -51,6 +51,26 @@ espacial entre estaciones cercanas. Por eso la estación, y no la hora, es la un
 **Ruido de medición.** Los anemómetros tienen un umbral de arranque (típicamente del orden de 0.5 m/s) y una resolución de
 décimas, lo que pone un piso al error alcanzable en vientos débiles.
 
+## Cómo obtener los datos
+
+| Variable | Conjunto en datos.gov.co |
+|---|---|
+| Velocidad del viento | https://www.datos.gov.co/d/sgfv-3yp8 |
+| Dirección del viento | https://www.datos.gov.co/d/kiw7-v9ta |
+| Temperatura ambiente del aire | https://www.datos.gov.co/d/sbwg-7ju4 |
+| Presión atmosférica | https://www.datos.gov.co/d/62tk-nxj5 |
+| Catálogo nacional de estaciones del IDEAM | https://www.datos.gov.co/d/hp9r-jxuu |
+
+1. Descargar de cada conjunto los CSV de 2020 a 2025 de los departamentos del Caribe (Atlántico, Bolívar, Cesar,
+   Córdoba, La Guajira, Magdalena y Sucre), en subcarpetas `VELOCIDAD DEL VIENTO`, `DIRECCION DEL VIENTO`,
+   `TEMPERATURA`, `PRESION` y `CATALOGO estaciones`.
+2. Clonar el repositorio del proyecto de Machine Learning, que contiene el ETL:
+   `git clone https://github.com/yuryenr-ui/entregable1-viento`
+3. Generar el panel con la limpieza causal (cada lectura se limpia solo con información anterior a ella):
+   `python entregable1-viento/scripts/procesar_todo.py "<carpeta de descargas>" --causal`
+4. Copiar el `panel_multivariado_causal.csv` resultante en `datos/` y comprobar su huella con
+   `python src/ficha_panel.py` (SHA-256 `dd0fdfad…c12fb`, ver el capítulo 1).
+
 **Ventanas resultantes** (salida de `src/datos.py`):
 
 | Conjunto | Años | Ventanas | Estaciones |

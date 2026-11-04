@@ -101,7 +101,8 @@ Aplana la ventana en un vector de $Ld = 672$ entradas y aplica capas densas {cit
 $$\mathbf h_1 = \sigma(\mathbf W_1 \operatorname{vec}(\mathbf X) + \mathbf b_1), \quad
 \mathbf h_2 = \sigma(\mathbf W_2 \mathbf h_1 + \mathbf b_2), \quad \hat y = \mathbf w_3^\top \mathbf h_2 + b_3$$
 
-- **Parámetros:** $(Ld+1)h_1 + (h_1+1)h_2 + (h_2+1)$. Con $h_1 = 256$ y $h_2 = 128$: **205 313**.
+- **Parámetros:** $(Ld+1)h_1 + (h_1+1)h_2 + (h_2+1)$. Con la configuración elegida en el ajuste ($h_1 = h_2 = 128$):
+  **102 785**.
 - **Sesgo inductivo:** ninguno temporal; trata cada hora de la ventana como una entrada distinta.
 - **Por qué se incluye:** es el comparador más usado (47 % de los estudios) y el punto de partida para medir si la
   estructura temporal aporta algo. En {cite}`sari2020` llegó a superar a CNN y LSTM solas.
@@ -118,8 +119,9 @@ $$\begin{aligned}
 \quad \mathbf h_t = \mathbf o_t \odot \tanh(\mathbf c_t)
 \end{aligned}$$
 
-- **Parámetros:** $4h(d+h) + 8h$ en la capa recurrente (PyTorch usa dos vectores de sesgo) más $h+1$ en la salida.
-  Con $h = 64$: **17 985**.
+- **Parámetros:** $4h(d_{\text{in}}+h) + 8h$ por capa recurrente (PyTorch usa dos vectores de sesgo), con
+  $d_{\text{in}} = d$ en la primera capa y $d_{\text{in}} = h$ en las siguientes, más $h+1$ en la salida. Con la
+  configuración elegida (dos capas, $h = 32$): $4\,864 + 8\,448 + 33 =$ **13 345**.
 - **Sesgo inductivo:** procesamiento secuencial con memoria; adecuado para dependencias de largo alcance.
 - **Por qué se incluye:** la familia recurrente aparece en el 89 % de los estudios y la LSTM es la más citada.
 
@@ -129,10 +131,11 @@ Desliza filtros de ancho $k$ sobre el eje del tiempo {cite}`lecun1998`:
 
 $$z_{t,c'} = \sigma\Big(b_{c'} + \sum_{c=1}^{C_{\text{in}}} \sum_{j=0}^{k-1} w_{j,c,c'}\, x_{t+j,c}\Big)$$
 
-y termina con un promedio global sobre el tiempo y una capa lineal.
+Se apilan tres capas convolucionales con agrupamiento entre ellas, de modo que el campo receptivo supera las 24 h del
+ciclo diario, y se termina con un promedio global sobre el tiempo y una capa lineal.
 
-- **Parámetros:** $k \cdot C_{\text{in}} \cdot C_{\text{out}} + C_{\text{out}}$ por capa convolucional. Con dos capas
-  ($4 \to 32 \to 64$, $k = 5$) y la salida lineal: **11 041**.
+- **Parámetros:** $k \cdot C_{\text{in}} \cdot C_{\text{out}} + C_{\text{out}}$ por capa convolucional. Con la
+  configuración elegida ($4 \to 32 \to 64 \to 64$, $k = 7$) y la salida lineal: **44 129**.
 - **Sesgo inductivo:** patrones locales invariantes a la posición; con agrupamiento o dilatación amplía el campo
   receptivo.
 - **Por qué se incluye:** segunda familia más frecuente (64 %) y la ganadora en varios estudios recientes
@@ -140,13 +143,14 @@ y termina con un promedio global sobre el tiempo y una capa lineal.
 
 ### Comparación de complejidad
 
-| Modelo | Parámetros (configuración inicial) | Costo por muestra | Paralelizable en el tiempo |
+| Modelo | Parámetros (configuración elegida) | Costo por muestra | Paralelizable en el tiempo |
 |---|---|---|---|
-| MLP | 205 313 | $O(Ld\,h_1)$ | Sí |
-| LSTM | 17 985 | $O(L\,h(d+h))$, secuencial | No |
-| CNN 1D | 11 041 | $O(L\,k\,C_{\text{in}} C_{\text{out}})$ | Sí |
+| MLP | 102 785 | $O(Ld\,h_1)$ | Sí |
+| LSTM | 13 345 | $O(L\,h(d+h))$, secuencial | No |
+| CNN 1D | 44 129 | $O(L\,k\,C_{\text{in}} C_{\text{out}})$ | Sí |
 
-Las configuraciones finales salen del ajuste de hiperparámetros, con el mismo presupuesto para las tres.
+Las configuraciones salen del ajuste de hiperparámetros, con el mismo presupuesto (20 configuraciones) para las tres;
+el detalle está en el capítulo de implementación.
 
 ## Análisis crítico y vacío
 
