@@ -1,0 +1,397 @@
+orden_citas,titulo,anio,doi,citas,fuentes,familias,elegible
+0,Spatio-Temporal Graph Deep Neural Network for Short-Term Wind Speed Forecasting,2019,10.1109/tste.2018.2844102,467,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+1,A transformer-based deep neural network with wavelet transform for forecasting wind speed and wind energy,2023,10.1016/j.energy.2023.127678,238,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+2,Spatio-temporal wind speed forecasting using graph networks and novel Transformer architectures,2023,10.1016/j.apenergy.2022.120565,223,Scopus; Semantic Scholar; Web of Science; arXiv,MLP+RNN+Transformer,1
+3,Learning Temporal and Spatial Correlations Jointly: A Unified Framework for Wind Speed Prediction,2020,10.1109/tste.2019.2897136,223,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+4,2-D regional short-term wind speed forecast based on CNN-LSTM deep learning model,2021,10.1016/j.enconman.2021.114451,221,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,0
+5,Multifactor spatio-temporal correlation model based on a combination of convolutional neural network and long short-term memory neural network for wind speed forecasting,2019,10.1016/j.enconman.2019.02.018,218,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+6,Probabilistic spatiotemporal wind speed forecasting based on a variational Bayesian deep learning model,2020,10.1016/j.apenergy.2019.114259,208,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+7,A novel offshore wind farm typhoon wind speed prediction model based on PSO–Bi-LSTM improved by VMD,2022,10.1016/j.energy.2022.123848,207,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+8,"Smart wind speed deep learning based multi-step forecasting model using singular spectrum analysis, convolutional Gated Recurrent Unit network and Support Vector Regression",2019,10.1016/j.renene.2019.05.039,195,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+9,A short-term wind speed prediction method utilizing novel hybrid deep learning algorithms to correct numerical weather forecasting,2022,10.1016/j.apenergy.2022.118777,192,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+10,Multi-head attention-based probabilistic CNN-BiLSTM for day-ahead wind speed forecasting,2023,10.1016/j.energy.2023.127865,183,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+11,A comparative analysis of the arima and lstm predictive models and their effectiveness for predicting wind speed,2021,10.3390/en14206782,182,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+12,Near real-time wind speed forecast model with bidirectional LSTM networks,2023,10.1016/j.renene.2022.12.123,170,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+13,"An evolutionary deep learning model based on TVFEMD, improved sine cosine algorithm, CNN and BiLSTM for wind speed prediction",2022,10.1016/j.energy.2022.124250,164,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+14,Wind speed prediction of unmanned sailboat based on CNN and LSTM hybrid neural network,2022,10.1016/j.oceaneng.2022.111352,161,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+15,Short-term wind speed forecasting based on long short-term memory and improved BP neural network,2022,10.1016/j.ijepes.2021.107365,159,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+16,Feature selection in wind speed forecasting systems based on meta-heuristic optimization,2023,10.1371/journal.pone.0278491,149,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+17,Wind speed prediction with spatio-temporal correlation: A deep learning approach,2018,10.3390/en11040705,143,Scopus; Semantic Scholar; Web of Science,MLP+CNN,1
+18,Arctic short-term wind speed forecasting based on CNN-LSTM model with CEEMDAN,2024,10.1016/j.energy.2024.131448,142,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+19,"A composite framework coupling multiple feature selection, compound prediction models and novel hybrid swarm optimizer-based synchronization optimization strategy for multi-step ahead short-term wind speed forecasting",2020,10.1016/j.enconman.2019.112461,142,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+20,A combined short-term wind speed forecasting model based on CNN–RNN and linear regression optimization considering error,2022,10.1016/j.renene.2022.09.114,137,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+21,Multivariate wind speed forecasting based on multi-objective feature selection approach and hybrid deep learning model,2023,10.1016/j.energy.2022.126100,128,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+22,Hybrid wind speed forecasting model based on multivariate data secondary decomposition approach and deep learning algorithm with attention mechanism,2021,10.1016/j.renene.2021.04.091,125,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+23,Wind speed forecasting using deep neural network with feature selection,2020,10.1016/j.neucom.2019.08.108,116,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+24,A convolutional Transformer-based truncated Gaussian density network with data denoising for wind speed forecasting,2023,10.1016/j.apenergy.2022.120601,115,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,0
+25,Advanced Deep Learning Approach for Probabilistic Wind Speed Forecasting,2021,10.1109/tii.2020.3004436,109,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+26,Deep learning-based multistep ahead wind speed and power generation forecasting using direct method,2023,10.1016/j.enconman.2023.116760,105,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+27,A spatio-temporal forecasting model using optimally weighted graph convolutional network and gated recurrent unit for wind speed of different sites distributed in an offshore wind farm,2023,10.1016/j.energy.2023.128565,105,Scopus; Web of Science,RNN+CNN,0
+28,Short-term wind speed forecasting based on spatial-temporal graph transformer networks,2022,10.1016/j.energy.2022.124095,104,Scopus; Semantic Scholar; Web of Science,MLP+CNN+Transformer,0
+29,"Hourly day ahead wind speed forecasting based on a hybrid model of EEMD, CNN-Bi-LSTM embedded with GA optimization",2022,10.1016/j.egyr.2022.05.110,101,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+30,Applicability analysis of transformer to wind speed forecasting by a novel deep learning framework with multiple atmospheric variables,2024,10.1016/j.apenergy.2023.122155,100,Scopus; Semantic Scholar; Web of Science,MLP+RNN+Transformer,0
+31,A short-term wind speed forecasting model by using artificial neural networks with stochastic optimization for renewable energy systems,2018,10.3390/en11102777,95,Scopus; Semantic Scholar; Web of Science,MLP+CNN,0
+32,Wind speed forecasting system based on gated recurrent units and convolutional spiking neural networks,2021,10.1016/j.apenergy.2021.116842,87,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+33,Quaternion convolutional long short-term memory neural model with an adaptive decomposition method for wind speed forecasting: North aegean islands case studies,2022,10.1016/j.enconman.2022.115590,81,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+34,A machine learning model for hub-height short-term wind speed prediction,2025,10.1038/s41467-025-58456-4,77,Semantic Scholar,CNN+Transformer,0
+35,Weather image-based short-term dense wind speed forecast with a ConvLSTM-LSTM deep learning model,2023,10.1016/j.buildenv.2023.110446,68,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+36,"A compound framework for wind speed forecasting based on comprehensive feature selection, quantile regression incorporated into convolutional simplified long short-term memory network and residual error correction",2020,10.1016/j.enconman.2020.113234,67,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+37,Wind Speed Prediction Model Using LSTM and 1D-CNN,2018,10.2299/jsp.22.207,66,Semantic Scholar,RNN+CNN,1
+38,Short-term wind speed forecasting using an optimized three-phase convolutional neural network fused with bidirectional long short-term memory network model,2024,10.1016/j.apenergy.2024.122624,65,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+39,Particle-swarm optimization of ensemble neural networks with negative correlation learning for forecasting short-term wind speed of wind farms in western China,2019,10.1016/j.ins.2019.07.074,60,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+40,GAOformer: An adaptive spatiotemporal feature fusion transformer utilizing GAT and optimizable graph matrixes for offshore wind speed prediction,2024,10.1016/j.energy.2024.130404,59,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+41,Deep Learning for Wind Speed Forecasting Using Bi-LSTM with Selected Features,2023,10.32604/iasc.2023.030480,58,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+42,Short-term wind speed forecasting with principle-subordinate predictor based on Conv-LSTM and improved BPNN,2020,10.1109/access.2020.2982839,58,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,0
+43,Informer learning framework based on secondary decomposition for multi-step forecast of ultra-short term wind speed,2025,10.1016/j.engappai.2024.109702,57,Scopus; Web of Science,RNN+CNN+Transformer,1
+44,Causal convolutional gated recurrent unit network with multiple decomposition methods for short-term wind speed forecasting,2020,10.1016/j.enconman.2020.113500,55,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+45,A unified multi-step wind speed forecasting framework based on numerical weather prediction grids and wind farm monitoring data,2023,10.1016/j.renene.2023.05.006,53,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+46,Ultra-short term wind speed prediction using mathematical morphology decomposition and long short-term memory,2020,10.17775/cseejpes.2019.02070,50,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+47,Hybrid deep learning and quantum-inspired neural network for day-ahead spatiotemporal wind speed forecasting,2024,10.1016/j.eswa.2023.122645,49,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+48,Mixformer: Mixture transformer with hierarchical context for spatio-temporal wind speed forecasting,2024,10.1016/j.enconman.2023.117896,49,Scopus; Semantic Scholar; Web of Science,MLP+Transformer,0
+49,Multi-step short-term wind speed prediction using a residual dilated causal convolutional network with nonlinear attention,2020,10.3390/en13071772,49,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+50,Wind Speed Prediction Using Chicken Swarm Optimization with Deep Learning Model,2023,10.32604/csse.2023.034465,48,Scopus; Semantic Scholar,RNN+CNN,0
+51,Offshore wind speed forecasting at different heights by using ensemble empirical mode decomposition and deep learning models,2021,10.1016/j.apor.2021.102937,48,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,1
+52,A novel dynamic ensemble of numerical weather prediction for multi-step wind speed forecasting with deep reinforcement learning and error sequence modeling,2024,10.1016/j.energy.2024.131787,46,Scopus; Web of Science,RNN+CNN,0
+53,Exploring Time Series Models for Wind Speed Forecasting: A Comparative Analysis,2023,10.3390/en16237785,46,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,1
+54,Hybrid Deep Learning-Based Model for Wind Speed Forecasting Based on DWPT and Bidirectional LSTM Network,2020,10.1109/access.2020.3047077,46,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+55,"Data-Adaptive Censoring for Short-Term Wind Speed Predictors Based on MLP, RNN, and SVM",2022,10.1109/jsyst.2022.3150749,45,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+56,Short-Time Wind Speed Forecast Using Artificial Learning-Based Algorithms,2020,10.1155/2020/8439719,45,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,1
+57,Direct multistep wind speed forecasting using LSTM neural network combining EEMD and fuzzy entropy,2019,10.3390/app9010126,45,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+58,Probabilistic deep neural network price forecasting based on residential load and wind speed predictions,2019,10.1049/iet-rpg.2018.6257,44,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+59,Deep non-crossing probabilistic wind speed forecasting with multi-scale features,2022,10.1016/j.enconman.2022.115433,43,Scopus; Web of Science,RNN+CNN,0
+60,Performances of deep learning models for Indian Ocean wind speed prediction,2021,10.1007/s40808-020-00974-9,41,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+61,Wind speed forecasting using multi-site collaborative deep learning for complex terrain application in valleys,2022,10.1016/j.renene.2022.02.095,40,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+62,Short‐Term Canyon Wind Speed Prediction Based on CNN—GRU Transfer Learning,2022,10.3390/atmos13050813,40,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+63,A novel and hybrid framework based on generative adversarial network and temporal convolutional approach for wind speed prediction,2022,10.1016/j.seta.2022.102467,39,Scopus; Web of Science,RNN+CNN,0
+64,A novel hybrid deep learning model for multi-step wind speed forecasting considering pairwise dependencies among multiple atmospheric variables,2023,10.1016/j.energy.2023.129408,39,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+65,Seeing the wind: Visual wind speed prediction with a coupled convolutional and recurrent neural network,2019,10.48550/arxiv.1905.13290,39,Scopus; Semantic Scholar; arXiv,RNN+CNN,0
+66,A hybrid wind speed forecasting model using stacked autoencoder and LSTM,2020,10.1063/1.5139689,39,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+67,Robust multi-step wind speed forecasting based on a graph-based data reconstruction deep learning method,2024,10.1016/j.eswa.2023.121886,38,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+68,Spatio-temporal correlation for simultaneous ultra-short-term wind speed prediction at multiple locations,2023,10.1016/j.energy.2023.128418,36,Scopus; Web of Science,RNN+CNN,0
+69,Stacked Transformer Models for Enhanced Wind Speed Prediction in the Red Sea,2024,10.1109/indin58382.2024.10774454,36,Scopus; Semantic Scholar,RNN+Transformer,1
+70,Wind Speed Forecasts of Multiple Wind Turbines in a Wind Farm Based on Integration Model Built by Convolutional Neural Network and Simple Recurrent Unit; [基于卷积神经网络和简单循环单元集成模型的风电场内多风机风速预测],2020,10.19595/j.cnki.1000-6753.tces.191715,36,Scopus,RNN+CNN,0
+71,Adapting a deep convolutional RNN model with imbalanced regression loss for improved spatio-temporal forecasting of extreme wind speed events in the short to medium range,2023,10.5194/gmd-16-251-2023,35,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+72,Spatial-temporal offshore wind speed characteristics prediction based on an improved purely 2D CNN approach in a large-scale perspective using reanalysis dataset,2024,10.1016/j.enconman.2023.117880,35,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+73,CEEMDAN-SE-HDBSCAN-VMD-TCN-BiGRU: A two-stage decomposition-based parallel model for multi-altitude ultra-short-term wind speed forecasting,2025,10.1016/j.energy.2025.136660,33,Scopus; Web of Science,RNN+CNN,0
+74,Machine Learning Innovations in Renewable Energy Systems with Integrated NRBO-TXAD for Enhanced Wind Speed Forecasting Accuracy,2025,10.3390/electronics14122329,33,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+75,Medium-term offshore wind speed multi-step forecasting based on VMD and GRU-MATNet model,2025,10.1016/j.oceaneng.2025.120737,33,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+76,Machine intelligent and deep learning techniques for large training data in short-term wind speed and ramp event forecasting,2021,10.1002/2050-7038.12818,33,Scopus; Semantic Scholar; Web of Science,MLP+CNN,0
+77,Local and Long-range Convolutional LSTM Network: A novel multi-step wind speed prediction approach for modeling local and long-range spatial correlations based on ConvLSTM,2024,10.1016/j.engappai.2023.107613,33,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+78,Ultra-short-term Wind Speed Prediction Model for Wind Farms Based on Spatiotemporal Neural Network; [基于时空神经网络的风电场超短期风速预测模型],2021,10.7500/aeps20190831001,32,Scopus,RNN+CNN,0
+79,A physics-informed temporal convolutional network-temporal fusion transformer hybrid model for probabilistic wind speed predictions with quantile regression,2025,10.1016/j.energy.2025.136302,31,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,0
+80,A novel hybrid ensemble approach for wind speed forecasting with dual-stage decomposition strategy using optimized GRU and transformer models,2025,10.1016/j.energy.2025.136739,30,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,1
+81,Probabilistic spatiotemporal forecasting of wind speed based on multi-network deep ensembles method,2023,10.1016/j.renene.2023.03.094,30,Scopus; Web of Science,RNN+CNN,0
+82,"Short-term wind speed forecasting based on a hybrid model of ICEEMDAN, MFE, LSTM and informer",2023,10.1371/journal.pone.0289161,30,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+83,Short-term Wind Speed Prediction Based on CNN-GRU Model,2019,10.1109/ccdc.2019.8833472,29,Scopus; Semantic Scholar,RNN+CNN,0
+84,A day-ahead wind speed correction method: Enhancing wind speed forecasting accuracy using a strategy combining dynamic feature weighting with multi-source information and dynamic matching with improved similarity function,2025,10.1016/j.eswa.2024.125724,28,Scopus; Web of Science,RNN+Transformer,0
+85,Enhancing wind speed forecasting accuracy using a GWO-nested CEEMDAN-CNN-BiLSTM model,2024,10.1016/j.icte.2023.11.009,27,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+86,Short term multi-steps wind speed forecasting for carbon neutral microgrid by decomposition based hybrid model,2023,10.1016/j.esd.2023.01.016,27,Scopus; Web of Science,RNN+CNN,0
+87,Hybrid wind speed prediction framework using data pre-processing strategy based autoencoder network,2022,10.1016/j.epsr.2022.107821,27,Scopus; Web of Science,RNN+CNN,0
+88,An efficient short-term wind speed prediction model based on cross-channel data integration and attention mechanisms,2022,10.1016/j.energy.2022.124569,27,Scopus; Web of Science,RNN+CNN,0
+89,A novel time-frequency recurrent network and its advanced version for short-term wind speed predictions,2023,10.1016/j.energy.2022.125556,27,Scopus,RNN+CNN,0
+90,Short-Term Wind Speed Forecasting Based on Signal Decomposing Algorithm and Hybrid Linear/Nonlinear Models,2018,10.3390/en11112976,26,Scopus; Semantic Scholar; Web of Science,MLP+CNN,0
+91,A location-centric transformer framework for multi-location short-term wind speed forecasting,2025,10.1016/j.enconman.2025.119627,25,Scopus; Semantic Scholar; Web of Science,MLP+Transformer,0
+92,A Novel Hybrid Ensemble Wind Speed Forecasting Model Employing Wavelet Transform and Deep Learning,2025,10.1016/j.compeleceng.2024.109820,25,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+93,Short-term extreme wind speed forecasting using dual-output LSTM-based regression and classification model,2025,10.1016/j.jweia.2025.106035,24,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+94,A novel interpretability machine learning model for wind speed forecasting based on feature and sub-model selection,2024,10.1016/j.eswa.2024.124560,23,Scopus; Web of Science,MLP+RNN,1
+95,Deep learning approach for wind speed forecasts at turbine locations in a wind farm,2020,10.1049/iet-rpg.2019.1333,23,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+96,A multi-scale component feature learning framework based on CNN-BiGRU and online sequential regularized extreme learning machine for wind speed prediction,2025,10.1016/j.renene.2025.122427,22,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+97,Wind Speed Forecasting Using ARMA and Neural Network Models,2021,10.1109/epec52095.2021.9621650,22,Scopus; Semantic Scholar,MLP+RNN,1
+98,An ultra-short-term wind speed prediction model using LSTM and CNN,2022,10.1007/s11042-022-12215-5,22,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+99,Ultra-short-term wind speed and wind power forecast via selective Hankelization and low-rank tensor learning-based predictor,2022,10.1016/j.ijepes.2022.107994,21,Scopus; Web of Science,MLP+RNN,0
+100,SSA-Res-GRU Short-term Wind Speed Prediction Model Based on Multi-model Decomposition; [基于多模式分解和麻雀优化残差网络的短期风速预测模型],2022,10.13335/j.1000-3673.pst.2021.2510,21,Scopus,RNN+CNN,0
+101,Short-term wind power combination forecasting method based on wind speed correction of numerical weather prediction,2024,10.3389/fenrg.2024.1391692,21,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+102,Accuracy of Wind Speed Predictability with Heights using Recurrent Neural Networks,2021,10.5937/fme2104908m,21,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+103,Multistep short-term wind speed prediction with rank pooling and fast Fourier transformation,2024,10.1002/we.2906,20,Scopus; Semantic Scholar; Web of Science; arXiv,MLP+RNN,0
+104,Short-Term Wind Speed and Direction Forecasting by 3DCNN and Deep Convolutional LSTM,2022,10.1002/tee.23669,20,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+105,Hybrid convolutional Bi-LSTM autoencoder framework for short-term wind speed prediction,2022,10.1007/s00521-022-07125-4,20,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+106,A CNN-LSTM model for predicting wind speed in non-stationary wind fields in mountainous areas based on wavelet transform and adaptive programming,2024,10.1063/5.0230026,19,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+107,Ultra-short-term Wind Power Prediction Based on Power Correction Under Low Wind Speed and Improved Loss Function; [基 于 低 风 速 功 率 修 正 和 损 失 函 数 改 进 的 超 短 期 风 电 功 率 预 测],2024,10.7500/aeps20230926006,19,Scopus,RNN+CNN+Transformer,0
+108,Hybrid attention-based temporal convolutional bidirectional LSTM approach for wind speed interval prediction,2023,10.1007/s11356-022-24641-x,19,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+109,DUAL-MODE DECOMPOSITION CNN-LSTM INTEGRATED SHORT-TERM WIND SPEED FORECASTING MODEL; [双模式分解 CNN-LSTM 集成的短期风速预测模型],2023,10.19912/j.0254-0096.tynxb.2021-1307,18,Scopus,RNN+CNN,0
+110,A Wind Speed Combination Forecasting Method Based on Multifaceted Feature Fusion and Transfer Learning for Centralized Control Center,2022,10.1016/j.epsr.2022.108765,18,Scopus; Web of Science,RNN+CNN,0
+111,Wind Speed Forecasting using Hybrid Model of CNN and LSTM with Wavelets,2023,10.1109/apsit58554.2023.10201713,18,Scopus; Semantic Scholar,RNN+CNN,1
+112,Prediction model of wind speed and direction using convolutional neural network - Long short term memory,2020,10.1109/pecon48942.2020.9314474,18,Scopus; Semantic Scholar,RNN+CNN,1
+113,Nowcasting prediction of wind speed using computational intelligence and wavelet in Brazil,2020,10.1080/15502287.2020.1841335,18,Scopus; Web of Science,MLP+RNN,1
+114,"An offshore wind speed forecasting system based on feature enhancement, deep time series clustering, and extended LSTM",2025,10.1016/j.energy.2025.137335,17,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+115,Windformer: A novel 4D high-resolution system for multi-step wind speed vector forecasting based on temporal shifted window multi-head self-attention,2024,10.1016/j.energy.2024.133206,17,Scopus; Web of Science,CNN+Transformer,0
+116,A short-term hybrid wind speed prediction model based on decomposition and improved optimization algorithm,2023,10.3389/fenrg.2023.1298088,17,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+117,A novel hybrid framework for wind speed forecasting using autoencoder-based convolutional long short-term memory network,2021,10.1002/2050-7038.13072,17,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+118,"Multi-step ahead wind speed forecasting approach coupling PSR, NNCT-based multi-model fusion and a new optimization algorithm",2025,10.1016/j.renene.2024.121992,16,Scopus; Web of Science,RNN+CNN,1
+119,Short-term offshore wind speed forecasting approach based on multi-stage decomposition and deep residual network with self-attention,2025,10.1016/j.engappai.2025.110313,16,Scopus; Web of Science,CNN+Transformer,0
+120,"Evaluating Wind Speed Forecasting Models: A Comparative Study of CNN, DAN2, Random Forest and XGBOOST in Diverse South African Weather Conditions",2024,10.3390/forecast6030035,16,Scopus; Semantic Scholar; Web of Science,MLP+CNN,1
+121,EEMD-ConvLSTM: a model for short-term prediction of two-dimensional wind speed in the South China Sea,2023,10.1007/s10489-023-05042-0,16,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+122,Multivariable space-time correction for wind speed in numerical weather prediction (NWP) based on ConvLSTM and the prediction of probability interval,2023,10.1007/s12145-023-01036-1,16,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+123,An Informer-BiGRU-temporal attention multi-step wind speed prediction model based on spatial-temporal dimension denoising and combined VMD decomposition,2025,10.1016/j.energy.2025.136265,15,Scopus; Web of Science,RNN+CNN+Transformer,0
+124,Short-term offshore wind speed prediction model based on VMD-GDPSO-TCN-BiLSTM,2025,10.1016/j.oceaneng.2025.122518,15,Scopus; Web of Science,RNN+CNN,0
+125,"Using stacking ensemble learning to predict multi-step wind speed based on wavelet transformation, two-steps feature selection method, and neural networks",2025,10.1016/j.measurement.2024.116500,15,Scopus; Web of Science,MLP+RNN+CNN,1
+126,A deep reinforcement learning approach for wind speed forecasting,2025,10.1080/19942060.2025.2498355,15,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+127,An Improved Hybrid CNN-LSTM-Attention Model with Kepler Optimization Algorithm for Wind Speed Prediction,2024,,15,Scopus; Web of Science,RNN+CNN,0
+128,Short-Term Wind Power Prediction Based on Wind Speed Interval Division and TimeGAN for Gale Weather,2023,10.1109/icopesa56898.2023.10140676,15,Scopus; Semantic Scholar,MLP+RNN,0
+129,A Dual-Attention-Mechanism Multi-Channel Convolutional LSTM for Short-Term Wind Speed Prediction,2023,10.3390/atmos14010071,15,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+130,Long-Term Wind Speed and Power Forecasting Based on LSTM: A Comprehensive Study,2022,10.1109/icredg54199.2022.9804519,14,Scopus; Semantic Scholar,RNN+CNN,0
+131,"Enhanced Probabilistic Spatiotemporal Wind Speed Forecasting Based on Deep Learning, Quantile Regression, and Error Correction",2022,10.1061/(asce)ey.1943-7897.0000823,14,Scopus; Web of Science,RNN+CNN,0
+132,Spatio-temporal deep learning for day-ahead wind speed forecasting relying on WRF predictions,2023,10.1007/s12667-021-00480-6,14,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+133,Robust Wind Speed Forecasting: A Deep Spatio-Temporal Approach,2021,10.1109/eeeic/icpseurope51590.2021.9584602,14,Scopus; Semantic Scholar,RNN+CNN,0
+134,Short-term wind speed interval prediction using improved quality-driven loss based gated multi-scale convolutional sequence model,2024,10.1016/j.energy.2024.131590,13,Scopus; Web of Science,RNN+CNN,0
+135,Short-Term Wind Speed Prediction for Bridge Site Area Based on Wavelet Denoising OOA-Transformer,2024,10.3390/math12121910,13,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+136,Attention mechanism for developing wind speed and solar irradiance forecasting models,2021,10.1177/0309524x20981885,13,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+137,A hybrid forecasting model for very short-term wind speed prediction based on secondary decomposition and deep learning algorithms,2023,10.1007/s12145-023-01044-1,13,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+138,Very Short Term Wind Speed Forecasting Using Convolutional Long Short Term Memory Recurrent Neural Network,2020,10.1109/icue49301.2020.9307061,13,Scopus; Semantic Scholar,RNN+CNN,1
+139,Forecasting Short- and Long-Term Wind Speed in Limpopo Province Using Machine Learning and Extreme Value Theory,2024,10.3390/forecast6040044,12,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+140,Univariate and multivariate models for Short-term wind speed forecasting,2021,10.1016/j.matpr.2020.12.1090,12,Semantic Scholar,MLP+RNN,0
+141,Research on an Ultra-Short-Term Wind Speed Prediction Method Based on Improved Combined Neural Networks; [一种改进组合神经网络的超短期风速预测方法研究],2024,10.12096/j.2096-4528.pgt.22038,11,Scopus,MLP+RNN,0
+142,Short-term wind speed prediction model based on long short-term memory network with feature extraction,2025,10.1007/s12145-025-01851-8,11,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+143,A novel point-interval prediction model for wind speed based on hybrid deep learning and RIME optimization algorithms,2025,10.1016/j.egyr.2025.11.016,11,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+144,A spatial transfer-based hybrid model for wind speed forecasting,2024,10.1016/j.energy.2024.133920,11,Scopus; Web of Science,RNN+CNN,0
+145,MCPT-CAF-BiGRU: A multi-scale CNN and ProbSparse-Masked Transformer model with cross-attention fusion and BiGRU for hourly wind speed forecasting,2026,10.1016/j.eswa.2025.131081,11,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+146,Integrating Physics-Informed Vectors for Improved Wind Speed Forecasting with Neural Networks,2024,,11,Scopus; Semantic Scholar,RNN+CNN,0
+147,"A hybrid model for multi-step wind speed forecasting based on secondary decomposition, deep learning, and error correction algorithms",2021,10.3233/jifs-210779,11,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+148,"Classification of tall tower meteorological variables and forecasting wind speeds in Columbia, Missouri",2023,10.1016/j.renene.2023.119123,11,Scopus; Semantic Scholar,MLP+RNN,0
+149,Deep convolutional long short-term memory for forecasting wind speed and direction,2021,10.1080/18824889.2021.1894878,11,Scopus; Semantic Scholar,RNN+CNN,0
+150,Multi-step forecasting strategies for wind speed time series,2020,10.1109/ropec50909.2020.9258743,11,Scopus; Semantic Scholar,RNN+CNN,0
+151,Wavelet-denoised graph-Informer for accurate and stable wind speed prediction,2025,10.1016/j.asoc.2025.113182,11,Web of Science,CNN+Transformer,0
+152,A HybridGCN-GRU approach for high-accuracy wind speed forecasting via multi-graph feature fusion and dynamic modeling,2026,10.1016/j.ins.2025.122805,10,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+153,Enhancing short-term chaotic wind speed time-series prediction using hybrid approach with multiple data sets,2024,10.1007/s11071-024-09595-8,10,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+154,A Novel Two-Dimensional Convolutional Neural Network-Based an Hour-Ahead Wind Speed Prediction Method,2023,10.1109/access.2023.3327135,10,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,0
+155,Comparative Analysis between Intelligent Machine Committees and Hybrid Deep Learning with Genetic Algorithms in Energy Sector Forecasting: A Case Study on Electricity Price and Wind Speed in the Brazilian Market,2024,10.3390/en17040829,10,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+156,SWSA transformer: A forecasting method of ultra-short-term wind speed from an offshore wind farm using global attention mechanism,2023,10.1063/5.0153511,10,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+157,Super short-term wind speed prediction based on CEEMD decomposition and BILSTM-Transformer model,2023,10.1109/icpeca56706.2023.10076025,10,Scopus; Semantic Scholar,MLP+Transformer,0
+158,The application of deep neural network algorithm considering multi-dimensional meteorological feature extraction in short-term wind speed prediction,2019,10.1109/itnec.2019.8729391,10,Scopus; Semantic Scholar,MLP+RNN+CNN,0
+159,Comparative Study of Short-Term Wind Speed Forecasting Techniques Using Artificial Neural Networks,2018,10.1109/icctct.2018.8550849,10,Scopus; Semantic Scholar,MLP+RNN,1
+160,Prediction of Wind Speed and Direction using Encoding - Forecasting Network with Convolutional Long Short-term Memory,2020,10.23919/sice48898.2020.9240261,10,Scopus; Semantic Scholar,RNN+CNN,0
+161,An Evolutionary Deep Learning Method for Short-term Wind Speed Prediction: A Case Study of the Lillgrund Offshore Wind Farm,2020,10.48550/arxiv.2002.09106,10,Semantic Scholar; arXiv,MLP+RNN,0
+162,Forecasting and Multilevel Early Warning of Wind Speed Using an Adaptive Kernel Estimator and Optimized Gated Recurrent Units,2024,10.3390/math12162581,9,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+163,Multiscale VMD-based deep learning with SHAP interpretability for offshore wind speed forecasting,2026,10.1016/j.epsr.2026.113392,9,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+164,"Short-term multi-step wind speed forecasting with multi-feature inputs using Variational Mode Decomposition, a novel artificial intelligence network, and the Polar Lights Optimizer",2026,10.1016/j.renene.2025.123965,9,Scopus; Web of Science,RNN+CNN,0
+165,CEEMDAN-RIME–Bidirectional Long Short-Term Memory Short-Term Wind Speed Prediction for Wind Farms Incorporating Multi-Head Self-Attention Mechanism,2024,10.3390/app14188337,9,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+166,Advanced Multivariate Deep Learning Methodology for Forecasting Wind Speed and Solar Irradiation,2026,10.3390/smartcities9040059,9,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+167,Wind speed prediction in extreme weather based on error correction; [基于误差修正的极端天气下风速预测],2023,10.13878/j.cnki.jnuist.20221206003,9,Scopus,RNN+CNN,0
+168,A novel hybrid forecasting system based on data augmentation and deep learning neural network for short-term wind speed forecasting,2021,10.1063/5.0062790,9,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+169,Forecasting Wind Speed Using A Hybrid Model Of Convolutional Neural Network And Long-Short Term Memory With Boruta Algorithm-Based Feature Selection,2023,10.6180/jase.202308_26(8).0001,9,Scopus; Web of Science,RNN+CNN,0
+170,Wind Speed Forecasting at Different Time Scales Using Time Series and Machine Learning Models,2022,10.3103/s0003701x22601569,9,Scopus; Semantic Scholar,MLP+RNN,1
+171,Instantaneous 2D extreme wind speed prediction using the novel Wind Gust Prediction Net based on purely convolutional neural mechanism,2024,10.1080/19942060.2024.2305318,9,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+172,Input wind speed forecasting for wind turbines based on spatio-temporal correlation,2023,10.1016/j.renene.2023.119075,9,Scopus; Web of Science,RNN+CNN,0
+173,Application of stacked and bidirectional long short-term memory deep learning models for wind speed forecasting at an offshore site,2025,10.1080/15567036.2021.1925379,8,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,1
+174,An AI-based weather prediction method for wind farms combining global forecast field and wind speed temporal transfer characteristics,2025,10.1016/j.energy.2025.136740,8,Scopus; Web of Science,CNN+Transformer,0
+175,MULTI-STEP WIND SPEED FORECASTING BASED ON VIT AND LSTM; [基于 ViT 和 LSTM 的风速多步预测],2024,10.19912/j.0254-0096.tynxb.2023-0797,8,Scopus,RNN+Transformer,0
+176,Interval multi-feature sparse transformer-CNN: A synergistic approach to precise and efficient spatio-temporal wind speed interval-value prediction,2025,10.1016/j.asoc.2025.113910,8,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,0
+177,Wind Speed Multi-Step Forecasting Using High- Resolution and Multi-Objective Ensemble Model With Error Correction,2024,10.1109/access.2024.3404268,8,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+178,A short-term wind speed prediction method utilizing rolling decomposition and time-series extension to avoid information leakage,2024,10.1080/15567036.2024.2318485,8,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+179,SHORT-TERM PREDICTION OF WIND SPEED BASED ON HYBRID DECOMPOSITION AND PCG-BiLSTM; [基于混合分解和 PCG-BiLSTM 的风速短期预测],2024,10.19912/j.0254-0096.tynxb.2022-1432,8,Scopus,RNN+CNN,0
+180,Short-term Wind Speed Probabilistic Prediction Model Using DeepAR,2023,10.3969/j.issn.1001-8360.2023.07.018,8,Scopus,MLP+CNN,0
+181,Research on short-term wind speed prediction based on deep learning model in multi-fan scenario of distributed generation,2022,10.1016/j.egyr.2022.10.399,8,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+182,A comparison of deep learning methods for wind speed forecasting,2020,10.1109/ropec50909.2020.9258673,8,Scopus; Semantic Scholar,RNN+CNN,1
+183,A Wind Speed Prediction Method Based on Signal Decomposition Technology Deep Learning Model,2025,10.3390/en18051136,7,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+184,Multi-Site Wind Speed Prediction Based on Graph Embedding and Cyclic Graph Isomorphism Network (GIN-GRU),2024,10.3390/en17143516,7,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+185,Transforming Wind Data into Insights: A Comparative Study of Stochastic and Machine Learning Models in Wind Speed Forecasting,2025,10.3390/app15073543,7,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+186,Hybrid CEEMDAN–Transformer–LSTM Framework for enhanced multi-horizon wind speed forecasting,2026,10.1016/j.jweia.2026.106408,7,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+187,Hardware-Centric Exploration of the Discrete Design Space in Transformer–LSTM Models for Wind Speed Prediction on Memory-Constrained Devices,2025,10.3390/en18092153,7,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+188,Hybrid ultra-short-term wind speed forecasting model based on improved BO-HMA-BiGRU and GMBInformer: Integrating SVMD-SWT dual decomposition and MPE-driven modeling mechanism,2025,10.1016/j.energy.2025.139078,7,Scopus; Web of Science,CNN+Transformer,0
+189,A novel decomposition-prediction hybrid model improved by dual-channel cross-attention mechanism for short-term wind speed prediction,2025,10.1016/j.engappai.2025.112550,7,Scopus; Web of Science,CNN+Transformer,0
+190,SPATIO-TEMPORAL WIND SPEED PREDICTION ALGORITHM BASED ON CBAM-DSC-UNet MODEL; [基于 CBAM-DSC-UNet 模型的时空风速预测算法],2024,10.19912/j.0254-0096.tynxb.2023-0914,7,Scopus,RNN+CNN,0
+191,Forecasting wind speed over multiple horizons: Superiority of deep learning and decomposition-driven hybrid models,2026,10.1016/j.uncres.2025.100296,7,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,1
+192,Short Term Wind Speed Forecasting Based on Feature Extraction by CNN and MLP,2021,10.1109/isceic53685.2021.00047,7,Scopus; Semantic Scholar,MLP+CNN,0
+193,A Survey on Wind Speed Forecasting in Smart Grids Using Deep Learning Algorithm Applications,2024,10.1109/epdc62178.2024.10571717,7,Scopus; Semantic Scholar,RNN+CNN,0
+194,Comparison of BLSTM-Attention and BLSTM-Transformer Models for Wind Speed Prediction,2022,10.7546/crabs.2022.01.10,7,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+195,Spatio-Temporal Wind Speed Prediction Based on CNN-GRU,2023,10.1109/icis57766.2023.10210249,7,Scopus; Semantic Scholar,RNN+CNN,1
+196,A hybrid wind speed prediction approach based on ensemble empirical mode decomposition and BO-LSTM neural networks for digital twin,2020,10.1115/power2020-16500,7,Scopus; Semantic Scholar,MLP+RNN,0
+197,TCNFormer: Temporal Convolutional Network Former for Short-Term Wind Speed Forecasting,2024,10.48550/arxiv.2408.15737,7,Semantic Scholar; arXiv,CNN+Transformer,0
+198,Dynamic Optimization of Recurrent Networks for Wind Speed Prediction on Edge Devices,2025,10.1109/access.2025.3581973,6,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+199,Improved sparrow search algorithm optimized extreme learning machine for ultra-short-term wind speed prediction,2026,10.1016/j.jastp.2025.106693,6,Scopus; Web of Science,RNN+CNN+Transformer,0
+200,Deep learning with entity embedding for offshore route-based wind speed prediction considering spatiotemporal correlation,2025,10.1016/j.oceaneng.2025.122655,6,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+201,Forecasting Model of Wind Speed and Direction by Convolutional Neural Network - Deep Convolutional Long Short Term Memory,2022,10.1109/itis57155.2022.10010005,6,Scopus; Semantic Scholar,RNN+CNN,0
+202,Short-term wind speed prediction with master-slave performance based on CNN-LSTM and improved POABP,2023,,6,Scopus; Web of Science,MLP+RNN+CNN,0
+203,Multi-Wind Turbine Wind Speed Prediction Based on Weighted Diffusion Graph Convolution and Gated Attention Network,2024,10.3390/en17071658,6,Scopus; Semantic Scholar; Web of Science,RNN+CNN,1
+204,A Combined Model Based on the Social Cognitive Optimization Algorithm for Wind Speed Forecasting,2022,10.3390/pr10040689,6,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+205,Wind Speed Forecasting using Deep Learning,2024,10.1109/icsseecc61126.2024.10649504,6,Scopus; Semantic Scholar,RNN+CNN,1
+206,Wind Speed Forecasting Method Based on Deep Learning Strategy Using Long Short Term Memory Neural Network And Transformer Model,2022,10.1109/hpcc-dss-smartcity-dependsys53884.2021.00344,6,Scopus; Semantic Scholar,RNN+Transformer,0
+207,The Application Research of Deep Learning Based Method for Short-term Wind Speed Forecasting,2019,10.1109/iaeac47372.2019.8997793,6,Scopus; Semantic Scholar,RNN+CNN,0
+208,Deep Learning Based Visualized Wind Speed Matrix Forecasting Model for Wind Power Forecasting,2020,10.1109/scems48876.2020.9352407,6,Scopus; Semantic Scholar,RNN+CNN,0
+209,Wind Speed Forecasting in the Greek Seas Using Hybrid Artificial Neural Networks,2025,10.3390/atmos16070763,5,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+210,Hybrid neural network wind speed prediction based on two-level decomposition and weighted averaging,2024,10.1007/s12145-024-01388-2,5,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+211,ULTRA-SHORT-TERM WIND SPEED PREDICTION BASED ON SAMPLE ENTROPY-BASED DUAL DECOMPOSITION AND SSA-LSTM; [基于样本熵双分解和 SSA-LSTM 的超短期风速预测],2025,10.19912/j.0254-0096.tynxb.2023-1888,5,Scopus,RNN+CNN,0
+212,"Evaluating LSTM and NARX neural networks for wind speed forecasting and energy optimization in Tetouan, Northern Morocco",2025,10.1177/01445987241309035,5,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+213,Dual-task coupled forecasting of wind speed and wind power generation based on multimodal spatiotemporal feature fusion,2025,10.1016/j.egyr.2025.05.051,5,Scopus; Web of Science,RNN+CNN,0
+214,A nature-inspired and noise-assisted feature extraction integrating spatiotemporal attention-based sequence2sequence for multivariate wind speed prediction,2025,10.1007/s00477-024-02866-1,5,Scopus; Semantic Scholar; Web of Science,MLP+RNN,1
+215,Research on application of spatio-temporal fusion mechanism based on convolution and shared weight long short-term memory network in wind speed prediction; [基于卷积和共享权系数长短时记忆网络时融合机制在风速预测上的应用研究],2022,10.19912/j.0254-0096.tynxb.2021-1362,5,Scopus,RNN+CNN,0
+216,Prediction of effect of wind speed on air pollution level using machine learning technique,2023,10.1515/cppm-2022-0052,5,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+217,Enhancing rock and soil hazard monitoring in open-pit mining operations through ultra-short-term wind speed prediction,2023,10.3389/feart.2023.1297690,5,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+218,Spatio-Temporal Wind Speed Prediction Based on Variational Mode Decomposition,2022,10.32604/csse.2022.027288,5,Scopus; Web of Science,RNN+CNN,0
+219,Short-Term Probabilistic Wind Speed Predictions Integrating Multivariate Linear Regression and Generative Adversarial Network Methods,2024,10.3390/atmos15030294,5,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+220,A self-attention based method for wind speed forecasting in high-speed railway system,2021,10.1109/dtpi52967.2021.9540068,5,Scopus; Semantic Scholar,RNN+Transformer,0
+221,A Hybrid Wind Speed Prediction Model Based on Signal Decomposition and Deep 1DCNN,2021,10.1007/978-3-030-78811-7_26,5,Scopus,RNN+CNN,0
+222,Enhancing Wind Speed and Wind Power Forecasting Using Shape-Wise Feature Engineering: A Novel Approach for Improved Accuracy and Robustness,2024,10.17703/ijact.2023.11.4.393,5,Semantic Scholar; arXiv,RNN+CNN,0
+223,An integrated prediction model based on meta ensemble learning for short-term wind speed forecasting,2025,10.1049/rpg2.13016,4,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+224,Comparison of multilayer perceptron and nonlinear autoregressive models for wind speed prediction,2025,10.11591/eei.v14i3.8541,4,Scopus; Semantic Scholar,MLP+RNN,1
+225,Enhanced Miss Forest and Multivariate Time Series Prediction of Wind Speed Using Deep Learning,2025,10.1142/s0218126625300065,4,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+226,WindForecastX: a dynamic approach for accurate long-term wind speed prediction in wind energy applications,2025,10.1007/s10236-024-01657-0,4,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+227,Short-term wind speed prediction based on denoising algorithm of enhanced successive variational mode decomposition and integrated parallel prediction model,2025,10.1016/j.energy.2025.138857,4,Scopus; Web of Science,RNN+Transformer,0
+228,Wind Speed Forecasting Based on Phase Space Reconstruction and a Novel Optimization Algorithm,2024,10.3390/su16166945,4,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+229,Unlocking few-shot wind speed prediction through a novel end-to-end transfer learning paradigm based on decomposition and gating information fusion,2025,10.1016/j.engappai.2025.112435,4,Scopus; Web of Science,MLP+RNN,0
+230,Enhanced prediction model of short-term sea surface wind speed: A multiscale feature extraction and selection approach coupled with deep learning technique,2024,10.1016/j.jksuci.2024.102192,4,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+231,Integrated and Fire Spiking Neuron Model for Improved Wind Speed Forecasting,2025,10.1155/er/3098062,4,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+232,ML-Based Multi-Horizon Wind Speed and Wind Direction Forecasting for Aviation and Energy Applications in Coastal Crete,2025,10.3390/electronics14244856,4,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,1
+233,PhysDiffWind: A physics-constrained retrieval-augmented diffusion framework for offshore wind speed forecasting,2026,10.1016/j.asoc.2026.114647,4,Scopus; Web of Science,CNN+Transformer,0
+234,RESEARCH ON WIND SPEED INTERVAL PREDICTION BASED ON HYBRID DEEP LEARNING MODEL; [基于混合深度学习模型的风速区间预测研究],2023,10.19912/j.0254-0096.tynxb.2021-1241,4,Scopus,RNN+CNN,0
+235,Optimized Hybrid Neural Network for Wind Speed Forecasting,2022,10.1109/epec56903.2022.10000164,4,Scopus; Semantic Scholar,MLP+RNN+CNN,0
+236,"Assessment of LSTM, Conv2D and ConvLSTM2D Prediction Models for Long-Term Wind Speed and Direction Regression Analysis",2021,10.21203/rs.3.rs-1011778/v1,4,Semantic Scholar,RNN+CNN,1
+237,Ultra-short-term multi-step wind speed prediction for wind farms based on adaptive noise reduction technology and temporal convolutional network,2023,10.48550/arxiv.2311.16198,4,Semantic Scholar; arXiv,RNN+CNN,0
+238,Wind speed prediction based on U-shaped 2D multi-scale model,2025,10.1016/j.asoc.2025.113835,3,Scopus; Web of Science,RNN+CNN+Transformer,0
+239,Short-term wind speed prediction based on dimension reduction and deep learning models,2025,10.1007/s12145-025-01992-w,3,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+240,Short-term wind speed forecasting using temporal fusion transformers with causal dilated convolution,2026,10.1016/j.compeleceng.2025.110861,3,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+241,A frequency loss function based dynamic convolutional transformer model with data denoising for short-term wind speed forecasting,2026,10.1016/j.eswa.2025.130166,3,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,0
+242,Prediction of pedestrian-level percentile wind speeds with CNN models using fundamental statistics,2026,10.1016/j.buildenv.2025.114139,3,Scopus; Semantic Scholar,MLP+CNN,0
+243,Whole-process interpretable wind speed combination forecasting with multi-objective optimization and reinforcement learning,2026,10.1016/j.apenergy.2026.128066,3,Scopus; Web of Science,RNN+CNN+Transformer,0
+244,Ultra-short-term wind power forecasting based on the MIFCformer model and a critical low wind speed region power revision strategy,2026,10.1016/j.dsp.2025.105521,3,Scopus; Web of Science,MLP+RNN+CNN+Transformer,0
+245,Forecasting of Sea-Surface Wind Speed Using Deep-Learning Method Based on Multidimensional Frequency-Domain Feature Fusion,2025,10.1007/s11802-025-5987-8,3,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+246,A Transformer-Based Hybrid Neural Network Integrating Multiresolution Turbulence Intensity and Independent Modeling of Multiple Meteorological Features for Wind Speed Forecasting,2025,10.3390/en18174571,3,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+247,Multi-Step Wind Speed Forecasting Based on Hybrid Deep Learning Model and Trailing Moving Average Denoising Technique,2021,10.1109/icrami52622.2021.9585947,3,Scopus; Semantic Scholar,RNN+CNN,1
+248,A Temporal Convolution Memory Network Model for Short-Term Wind Speed Forecasting,2023,10.1109/acpee56931.2023.10135826,3,Scopus; Semantic Scholar,RNN+CNN,0
+249,"Wind Speed Forecasting Based on Discrete Wavelet Transform, Moving Average Method and Gated Recurrent Unit",2021,10.1007/978-3-030-63846-7_8,3,Scopus,RNN+CNN,0
+250,Short-Term Wind Speed Prediction for Saudi Arabia via 1D-CNN,2023,10.1109/icset59111.2023.10295102,3,Scopus; Semantic Scholar,RNN+CNN,1
+251,Wind Speed Forecasting for Wind Turbines Using Attention-Based Machine Learning Models,2024,10.1109/wiecon-ece64149.2024.10915017,3,Scopus; Semantic Scholar,RNN+CNN+Transformer,0
+252,Deep Learning Model with Probability Density Function and Feature Engineering for Short Term Wind Speed Prediction,2022,10.1109/naps56150.2022.10012249,3,Scopus; Semantic Scholar,RNN+CNN,0
+253,Wind Speed Prediction with Spatio Temporal Correlation using Convolutional and Spiking Neural Networks,2022,10.1109/confluence52989.2022.9734168,3,Scopus; Semantic Scholar,MLP+CNN,0
+254,A hybrid GAN based autoencoder approach with attention mechanism for wind speed prediction,2022,10.1109/npsc57038.2022.10069761,3,Scopus; Semantic Scholar,RNN+CNN,0
+255,Short-range wind speed predictions in subtropical region using Artificial Intelligence,2019,,3,Scopus; Semantic Scholar,MLP+RNN,0
+256,An improved convolutional neural network-based approach for short-term wind speed forecast,2020,10.23919/ccc50068.2020.9189329,3,Scopus; Semantic Scholar,MLP+CNN,1
+257,A Combined Prediction Method for Short-term Wind Speed Using Variational Mode Decomposition Based on Parameter Optimization,2020,10.1109/smc42975.2020.9282842,3,Scopus; Semantic Scholar,MLP+RNN,0
+258,A Hybrid VMD-SSA-LSTM Framework for Short-Term Wind Speed Prediction Based on Wind Farm Measurement Data,2026,10.3390/en19020517,2,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+259,A short-time wind speed forecasting method based on feature selection and KF-CNN-LSTM hybrid model,2025,10.1007/s11227-025-07887-3,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+260,Incremental transfer learning based on temporal-frequency convolution interaction for multi-task prediction of wind speed and wind power,2026,10.1016/j.neunet.2025.108244,2,Scopus,RNN+CNN,0
+261,HIGH-PRECISION SHORT-TERM PREDICTION METHOD OF WIND SPEED AND POWER FOR OFFSHORE WIND FARM BASED ON MIGRATION LEARNING WITH CNN-LSTM; [基于迁移学习 CNN-LSTM 的海上风电场风速及功率高精度短期预测方法],2026,10.19912/j.0254-0096.tynxb.2024-2060,2,Scopus,RNN+CNN,0
+262,Comparative Evaluation of Recurrent and Attention-Based Deep Learning Models for Wind Speed Forecasting,2025,10.5937/fme2504693a,2,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,1
+263,A hybrid wind speed forecasting framework with decomposition denoising and intelligent optimization algorithms,2026,10.1016/j.jastp.2026.106739,2,Scopus; Web of Science,RNN+CNN+Transformer,0
+264,Day-ahead offshore wind speed forecasts: A comparison between WRF-CNN-GRU and statistical methods,2026,10.1016/j.egyr.2026.109041,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+265,Forecasting of wind speed and power generation prediction using machine learning algorithms,2026,10.1177/09266801251412546,2,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+266,HYBIRD MODEL BASED ON SSA-VMD PREPROCESSING OF TCN-INFORMER SHORT-TERM WIND SPEED PREDICTION; [基于 SSA-VMD 预处理的 TCN-Informer 短期风速多步预测混合模型],2026,10.19912/j.0254-0096.tynxb.2024-1806,2,Scopus,CNN+Transformer,0
+267,"A Novel Hybrid Decomposition-Based Wind Speed Prediction Model: Application to Lahore, Pakistan",2026,10.1109/access.2026.3688253,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+268,A novel GRU-Informer hybrid model with high and low frequency for multi-wind farm wind speed prediction,2025,10.1080/15435075.2025.2533524,2,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+269,Integrating chaotic analysis with dual deep learning models for accurate wind speed forecasting,2025,10.1080/15567036.2025.2540055,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+270,"A Deep Hybrid CNNDBiLSTM Model for Short-Term Wind Speed Forecasting in Wind-Rich Regions of Tasmania, Australia",2025,10.3390/en18246390,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+271,Multidimensional Wind Speed Monitoring and Forecasting in Nuclear Power Busbar Systems Using IPFOA-Optimized Stacked LSTM and ARIMA Models,2025,10.1109/tim.2025.3633347,2,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+272,Wind Speed Forecasting System Based on Variational Mode Decomposition and the Optimal Machine Learning Models*; [基于变分模态分解的机器学习模型择优风速预测系统∗],2021,10.11867/j.issn.1001-8166.2021.090,2,Scopus,MLP+RNN,1
+273,Wind Speed Prediction Method Based on Combined Deep Learning Model,2024,10.1109/icsp62122.2024.10743895,2,Scopus; Semantic Scholar,RNN+CNN,0
+274,Wind Speed Prediction Model Based on Deep Learning,2023,10.1051/e3sconf/202346601011,2,Scopus; Semantic Scholar,MLP+RNN,0
+275,Deep Learning Neural Network for Chaotic Wind Speed Time Series Prediction,2024,10.15199/48.2024.09.18,2,Scopus; Semantic Scholar; Web of Science,MLP+CNN,0
+276,"Comparative performance study of DBN, LSTM, CNN and SAE models for wind speed and direction forecasting",2024,10.1109/icoin59985.2024.10572117,2,Scopus; Semantic Scholar,RNN+CNN,1
+277,An enhancement of transformer-based architecture with randomized regularization for wind speed prediction,2023,10.3233/jifs-222446,2,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+278,Critical Wind Speed Prediction in Tunnel Fire by Attention-Based Neural Network,2023,10.1109/icmee59781.2023.10525656,2,Scopus; Semantic Scholar,RNN+CNN,0
+279,Short-term wind speed forecasting using neural network models for Taiwan Strait,2022,10.1177/0309524x221108423,2,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+280,Multi-step regional Sea surface wind speed prediction based on ConvLSTM,2023,10.1109/ccdc58219.2023.10327086,2,Scopus; Semantic Scholar,RNN+CNN,0
+281,Wind Speed Prediction with LSTM and BPNN Method,2023,10.1109/eebda56825.2023.10090772,2,Scopus; Semantic Scholar,MLP+RNN,1
+282,Short-term Wind Speed Forecasting using Machine Learning Algorithms,2021,10.1109/powertech46648.2021.9494848,2,Scopus; Semantic Scholar,MLP+RNN,0
+283,A brief comparison of different learning methods for wind speed forecasting,2020,10.1109/ropec50909.2020.9258733,2,Scopus; Semantic Scholar,MLP+RNN+CNN,1
+284,"Comparative Analysis of Deep Learning Models for Wind Speed Prediction Using LSTM, TCN and RBFNN",2025,10.55537/jistr.v4i3.1298,2,Semantic Scholar,RNN+CNN,1
+285,Hybrid Transformer Network for Different Horizons-based Enriched Wind Speed Forecasting,2022,10.48550/arxiv.2204.09019,2,Semantic Scholar; arXiv,MLP+Transformer,0
+286,Multivariate short-term wind speed prediction based on CNN-LSTM-SA models,2025,10.1088/1742-6596/2993/1/012033,1,Scopus; Semantic Scholar,RNN+CNN,0
+287,Shape-Aware Seq2Seq Model for Accurate Multistep Wind Speed Forecasting,2026,10.1007/s11802-026-6145-7,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+288,Multi-Scale Spectral Recurrent Network Based on Random Fourier Features for Wind Speed Forecasting,2026,10.3390/technologies14040238,1,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+289,SPATIO-TEMPORAL WIND SPEED FORECASTING BASED ON HYBRID DEEP LEARNING ALGORITHM; [利用混合深度学习算法的时空风速预测],2025,10.19912/j.0254-0096.tynxb.2023-1954,1,Scopus,RNN+CNN+Transformer,0
+290,Offshore wind speed forecasting using a novel hybrid variational mode decomposition–shifted window long short-term memory model with multivariate atmospheric inputs,2026,10.1016/j.asoc.2026.115365,1,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+291,VMD-GRU Based Ultra-Short-Term Wind Speed Forecasting System,2026,10.1109/icaiii69475.2026.11521263,1,Scopus; Semantic Scholar,RNN+CNN,1
+292,Attention-Enhanced ResNet-LSTM Model with Wind-Regime Clustering for Wind Speed Forecasting,2026,10.32604/cmes.2025.069733,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+293,"A multi-stage multivariable offshore wind speed assessment system incorporating statistical analysis, decomposition, feature selection, bias correction, and attention-based hybrid prediction",2025,10.1177/0309524x251314204,1,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN+Transformer,0
+294,A MASPSO-Optimized CNN–GRU–Attention Hybrid Model for Short-Term Wind Speed Forecasting,2026,10.3390/su18020583,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+295,A DC-Link Voltage Feedforward Control Strategy of Grid-Forming Wind Turbine Based on Intelligent Wind Speed Prediction,2025,10.1007/978-981-96-4063-8_54,1,Scopus,MLP+RNN,0
+296,Deep learning-based short-term wind speed prediction for offshore wind farms,2026,10.1080/15435075.2025.2592850,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+297,Predicting medium-term wind speed using a hybrid deep learning model with a transfer learning approach,2026,10.1016/j.epsr.2026.112945,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+298,Comparative Analysis of Deep Learning Models for Wind Speed Forecasting,2026,10.1007/978-3-031-98997-1_3,1,Scopus,RNN+CNN,1
+299,Short-Term Wind Speed Forecasting Using Different LSTM Deep Learning Methods,2025,10.1007/978-981-97-9112-5_12,1,Scopus,RNN+CNN,0
+300,An explainable hybrid deep learning framework for offshore wind speed forecasting,2026,10.21595/jme.2026.25252,1,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+301,Wind speed prediction at multiple heights for offshore wind turbines using deep learning,2024,10.4018/979-8-3693-4759-1.ch005,1,Scopus,RNN+CNN,0
+302,Dynamic Graph Convolutional Transformer for Short-term Wind Speed Forecasting,2023,10.1145/3594315.3594385,1,Scopus; Semantic Scholar,CNN+Transformer,0
+303,Prediction system for distribution wind speed using deep learning algorithm,2023,10.1063/5.0151097,1,Scopus; Semantic Scholar,RNN+CNN,0
+304,"Forecasting Short-Term Wind Speed using ARIMA, and Convolution Neural Network Models at International Airports in Saudi Arabia",2024,10.52783/cana.v31.1162,1,Scopus; Semantic Scholar,MLP+CNN,1
+305,WTCGRU: Short-term wind speed prediction based on window feature importance sampling,2022,10.1109/dsit55514.2022.9943907,1,Scopus; Semantic Scholar,RNN+CNN,0
+306,Short-term forecasting of the occurrence time of strong wind speed during a typhoon based on LSTM for sea-crossing bridge operation,2021,10.2749/seoul.2020.230,1,Scopus; Semantic Scholar,MLP+RNN,0
+307,SHORT-TERM WIND SPEED FORECASTING USING DEEP VARIATIONAL LSTM,2022,10.32010/26166127.2022.5.2.254.272,1,Semantic Scholar,MLP+RNN,0
+308,Deep Learning and Traditional Models for Wind Speed Forecasting in Saudi Arabia,2025,10.33019/electron.v6i1.312,1,Semantic Scholar,RNN+CNN,1
+309,Leveraging multi-head attention transformer deep neural network architecture for improved wind speed forecasting,2025,10.64032/mca.v29i2.283,1,Semantic Scholar,MLP+RNN+CNN+Transformer,1
+310,A Deep Learning Method for Short-Range Point Forecasts of Wind Speed,2020,10.5194/egusphere-egu2020-4434,1,Semantic Scholar,MLP+RNN+CNN,0
+311,Short-Horizon Data-Driven Joint Forecasting of Wind Speed and Direction for Future Aware Wind Farm Control,2026,10.1088/1742-6596/3224/2/022024,1,Semantic Scholar,RNN+CNN,0
+312,Wind Speed Prediction Using Deep Learning,2026,10.1007/978-3-031-99882-9_35,0,Scopus,RNN+CNN,0
+313,On the Accuracy-Energy Trade-Offs of TTFS and Sigma-Delta Spiking Neural Networks for Short-Term Wind Speed Forecasting,2026,10.1109/icecet65726.2026.11632592,0,Scopus; Semantic Scholar,MLP+RNN,0
+314,Predicting wind speeds in complex forested terrain using Reynolds-Averaged Navier-Stokes surrogates and data-driven feedforward convolutional neural networks,2026,10.1016/j.egyai.2026.100738,0,Scopus; Semantic Scholar,MLP+CNN,0
+315,"LSTM-based Short Term Forecasting of Solar Irradiance and Wind Speed for Santander, Spain",2025,10.1109/wiecon-ece69386.2025.11526085,0,Scopus; Semantic Scholar,RNN+CNN,0
+316,Short-term Wind Power Forecasting Considering Wind Speed Piecewise Control Strategy and Power Continuous Evolution Mechanism; [考虑风速分段控制和功率连续演化的短期风电功率预测],2026,10.13335/j.1000-3673.pst.2025.0365,0,Scopus,MLP+RNN,0
+317,High Precision Prediction Model of Wind Speed for Underground Mine Tunnel by Using ASTF Net,2026,10.1002/ese3.70650,0,Scopus; Semantic Scholar; Web of Science,MLP+RNN+CNN,0
+318,CEEMDAN–SSA–RWKV–SMA: A Robust Hybrid Model for Long-Term Wind Speed Forecasting in India,2026,10.14569/ijacsa.2026.0170335,0,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+319,A Short-term Wind Speed Prediction Method Based on the ICPO-CNN-BiGRU-Attention Model,2025,,0,Scopus,RNN+CNN,0
+320,High-precision prediction model of low-altitude wind speed based on CNN-LSTM-GRU residual correction,2026,10.1109/icmtim69588.2026.11525833,0,Scopus; Semantic Scholar,RNN+CNN,0
+321,Design and Implementation of a Web-Based Wind Speed Prediction Information System,2024,10.1145/3690931.3690978,0,Scopus; Semantic Scholar,RNN+CNN,0
+322,Performance Improvement of Wind Speed and Direction Forecasting Using Modified XLNet Method Based on Cyclical Data and Regressor,2025,10.1109/icoiact67584.2025.11345019,0,Scopus; Semantic Scholar,MLP+RNN+CNN,0
+323,A Wind Speed Prediction Model Based on the Dual-Branch 3DUT-Net Architecture,2025,10.1109/ecnct66493.2025.11172576,0,Scopus; Semantic Scholar,CNN+Transformer,0
+324,Wind Speed Prediction Based on AM-BiLSTM Improved by PSO-VMD for Forest Fire Spread,2026,10.3390/fire9030110,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+325,Spatiotemporal Feature Fusion Using U-Shaped Architecture for Accurate Wind Speed Prediction,2026,10.3390/a19080695,0,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,1
+326,Wind speed prediction using feature engineering–driven deep learning on long-term meteorological data: A multi-city and ablation-based analysis,2026,10.1016/j.jastp.2026.106940,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+327,Wind Speed Forecasting Using Hybrid Machine Learning Approach,2026,10.1007/978-3-032-31216-7_41,0,Scopus,RNN+CNN,0
+328,Short-Term Wind Speed Forecast by Convolutional LSTM with Ensemble Empirical Mode Decomposition,2026,10.64289/iej.26.0206.4431901,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+329,Short-term Wind Speed Forecasting with a Tree-Structured Parzen Estimator Optimized Transformer-LSTM Model,2025,10.1109/eee-am66675.2025.11473796,0,Scopus; Semantic Scholar,RNN+Transformer,0
+330,Wind Speed Prediction Using CNN-BiLSTM Network,2026,10.1007/978-981-95-3853-9_10,0,Scopus,RNN+CNN,0
+331,Wind Speed Prediction Based on a Hybrid Deep Learning Model of SSA-VMD and SSA-CNN-BiLSTM,2025,10.3233/atde250927,0,Scopus,RNN+CNN,0
+332,YAW CONTROL STRATEGY FOR OFFSHORE WIND TURBINES BASED ON VMD-SA-CNN-LSTM WIND SPEED AND DIRECTION PREDICTION MODEL; [基于 VMD-SA-CNN-LSTM 风速风向预测模型的海上风电机组偏航控制策略],2026,10.19912/j.0254-0096.tynxb.2024-2258,0,Scopus,RNN+CNN+Transformer,0
+333,Enhancing wind speed forecasting accuracy: comparative insights into recurrent neural networks for short-term prediction,2026,10.11591/eei.v15i3.11222,0,Scopus; Semantic Scholar,RNN+CNN,0
+334,Short-to-Medium Term Ocean Wind Speed Prediction via Sparse Grid Dynamic Spatial Modeling and DAI-LSTM-AT Hybrid Framework,2026,10.3390/rs18091405,0,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+335,A novel interpretability model for wind speed forecasting based on secondary decomposition and causal convolutional attention mechanism,2026,10.1016/j.dsp.2026.106161,0,Scopus; Web of Science,RNN+CNN,0
+336,Wind Speed Prediction Based on RD-BiLSTM,2025,10.1109/isbdas64762.2025.11117060,0,Scopus; Semantic Scholar,RNN+Transformer,0
+337,Optimizing Wind Energy Potential: Neural Network Forecasting of Wind Speed in Northern Morocco,2025,10.1051/e3sconf/202568000020,0,Scopus; Semantic Scholar,MLP+RNN,0
+338,An adaptive multi-head attention dynamic integration system for interval-valued wind speed prediction based on joint feature extraction and optimal model selection,2026,10.1016/j.asoc.2025.114468,0,Scopus; Web of Science,RNN+CNN,0
+339,MULTI-WIND-FARM WIND SPEED PREDICTION BASED ON VMD FREQUENCY DIVISION AND GRU-INFORMER SYNERGISTIC MECHANISM; [基于 VMD 分频与 GRU-Informer 协同机制的多风场风速预测],2026,10.19912/j.0254-0096.tynxb.2025-0712,0,Scopus,RNN+Transformer,0
+340,Uncertainty-Aware Wind Speed Forecasting: A GLUE-Based Hybrid Ensemble Approach,2025,10.1109/icngcs64900.2025.11183172,0,Scopus; Semantic Scholar,RNN+CNN,0
+341,TCN–Transformer Hybrid Network With Physical Constraints for Short-Term Wind Speed Interval Prediction,2026,10.1049/rpg2.70197,0,Scopus; Semantic Scholar; Web of Science,CNN+Transformer,0
+342,A diagnostic-guided CNN-BiLSTM-Transformer hybrid framework for reanalysis-based wind speed forecasting across climatic regions of India,2026,10.1007/s00704-026-06330-8,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,0
+343,Wind data pattern and trend analysis using feature identification and extreme wind speed prediction,2024,10.4018/979-8-3693-0492-1.ch005,0,Scopus,MLP+RNN,0
+344,A hybrid VMD-PermEn-DBSCAN-ICEEMDAN deep learning framework for ultra-short-term wind speed prediction,2026,10.3934/math.2026516,0,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+345,Secondary decomposition-based EVMD-DWT-Transformer for wind speed prediction,2026,10.3934/energy.2026015,0,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+346,Port Wind Speed Prediction Model Based on VMD and GRU-MLP,2025,10.1109/iscait64916.2025.11010539,0,Scopus; Semantic Scholar,MLP+RNN,0
+347,Missing Wind Speed Data Prediction using Artificial Neural Network,2025,10.37934/ard.135.1.154168,0,Scopus; Semantic Scholar,MLP+RNN,0
+348,Wind Speed Forecasting Using CNN-Dynamic LSTM(STL) Model for Summer and Winter Seasons,2025,10.52202/081497-0146,0,Scopus; Semantic Scholar,RNN+CNN,0
+349,Short-Term Wind Speed Forecasting Based on a Novel Multiresolution Neural Network,2026,10.1109/tim.2026.3664374,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+350,Hybrid model for high-speed rail wind speed forecasting based on improved transformer,2025,10.1007/s12145-025-02045-y,0,Scopus; Semantic Scholar; Web of Science,MLP+Transformer,0
+351,An ultra-short-term power prediction method for wind turbines considering inflow wind speed characteristics; [考虑来流风速特征的风电机组超短期功率预测方法],2026,10.7638/kqdlxxb-2025.0173,0,Scopus,RNN+CNN,0
+352,BiLSTM-KAN SHORT-TERM WIND SPEED PREDICTION MODEL CONSIDERING SPATIO-TEMPORAL CORRELATION; [考虑时空相关性的 BiLSTM-KAN 短期风速预测模型],2026,10.19912/j.0254-0096.tynxb.2025-0684,0,Scopus,RNN+CNN,0
+353,Hybrid TCN-LSTM-SVM Ensemble Model for High-Accuracy Wind Speed Prediction in Hydropower Construction,2025,10.1109/admit67050.2025.11337048,0,Scopus; Semantic Scholar,RNN+CNN,0
+354,Hybrid Attention-Based Deep Learning Model For Wind Speed Forecasting In Renewable Energy Applications,2025,,0,Scopus,RNN+CNN,0
+355,Short term wind speed prediction based on optimization decomposition and dynamic feature selection,2025,10.1109/safeprocess67117.2025.11268150,0,Scopus; Semantic Scholar,RNN+CNN,0
+356,Short-Term Wind Speed Forecasting via Hilbert Complex Mapping and Cross-Coupled Complex Convolutional LSTM,2026,10.1109/aiotc71250.2026.11688689,0,Scopus; Semantic Scholar,RNN+CNN+Transformer,0
+357,Wind Power Ramp Forecasting Method Based on Wind Speed Correction and Graph Neural Networks,2025,10.1109/ei268505.2025.11425728,0,Scopus; Semantic Scholar,RNN+CNN,0
+358,Wind Speed Assistance and Bayesian Optimization based Wind Power Prediction,2026,10.1109/ddcls71227.2026.11610410,0,Scopus; Semantic Scholar,RNN+Transformer,0
+359,Improving Wind Speed Forecasting using a Novel hybrid model of Convolutional Neural Network and Transformer with Multi-head Attention Mechanism,2025,10.1109/pset66242.2025.11296437,0,Scopus; Semantic Scholar,RNN+CNN+Transformer,1
+360,SHORT-TERM PREDICTION FOR NON-STATIONARY WIND SPEEDS BY INTEGRATING THE ERROR CORRECTION AND RD-CNN-BILSTM NEURAL NETWORK COMBINED MODEL; [融合误差修正和 RD-CNN-BiLSTM 神经网络组合模型的非平稳风速短期预测],2026,10.19912/j.0254-0096.tynxb.2024-1797,0,Scopus,RNN+CNN,0
+361,A novel decomposition-based deep stacked residual convolutional recurrent neural network for ultra-short-term wind speed and wind power forecasting,2026,10.1016/j.engappai.2026.115475,0,Scopus; Web of Science,RNN+CNN,0
+362,Wavelet-based hybrid model for short-term wind speed forecasting in coastal Brazil,2026,10.1109/access.2026.3683005,0,Scopus; Semantic Scholar; Web of Science,MLP+RNN,0
+363,"Comparative Analysis of Long Short-Term Memory and Transformer for Wind Speed Prediction: Performance, Challenges, and Optimization",2025,10.3103/s0003701x25601188,0,Scopus; Semantic Scholar,RNN+Transformer,1
+364,Wind Speed Prediction Based on Patch-Based Time Series Transformer,2025,10.1109/eiect68017.2025.11332132,0,Scopus; Semantic Scholar,RNN+Transformer,1
+365,Experimental Design of Wind Speed Analytics Prediction Methodology Using Modified Deep Learning Principle,2025,10.1109/iconstem65670.2025.11374605,0,Scopus; Semantic Scholar,RNN+CNN,0
+366,Multi-Step Ultra-Short-Term Wind Speed Forecasting using Variational Mode Decomposition and a Bayesian-Optimized GRU Model,2026,10.1007/s41660-026-00838-2,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN+Transformer,1
+367,A Tri-Band Frequency-Aware Heterogeneous Expert Collaboration Framework for Short-Term Wind Speed Forecasting,2026,10.3390/su18115659,0,Scopus; Semantic Scholar; Web of Science,RNN+CNN,0
+368,A wind speed prediction model based on SSA-enhanced attention mechanism,2026,10.1088/1742-6596/3218/1/012037,0,Scopus; Semantic Scholar,RNN+CNN,0
+369,Physics-Informed Vector LSTM for Multi-Horizon Hub-Height Wind Speed Forecasting Across Multiple Sites,2026,10.3390/jmse14201921,0,Scopus; Semantic Scholar; Web of Science,RNN+Transformer,0
+370,Short-term Prediction of the Near-space Wind Speed by Multi-layer Perceptron and LSTM Network,2023,10.1109/aiac61660.2023.00065,0,Scopus; Semantic Scholar,MLP+RNN,0
+371,A Novel Wind Speed Forecasting Framework Using Data Preprocessing Based Adversarial Approach,2023,10.1007/978-981-99-2279-6_49,0,Scopus,RNN+CNN,0
+372,Forecasting System of Wind Speed and Direction by Neural Network,2023,10.1109/itis59651.2023.10420216,0,Scopus; Semantic Scholar,RNN+CNN,0
+373,PERFORMANCE COMPARISON OF PROBABILISTIC AND ARTIFICIAL NEURAL NETWORK MODELS FOR LONG-SEQUENCE GENERATION OF WIND SPEED FORECASTS,2022,10.1049/icp.2022.2777,0,Scopus,MLP+RNN+CNN,0
+374,Wind Speed Forecasting Based on Trend Augmentation and Dual-Phase Inverted Transformer,2024,10.1109/repe62578.2024.10809815,0,Scopus; Semantic Scholar,RNN+Transformer,0
+375,Short-term wind speed prediction based on time series trends and periodic characteristics,2024,10.1088/1742-6596/2823/1/012006,0,Scopus; Semantic Scholar,CNN+Transformer,0
+376,Nacelle lidar wind speed prediction under spatial-temporal correlation,2024,10.1117/12.3030177,0,Scopus; Semantic Scholar,MLP+RNN,0
+377,Hybrid CNN-sLSTM Algorithm for Short-Term Wind Speed Prediction,2024,10.3233/atde241301,0,Scopus,RNN+CNN,0
+378,Neural network wind speed prediction based on multiple prediction model and nonlinear combination,2021,10.11959/j.issn.2096-3750.2021.00221,0,Scopus,MLP+RNN,0
+379,Fusion-GCNGRU Model: A Wind Speed Forecasting Scheme with Two-Channel Feature Extraction and Multi-Graph Fusion,2024,10.1109/icvisp64524.2024.10959607,0,Scopus; Semantic Scholar,RNN+CNN,0
+380,Short-term wind speed prediction model based on parallel integration of multiple networks,2023,10.1117/12.3011603,0,Scopus; Semantic Scholar,MLP+RNN,0
+381,WIND SPEED FORECASTING BASED ON SIX MACHINE LEARNING APPROACHES: DEVELOPMENT AND BENCHMARKING STUDY,2023,,0,Scopus,RNN+CNN,1
+382,Wind speed prediction using ensemble and optimizer strategy,2023,10.1109/iciscae59047.2023.10393478,0,Scopus; Semantic Scholar,MLP+RNN+CNN,0
+383,Tube Loss based Deep Networks For Improving the Probabilistic Forecasting of Wind Speed,2025,10.48550/arxiv.2505.18284,0,Semantic Scholar; arXiv,RNN+CNN,0
+384,Wind Speed Prediction in Bingol Region: A Deep Learning and Stacking Ensemble Approach,2025,10.46810/tdfd.1657401,0,Semantic Scholar,MLP+RNN,0
+385,Short-term wind speed prediction based on combinatorial prediction model,2023,10.54097/hset.v60i.10534,0,Semantic Scholar,RNN+CNN,0
+386,Multi-output deep learning framework for joint forecasting of solar irradiance and wind speed with cross-regional transferability analysis,2026,10.11591/ijpeds.v17.i3.pp2101-2111,0,Semantic Scholar,RNN+CNN,0
+387,A Combined Model Based on Society Cognitive Optimization Algorithm for Wind Speed Forecasting,2021,10.21203/rs.3.rs-871753/v1,0,Semantic Scholar,MLP+RNN,0
+388,Enhanced Wind Speed Prediction Using Dual-Memory LSTM: A Novel Approach to Temporal Dynamics,2025,10.37256/jeee.4120256391,0,Semantic Scholar,MLP+RNN,0
+389,DEEP RECURRENT NEURAL NETWORK MODELS FOR FORECASTING SHORT-TERM WIND SPEED,2022,10.32010/26166127.2022.5.2.169.182,0,Semantic Scholar,MLP+RNN,1
+390,ENHANCING WIND SPEED FORECASTING WITH LARGE LANGUAGE MODELS: A CASE STUDY OF KAZAKHSTAN,2026,10.26577/jpcsit4220266,0,Semantic Scholar,RNN+Transformer,0
+391,"Wind Speed Prediction Based on 
+Attention-Combined Models",2025,10.12677/airr.2025.142038,0,Semantic Scholar,CNN+Transformer,0
+392,Renewable Energy Forecasting with Hybrid Nonlinear Model (ANFIS): Case Study of Wind Speed in Thailand,2023,10.12720/sgce.12.2.19-29,0,Semantic Scholar,MLP+RNN,0
+393,"Comparative Analysis of MLP, BiLSTM and GRU Models for Maximum Wind Speed Prediction in Bogor",2026,10.59688/04wtn645,0,Semantic Scholar,MLP+RNN,1
+394,"Exploring the Potential of Deep Learning Models in Weather Prediction: Case Studies on Sandy Weather, Wind Speed, and Rainfall",2024,10.61173/bxv36n72,0,Semantic Scholar,RNN+CNN,0

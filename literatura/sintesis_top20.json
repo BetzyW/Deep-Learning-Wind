@@ -1,0 +1,22 @@
+{
+ "10.1016/j.apenergy.2022.120565": "Spatio-temporal wind speed forecasting using graph networks and novel Transformer architectures",
+ "10.1016/j.renene.2022.12.123": "Near real-time wind speed forecast model with bidirectional LSTM networks",
+ "10.3390/en11040705": "Wind speed prediction with spatio-temporal correlation: A deep learning approach",
+ "10.1016/j.renene.2022.09.114": "A combined short-term wind speed forecasting model based on CNN–RNN and linear regression optimization considering error",
+ "10.1016/j.neucom.2019.08.108": "Wind speed forecasting using deep neural network with feature selection",
+ "10.1016/j.enconman.2023.116760": "Deep learning-based multistep ahead wind speed and power generation forecasting using direct method",
+ "10.2299/jsp.22.207": "Wind Speed Prediction Model Using LSTM and 1D-CNN",
+ "10.1016/j.engappai.2024.109702": "Informer learning framework based on secondary decomposition for multi-step forecast of ultra-short term wind speed",
+ "10.3390/en13071772": "Multi-step short-term wind speed prediction using a residual dilated causal convolutional network with nonlinear attention",
+ "10.1016/j.apor.2021.102937": "Offshore wind speed forecasting at different heights by using ensemble empirical mode decomposition and deep learning models",
+ "10.3390/en16237785": "Exploring Time Series Models for Wind Speed Forecasting: A Comparative Analysis",
+ "10.1109/jsyst.2022.3150749": "Data-Adaptive Censoring for Short-Term Wind Speed Predictors Based on MLP, RNN, and SVM",
+ "10.1155/2020/8439719": "Short-Time Wind Speed Forecast Using Artificial Learning-Based Algorithms",
+ "10.3390/app9010126": "Direct multistep wind speed forecasting using LSTM neural network combining EEMD and fuzzy entropy",
+ "10.1007/s40808-020-00974-9": "Performances of deep learning models for Indian Ocean wind speed prediction",
+ "10.1016/j.renene.2022.02.095": "Wind speed forecasting using multi-site collaborative deep learning for complex terrain application in valleys",
+ "10.1063/1.5139689": "A hybrid wind speed forecasting model using stacked autoencoder and LSTM",
+ "10.1109/indin58382.2024.10774454": "Stacked Transformer Models for Enhanced Wind Speed Prediction in the Red Sea",
+ "10.1016/j.energy.2025.136739": "A novel hybrid ensemble approach for wind speed forecasting with dual-stage decomposition strategy using optimized GRU and transformer models",
+ "10.1016/j.compeleceng.2024.109820": "A Novel Hybrid Ensemble Wind Speed Forecasting Model Employing Wavelet Transform and Deep Learning"
+}

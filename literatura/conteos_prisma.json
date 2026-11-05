@@ -1,0 +1,17 @@
+{
+ "identificados": {
+  "Scopus": 1186,
+  "Web of Science": 734,
+  "Semantic Scholar": 3111,
+  "arXiv": 39
+ },
+ "duplicados": 1570,
+ "unicos": 3500,
+ "excl_titulo": 2205,
+ "sin_resumen": 31,
+ "excl_menos_2_familias": 869,
+ "tamizados_resumen": 1295,
+ "evaluados_elegibilidad": 395,
+ "sin_decision": 0,
+ "elegibles": 65
+}

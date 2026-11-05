@@ -12,7 +12,7 @@ Entregable 1 · Deep Learning · Universidad del Norte. Autora: Betzaida Ruiz.
 6. `python src/piloto.py`, `python src/ajuste.py 20` y `python src/corridas.py 6` → piloto, ajuste y corridas en GPU.
 7. `python src/corridas.py 3 configs/datos_con_presion.json` → sensibilidad con presión (solo validación).
 8. Convertir `src/implementacion.py` y `src/benchmark.py` en `04_modelos.ipynb` y `05_benchmark.ipynb` con `src/a_notebook.py` y ejecutarlos.
-9. `literatura/` → búsqueda reproducible (Semantic Scholar y arXiv) y decisiones de elegibilidad.
+9. `cd literatura && python tamizaje.py` → une Scopus, Web of Science, Semantic Scholar y arXiv, quita duplicados, aplica el tamizaje y da los conteos PRISMA.
 
 La configuración de los datos está en `configs/datos.json`.
 

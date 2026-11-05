@@ -4,3 +4,8 @@ __pycache__/
 datos/
 *.npz
 *.pt
+
+# Exportaciones de Scopus y Web of Science: sus términos no permiten redistribuir los resúmenes
+literatura/scopus.csv
+literatura/wos.txt
+literatura/tamiz2.json
