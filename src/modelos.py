@@ -65,12 +65,15 @@ def entrenar(nombre, d, lotes, semilla, hp, epocas=50, paciencia=5, bs=1024, eva
     tr, va = d["idx"]["entrenamiento"], d["idx"]["validacion"]
     y_va = d["y"][va + d["L"] - 1 + d["H"]]
     rng = np.random.default_rng(semilla)
-    mejor, estado, sin_mejora, hist, t0 = np.inf, None, 0, [], time.time()
+    mejor, estado, sin_mejora, hist, hist_tr, t0 = np.inf, None, 0, [], [], time.time()
     for ep in range(epocas):
         m.train()
+        sse, n = 0.0, 0
         for b in np.array_split(rng.permutation(tr), len(tr) // bs):
             x, y = lotes(b)
             opt.zero_grad(); loss = ((m(x) - y) ** 2).mean(); loss.backward(); opt.step()
+            sse += loss.item() * len(b); n += len(b)
+        hist_tr.append(float(np.sqrt(sse / n)))                     # RMSE de entrenamiento (con dropout activo)
         rmse_va = float(np.sqrt(np.mean((predecir(m, lotes, va) - y_va) ** 2)))
         hist.append(rmse_va)
         if rmse_va < mejor - 1e-4:
@@ -82,7 +85,9 @@ def entrenar(nombre, d, lotes, semilla, hp, epocas=50, paciencia=5, bs=1024, eva
                 break
     m.load_state_dict(estado)
     out = dict(modelo=nombre, semilla=semilla, rmse_val=mejor, epocas=len(hist), segundos=time.time() - t0,
-               parametros=n_parametros(m), historia=hist, pred_val=predecir(m, lotes, va))
+               parametros=n_parametros(m), historia=hist, historia_train=hist_tr, pred_val=predecir(m, lotes, va))
     if evaluar_prueba:
+        torch.cuda.synchronize(); t1 = time.time()
         out["pred_prueba"] = predecir(m, lotes, d["idx"]["prueba"])
+        torch.cuda.synchronize(); out["segundos_inferencia_prueba"] = time.time() - t1
     return out

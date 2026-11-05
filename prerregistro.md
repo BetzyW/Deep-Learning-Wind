@@ -17,3 +17,6 @@ conjunto de prueba (2025).
 | Corridas definitivas | Semillas 1000–1005, 50 épocas máximo, paciencia 5, parada temprana con validación 2024 |
 | Pruebas | Friedman (estaciones como bloques), Wilcoxon con Holm, Diebold–Mariano con HLN, TOST con $\pm\delta$, Ljung-Box y BDS en residuos |
 | Nivel de significancia | $\alpha = 0.05$ |
+| Huella del conjunto de prueba | SHA-256 `ad841c4f14e808cf9002821c77149f05eb927264ea717a9a87e7cb5bb60940be` (estación, hora objetivo y valor de las 211 408 ventanas de 2025) |
+
+*Nota del 4 de noviembre de 2026:* la huella del conjunto de prueba se agregó después de las corridas definitivas. Se calculó con el mismo preprocesamiento que generó las predicciones evaluadas, de modo que certifica el conjunto usado; el resto del prerregistro no se modificó.

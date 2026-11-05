@@ -165,6 +165,46 @@ print(m.div(m.sum(axis=1), axis=0).round(2).to_string())
 #   leerse como desplazamiento, no como sobreajuste, y se reportará el error de prueba por mes.
 
 # %% [markdown]
+# ### Partición final y congelamiento del conjunto de prueba
+#
+# Con las decisiones anteriores (sin presión, sin el sensor bloqueado, ventanas de 168 h y embargo), la partición en
+# ventanas queda así. La partición es determinista (por año calendario), así que no depende de ninguna semilla.
+
+# %%
+import hashlib
+sys.path.insert(0, "src")
+from datos import cargar
+dv = cargar()
+tot = sum(len(v) for v in dv["idx"].values())
+for n, ix in dv["idx"].items():
+    print(f"{n:13s} {len(ix):>9,} ventanas ({len(ix) / tot:5.1%}) | {len(set(dv['estacion'][n])):2d} estaciones | "
+          f"velocidad objetivo media {dv['y'][ix + dv['L'] - 1 + dv['H']].mean():.3f} m/s")
+ixp = dv["idx"]["prueba"]
+huella = hashlib.sha256()
+huella.update(dv["estacion"]["prueba"].astype(str).astype("S").tobytes())
+huella.update(dv["tiempo"][ixp + dv["L"] - 1 + dv["H"]].astype("datetime64[s]").astype("int64").tobytes())
+huella.update(dv["y"][ixp + dv["L"] - 1 + dv["H"]].astype("float32").tobytes())
+print("SHA-256 del conjunto de prueba (estación, hora objetivo y valor):", huella.hexdigest())
+
+# %% [markdown]
+# La huella del conjunto de prueba queda registrada aquí y en el prerregistro: si alguien cambia el preprocesamiento
+# de forma que altere la prueba, la huella cambia. El conjunto de prueba no se usó en ninguna decisión de este EDA
+# (todas las pruebas de este capítulo usan el panel completo solo para describir, o entrenamiento y validación).
+#
+# **¿Por qué no validación con origen móvil (rolling-origin)?** El enunciado la recomienda para series de tiempo. Aquí
+# se usa una partición fija de validación (2024) porque: (1) hay suficientes datos (78 000 ventanas de validación) para
+# que la parada temprana y la selección de hiperparámetros sean estables; (2) con 18 entrenamientos por cada
+# configuración (6 semillas × 3 modelos), repetir todo para varios orígenes multiplicaría el costo sin cambiar la
+# conclusión, dado lo pequeñas que resultaron las diferencias entre semillas en el piloto; y (3) el enunciado admite una
+# partición fija de validación según el tamaño del dataset. El origen móvil queda para el Entregable 2, donde el
+# número de modelos hace más importante estimar la variabilidad entre periodos.
+#
+# - **Decisión:** partición fija entrenamiento 2020–2023 / validación 2024 / prueba 2025, con huella registrada.
+# - **Impacto en la arquitectura:** ninguno directo; fija el protocolo para los tres modelos.
+# - **Riesgo:** un único periodo de validación (y desbalanceado por meses) puede elegir hiperparámetros que no sean los
+#   mejores para todo el año.
+
+# %% [markdown]
 # ## EDA específico de series de tiempo
 #
 # Se usa como estación representativa la de más horas observadas, el aeropuerto Almirante Padilla de Riohacha
@@ -208,6 +248,57 @@ plt.show()
 #   la escala de horas, LSTM).
 # - **Riesgo:** un modelo que solo reproduzca el ciclo empatará con la persistencia; la mejora real debe venir de
 #   anticipar las desviaciones del ciclo.
+
+# %% [markdown]
+# ### Cambios de régimen y puntos de quiebre
+#
+# Para buscar cambios de nivel se usa la prueba de Pettitt (no paramétrica, un punto de quiebre) sobre la **anomalía
+# mensual** de cada estación: la media de cada mes menos la media de ese mes calendario en la misma estación, para que
+# la estacionalidad anual no se confunda con un quiebre. Se usan los meses con al menos 200 horas y las estaciones con
+# al menos 24 meses.
+
+# %%
+def pettitt(x):
+    x = np.asarray(x); n = len(x)
+    s = np.sign(x[:, None] - x[None, :])
+    U = np.array([s[:t + 1, t + 1:].sum() for t in range(n - 1)])
+    k = int(np.argmax(np.abs(U))); K = abs(U[k])
+    return k, min(1.0, 2 * np.exp(-6 * K ** 2 / (n ** 3 + n ** 2)))
+
+filas = []
+for c, g in df.groupby("CodigoEstacion"):
+    mm = g.set_index("hora").vel.resample("MS").agg(["mean", "size"])
+    mm = mm[mm["size"] >= 200]["mean"]
+    if len(mm) < 24:
+        continue
+    an = mm - mm.groupby(mm.index.month).transform("mean")
+    k, p = pettitt(an.values)
+    filas.append((c, len(mm), an.index[min(k + 1, len(an) - 1)], p, an.iloc[:k + 1].mean() - an.iloc[k + 1:].mean()))
+q = pd.DataFrame(filas, columns=["estacion", "meses", "quiebre", "p", "caida"])
+sig = q[q.p < .05]
+print(f"{len(q)} estaciones evaluadas | con quiebre significativo: {len(sig)} | de ellas, con caída de nivel: "
+      f"{(sig.caida > 0).sum()} (mediana {sig.caida.median():.2f} m/s)")
+print("Año del quiebre:", sig.quiebre.dt.year.value_counts().sort_index().to_dict())
+red = df.set_index("hora").vel.resample("MS").mean()
+an_red = red - red.groupby(red.index.month).transform("mean")
+k, p = pettitt(an_red.values)
+print(f"Promedio de la red: quiebre más probable en {an_red.index[k + 1]:%Y-%m}, p = {p:.2f}")
+plt.figure(figsize=(9, 2.8)); plt.plot(an_red.index, an_red.values, "o-", ms=3)
+plt.axhline(0, c="k", lw=.6); plt.ylabel("anomalía (m/s)"); plt.title("Anomalía mensual de la velocidad, promedio de la red")
+plt.show()
+
+# %% [markdown]
+# Más de la mitad de las estaciones tiene un cambio de nivel significativo, casi siempre una **caída** del viento medio
+# (del orden de 0.2 m/s), pero los quiebres están repartidos entre 2020 y 2025 y el promedio de la red no muestra
+# un quiebre significativo. Eso apunta a cambios **locales** (envejecimiento o recalibración de sensores, cambios
+# en el entorno de la estación) y no a un cambio climático regional.
+#
+# - **Decisión:** no se corrige el nivel de cada estación; la ventana de 7 días le da a la red el nivel reciente de
+#   la estación y el escalado es global.
+# - **Impacto en la arquitectura:** refuerza el uso de una ventana larga que contenga el nivel actual, en lugar de
+#   depender de la identidad de la estación.
+# - **Riesgo:** si el nivel cayó después del entrenamiento, el modelo tenderá a **sobrestimar**; se verificará el
+#   sesgo medio de los residuos en prueba.
 
 # %% [markdown]
 # ### Autocorrelación, periodograma y longitud de la ventana
@@ -323,14 +414,26 @@ med = g.transform("median"); mad = g.transform(lambda x: (x - x.median()).abs().
 z = (df.vel - med) / (1.4826 * mad)
 print(f"Horas con |z robusto| > 6: {(z.abs() > 6).sum():,} ({(z.abs() > 6).mean():.3%})")
 print(f"Velocidades > 20 m/s: {(df.vel > 20).sum()}")
+# Impacto sobre el error: RMSE de la persistencia en validación con y sin las horas objetivo atípicas
+atip = set(zip(df.CodigoEstacion[z.abs() > 6], df.hora[z.abs() > 6]))
+ixv = dv["idx"]["validacion"]
+t_obj = pd.DatetimeIndex(dv["tiempo"][ixv + dv["L"] - 1 + dv["H"]])
+es_atip = np.array([(e, t) in atip for e, t in zip(dv["estacion"]["validacion"], t_obj)])
+err = dv["y"][ixv + dv["L"] - 1] - dv["y"][ixv + dv["L"] - 1 + dv["H"]]
+print(f"Validación: {es_atip.sum()} ventanas con objetivo atípico ({es_atip.mean():.2%}) | RMSE persistencia con ellas "
+      f"{np.sqrt(np.mean(err ** 2)):.4f}, sin ellas {np.sqrt(np.mean(err[~es_atip] ** 2)):.4f} m/s")
 
 # %% [markdown]
+# Los valores atípicos son pocos (≈ 0.16 % de las horas) y su peso en el error es pequeño: quitar las ventanas con
+# objetivo atípico apenas cambia el RMSE de la persistencia en validación. La causa probable es meteorológica
+# (ráfagas en lluvias y frentes) más que instrumental, salvo el sensor bloqueado ya excluido.
+#
 # - **Decisión:** no se eliminan los extremos: son ráfagas físicamente posibles y precisamente lo que interesa
 #   anticipar. Solo se excluyó el sensor bloqueado.
 # - **Impacto en la arquitectura:** la salida no se acota; se evaluará el error en el percentil 95 de velocidad como
 #   análisis complementario.
-# - **Riesgo:** pocos valores extremos pueden inflar el RMSE de un modelo; se revisará su efecto comparando el RMSE
-#   con y sin esas horas.
+# - **Riesgo:** el efecto sobre el RMSE global es pequeño, pero el error en vientos fuertes puede ser grande; se
+#   reporta por separado en el benchmark.
 
 # %% [markdown]
 # ## Resumen de decisiones
@@ -344,4 +447,6 @@ print(f"Velocidades > 20 m/s: {(df.vel > 20).sum()}")
 # | Escenario 3 de ADF/KPSS (sin raíz unitaria, media cambiante) | No se diferencia; se estandariza |
 # | Efecto ARCH en todas las estaciones | MSE con Huber como variante; DM con corrección HLN |
 # | Estaciones heterogéneas pero con pocos datos cada una | Modelo global; la estación es la unidad de independencia |
-# | Leve desplazamiento 2024 → 2025 | Partición cronológica con embargo; 2025 congelado |
+# | Desplazamiento 2024 → 2025 por composición estacional | Partición cronológica con embargo; 2025 congelado con huella SHA-256 |
+# | Quiebres de nivel locales (mayoría de estaciones), no regionales | Ventana larga con el nivel reciente; vigilar el sesgo |
+# | Atípicos escasos y con poco efecto en el RMSE | Se conservan; error en vientos fuertes por separado |

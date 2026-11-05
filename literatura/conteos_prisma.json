@@ -2,16 +2,17 @@
  "identificados": {
   "Scopus": 1186,
   "Web of Science": 734,
+  "IEEE Xplore": 371,
   "Semantic Scholar": 3111,
   "arXiv": 39
  },
- "duplicados": 1570,
- "unicos": 3500,
- "excl_titulo": 2205,
+ "duplicados": 1864,
+ "unicos": 3577,
+ "excl_titulo": 2206,
  "sin_resumen": 31,
- "excl_menos_2_familias": 869,
- "tamizados_resumen": 1295,
- "evaluados_elegibilidad": 395,
+ "excl_menos_2_familias": 941,
+ "tamizados_resumen": 1371,
+ "evaluados_elegibilidad": 399,
  "sin_decision": 0,
- "elegibles": 65
+ "elegibles": 66
 }

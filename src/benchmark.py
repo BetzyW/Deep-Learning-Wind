@@ -5,6 +5,8 @@
 # no se entrena nada: solo se evalúa el conjunto de prueba, que estuvo congelado hasta este punto.
 
 # %%
+import os
+os.environ["MKL_NUM_THREADS"] = "1"   # con varios hilos, np.linalg.solve se bloquea en este equipo (MKL 2025)
 import json, sys, warnings
 import numpy as np, pandas as pd, matplotlib.pyplot as plt
 from scipy import stats
@@ -32,8 +34,12 @@ print(f"{len(y):,} ventanas de prueba | {len(set(est))} estaciones | {len(semill
 # %% [markdown]
 # ## Tabla comparativa
 #
-# Cada modelo se entrenó con $R$ semillas. Se reporta la media y la desviación estándar entre semillas de cada
-# métrica, y el MASE como el cociente entre el MAE del modelo y el de la persistencia a 24 h.
+# Cada modelo se entrenó con $R = 6$ semillas. Se reporta la media, la desviación estándar y el **intervalo de
+# confianza al 95 %** entre semillas (t de Student con 5 grados de libertad), el MASE (MAE del modelo sobre el MAE
+# de la persistencia a 24 h), el tiempo de entrenamiento y el de inferencia sobre todo 2025. Con $h = 24$ la
+# persistencia coincide con el **ingenuo estacional** diario ($\hat v_{t+24} = v_{t+24-24}$), así que una sola
+# referencia cubre las dos que pide el enunciado. Hardware: GPU NVIDIA RTX 4060 Ti (8 GB), CPU AMD Ryzen 7 8700F,
+# 32 GB de RAM.
 
 # %%
 def metricas(p):
@@ -41,18 +47,91 @@ def metricas(p):
     return dict(RMSE=np.sqrt(np.mean(e ** 2)), MAE=np.mean(np.abs(e)), R2=1 - np.mean(e ** 2) / np.var(y))
 
 mae_p = np.mean(np.abs(pers - y))
-filas = []
+t975 = stats.t.ppf(0.975, len(semillas) - 1)
+filas, por_semilla = [], []
 for m in MOD:
     met = pd.DataFrame([metricas(P[f"{m}_{s}"]) for s in semillas])
     met["MASE"] = met.MAE / mae_p
+    por_semilla += [dict(modelo=m, semilla=s, **r) for s, r in zip(semillas, met.to_dict("records"))]
     c = corr[corr.modelo == m]
-    filas.append({"Modelo": m, **{f"{k} media": met[k].mean() for k in met},
-                  "RMSE de": met.RMSE.std(ddof=1), "Parámetros": int(c.parametros.iloc[0]),
-                  "Épocas": c.epocas.mean(), "Segundos de entrenamiento": c.segundos.mean()})
-filas.append({"Modelo": "Persistencia", **{f"{k} media": v for k, v in metricas(pers).items()}, "MASE media": 1.0,
-              "RMSE de": 0.0, "Parámetros": 0, "Épocas": 0, "Segundos de entrenamiento": 0})
+    mitad = t975 * met.RMSE.std(ddof=1) / np.sqrt(len(met))
+    filas.append({"Modelo": m, "RMSE media": met.RMSE.mean(), "RMSE de": met.RMSE.std(ddof=1),
+                  "RMSE IC95 inf": met.RMSE.mean() - mitad, "RMSE IC95 sup": met.RMSE.mean() + mitad,
+                  "MAE media": met.MAE.mean(), "MAE de": met.MAE.std(ddof=1), "R2 media": met.R2.mean(),
+                  "MASE media": met.MASE.mean(), "Parámetros": int(c.parametros.iloc[0]), "Épocas": c.epocas.mean(),
+                  "Segundos entrenamiento": c.segundos.mean(),
+                  "Segundos inferencia 2025": c.segundos_inferencia_prueba.mean()})
+mp = metricas(pers)
+filas.append({"Modelo": "Persistencia", "RMSE media": mp["RMSE"], "RMSE de": 0.0, "RMSE IC95 inf": mp["RMSE"],
+              "RMSE IC95 sup": mp["RMSE"], "MAE media": mp["MAE"], "MAE de": 0.0, "R2 media": mp["R2"],
+              "MASE media": 1.0, "Parámetros": 0, "Épocas": 0, "Segundos entrenamiento": 0, "Segundos inferencia 2025": 0})
 tabla = pd.DataFrame(filas).set_index("Modelo")
+ps = pd.DataFrame(por_semilla)
 tabla.round(4)
+
+# %% [markdown]
+# ### Diferencias relativas de error
+#
+# Reducción relativa del error de cada modelo respecto al peor modelo base, al mejor y a la persistencia:
+# $\Delta\text{RMSE} = (\text{RMSE}_{\text{ref}} - \text{RMSE}_{\text{modelo}}) / \text{RMSE}_{\text{ref}} \times 100\,\%$,
+# y lo mismo para el MAE.
+
+# %%
+base = tabla.loc[MOD]
+peor, mejor_m = base["RMSE media"].idxmax(), base["RMSE media"].idxmin()
+delta = pd.DataFrame({
+    f"ΔRMSE vs peor ({peor}) %": 100 * (base.loc[peor, "RMSE media"] - base["RMSE media"]) / base.loc[peor, "RMSE media"],
+    f"ΔRMSE vs mejor ({mejor_m}) %": 100 * (base.loc[mejor_m, "RMSE media"] - base["RMSE media"]) / base.loc[mejor_m, "RMSE media"],
+    "ΔRMSE vs persistencia %": 100 * (mp["RMSE"] - base["RMSE media"]) / mp["RMSE"],
+    f"ΔMAE vs peor ({peor}) %": 100 * (base.loc[peor, "MAE media"] - base["MAE media"]) / base.loc[peor, "MAE media"],
+    "ΔMAE vs persistencia %": 100 * (mp["MAE"] - base["MAE media"]) / mp["MAE"]})
+delta.round(2)
+
+# %% [markdown]
+# ### Descomposición de la varianza: semillas frente a modelos
+#
+# ¿Cuánto de la variación del RMSE de prueba entre las 18 corridas se debe a la arquitectura y cuánto al azar del
+# entrenamiento (la semilla)? Se usa un ANOVA de un factor sobre el RMSE por corrida.
+
+# %%
+media_total = ps.RMSE.mean()
+ss_mod = sum(len(g) * (g.RMSE.mean() - media_total) ** 2 for _, g in ps.groupby("modelo"))
+ss_sem = sum(((g.RMSE - g.RMSE.mean()) ** 2).sum() for _, g in ps.groupby("modelo"))
+print(f"Varianza explicada por el modelo: {ss_mod / (ss_mod + ss_sem):.1%} | por la semilla: {ss_sem / (ss_mod + ss_sem):.1%}")
+an = stats.f_oneway(*[g.RMSE for _, g in ps.groupby("modelo")])
+print(f"ANOVA de un factor: F = {an.statistic:.2f}, p = {an.pvalue:.2e}")
+
+# %% [markdown]
+# ### Referencia de contexto: regresión lineal regularizada
+#
+# Una regresión ridge sobre la misma ventana aplanada (672 entradas) es el equivalente con pérdida cuadrática de la
+# SVR lineal. No es un modelo base (no es Deep Learning); sirve para medir cuánto aporta la no linealidad. El
+# parámetro de regularización se elige en validación.
+
+# %%
+def gram(ix_, lote=20000):
+    A = np.zeros((L * 4 + 1, L * 4 + 1)); b_ = np.zeros(L * 4 + 1)
+    for i0 in range(0, len(ix_), lote):
+        j = ix_[i0:i0 + lote]
+        Xb = np.hstack([d["X"][j[:, None] + np.arange(L)].reshape(len(j), -1), np.ones((len(j), 1))]).astype(np.float64)
+        A += Xb.T @ Xb; b_ += Xb.T @ d["y"][j + L - 1 + H]
+    return A, b_
+
+def pred_lineal(w, ix_, lote=20000):
+    return np.concatenate([np.hstack([d["X"][j[:, None] + np.arange(L)].reshape(len(j), -1), np.ones((len(j), 1))]) @ w
+                           for j in np.array_split(ix_, max(1, len(ix_) // lote))])
+
+A, b_ = gram(d["idx"]["entrenamiento"])
+iv = d["idx"]["validacion"]; yv = d["y"][iv + L - 1 + H]
+mejor_rid = None
+for alfa in [1e0, 1e1, 1e2, 1e3, 1e4, 1e5]:
+    w = np.linalg.solve(A + alfa * np.diag(np.r_[np.ones(L * 4), 0]), b_)
+    r = np.sqrt(np.mean((pred_lineal(w, iv) - yv) ** 2))
+    if mejor_rid is None or r < mejor_rid[1]:
+        mejor_rid = (alfa, r, w)
+alfa, r_val, w = mejor_rid
+p_rid = pred_lineal(w, ix)
+print(f"Ridge (α = {alfa:g}): RMSE validación {r_val:.4f} | RMSE prueba 2025 {np.sqrt(np.mean((p_rid - y) ** 2)):.4f} m/s")
 
 # %% [markdown]
 # ## Pronóstico promedio por modelo
@@ -81,6 +160,19 @@ fr = stats.friedmanchisquare(*[rmse_est[m] for m in pm])
 rangos = rmse_est.rank(axis=1).mean().sort_values()
 print(f"Friedman: chi2 = {fr.statistic:.2f}, p = {fr.pvalue:.2e}")
 print("Rango medio (1 = mejor):"); print(rangos.round(2).to_string())
+
+# %% [markdown]
+# Post-hoc de Nemenyi: dos pronósticos difieren si sus rangos medios se separan más que la diferencia crítica
+# $CD = q_{0.05}\sqrt{k(k+1)/(6N)}$, con $k = 4$ pronósticos y $N$ estaciones ($q_{0.05} = 2.569$).
+
+# %%
+k_, N_ = len(pm), len(rmse_est)
+CD = 2.569 * np.sqrt(k_ * (k_ + 1) / (6 * N_))
+print(f"Diferencia crítica de Nemenyi: {CD:.3f}")
+for i, a in enumerate(rangos.index):
+    for b in rangos.index[i + 1:]:
+        print(f"  {a} vs {b}: diferencia de rangos {abs(rangos[a] - rangos[b]):.2f} → "
+              f"{'difieren' if abs(rangos[a] - rangos[b]) > CD else 'no difieren'}")
 
 # %% [markdown]
 # ### Comparaciones por pares: Wilcoxon con corrección de Holm, diferencia de RMSE y tamaño del efecto
@@ -174,11 +266,12 @@ for c, g in res_.groupby("estacion"):
     s = g.set_index("hora").r.sort_index().asfreq("h").dropna()
     if len(s) < 1000:
         continue
-    lb = acorr_ljungbox(s, lags=[24], return_df=True).lb_pvalue.iloc[0]
+    lb = acorr_ljungbox(s, lags=[24, 48, 168], return_df=True).lb_pvalue.to_numpy()
     b = bds(s.iloc[:3000].to_numpy(), max_dim=2)[1]
-    filas.append((c, lb, float(np.atleast_1d(b)[0])))
-diag = pd.DataFrame(filas, columns=["estacion", "p_LjungBox_24", "p_BDS_m2"])
-print(f"{len(diag)} estaciones | Ljung-Box p < 0.05: {(diag.p_LjungBox_24 < .05).sum()} | "
+    filas.append((c, *lb, float(np.atleast_1d(b)[0])))
+diag = pd.DataFrame(filas, columns=["estacion", "p_LB_24", "p_LB_48", "p_LB_168", "p_BDS_m2"])
+print(f"{len(diag)} estaciones | Ljung-Box p < 0.05 con 24, 48 y 168 rezagos: "
+      f"{(diag.p_LB_24 < .05).sum()}, {(diag.p_LB_48 < .05).sum()}, {(diag.p_LB_168 < .05).sum()} | "
       f"BDS p < 0.05: {(diag.p_BDS_m2 < .05).sum()}")
 print(f"Sesgo medio de los residuos de {mejor}: {res_.r.mean():.3f} m/s")
 
@@ -196,3 +289,48 @@ por_nivel.plot.bar(ax=ax[1], rot=0); ax[1].set(xlabel="velocidad observada (m/s)
 plt.tight_layout(); plt.show()
 print("Sesgo por nivel (predicho − observado):")
 print(pd.DataFrame({m: (pm[m] - y) for m in pm}).groupby(nivel, observed=True).mean().round(3).to_string())
+
+# %% [markdown]
+# ## Predicciones frente a valores reales
+#
+# Dos semanas de 2025 en la estación con más datos de prueba, con el pronóstico promedio de cada modelo y la
+# persistencia.
+
+# %%
+e_top = pd.Series(est).value_counts().index[0]
+sel = np.flatnonzero(est == e_top)
+serie = pd.DataFrame({"Observado": y[sel], **{m: pm[m][sel] for m in pm}}, index=pd.DatetimeIndex(hora[sel])).sort_index()
+tramo = serie.loc[serie.index[len(serie) // 2]:].iloc[:336]
+ax = tramo.plot(figsize=(11, 3.4), lw=1, style=["k-", "-", "-", "-", ":"])
+ax.set(ylabel="m/s", title=f"Estación {e_top}: pronóstico a 24 h frente a lo observado")
+plt.show()
+plt.figure(figsize=(4.2, 4))
+plt.hexbin(y, pm[mejor], gridsize=60, bins="log", cmap="Blues")
+plt.plot([0, 12], [0, 12], "r--", lw=.8); plt.xlim(0, 12); plt.ylim(0, 12)
+plt.xlabel("observado (m/s)"); plt.ylabel(f"pronóstico {mejor} (m/s)"); plt.show()
+
+# %% [markdown]
+# ## Efecto de los valores atípicos
+
+# %%
+g_ = pd.DataFrame({"y": y, "est": est})
+med = g_.groupby("est").y.transform("median"); mad = g_.groupby("est").y.transform(lambda x: (x - x.median()).abs().median())
+atip = ((y - med) / (1.4826 * mad)).abs() > 6
+print(f"Horas objetivo atípicas en prueba: {atip.sum()} ({atip.mean():.2%})")
+print(pd.DataFrame({"RMSE con atípicos": {m: np.sqrt(np.mean((p - y) ** 2)) for m, p in pm.items()},
+                    "RMSE sin atípicos": {m: np.sqrt(np.mean((p[~atip] - y[~atip]) ** 2)) for m, p in pm.items()}}).round(4))
+
+# %% [markdown]
+# ## Baseline y umbral de mejora para modelos avanzados
+
+# %%
+mejor_media = tabla.loc[mejor_m, "RMSE media"]
+otros = [m for m in MOD if m != mejor_m]
+sd_dif = max((ps[ps.modelo == mejor_m].RMSE.to_numpy() - ps[ps.modelo == o].RMSE.to_numpy()).std(ddof=1) for o in otros)
+mdd = (1.96 + 0.84) * sd_dif / np.sqrt(len(semillas))
+print(f"Baseline: {mejor_m}, RMSE = {mejor_media:.4f} m/s "
+      f"(IC 95 % {tabla.loc[mejor_m, 'RMSE IC95 inf']:.4f}–{tabla.loc[mejor_m, 'RMSE IC95 sup']:.4f})")
+print(f"Diferencia mínima detectable con 6 semillas (potencia 0.80): {mdd:.4f} m/s | margen práctico δ = 0.02 m/s")
+umbral = mejor_media - max(mdd, 0.02)
+print(f"Un modelo avanzado debe lograr RMSE < {umbral:.4f} m/s en 2025 "
+      f"(mejora ≥ {100 * max(mdd, 0.02) / mejor_media:.1f} %) para ser estadística y prácticamente mejor que el baseline.")

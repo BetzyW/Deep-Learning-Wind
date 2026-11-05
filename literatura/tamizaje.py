@@ -1,7 +1,7 @@
-"""Tamizaje PRISMA reproducible sobre las cuatro fuentes: Scopus, Web of Science, Semantic Scholar y arXiv.
+"""Tamizaje PRISMA reproducible sobre las cinco fuentes: Scopus, Web of Science, IEEE Xplore, Semantic Scholar y arXiv.
 
 Uso: python tamizaje.py   (desde la carpeta literatura/)
-Entradas: scopus.csv, wos.txt, s2.json, arxiv.json y decisiones_elegibilidad.csv (lectura manual de resúmenes).
+Entradas: scopus.csv, wos.txt, ieee.csv, s2.json, arxiv.json y decisiones_elegibilidad.csv (lectura manual de resúmenes).
 Salidas: tamiz2.json (registros que pasan el tamizaje automático, con su decisión de elegibilidad) y conteos PRISMA.
 """
 import json, re, collections
@@ -25,6 +25,11 @@ wos = pd.read_csv("wos.txt", sep="\t", quoting=3, dtype=str, encoding="utf-8-sig
 recs += [dict(fuente="Web of Science", titulo=r.TI, anio=int(r.PY) if isinstance(r.PY, str) else None,
               resumen=r.AB if isinstance(r.AB, str) else "", doi=doi_norm(r.DI), citas=int(r.TC or 0), venue=r.SO,
               autores=str(r.AU).split("; ")[:3]) for r in wos.itertuples()]
+ie = pd.read_csv("ieee.csv", dtype=str)
+recs += [dict(fuente="IEEE Xplore", titulo=r["Document Title"], anio=int(r["Publication Year"]),
+              resumen=r["Abstract"] if isinstance(r["Abstract"], str) else "", doi=doi_norm(r["DOI"]),
+              citas=int(r["Article Citation Count"] if isinstance(r["Article Citation Count"], str) else 0), venue=r["Publication Title"],
+              autores=str(r["Authors"]).split("; ")[:3]) for _, r in ie.iterrows()]
 s2 = {p["paperId"]: p for p in json.load(open("s2.json", encoding="utf-8"))}.values()
 recs += [dict(fuente="Semantic Scholar", titulo=p["title"], anio=p["year"], resumen=p.get("abstract") or "",
               doi=doi_norm((p.get("externalIds") or {}).get("DOI")), citas=p.get("citationCount", 0),
@@ -33,7 +38,7 @@ recs += [dict(fuente="arXiv", titulo=a["titulo"], anio=a["anio"], resumen=a["res
               venue="arXiv", autores=a["autores"]) for a in json.load(open("arxiv.json", encoding="utf-8"))]
 n_id = collections.Counter(r["fuente"] for r in recs)
 
-# Duplicados: mismo DOI o mismo título normalizado. Se conserva el primero (orden: Scopus, WoS, S2, arXiv) y se
+# Duplicados: mismo DOI o mismo título normalizado. Se conserva el primero (orden: Scopus, WoS, IEEE, S2, arXiv) y se
 # completan resumen y citas con los de los duplicados.
 unicos, por_clave = [], {}
 for r in recs:

@@ -31,6 +31,10 @@ contrasta además cada modelo contra la persistencia $\hat v_{t+24} = v_t$.
 Abiertos (datos.gov.co) con licencia CC BY-SA 4.0. El panel se construyó en el proyecto de Machine Learning
 {cite}`rollo2026ml`, cuyo ETL limpia, alinea por hora y une las cuatro variables sin usar información futura.
 
+**Uso previo en la literatura.** Ningún estudio de la revisión (capítulo 3) usa las estaciones del IDEAM; el único
+antecedente con este dataset es el proyecto de Machine Learning {cite}`rollo2026ml`, cuyo resultado sirve de contexto
+(no es directamente comparable, ver la discusión).
+
 **Relevancia.** El pronóstico del viento a un día sirve para planear la operación de parques eólicos (La Guajira
 concentra el mayor potencial eólico del país), puertos y aeropuertos de la región.
 
