@@ -1,0 +1,19 @@
+{
+ "identificados": {
+  "Scopus": 470,
+  "Web of Science": 322,
+  "Semantic Scholar": 1176,
+  "arXiv": 30
+ },
+ "total_identificados": 1998,
+ "duplicados": 656,
+ "unicos": 1342,
+ "excl_titulo_o_periodo": 813,
+ "sin_resumen": 9,
+ "sin_arquitectura": 56,
+ "tamizados_resumen": 529,
+ "evaluados_elegibilidad": 464,
+ "excl_revision_o_no_primario": 18,
+ "excl_sin_metrica": 241,
+ "elegibles": 205
+}

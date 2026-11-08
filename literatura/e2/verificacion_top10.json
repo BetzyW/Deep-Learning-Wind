@@ -1,0 +1,122 @@
+{
+ "Transformer": {
+  "titulo": "Attention is All you Need",
+  "anio": 2017,
+  "venue": "Neural Information Processing Systems",
+  "doi_semantic_scholar": "10.48550/arXiv.1706.03762",
+  "arxiv": "1706.03762",
+  "doi_editorial": null,
+  "repositorio": "google-research/google-research",
+  "repo_existe": true,
+  "repo_estrellas": 39128,
+  "repo_archivado": false
+ },
+ "KAN": {
+  "titulo": "KAN: Kolmogorov-Arnold Networks",
+  "anio": 2024,
+  "venue": "International Conference on Learning Representations",
+  "doi_semantic_scholar": "10.48550/arXiv.2404.19756",
+  "arxiv": "2404.19756",
+  "doi_editorial": null,
+  "repositorio": "KindXiaoming/pykan",
+  "repo_existe": true,
+  "repo_estrellas": 16340,
+  "repo_archivado": false
+ },
+ "TCN": {
+  "titulo": "An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling",
+  "anio": 2018,
+  "venue": "arXiv.org",
+  "doi_semantic_scholar": "10.48550/arXiv.1803.01271",
+  "arxiv": "1803.01271",
+  "doi_editorial": null,
+  "repositorio": "locuslab/TCN",
+  "repo_existe": true,
+  "repo_estrellas": 4578,
+  "repo_archivado": false
+ },
+ "STGCN": {
+  "titulo": "Spatio-temporal Graph Convolutional Neural Network: A Deep Learning Framework for Traffic Forecasting",
+  "anio": 2017,
+  "venue": "International Joint Conference on Artificial Intelligence",
+  "doi_semantic_scholar": "10.24963/ijcai.2018/505",
+  "arxiv": "1709.04875",
+  "doi_editorial": null,
+  "repositorio": "VeritasYin/STGCN_IJCAI-18",
+  "repo_existe": true,
+  "repo_estrellas": 1247,
+  "repo_archivado": false
+ },
+ "Chronos": {
+  "titulo": "Chronos: Learning the Language of Time Series",
+  "anio": 2024,
+  "venue": "Trans. Mach. Learn. Res.",
+  "doi_semantic_scholar": "10.48550/arXiv.2403.07815",
+  "arxiv": "2403.07815",
+  "doi_editorial": null,
+  "repositorio": "amazon-science/chronos-forecasting",
+  "repo_existe": true,
+  "repo_estrellas": 6274,
+  "repo_archivado": false
+ },
+ "Mamba": {
+  "titulo": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+  "anio": 2023,
+  "venue": "arXiv.org",
+  "doi_semantic_scholar": null,
+  "arxiv": "2312.00752",
+  "doi_editorial": null,
+  "repositorio": "state-spaces/mamba",
+  "repo_existe": true,
+  "repo_estrellas": 18979,
+  "repo_archivado": false
+ },
+ "GRU": {
+  "titulo": "Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation",
+  "anio": 2014,
+  "venue": "Conference on Empirical Methods in Natural Language Processing",
+  "doi_semantic_scholar": "10.3115/v1/D14-1179",
+  "arxiv": "1406.1078",
+  "doi_editorial": "10.3115/v1/d14-1179",
+  "repositorio": null,
+  "repo_existe": false,
+  "repo_estrellas": null,
+  "repo_archivado": null
+ },
+ "Informer": {
+  "titulo": "Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting",
+  "anio": 2020,
+  "venue": "AAAI Conference on Artificial Intelligence",
+  "doi_semantic_scholar": "10.48550/arXiv.2012.07436",
+  "arxiv": "2012.07436",
+  "doi_editorial": "10.1609/aaai.v35i12.17325",
+  "repositorio": "zhouhaoyi/Informer2020",
+  "repo_existe": true,
+  "repo_estrellas": 6541,
+  "repo_archivado": false
+ },
+ "DLinear": {
+  "titulo": "Are Transformers Effective for Time Series Forecasting?",
+  "anio": 2022,
+  "venue": "AAAI Conference on Artificial Intelligence",
+  "doi_semantic_scholar": "10.48550/arXiv.2205.13504",
+  "arxiv": "2205.13504",
+  "doi_editorial": "10.1609/aaai.v37i9.26317",
+  "repositorio": "cure-lab/LTSF-Linear",
+  "repo_existe": true,
+  "repo_estrellas": 2530,
+  "repo_archivado": false
+ },
+ "Moirai": {
+  "titulo": "Unified Training of Universal Time Series Forecasting Transformers",
+  "anio": 2024,
+  "venue": "International Conference on Machine Learning",
+  "doi_semantic_scholar": "10.48550/arXiv.2402.02592",
+  "arxiv": "2402.02592",
+  "doi_editorial": null,
+  "repositorio": "SalesforceAIResearch/uni2ts",
+  "repo_existe": true,
+  "repo_estrellas": 1623,
+  "repo_archivado": false
+ }
+}

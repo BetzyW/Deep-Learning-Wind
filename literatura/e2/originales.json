@@ -1,0 +1,393 @@
+{
+ "Transformer": {
+  "buscado": "Attention Is All You Need",
+  "titulo": "Attention is All you Need",
+  "anio": 2017,
+  "venue": "Neural Information Processing Systems",
+  "doi": "10.48550/arXiv.1706.03762",
+  "arxiv": "1706.03762",
+  "citas": 201644,
+  "autores": [
+   "Ashish Vaswani",
+   "Noam Shazeer",
+   "N. Parmar"
+  ]
+ },
+ "Informer": {
+  "buscado": "Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting",
+  "titulo": "Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting",
+  "anio": 2020,
+  "venue": "AAAI Conference on Artificial Intelligence",
+  "doi": "10.48550/arXiv.2012.07436",
+  "arxiv": "2012.07436",
+  "citas": 9573,
+  "autores": [
+   "Haoyi Zhou",
+   "Shang-Hang Zhang",
+   "Jieqi Peng"
+  ]
+ },
+ "Autoformer": {
+  "buscado": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting",
+  "titulo": "Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting",
+  "anio": 2021,
+  "venue": "Neural Information Processing Systems",
+  "doi": "10.48550/arXiv.2106.13008",
+  "arxiv": "2106.13008",
+  "citas": 6161,
+  "autores": [
+   "Haixu Wu",
+   "Jie-Hui Xu",
+   "Jian-Min Wang"
+  ]
+ },
+ "FEDformer": {
+  "buscado": "FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting",
+  "titulo": "FEDformer: Frequency Enhanced Decomposed Transformer for Long-term Series Forecasting",
+  "anio": 2022,
+  "venue": "International Conference on Machine Learning",
+  "doi": "10.48550/arXiv.2201.12740",
+  "arxiv": "2201.12740",
+  "citas": 3970,
+  "autores": [
+   "Tian Zhou",
+   "Ziqing Ma",
+   "Qingsong Wen"
+  ]
+ },
+ "PatchTST": {
+  "buscado": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+  "titulo": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+  "anio": 2022,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.2211.14730",
+  "arxiv": "2211.14730",
+  "citas": 5298,
+  "autores": [
+   "Yu-Qi Nie",
+   "Nam H. Nguyen",
+   "Phanwadee Sinthong"
+  ]
+ },
+ "iTransformer": {
+  "buscado": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+  "titulo": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+  "anio": 2023,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.2310.06625",
+  "arxiv": "2310.06625",
+  "citas": 2761,
+  "autores": [
+   "Yong Liu",
+   "Teng-Ge Hu",
+   "Hao-Ran Zhang"
+  ]
+ },
+ "TFT": {
+  "buscado": "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting",
+  "titulo": "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting",
+  "anio": 2019,
+  "venue": "International Journal of Forecasting",
+  "doi": "10.48550/arXiv.1912.09363",
+  "arxiv": "1912.09363",
+  "citas": 3734,
+  "autores": [
+   "Bryan Lim",
+   "Sercan Ö. Arik",
+   "Nicolas Loeff"
+  ]
+ },
+ "TCN": {
+  "buscado": "An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling",
+  "titulo": "An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling",
+  "anio": 2018,
+  "venue": "arXiv.org",
+  "doi": "10.48550/arXiv.1803.01271",
+  "arxiv": "1803.01271",
+  "citas": 7740,
+  "autores": [
+   "Shao-Jie Bai",
+   "J. Kolter",
+   "V. Koltun"
+  ]
+ },
+ "WaveNet": {
+  "buscado": "WaveNet: A Generative Model for Raw Audio",
+  "titulo": "WaveNet: A Generative Model for Raw Audio",
+  "anio": 2016,
+  "venue": "Speech Synthesis Workshop",
+  "doi": "10.48550/arXiv.1609.03499",
+  "arxiv": "1609.03499",
+  "citas": 8691,
+  "autores": [
+   "A. van den Oord",
+   "S. Dieleman",
+   "H. Zen"
+  ]
+ },
+ "TimesNet": {
+  "buscado": "TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis",
+  "titulo": "TimesNet: Temporal 2D-Variation Modeling for General Time Series Analysis",
+  "anio": 2022,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.2210.02186",
+  "arxiv": "2210.02186",
+  "citas": 2964,
+  "autores": [
+   "Haixu Wu",
+   "Teng Hu",
+   "Yong Liu"
+  ]
+ },
+ "N-BEATS": {
+  "buscado": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+  "titulo": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+  "anio": 2019,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.1905.10437",
+  "arxiv": "1905.10437",
+  "citas": 1901,
+  "autores": [
+   "Boris N. Oreshkin",
+   "Dmitri Carpov",
+   "Nicolas Chapados"
+  ]
+ },
+ "N-HiTS": {
+  "buscado": "N-HiTS: Neural Hierarchical Interpolation for Time Series Forecasting",
+  "titulo": "N-HiTS: Neural Hierarchical Interpolation for Time Series Forecasting",
+  "anio": 2022,
+  "venue": "AAAI Conference on Artificial Intelligence",
+  "doi": "10.48550/arXiv.2201.12886",
+  "arxiv": "2201.12886",
+  "citas": 559,
+  "autores": [
+   "Cristian I. Challu",
+   "Kin G. Olivares",
+   "Boris N. Oreshkin"
+  ]
+ },
+ "DLinear": {
+  "buscado": "Are Transformers Effective for Time Series Forecasting?",
+  "titulo": "Are Transformers Effective for Time Series Forecasting?",
+  "anio": 2022,
+  "venue": "AAAI Conference on Artificial Intelligence",
+  "doi": "10.48550/arXiv.2205.13504",
+  "arxiv": "2205.13504",
+  "citas": 5141,
+  "autores": [
+   "Ailing Zeng",
+   "Mu-Hwa Chen",
+   "L. Zhang"
+  ]
+ },
+ "TSMixer": {
+  "buscado": "TSMixer: An All-MLP Architecture for Time Series Forecasting",
+  "titulo": "TSMixer: An all-MLP Architecture for Time Series Forecasting",
+  "anio": 2023,
+  "venue": "Trans. Mach. Learn. Res.",
+  "doi": "10.48550/arXiv.2303.06053",
+  "arxiv": "2303.06053",
+  "citas": 554,
+  "autores": [
+   "Si-An Chen",
+   "Chun-Liang Li",
+   "Sercan Ö. Arik"
+  ]
+ },
+ "TiDE": {
+  "buscado": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+  "titulo": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+  "anio": 2023,
+  "venue": "Trans. Mach. Learn. Res.",
+  "doi": "10.48550/arXiv.2304.08424",
+  "arxiv": "2304.08424",
+  "citas": 759,
+  "autores": [
+   "Abhimanyu Das",
+   "Wei-Hao Kong",
+   "Andrew B. Leach"
+  ]
+ },
+ "GRU": {
+  "buscado": "Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation",
+  "titulo": "Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation",
+  "anio": 2014,
+  "venue": "Conference on Empirical Methods in Natural Language Processing",
+  "doi": "10.3115/v1/D14-1179",
+  "arxiv": "1406.1078",
+  "citas": 28375,
+  "autores": [
+   "Kyunghyun Cho",
+   "Bart van Merriënboer",
+   "Çaglar Gülçehre"
+  ]
+ },
+ "xLSTM": {
+  "buscado": "xLSTM: Extended Long Short-Term Memory",
+  "titulo": "xLSTM: Extended Long Short-Term Memory",
+  "anio": 2024,
+  "venue": "Neural Information Processing Systems",
+  "doi": null,
+  "arxiv": "2405.04517",
+  "citas": 737,
+  "autores": [
+   "Maximilian Beck",
+   "Korbinian Pöppel",
+   "M. Spanring"
+  ]
+ },
+ "DeepAR": {
+  "buscado": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",
+  "titulo": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",
+  "anio": 2017,
+  "venue": "International Journal of Forecasting",
+  "doi": "10.48550/arXiv.1704.04110",
+  "arxiv": "1704.04110",
+  "citas": 3425,
+  "autores": [
+   "David Salinas",
+   "Valentin Flunkert",
+   "Jan Gasthaus"
+  ]
+ },
+ "Mamba": {
+  "buscado": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+  "titulo": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+  "anio": 2023,
+  "venue": "arXiv.org",
+  "doi": null,
+  "arxiv": "2312.00752",
+  "citas": 10103,
+  "autores": [
+   "Albert Gu",
+   "Tri Dao"
+  ]
+ },
+ "KAN": {
+  "buscado": "KAN: Kolmogorov-Arnold Networks",
+  "titulo": "KAN: Kolmogorov-Arnold Networks",
+  "anio": 2024,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.2404.19756",
+  "arxiv": "2404.19756",
+  "citas": 2354,
+  "autores": [
+   "Zi-Ming Liu",
+   "Yixuan Wang",
+   "Sachin Vaidya"
+  ]
+ },
+ "STGCN": {
+  "buscado": "Spatio-Temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting",
+  "titulo": "Spatio-temporal Graph Convolutional Neural Network: A Deep Learning Framework for Traffic Forecasting",
+  "anio": 2017,
+  "venue": "International Joint Conference on Artificial Intelligence",
+  "doi": "10.24963/ijcai.2018/505",
+  "arxiv": "1709.04875",
+  "citas": 5720,
+  "autores": [
+   "Ting Yu",
+   "Hao-Teng Yin",
+   "Zhan-Xing Zhu"
+  ]
+ },
+ "Graph WaveNet": {
+  "buscado": "Graph WaveNet for Deep Spatial-Temporal Graph Modeling",
+  "titulo": "Graph WaveNet for Deep Spatial-Temporal Graph Modeling",
+  "anio": 2019,
+  "venue": "International Joint Conference on Artificial Intelligence",
+  "doi": "10.48550/arXiv.1906.00121",
+  "arxiv": "1906.00121",
+  "citas": 3778,
+  "autores": [
+   "Zong-Han Wu",
+   "Shirui Pan",
+   "Guodong Long"
+  ]
+ },
+ "Chronos": {
+  "buscado": "Chronos: Learning the Language of Time Series",
+  "titulo": "Chronos: Learning the Language of Time Series",
+  "anio": 2024,
+  "venue": "Trans. Mach. Learn. Res.",
+  "doi": "10.48550/arXiv.2403.07815",
+  "arxiv": "2403.07815",
+  "citas": 1267,
+  "autores": [
+   "Abdul Fatir Ansari",
+   "Lorenzo Stella",
+   "A. Türkmen"
+  ]
+ },
+ "TimesFM": {
+  "buscado": "A decoder-only foundation model for time-series forecasting",
+  "titulo": "A decoder-only foundation model for time-series forecasting",
+  "anio": 2023,
+  "venue": "International Conference on Machine Learning",
+  "doi": "10.48550/arXiv.2310.10688",
+  "arxiv": "2310.10688",
+  "citas": 1087,
+  "autores": [
+   "Abhimanyu Das",
+   "Wei-Hao Kong",
+   "Rajat Sen"
+  ]
+ },
+ "Moirai": {
+  "buscado": "Unified Training of Universal Time Series Forecasting Transformers",
+  "titulo": "Unified Training of Universal Time Series Forecasting Transformers",
+  "anio": 2024,
+  "venue": "International Conference on Machine Learning",
+  "doi": "10.48550/arXiv.2402.02592",
+  "arxiv": "2402.02592",
+  "citas": 892,
+  "autores": [
+   "Gerald Woo",
+   "Chenghao Liu",
+   "Akshat Kumar"
+  ]
+ },
+ "Lag-Llama": {
+  "buscado": "Lag-Llama: Towards Foundation Models for Probabilistic Time Series Forecasting",
+  "titulo": "Lag-Llama: Towards Foundation Models for Probabilistic Time Series Forecasting",
+  "anio": 2023,
+  "venue": "",
+  "doi": null,
+  "arxiv": "2310.08278",
+  "citas": 194,
+  "autores": [
+   "Kashif Rasul",
+   "Arjun Ashok",
+   "A. Williams"
+  ]
+ },
+ "Time-LLM": {
+  "buscado": "Time-LLM: Time Series Forecasting by Reprogramming Large Language Models",
+  "titulo": "Time-LLM: Time Series Forecasting by Reprogramming Large Language Models",
+  "anio": 2023,
+  "venue": "International Conference on Learning Representations",
+  "doi": "10.48550/arXiv.2310.01728",
+  "arxiv": "2310.01728",
+  "citas": 1325,
+  "autores": [
+   "Ming Jin",
+   "Shiyu Wang",
+   "Lin-Tao Ma"
+  ]
+ },
+ "TimeGrad": {
+  "buscado": "Autoregressive Denoising Diffusion Models for Multivariate Probabilistic Time Series Forecasting",
+  "titulo": "Autoregressive Denoising Diffusion Models for Multivariate Probabilistic Time Series Forecasting",
+  "anio": 2021,
+  "venue": "International Conference on Machine Learning",
+  "doi": "10.48550/arXiv.2101.12072",
+  "arxiv": "2101.12072",
+  "citas": 663,
+  "autores": [
+   "Kashif Rasul",
+   "Calvin Seward",
+   "I. Schuster"
+  ]
+ }
+}

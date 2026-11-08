@@ -1,0 +1,11 @@
+modelo,estudios,riesgo_alto,con_particion,con_repeticiones,con_persistencia,con_pruebas,con_codigo
+Transformer,36,12,6,0,0,0,0
+KAN,3,2,0,0,0,0,0
+TCN,7,4,1,0,0,0,0
+STGCN,13,1,0,1,0,0,0
+Chronos,0,0,0,0,0,0,0
+Mamba,1,0,0,0,0,0,0
+GRU,8,4,1,0,0,1,0
+Informer,7,6,0,0,0,0,0
+DLinear,0,0,0,0,0,0,0
+Moirai,0,0,0,0,0,0,0
