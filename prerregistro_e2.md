@@ -115,3 +115,20 @@ las 100 h de GPU.
    ≈ 51 s por lote con w = 256. Su búsqueda queda en espera de una decisión documentada (ejecutarla con los núcleos
    oficiales en WSL o sustituirla por el siguiente modelo del ranking) que se registrará como enmienda antes de
    entrenarla. El resto de modelos sigue el protocolo.
+
+## Enmienda 2 — 8 de noviembre de 2026 (durante la fase 1 de la GRU; ningún finalista elegido)
+
+Motivo: costo. Las recurrentes escalan mal con el ancho: en la GRU, una arquitectura con última capa de 256 tarda
+≈ 375–670 s (frente a ≈ 25 s con 16). A las 7:15 iban 117 de 1 000 arquitecturas, todas con primera capa de 16 (las
+más baratas), y la fase 1 completa de la GRU y la LSTM no cabía antes de la entrega (15-nov).
+
+1. **GRU y LSTM:** la fase 1 evalúa una muestra aleatoria simple de **200 de las 1 000 arquitecturas**, fijada con la
+   semilla 11 (`busqueda_arq.py`, `MUESTRA`) antes de mirar resultados y guardada en
+   `resultados/e2/busqueda/{modelo}_muestra_fase1.json`. La muestra cubre todos los anchos de forma pareja.
+2. Las arquitecturas de la GRU ya calculadas que no están en la muestra (88 de 117) se conservan y se reportan, pero
+   **no entran en la elección de finalistas**, para no sesgar la búsqueda hacia las redes pequeñas que se evaluaron
+   primero.
+3. La fase 2 no cambia: k = 20 finalistas de la muestra más la referencia (64, 64, 64) / (0, 1, 0).
+4. Los demás modelos (MLP, CNN, TCN, KAN, Transformer) siguen con las 1 000 arquitecturas.
+5. Limitación que se reportará: con 200 de 1 000, la probabilidad de que al menos una arquitectura del 5 % mejor del
+   espacio entre en la muestra es 1 − 0.95²⁰⁰ ≈ 0.99997; la búsqueda sigue siendo un cribado, no una garantía de óptimo.

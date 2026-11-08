@@ -22,6 +22,18 @@ W = [16, 32, 64, 128, 256]
 REF = dict(w=(64, 64, 64), b=(0, 1, 0))
 FRAC = 0.10
 CARPETA = "resultados/e2/busqueda"
+# Enmienda 2 (8-nov-2026): por costo, las recurrentes evalúan en la fase 1 una muestra aleatoria simple de 200 de las
+# 1 000 arquitecturas, fijada con la semilla 11 sin mirar resultados. Filas ya calculadas fuera de la muestra se
+# conservan en el CSV pero no entran en la selección de finalistas.
+MUESTRA = {"GRU": 200, "LSTM": 200}
+SEMILLA_MUESTRA = 11
+
+
+def muestra_arq(arquitecturas, nombre):
+    if nombre not in MUESTRA:
+        return arquitecturas
+    idx = np.sort(np.random.default_rng(SEMILLA_MUESTRA).choice(len(arquitecturas), MUESTRA[nombre], replace=False))
+    return [arquitecturas[i] for i in idx]
 
 
 def ya_hechos(ruta, clave):
@@ -91,7 +103,9 @@ if __name__ == "__main__":
         json.dump(hp, open(f"{CARPETA}/{nombre}_hp_elegido.json", "w"))
         ruta_f1 = f"{CARPETA}/{nombre}_fase1.csv"
         hechos = ya_hechos(ruta_f1, "id")
-        for a in arquitecturas:
+        elegidas = muestra_arq(arquitecturas, nombre)
+        json.dump([a["id"] for a in elegidas], open(f"{CARPETA}/{nombre}_muestra_fase1.json", "w"))
+        for a in elegidas:
             if a["id"] in hechos:
                 continue
             fila = dict(modelo=nombre, id=a["id"], w1=a["w"][0], w2=a["w"][1], w3=a["w"][2], b1=a["b"][0],
