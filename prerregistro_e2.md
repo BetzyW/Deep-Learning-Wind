@@ -98,3 +98,20 @@ búsqueda de la sección 14): Transformer, KAN, TCN, Mamba, GRU, y los tres mode
   menor que 0.01.
 - **Limitación declarada:** subestimación de los vientos fuertes; se mide como el error medio (predicho − observado)
   en ventanas con observación ≥ 6 m/s, con IC 95 % por bootstrap de estaciones.
+
+## Enmienda 1 — 7 de noviembre de 2026 (antes de la fase 1; ningún resultado de búsqueda visto)
+
+Motivo: costo. Con todos los datos, una época de la TCN tarda ≈ 18 s, y la fase 1 completa de 8 modelos superaría
+las 100 h de GPU.
+
+1. El ajuste previo de hiperparámetros y la fase 1 usan el **10 % de las ventanas de ajuste** del último origen de
+   validación, muestreadas una vez con semilla 7 e idénticas para todas las configuraciones y arquitecturas. La
+   evaluación sigue siendo sobre todas las ventanas de validación de ese origen.
+2. Espacio del ajuste previo (T = 20, semilla 7): tasa de aprendizaje log-uniforme en [1e-4, 3e-3], weight decay en
+   {0, 1e-5, 1e-4}, tamaño de lote en {512, 1024, 2048}; máximo 20 épocas, paciencia 3.
+3. Una arquitectura que se queda sin memoria de GPU se registra como excluida y se reporta.
+4. Se habilita TF32 en las multiplicaciones de matrices (igual para todos los modelos).
+5. **Mamba:** la biblioteca oficial solo tiene núcleos CUDA para Linux y la implementación en PyTorch puro tarda
+   ≈ 51 s por lote con w = 256. Su búsqueda queda en espera de una decisión documentada (ejecutarla con los núcleos
+   oficiales en WSL o sustituirla por el siguiente modelo del ranking) que se registrará como enmienda antes de
+   entrenarla. El resto de modelos sigue el protocolo.
