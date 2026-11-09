@@ -169,8 +169,3 @@ queda para el siguiente entregable.
 3. Un modelo avanzado debe bajar de **0.686 m/s** (mejora ≥ 2.8 %) para considerarse una contribución.
 4. Una regresión lineal iguala a las redes base: el margen de mejora no está en cambiar de arquitectura temporal,
    sino en los **vientos fuertes** y en la **información espacial** que hoy no se usa.
-
-**Para el Entregable 2:** modelos que usen las estaciones vecinas (redes de grafos o espacio-temporales), pérdidas
-que no castiguen la cola alta (Huber o ponderadas por nivel de viento), Transformers con ventanas más largas, la
-ridge lineal como referencia de contexto obligatoria y una comparación justa con el modelo del proyecto de Machine
-Learning sobre el mismo conjunto de prueba.
