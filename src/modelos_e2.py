@@ -253,8 +253,60 @@ class Mamba(nn.Module):
         return self.salida(x[:, -1]).squeeze(-1)
 
 
+class CapaPatchTST(nn.Module):
+    """Capa del codificador de PatchTST: atención multicabeza y red feed-forward, cada una con conexión residual y
+    normalización por lotes (BatchNorm) en lugar de LayerNorm, como en el artículo."""
+
+    def __init__(self, D, H, F, p):
+        super().__init__()
+        self.att = nn.MultiheadAttention(D, H, dropout=p, batch_first=True)
+        self.ff = nn.Sequential(nn.Linear(D, F), nn.GELU(), nn.Dropout(p), nn.Linear(F, D))
+        self.n1, self.n2 = nn.BatchNorm1d(D), nn.BatchNorm1d(D)
+        self.d1, self.d2 = nn.Dropout(p), nn.Dropout(p)
+
+    @staticmethod
+    def _bn(bn, h):                                    # BatchNorm1d espera (B, D, N)
+        return bn(h.transpose(1, 2)).transpose(1, 2)
+
+    def forward(self, h):
+        h = self._bn(self.n1, h + self.d1(self.att(h, h, h, need_weights=False)[0]))
+        return self._bn(self.n2, h + self.d2(self.ff(h)))
+
+
+class PatchTST(nn.Module):
+    """Arquitectura publicada (Nie et al., ICLR 2023), versión supervisada para conjuntos grandes, escrita desde su
+    formulación: independencia de canal (solo la serie de velocidad, como DLinear), normalización por instancia
+    (RevIN sin parámetros afines), parches de longitud P = 16 con paso S = 8 (relleno del final con el último valor,
+    N = 21 parches para L = 168), proyección lineal a D = 128 con posición aprendida, 3 capas de codificador con
+    H = 16 cabezas, feed-forward F = 256 y dropout 0.2, y cabezal lineal sobre los parches aplanados."""
+
+    def __init__(self, L, d, P=16, S=8, D=128, H=16, F=256, capas=3, p=0.2, **_):
+        super().__init__()
+        self.P, self.S = P, S
+        N = (L - P) // S + 2
+        self.proy = nn.Linear(P, D)
+        self.pos = nn.Parameter(torch.empty(N, D).uniform_(-0.02, 0.02))
+        self.drop = nn.Dropout(p)
+        self.cod = nn.ModuleList([CapaPatchTST(D, H, F, p) for _ in range(capas)])
+        self.cabezal = nn.Linear(N * D, 1)
+        # la entrada llega estandarizada con el escalador del origen y el objetivo en m/s: un ajuste afín aprendido
+        # (2 parámetros) lleva la salida desnormalizada por RevIN a las unidades del objetivo
+        self.escala, self.sesgo = nn.Parameter(torch.ones(1)), nn.Parameter(torch.zeros(1))
+
+    def forward(self, x):
+        v = x[..., 0]                                                       # (B, L)
+        mu, sd = v.mean(1, keepdim=True), v.std(1, keepdim=True) + 1e-5     # RevIN
+        v = (v - mu) / sd
+        v = torch.cat([v, v[:, -1:].repeat(1, self.S)], 1)                  # relleno del final
+        z = self.drop(self.proy(v.unfold(1, self.P, self.S)) + self.pos)   # (B, N, D)
+        for capa in self.cod:
+            z = capa(z)
+        out = self.cabezal(z.flatten(1)).squeeze(-1) * sd[:, 0] + mu[:, 0]
+        return out * self.escala + self.sesgo
+
+
 MODELOS = {"DLinear": DLinear, "TCN": TCN, "Transformer": Transformer, "MLP": MLP, "LSTM": LSTM, "GRU": GRU,
-           "CNN": CNN, "KAN": KAN, "Mamba": Mamba}
+           "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST}
 
 
 def fijar_semilla(s):

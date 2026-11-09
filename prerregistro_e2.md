@@ -176,3 +176,24 @@ la prueba.
    un cribado, no una afirmación de optimalidad.
 8. **Mamba** sigue en espera, según el punto 5 de la enmienda 1; su decisión se registrará en otra enmienda antes de
    entrenarla.
+
+## Enmienda 4 — 9 de noviembre de 2026 (Mamba nunca entrenada; ningún resultado de Mamba ni de PatchTST visto)
+
+Motivo: viabilidad y costo, como anticipaba el punto 5 de la enmienda 1. La biblioteca oficial de Mamba solo tiene
+núcleos CUDA para Linux; la implementación en PyTorch puro tarda ≈ 51 s por lote con w = 256, y montar WSL con los
+núcleos oficiales consumiría tiempo y cómputo que el presupuesto fijo de Colab (enmienda 3) no permite.
+
+1. **Mamba se sustituye por PatchTST** (Nie et al., 2023, *ICLR*, arXiv:2211.14730), el 11.º modelo del ranking de la
+   revisión sistemática (puntaje 0.550). En la revisión había quedado fuera porque la familia de atención ya tenía dos
+   representantes; con la salida de Mamba, el Top 10 pasa de 7 a 6 familias (el mínimo del enunciado es 4) y la
+   familia de atención queda con tres modelos (Transformer, Informer y PatchTST). Se reporta como limitación: la
+   familia de espacio de estados queda sin representante.
+2. **PatchTST tiene arquitectura publicada** (sección 14.2): no entra en la búsqueda de arquitectura y recibe el mismo
+   ajuste previo de hiperparámetros que los demás (T = 20, semilla 7). Configuración supervisada del artículo para
+   conjuntos grandes: parches P = 16 con paso S = 8, 3 capas de codificador, H = 16 cabezas, D = 128, feed-forward
+   F = 256, dropout 0.2, normalización por instancia (RevIN) e independencia de canal. Adaptaciones declaradas:
+   ventana de entrada L = 168 (la común a todos los modelos, en lugar de 336), solo la serie de velocidad (como
+   DLinear) y un ajuste afín de 2 parámetros a la salida para pasar de la escala estandarizada a m/s. Implementación
+   propia desde la formulación (`src/modelos_e2.py`).
+3. DLinear, PatchTST e Informer (arquitecturas publicadas) se ajustan con el mismo procedimiento previo y van
+   directo a las corridas finales.

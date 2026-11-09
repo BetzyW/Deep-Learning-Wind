@@ -28,6 +28,8 @@ CARPETA = "resultados/e2/busqueda"
 # KAN y Transformer, para reservar cómputo para el Entregable 3.
 MUESTRA = {"GRU": 200, "LSTM": 200, "TCN": 200, "KAN": 200, "Transformer": 200}
 SEMILLA_MUESTRA = 11
+# Modelos con arquitectura publicada: reciben el mismo ajuste previo (T = 20) pero no entran en la fase 1
+PUBLICADOS = {"DLinear", "PatchTST", "Informer"}
 
 
 def muestra_arq(arquitecturas, nombre):
@@ -115,6 +117,8 @@ if __name__ == "__main__":
         mejor = min(filas, key=lambda r: float(r["rmse_val"]))
         hp = dict(lr=float(mejor["lr"]), wd=float(mejor["wd"]), bs=int(mejor["bs"]))
         json.dump(hp, open(f"{CARPETA}/{nombre}_hp_elegido.json", "w"))
+        if nombre in PUBLICADOS:      # arquitectura definida en el paper: solo el ajuste previo (sección 14.2)
+            continue
         ruta_f1 = f"{CARPETA}/{nombre}_fase1.csv"
         hechos = ya_hechos(ruta_f1, "id")
         elegidas = muestra_arq(arquitecturas, nombre)
