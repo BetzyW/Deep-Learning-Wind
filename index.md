@@ -1,6 +1,6 @@
 # Pronóstico de viento a 24 h con Deep Learning
 
-**Curso:** Deep Learning · **Profesor:** Lihki Rubio · **Autora:** Betzaida Ruiz · Universidad del Norte
+**Curso:** Deep Learning · **Profesores:** Lihki Rubio y Keila Alba · **Autora:** Betzaida Ruiz · Universidad del Norte
 
 ¿Qué arquitectura base de Deep Learning pronostica mejor la velocidad del viento con 24 horas de antelación en las
 estaciones del Caribe colombiano, y cuánto error queda por reducir frente al pronóstico ingenuo?
