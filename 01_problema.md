@@ -18,9 +18,9 @@ $$\mathcal L(\theta) = \frac{1}{n} \sum_{(s,t)} \big(y_{s,t} - f_\theta(\mathbf 
 El pronóstico es **directo a un horizonte** ($h = 24$): una sola salida, sin realimentar predicciones.
 
 **Tipo de problema: 3, series de tiempo.** La entrada contiene la historia del propio objetivo (los rezagos de la
-velocidad) y el orden temporal no puede alterarse sin fuga de información. Hay además una dimensión espacial (varias
+velocidad) y el orden temporal no puede alterarse sin fuga de información. Además, hay una dimensión espacial (varias
 estaciones), pero en este entregable cada estación se trata como una serie más de un modelo global; la estructura
-espacio-temporal queda para entregables posteriores.
+espacio-temporal quedará para los entregables posteriores.
 
 **Hipótesis.** $H_0$: los tres modelos base tienen el mismo RMSE esperado en 2025. $H_1$: al menos uno difiere. Se
 contrasta además cada modelo contra la persistencia $\hat v_{t+24} = v_t$.
