@@ -1,7 +1,7 @@
 # Estado del arte y modelos base
 
-El objetivo de esta revisión es doble: saber **qué arquitecturas de Deep Learning se usan para pronosticar la
-velocidad del viento** y **qué tan bien comparadas están**, para elegir con evidencia los tres modelos base del
+El objetivo de esta revisión es indagar **qué arquitecturas de Deep Learning se usan para pronosticar la
+velocidad del viento** y **qué tan bien se comparan entre sí**, para elegir, con evidencia, los tres modelos base del
 benchmark. Se sigue la guía PRISMA 2020 {cite}`page2021`.
 
 ## Protocolo de búsqueda
