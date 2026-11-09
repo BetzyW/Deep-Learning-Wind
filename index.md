@@ -11,8 +11,6 @@ pruebas estadísticas.
 
 ## Declaraciones a priori
 
-Se fijan antes de ver cualquier resultado de prueba y no se cambian después.
-
 | Declaración | Valor | Justificación |
 |---|---|---|
 | Métrica primaria | RMSE (m/s) | Coherente con la pérdida cuadrática de entrenamiento |
