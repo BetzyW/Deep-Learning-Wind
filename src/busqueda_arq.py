@@ -52,6 +52,18 @@ def anotar(ruta, fila):
         w.writerow(fila)
 
 
+def registrar_hardware(nombre, etapa):
+    """Anota en qué equipo corre cada modelo y etapa (sección 4.3: uso de GPU documentado). Se puede correr en el PC
+    del equipo o en Colab; este registro permite reportar el hardware de cada resultado."""
+    import platform
+    os.makedirs(CARPETA, exist_ok=True)
+    fila = dict(fecha=time.strftime("%Y-%m-%d %H:%M:%S"), modelo=nombre, etapa=etapa, equipo=platform.node(),
+                gpu=torch.cuda.get_device_name(0) if torch.cuda.is_available() else "sin GPU",
+                torch=torch.__version__, cuda=torch.version.cuda, python=platform.python_version())
+    with open(f"{CARPETA}/hardware.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(fila, ensure_ascii=False) + "\n")
+
+
 def correr(nombre, datos, f, y_ev, semilla, hp_arq, hp, epocas):
     t0 = time.time()
     try:
@@ -88,6 +100,7 @@ if __name__ == "__main__":
     arquitecturas = [dict(id=f"w{a}-{b}-{c}_d{x}{y}{z}", w=(a, b, c), b=(x, y, z))
                      for (a, b, c) in itertools.product(W, repeat=3) for (x, y, z) in itertools.product([0, 1], repeat=3)]
     for nombre in modelos:
+        registrar_hardware(nombre, "ajuste previo y fase 1")
         ruta_hp = f"{CARPETA}/{nombre}_hp.csv"
         hechos = ya_hechos(ruta_hp, "id")
         for hp in espacio_hp:
