@@ -24,8 +24,9 @@ FRAC = 0.10
 CARPETA = "resultados/e2/busqueda"
 # Enmienda 2 (8-nov-2026): por costo, las recurrentes evalúan en la fase 1 una muestra aleatoria simple de 200 de las
 # 1 000 arquitecturas, fijada con la semilla 11 sin mirar resultados. Filas ya calculadas fuera de la muestra se
-# conservan en el CSV pero no entran en la selección de finalistas.
-MUESTRA = {"GRU": 200, "LSTM": 200}
+# conservan en el CSV pero no entran en la selección de finalistas. Enmienda 3 (9-nov-2026): la misma regla para TCN,
+# KAN y Transformer, para reservar cómputo para el Entregable 3.
+MUESTRA = {"GRU": 200, "LSTM": 200, "TCN": 200, "KAN": 200, "Transformer": 200}
 SEMILLA_MUESTRA = 11
 
 

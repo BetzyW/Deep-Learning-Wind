@@ -132,3 +132,47 @@ más baratas), y la fase 1 completa de la GRU y la LSTM no cabía antes de la en
 4. Los demás modelos (MLP, CNN, TCN, KAN, Transformer) siguen con las 1 000 arquitecturas.
 5. Limitación que se reportará: con 200 de 1 000, la probabilidad de que al menos una arquitectura del 5 % mejor del
    espacio entre en la muestra es 1 − 0.95²⁰⁰ ≈ 0.99997; la búsqueda sigue siendo un cribado, no una garantía de óptimo.
+
+## Enmienda 3 — 9 de noviembre de 2026 (fase 1 de TCN y Transformer en curso; ningún finalista elegido, prueba sin abrir)
+
+Motivo: costo, medido. La estimación previa (C_total ≈ 40 h) resultó muy por debajo del costo real. Con los tiempos
+medidos (piloto con presupuesto completo y fase 1 de MLP, CNN, GRU, LSTM y parte de TCN y Transformer), un
+entrenamiento completo tarda ≈ 10 veces uno de la fase 1, y la fase 2 tal como estaba declarada (21 arquitecturas ×
+5 semillas × 4 orígenes = 420 entrenamientos completos por modelo) costaría ≈ 200–350 h de GPU en el equipo del
+proyecto (RTX 4060 Ti, 8 GB), que además solo puede usarse de noche. El cómputo adicional disponible (Colab Pro+, un
+presupuesto fijo de unidades) debe alcanzar también para el Entregable 3, que exige al menos 10 semillas por modelo y
+tres conjuntos de datos adicionales. La sección 14.4 del enunciado indica que, si el cómputo no alcanza, la desviación
+se declara, se justifica y se reporta su efecto; esta enmienda lo hace antes de elegir finalistas y sin haber abierto
+la prueba.
+
+1. **Cómputo adicional:** Google Colab Pro+ (GPU NVIDIA A100 de 40 GB) además del PC. El presupuesto de cada modelo se
+   define en número de arquitecturas, épocas y semillas, no en tiempo, así que no depende del equipo; el equipo de
+   cada resultado queda registrado (`resultados/e2/busqueda/hardware.jsonl`), los tiempos de entrenamiento se reportan
+   con su GPU y la latencia de inferencia se mide para todos los modelos en el mismo equipo. Misma versión de torch
+   (2.14.1; CUDA 12.6 en el PC y 13.0 en Colab), numpy (2.4.6) y pandas (3.0.6).
+2. **Fase 1 de TCN, KAN y Transformer:** la misma regla de la enmienda 2, una muestra aleatoria simple de **200 de las
+   1 000 arquitecturas** con semilla 11 (`MUESTRA` en `busqueda_arq.py`). Es la misma muestra para los cinco modelos
+   (GRU, LSTM, TCN, KAN y Transformer), lo que hace comparables sus búsquedas. Las arquitecturas ya calculadas fuera de
+   la muestra (TCN: 101 de 134; Transformer: las primeras del orden de enumeración, todas con primera capa de 16) se
+   conservan y se reportan, pero no entran en la elección de finalistas. La búsqueda aleatoria sobre un espacio fijo
+   es un método reconocido de ajuste (Bergstra y Bengio, 2012, *Journal of Machine Learning Research*, 13, 281–305).
+3. **Fase 2, para todos los modelos con búsqueda:** k = **10** finalistas (mínimo de la sección 14.4) más la referencia
+   (64, 64, 64) / (0, 1, 0); 5 semillas (2001–2005); presupuesto completo (todas las ventanas de ajuste, máximo 50
+   épocas, paciencia 5); **un origen**: el último de validación (2024-10-01), el mismo de la fase 1. Pasa de 420 a 55
+   entrenamientos por modelo.
+4. **Análisis de sensibilidad del muestreo:** MLP y CNN tienen la fase 1 completa. A sus 1 000 resultados se les
+   aplica la misma muestra de 200 y se reporta cuántos de sus 10 finalistas y si su arquitectura ganadora habrían
+   cambiado. Con eso se cuantifica, con datos del propio problema, el efecto del muestreo sobre las conclusiones.
+5. **Sin cambios:** el espacio de arquitecturas, el ajuste previo de hiperparámetros, la regla de selección, las
+   corridas finales (4 orígenes de prueba de 2025, reentrenando en cada uno) y las pruebas estadísticas. Las corridas
+   finales usan las semillas 1000–1005 declaradas (R = 6); si se agregan semillas para el Entregable 3, se reportan
+   aparte y las conclusiones del Entregable 2 se basan en las 6 declaradas.
+6. **Costo declarado (sección 14.4):** C_total revisado ≈ 60–80 h de GPU entre el PC y Colab; se reportará el consumo
+   real por equipo.
+7. **Limitaciones que se reportarán:** (a) cinco modelos evalúan 200 arquitecturas y dos (MLP y CNN) 1 000; el punto 4
+   mide el efecto. (b) Con un solo origen en la fase 2, la elección de la arquitectura no promedia sobre estaciones del
+   año; el desempeño final sí se mide con origen móvil en los 4 orígenes de 2025. (c) Dos tipos de GPU: las
+   diferencias numéricas entre equipos son del orden del ruido de semilla y se documentan. (d) La fase 1 sigue siendo
+   un cribado, no una afirmación de optimalidad.
+8. **Mamba** sigue en espera, según el punto 5 de la enmienda 1; su decisión se registrará en otra enmienda antes de
+   entrenarla.
