@@ -445,7 +445,7 @@ class PatchTST(nn.Module):
     N = 21 parches para L = 168), proyección lineal a D = 128 con posición aprendida, 3 capas de codificador con
     H = 16 cabezas, feed-forward F = 256 y dropout 0.2, y cabezal lineal sobre los parches aplanados."""
 
-    def __init__(self, L, d, P=16, S=8, D=128, H=16, F=256, capas=3, p=0.2, **_):
+    def __init__(self, L, d, P=16, S=8, D=128, H=16, F=256, capas=3, p=0.2, mu_y=0.0, sd_y=1.0, **_):
         super().__init__()
         self.P, self.S = P, S
         N = (L - P) // S + 2
@@ -454,9 +454,10 @@ class PatchTST(nn.Module):
         self.drop = nn.Dropout(p)
         self.cod = nn.ModuleList([CapaPatchTST(D, H, F, p) for _ in range(capas)])
         self.cabezal = nn.Linear(N * D, 1)
-        # la entrada llega estandarizada con el escalador del origen y el objetivo en m/s: un ajuste afín aprendido
-        # (2 parámetros) lleva la salida desnormalizada por RevIN a las unidades del objetivo
-        self.escala, self.sesgo = nn.Parameter(torch.ones(1)), nn.Parameter(torch.zeros(1))
+        # la entrada llega estandarizada con el escalador del origen y el objetivo en m/s: la salida desnormalizada por
+        # RevIN se lleva a m/s con la media y la desviación de la velocidad de ese escalador (2 parámetros afines que
+        # parten de esos valores exactos y pueden ajustarse)
+        self.escala, self.sesgo = nn.Parameter(torch.tensor([float(sd_y)])), nn.Parameter(torch.tensor([float(mu_y)]))
 
     def forward(self, x):
         v = x[..., 0]                                                       # (B, L)
@@ -492,6 +493,7 @@ class Datos:
     def __init__(self, panel, pliegue, dispositivo="cuda"):
         esc = Escalador().ajustar(panel, pliegue["entrenamiento"])
         self.X = torch.tensor(esc.transformar(panel.X), device=dispositivo)
+        self.mu_y, self.sd_y = float(esc.mu[0]), float(esc.sd[0])     # escala de la velocidad (para PatchTST)
         self.y = torch.tensor(np.nan_to_num(panel.X[:, 0]), device=dispositivo)
         self.off = torch.arange(-panel.L + 1, 1, device=dispositivo)
         self.h, self.dev, self.L, self.d = panel.horizontes[0], dispositivo, panel.L, panel.X.shape[1]
@@ -586,7 +588,8 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
 
 def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra):
     fijar_semilla(semilla)
-    m = MODELOS[nombre](datos.L, datos.d, **(hp or {})).to(datos.dev)
+    extra = dict(mu_y=datos.mu_y, sd_y=datos.sd_y) if nombre == "PatchTST" else {}
+    m = MODELOS[nombre](datos.L, datos.d, **(hp or {}), **extra).to(datos.dev)
     opt = torch.optim.Adam(m.parameters(), lr=lr, weight_decay=wd)
     aj, pa, ev = pliegue["ajuste"], pliegue["parada"], pliegue["evaluacion"]
     if frac < 1:
