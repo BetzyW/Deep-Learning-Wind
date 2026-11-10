@@ -88,7 +88,7 @@ if __name__ == "__main__":
                              epocas=50, paciencia=5)
                 err = r["pred"] - y_ev
                 base = f"{SALIDA}/{nombre}/{f['origen']}_{s}"
-                np.savez_compressed(base + ".npz", tau=f["evaluacion"], pred=r["pred"].astype(np.float32))
+                np.savez_compressed(base + ".npz", tau=f["evaluacion"].astype(np.int32), pred=r["pred"].astype(np.float32))
                 if s == semillas[0] and f["origen"] == cfg["origenes_prueba"][-1]:
                     # un solo modelo guardado por arquitectura (primera semilla, último origen: el que más datos vio),
                     # que es el que se exporta en el E3; así el Drive no se llena con 40 copias por modelo
