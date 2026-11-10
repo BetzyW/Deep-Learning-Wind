@@ -5,7 +5,9 @@ Triviales (sin ajuste): persistencia (= naive estacional diaria, porque h = 24),
 Clásicos fuertes (reentrenados en cada origen con la ventana expansiva): ridge y gradient boosting
 (HistGradientBoostingRegressor) sobre los rezagos de `origen_movil.rezagos`, un solo modelo global para todas las
 estaciones. Pendiente: ARIMA/ETS por estación.
-Uso: python src/baselines.py → resultados/e2/baselines_validacion.csv
+Uso: python src/baselines.py [validacion|prueba] → resultados/e2/baselines_{etapa}.csv
+Con "prueba" (solo para las corridas finales) se guardan también las predicciones por ventana en
+resultados/e2/finales/{baseline}/{origen}.npz, con el mismo formato que los modelos de Deep Learning.
 """
 import os, sys, time
 import numpy as np
@@ -87,11 +89,12 @@ def triviales(p, idx):
 
 
 if __name__ == "__main__":
-    cfg = leer_config(sys.argv[1] if len(sys.argv) > 1 else "configs/e2.json")
+    etapa = sys.argv[1] if len(sys.argv) > 1 else "validacion"
+    cfg = leer_config()
     p = preparar_panel(cfg)
     assert p.horizontes == [24], "este script asume un único horizonte de 24 h"
     filas, preds = [], []
-    for f in pliegues(p, cfg, "validacion"):
+    for f in pliegues(p, cfg, etapa):
         tr, ev = f["entrenamiento"], f["evaluacion"]
         y_tr, y_ev = objetivos(p, tr)[:, 0], objetivos(p, ev)[:, 0]
         X_tr, X_ev = rezagos(p, tr, cfg["rezagos_vel"]), rezagos(p, ev, cfg["rezagos_vel"])
@@ -108,6 +111,10 @@ if __name__ == "__main__":
         print(f"origen {f['origen']}: entrenamiento {len(tr):,}, evaluación {len(ev):,} | ridge {t1 - t0:.0f} s, "
               f"boosting {time.time() - t1:.0f} s", flush=True)
         for m, yhat in modelos.items():
+            if etapa == "prueba":
+                carpeta = f"resultados/e2/finales/{m.replace(' ', '_')}"
+                os.makedirs(carpeta, exist_ok=True)
+                np.savez_compressed(f"{carpeta}/{f['origen']}.npz", tau=ev, pred=np.asarray(yhat, dtype=np.float32))
             e = yhat - y_ev
             filas.append(dict(origen=f["origen"], modelo=m, n=len(ev), sse=float((e ** 2).sum()),
                               sae=float(np.abs(e).sum())))
@@ -119,7 +126,7 @@ if __name__ == "__main__":
     r["mase_vs_persistencia"] = r.mae / r.loc["Persistencia", "mae"]
     r = r.sort_values("rmse")
     os.makedirs("resultados/e2", exist_ok=True)
-    t.round(4).to_csv("resultados/e2/baselines_validacion_por_origen.csv", index=False)
-    r.round(4).to_csv("resultados/e2/baselines_validacion.csv")
+    t.round(4).to_csv(f"resultados/e2/baselines_{etapa}_por_origen.csv", index=False)
+    r.round(4).to_csv(f"resultados/e2/baselines_{etapa}.csv")
     print(t.pivot(index="modelo", columns="origen", values="rmse").round(3).to_string())
     print(r[["n", "rmse", "mae", "mase_vs_persistencia"]].round(3).to_string())
