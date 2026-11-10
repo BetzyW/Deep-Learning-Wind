@@ -337,16 +337,18 @@ class AtencionProbSparse(nn.Module):
         U = min(Lk, int(self.c * math.ceil(math.log(Lk + 1))))
         u = min(Lq, int(self.c * math.ceil(math.log(Lq + 1))))
         idx = torch.randint(Lk, (Lq, U), device=xq.device)                     # claves muestreadas por consulta
-        Ks = K[:, :, idx, :]                                                   # (B, H, Lq, U, dk)
-        qk = (Q.unsqueeze(-2) * Ks).sum(-1) / math.sqrt(self.dk)
+        # se calculan los productos q·k completos (B, H, Lq, Lk) y se toman las U columnas muestreadas: es el mismo
+        # valor que multiplicar por las claves muestreadas, pero sin materializar un tensor (B, H, Lq, U, dk), que
+        # con lotes grandes ocupa decenas de GB
+        S = Q @ K.transpose(-2, -1) / math.sqrt(self.dk)
+        qk = S.gather(-1, idx.expand(B, self.H, Lq, U))
         M = qk.max(-1).values - qk.sum(-1) / Lk
         top = M.topk(u, dim=-1).indices                                        # (B, H, u)
         if self.causal:
             salida = V.cumsum(2)[:, :, :Lq] / torch.arange(1, Lq + 1, device=xq.device).view(1, 1, -1, 1)
         else:
             salida = V.mean(2, keepdim=True).expand(-1, -1, Lq, -1).clone()
-        Qr = torch.gather(Q, 2, top.unsqueeze(-1).expand(-1, -1, -1, self.dk))
-        s = Qr @ K.transpose(-2, -1) / math.sqrt(self.dk)                      # (B, H, u, Lk)
+        s = S.gather(2, top.unsqueeze(-1).expand(-1, -1, -1, Lk))              # (B, H, u, Lk)
         if self.causal:
             s = s.masked_fill(top.unsqueeze(-1) < torch.arange(Lk, device=xq.device), float("-inf"))
         salida = salida.scatter(2, top.unsqueeze(-1).expand(-1, -1, -1, self.dk), self.drop(s.softmax(-1)) @ V)
