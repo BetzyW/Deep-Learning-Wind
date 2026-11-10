@@ -80,6 +80,20 @@ def evaluar_intervalos(y, yhat, residuos_validacion):
 # ---------------------------------------------------------------- estabilidad
 
 
+def valor_critico_gr(mu, alfa=0.05, sims=20000, pasos=2000, semilla=0):
+    """Valor crítico bilateral de la prueba de fluctuación por simulación de su distribución límite (Giacomini y Rossi,
+    2010, Journal of Applied Econometrics 25(4), 595–620): sup_r |B(r + μ) − B(r)| / √μ, con B un movimiento
+    browniano estándar en [0, 1]. Se simula en vez de copiar la tabla del artículo, para no depender de valores
+    transcritos."""
+    rng = np.random.default_rng(semilla)
+    k = max(1, int(round(mu * pasos)))
+    sup = np.empty(sims)
+    for i in range(0, sims, 1000):
+        B = np.concatenate([np.zeros((1000, 1)), rng.normal(0, np.sqrt(1 / pasos), (1000, pasos)).cumsum(1)], 1)
+        sup[i:i + 1000] = np.abs(B[:, k:] - B[:, :-k]).max(1) / np.sqrt(mu)
+    return float(np.quantile(sup, 1 - alfa))
+
+
 def giacomini_rossi(e1, e2, ventana=24 * 30, h=24):
     """Fluctuación de Giacomini y Rossi (2010): DM reescalado en ventanas móviles; se compara su máximo absoluto con
     el valor crítico tabulado para μ = ventana/n (α = 0.05). Devuelve la serie y el máximo."""
@@ -89,12 +103,9 @@ def giacomini_rossi(e1, e2, ventana=24 * 30, h=24):
     s = np.sqrt(hac_var(d, h - 1))
     serie = np.array([d[i:i + ventana].mean() * np.sqrt(ventana) / s for i in range(0, n - ventana + 1, 24)])
     mu = ventana / n
-    # valores críticos de Giacomini y Rossi (2010, tabla 1), bilaterales al 5 %. PENDIENTE: verificar cada valor contra
-    # el artículo (Review of Economic Studies 77(2)) antes de reportar; están escritos de memoria
-    tabla = {0.1: 3.393, 0.2: 3.170, 0.3: 3.011, 0.4: 2.882, 0.5: 2.770, 0.6: 2.662, 0.7: 2.546, 0.8: 2.406, 0.9: 2.193}
-    clave = min(tabla, key=lambda m: abs(m - mu))
-    return dict(maximo=float(np.abs(serie).max()), critico=tabla[clave], mu=float(mu),
-                inestable=bool(np.abs(serie).max() > tabla[clave])), serie
+    critico = valor_critico_gr(mu)
+    return dict(maximo=float(np.abs(serie).max()), critico=critico, mu=float(mu),
+                inestable=bool(np.abs(serie).max() > critico)), serie
 
 
 # ---------------------------------------------------------------- robustez
