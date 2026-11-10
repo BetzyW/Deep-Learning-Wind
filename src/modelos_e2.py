@@ -474,4 +474,4 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
     pred = predecir(m, datos, ev)
     return dict(modelo=nombre, semilla=semilla, origen=pliegue["origen"], rmse_parada=mejor, epocas=len(hist),
                 segundos=time.time() - t0, parametros=sum(p.numel() for p in m.parameters()),
-                historia=hist, historia_train=hist_tr, pred=pred)
+                historia=hist, historia_train=hist_tr, pred=pred, estado=m.state_dict())
