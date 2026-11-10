@@ -197,3 +197,13 @@ núcleos oficiales consumiría tiempo y cómputo que el presupuesto fijo de Cola
    propia desde la formulación (`src/modelos_e2.py`).
 3. DLinear, PatchTST e Informer (arquitecturas publicadas) se ajustan con el mismo procedimiento previo y van
    directo a las corridas finales.
+
+## Enmienda 5 — 9 de noviembre de 2026 (Informer nunca entrenado)
+
+Configuración de Informer (Zhou et al., 2021, *AAAI*), arquitectura publicada sin búsqueda (sección 14.2), con la
+configuración por defecto del artículo: D = 512, 8 cabezas, feed-forward 2048, 2 capas de codificador con destilación
+(Conv1d k = 3 + BatchNorm + ELU + MaxPool), 1 capa de decodificador, atención ProbSparse con factor c = 5 y dropout
+0.05; decodificador generativo con las últimas 48 h y 24 posiciones en cero. Adaptaciones declaradas: ventana L = 168
+(común a todos los modelos), salida en la última posición del decodificador (pronóstico directo a τ + 24) y sin
+incrustación de calendario, porque el panel no trae esas variables. Implementación propia desde la formulación
+(`src/modelos_e2.py`). Recibe el mismo ajuste previo de hiperparámetros que los demás (T = 20, semilla 7).

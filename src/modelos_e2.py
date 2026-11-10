@@ -253,6 +253,108 @@ class Mamba(nn.Module):
         return self.salida(x[:, -1]).squeeze(-1)
 
 
+class AtencionProbSparse(nn.Module):
+    """Atención ProbSparse de Informer (Zhou et al., AAAI 2021), escrita desde su formulación: para cada consulta se
+    estima la medida de dispersión M(q) = max_j(q·k_j/√d) − media_j(q·k_j/√d) con U = c·ln L_K claves muestreadas; solo
+    las u = c·ln L_Q consultas más dispersas reciben atención completa. Las demás reciben la media de los valores
+    (o su suma acumulada, si la atención es causal)."""
+
+    def __init__(self, D, H, c=5, p=0.05, causal=False):
+        super().__init__()
+        self.H, self.dk, self.c, self.causal = H, D // H, c, causal
+        self.q, self.k, self.v, self.o = (nn.Linear(D, D) for _ in range(4))
+        self.drop = nn.Dropout(p)
+
+    def forward(self, xq, xkv):
+        B, Lq, _ = xq.shape
+        Lk = xkv.shape[1]
+        Q = self.q(xq).view(B, Lq, self.H, self.dk).transpose(1, 2)            # (B, H, Lq, dk)
+        K = self.k(xkv).view(B, Lk, self.H, self.dk).transpose(1, 2)
+        V = self.v(xkv).view(B, Lk, self.H, self.dk).transpose(1, 2)
+        U = min(Lk, int(self.c * math.ceil(math.log(Lk + 1))))
+        u = min(Lq, int(self.c * math.ceil(math.log(Lq + 1))))
+        idx = torch.randint(Lk, (Lq, U), device=xq.device)                     # claves muestreadas por consulta
+        Ks = K[:, :, idx, :]                                                   # (B, H, Lq, U, dk)
+        qk = (Q.unsqueeze(-2) * Ks).sum(-1) / math.sqrt(self.dk)
+        M = qk.max(-1).values - qk.sum(-1) / Lk
+        top = M.topk(u, dim=-1).indices                                        # (B, H, u)
+        if self.causal:
+            salida = V.cumsum(2)[:, :, :Lq] / torch.arange(1, Lq + 1, device=xq.device).view(1, 1, -1, 1)
+        else:
+            salida = V.mean(2, keepdim=True).expand(-1, -1, Lq, -1).clone()
+        Qr = torch.gather(Q, 2, top.unsqueeze(-1).expand(-1, -1, -1, self.dk))
+        s = Qr @ K.transpose(-2, -1) / math.sqrt(self.dk)                      # (B, H, u, Lk)
+        if self.causal:
+            s = s.masked_fill(top.unsqueeze(-1) < torch.arange(Lk, device=xq.device), float("-inf"))
+        salida = salida.scatter(2, top.unsqueeze(-1).expand(-1, -1, -1, self.dk), self.drop(s.softmax(-1)) @ V)
+        return self.o(salida.transpose(1, 2).reshape(B, Lq, -1))
+
+
+class CapaInformer(nn.Module):
+    def __init__(self, D, H, F, p, causal=False, cruzada=False):
+        super().__init__()
+        self.att = AtencionProbSparse(D, H, p=p, causal=causal)
+        self.cruz = nn.MultiheadAttention(D, H, dropout=p, batch_first=True) if cruzada else None
+        self.ff = nn.Sequential(nn.Conv1d(D, F, 1), nn.GELU(), nn.Dropout(p), nn.Conv1d(F, D, 1))
+        self.normas = nn.ModuleList([nn.LayerNorm(D) for _ in range(3 if cruzada else 2)])
+        self.drop = nn.Dropout(p)
+
+    def forward(self, x, mem=None):
+        x = self.normas[0](x + self.drop(self.att(x, x)))
+        if self.cruz is not None:
+            x = self.normas[1](x + self.drop(self.cruz(x, mem, mem, need_weights=False)[0]))
+        return self.normas[-1](x + self.drop(self.ff(x.transpose(1, 2)).transpose(1, 2)))
+
+
+class Destilacion(nn.Module):
+    """Destilación entre capas del codificador: Conv1d (k = 3) + BatchNorm + ELU + MaxPool (k = 3, paso 2)."""
+
+    def __init__(self, D):
+        super().__init__()
+        self.f = nn.Sequential(nn.Conv1d(D, D, 3, padding=1, padding_mode="circular"), nn.BatchNorm1d(D), nn.ELU(),
+                               nn.MaxPool1d(3, 2, 1))
+
+    def forward(self, x):
+        return self.f(x.transpose(1, 2)).transpose(1, 2)
+
+
+class Informer(nn.Module):
+    """Arquitectura publicada (Zhou et al., AAAI 2021), configuración por defecto del artículo: D = 512, H = 8 cabezas,
+    feed-forward 2048, 2 capas de codificador con destilación, 1 capa de decodificador, factor c = 5, dropout 0.05.
+    Decodificador generativo: recibe las últimas 48 h (label_len) y 24 posiciones en cero; la salida en la última
+    posición es el pronóstico a τ + 24. Incrustación por convolución (k = 3) más posición sinusoidal; sin incrustación
+    de calendario (el panel no la trae), adaptación declarada en la enmienda 5."""
+
+    def __init__(self, L, d, D=512, H=8, F=2048, p=0.05, etiqueta=48, h=24, **_):
+        super().__init__()
+        self.etiqueta, self.h = etiqueta, h
+        self.inc_enc = nn.Conv1d(d, D, 3, padding=1, padding_mode="circular")
+        self.inc_dec = nn.Conv1d(d, D, 3, padding=1, padding_mode="circular")
+        n = max(L, etiqueta + h)
+        pe = torch.zeros(n, D)
+        pos = torch.arange(n).unsqueeze(1)
+        div = torch.exp(torch.arange(0, D, 2) * (-math.log(10000.0) / D))
+        pe[:, 0::2], pe[:, 1::2] = torch.sin(pos * div), torch.cos(pos * div)
+        self.register_buffer("pe", pe)
+        self.enc = nn.ModuleList([CapaInformer(D, H, F, p) for _ in range(2)])
+        self.dest = Destilacion(D)
+        self.norma_enc = nn.LayerNorm(D)
+        self.dec = CapaInformer(D, H, F, p, causal=True, cruzada=True)
+        self.norma_dec = nn.LayerNorm(D)
+        self.salida = nn.Linear(D, 1)
+        self.drop = nn.Dropout(p)
+
+    def forward(self, x):
+        B, L, d = x.shape
+        e = self.drop(self.inc_enc(x.transpose(1, 2)).transpose(1, 2) + self.pe[:L])
+        e = self.dest(self.enc[0](e))
+        mem = self.norma_enc(self.enc[1](e))
+        xd = torch.cat([x[:, -self.etiqueta:], x.new_zeros(B, self.h, d)], 1)
+        z = self.drop(self.inc_dec(xd.transpose(1, 2)).transpose(1, 2) + self.pe[:self.etiqueta + self.h])
+        z = self.norma_dec(self.dec(z, mem))
+        return self.salida(z[:, -1]).squeeze(-1)
+
+
 class CapaPatchTST(nn.Module):
     """Capa del codificador de PatchTST: atención multicabeza y red feed-forward, cada una con conexión residual y
     normalización por lotes (BatchNorm) en lugar de LayerNorm, como en el artículo."""
@@ -306,7 +408,7 @@ class PatchTST(nn.Module):
 
 
 MODELOS = {"DLinear": DLinear, "TCN": TCN, "Transformer": Transformer, "MLP": MLP, "LSTM": LSTM, "GRU": GRU,
-           "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST}
+           "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST, "Informer": Informer}
 
 
 def fijar_semilla(s):
