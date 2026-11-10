@@ -5,7 +5,7 @@
 DL=/c/Users/USER/miniconda3/envs/dl_env/python.exe
 LOG=resultados/e2/busqueda/noche_e2.log
 export PYTHONIOENCODING=utf-8
-while tasklist //FI "PID eq $1" 2>/dev/null | grep -q python; do sleep 60; done
+while tasklist //FI "PID eq $1" 2>/dev/null | grep -q " $1 "; do sleep 60; done
 echo "== Publicados (ajuste previo) $(date)" >> $LOG
 $DL -u src/busqueda_arq.py DLinear PatchTST >> $LOG 2>&1
 echo "== Fase 2 $(date)" >> $LOG

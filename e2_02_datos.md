@@ -9,7 +9,7 @@
 | Cobertura | 76 estaciones de 7 departamentos del Caribe colombiano (La Guajira 15, Magdalena 14, Cesar 12, Bolívar 11, Córdoba 11, Atlántico 8, Sucre 5); enero de 2020 a diciembre de 2025; 1 308 726 filas estación-hora |
 | Variables de entrada | Velocidad (m/s), dirección como seno y coseno, temperatura (°C); ventana de 168 h |
 | Objetivo | Velocidad media horaria 24 h después del instante de emisión |
-| Limpieza | Relleno hacia adelante de máximo 3 h (solo mira el pasado); una ventana con faltantes no se usa; una estación excluida por datos anómalos (`configs/e2.json`) |
+| Limpieza | Relleno hacia adelante de máximo 3 h (solo mira el pasado); una ventana con faltantes no se usa; la estación 1501500054 se excluye porque tiene el 99.8 % de las horas en cero (anemómetro bloqueado, no calma real; hallazgo del EDA del E1) |
 | Partición | Origen móvil trimestral: validación en 2024, prueba en 2025 (tabla siguiente) |
 | Huella de la prueba | SHA-256 de las 215 286 ventanas de 2025, fijada en el preregistro antes de entrenar |
 | Sesgos conocidos | La red cambia mucho entre años (el primer semestre de 2024 tiene 10–16 estaciones y el último trimestre de 2025, 56); las estaciones nuevas tienen poca historia |
