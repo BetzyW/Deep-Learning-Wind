@@ -5,7 +5,7 @@ con p = 0.2. La referencia del preregistro es w = (64, 64, 64), b = (0, 1, 0).
 DLinear usa su arquitectura publicada (Zeng et al., 2023): descomposición por media móvil de 25 pasos y una capa
 lineal para la tendencia y otra para el resto, aplicadas a la serie de velocidad.
 """
-import math, random, time
+import math, os, random, time
 import numpy as np
 import torch
 import torch.nn as nn
@@ -470,7 +470,13 @@ class PatchTST(nn.Module):
         return out * self.escala + self.sesgo
 
 
-MODELOS = {"DLinear": DLinear, "TCN": TCN, "Transformer": Transformer, "MLP": MLP, "LSTM": LSTM, "GRU": GRU,
+# Chronos y Moirai: el modelo preentrenado queda congelado y su representación de cada ventana se calcula una vez
+# (src/embeber.py); lo que se ajusta es un cabezal de 3 capas densas sobre esa representación, con el mismo espacio de
+# arquitecturas de la sección 14 (sección 14.2 del enunciado: "solo el cabezal de 3 capas densas").
+PREENTRENADOS = {"Chronos", "Moirai"}
+EMB_DIR = os.environ.get("EMB_DIR", "/content/emb")
+
+MODELOS = {"Chronos": MLP, "Moirai": MLP, "DLinear": DLinear, "TCN": TCN, "Transformer": Transformer, "MLP": MLP, "LSTM": LSTM, "GRU": GRU,
            "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST, "Informer": Informer, "STGCN": STGCN}
 
 
@@ -491,6 +497,22 @@ class Datos:
         self.h, self.dev, self.L, self.d = panel.horizontes[0], dispositivo, panel.L, panel.X.shape[1]
 
         self.grafo, self._grafo = None, None
+        self._emb, self._entrenamiento = {}, pliegue["entrenamiento"]
+
+    def con_embeddings(self, nombre):
+        """Vista de estos datos con la representación congelada del modelo preentrenado (L = 1, d = dimensión),
+        estandarizada con las ventanas de entrenamiento de este origen."""
+        if nombre not in self._emb:
+            E = np.load(f"{EMB_DIR}/{nombre}.npy", mmap_mode="r")
+            tr = np.asarray(self._entrenamiento)
+            mu, sd = E[tr].astype(np.float32).mean(0), E[tr].astype(np.float32).std(0) + 1e-6
+            vista = Datos.__new__(Datos)
+            vista.X = torch.tensor((np.asarray(E, dtype=np.float32) - mu) / sd, device=self.dev)
+            vista.y, vista.h, vista.dev, vista.L, vista.d = self.y, self.h, self.dev, 1, E.shape[1]
+            vista.off = torch.zeros(1, dtype=torch.long, device=self.dev)
+            vista.grafo, vista._grafo, vista._emb = None, None, {}
+            self._emb[nombre] = vista
+        return self._emb[nombre]
 
     def activar_grafo(self, panel, ruta_panel, k=K_VECINOS):
         """Prepara la entrada de STGCN: para cada fila, las filas de sus k estaciones más cercanas en la misma hora
@@ -550,6 +572,8 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
              frac=1.0, semilla_muestra=7):
     """Adam + MSE; ajusta con `ajuste`, parada temprana con `parada`, evalúa en `evaluacion` del pliegue.
     Con frac < 1 se usa una submuestra fija de las ventanas de ajuste (la misma para todas las arquitecturas)."""
+    if nombre in PREENTRENADOS:                 # el cabezal ve la representación congelada, no la serie
+        datos = datos.con_embeddings(nombre)
     if nombre == "STGCN":                       # solo STGCN recibe las ventanas de las estaciones vecinas
         assert datos._grafo is not None, "llamar datos.activar_grafo(panel, ruta_panel) antes de entrenar STGCN"
         datos.grafo = datos._grafo
