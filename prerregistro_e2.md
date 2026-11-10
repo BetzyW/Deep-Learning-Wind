@@ -207,3 +207,15 @@ configuración por defecto del artículo: D = 512, 8 cabezas, feed-forward 2048,
 (común a todos los modelos), salida en la última posición del decodificador (pronóstico directo a τ + 24) y sin
 incrustación de calendario, porque el panel no trae esas variables. Implementación propia desde la formulación
 (`src/modelos_e2.py`). Recibe el mismo ajuste previo de hiperparámetros que los demás (T = 20, semilla 7).
+
+## Enmienda 6 — 9 de noviembre de 2026 (STGCN nunca entrenado)
+
+Configuración de STGCN (Yu et al., 2018, *IJCAI*), arquitectura publicada sin búsqueda (sección 14.2): 2 bloques
+ST-Conv con convoluciones temporales con compuerta (Kt = 3) y convolución de grafo de Chebyshev (Ks = 3), canales
+(64, 16, 64), y capa de salida temporal + lineal. Adaptaciones declaradas, porque el panel no es una red de sensores
+completa y sincronizada como los conjuntos del artículo: (1) cada pronóstico usa el subgrafo de la estación y sus
+**k = 8 estaciones más cercanas** (distancia haversine), con pesos w_ij = exp(−d_ij²/σ²) y σ = mediana de las
+distancias a las 8 vecinas (el artículo fija σ y un umbral para su red de autopistas); (2) una vecina sin la ventana
+completa de 168 h entra con ceros; (3) la salida es la del nodo de la estación (pronóstico directo a τ + 24).
+Recibe el mismo ajuste previo que los demás (T = 20, semilla 7). Es el único modelo del Top 10 que usa la información
+de las estaciones vecinas, lo que se reporta al interpretar su desempeño.

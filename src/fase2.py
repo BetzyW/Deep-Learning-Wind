@@ -62,6 +62,8 @@ if __name__ == "__main__":
     elegidos = todos[-1:] if a.origenes == "ultimo" else todos
     for f in elegidos:
         datos = Datos(p, f)
+        if "STGCN" in a.modelos:
+            datos.activar_grafo(p, cfg["panel"])
         y_ev = objetivos(p, f["evaluacion"])[:, 0]
         for nombre in a.modelos:
             registrar_hardware(nombre, "fase 2")

@@ -29,7 +29,7 @@ CARPETA = "resultados/e2/busqueda"
 MUESTRA = {"GRU": 200, "LSTM": 200, "TCN": 200, "KAN": 200, "Transformer": 200}
 SEMILLA_MUESTRA = 11
 # Modelos con arquitectura publicada: reciben el mismo ajuste previo (T = 20) pero no entran en la fase 1
-PUBLICADOS = {"DLinear", "PatchTST", "Informer"}
+PUBLICADOS = {"DLinear", "PatchTST", "Informer", "STGCN"}
 
 
 def muestra_arq(arquitecturas, nombre):
@@ -96,6 +96,8 @@ if __name__ == "__main__":
     p = preparar_panel(cfg)
     f = pliegues(p, cfg, "validacion")[-1]
     datos = Datos(p, f)
+    if "STGCN" in modelos:
+        datos.activar_grafo(p, cfg["panel"])
     y_ev = objetivos(p, f["evaluacion"])[:, 0]
     rng = np.random.default_rng(7)
     espacio_hp = [dict(id=i, lr=float(10 ** rng.uniform(-4, np.log10(3e-3))), wd=float(rng.choice([0, 1e-5, 1e-4])),

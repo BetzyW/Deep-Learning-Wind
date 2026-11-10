@@ -253,6 +253,69 @@ class Mamba(nn.Module):
         return self.salida(x[:, -1]).squeeze(-1)
 
 
+K_VECINOS = 8
+
+
+class ConvTemporalGLU(nn.Module):
+    """Convolución temporal con compuerta (GLU) de STGCN: (P + x) ⊙ σ(Q), con Kt = 3 y residual alineado."""
+
+    def __init__(self, ci, co, kt=3):
+        super().__init__()
+        self.kt, self.conv = kt, nn.Conv2d(ci, 2 * co, (kt, 1))
+        self.res = nn.Conv2d(ci, co, 1) if ci != co else nn.Identity()
+
+    def forward(self, x):                                                     # x: (B, C, T, N)
+        P, Q = self.conv(x).chunk(2, 1)
+        return (P + self.res(x)[:, :, self.kt - 1:]) * torch.sigmoid(Q)
+
+
+class ConvCheb(nn.Module):
+    """Convolución de grafo de Chebyshev de orden Ks = 3 con el L̃ de cada muestra: Σ_k Θ_k T_k(L̃) x."""
+
+    def __init__(self, ci, co, ks=3):
+        super().__init__()
+        self.ks, self.lin = ks, nn.Linear(ci * ks, co)
+
+    def forward(self, x, Lt):                                                 # x: (B, C, T, N), Lt: (B, N, N)
+        T = [x, torch.einsum("bnm,bctm->bctn", Lt, x)]
+        for _ in range(2, self.ks):
+            T.append(2 * torch.einsum("bnm,bctm->bctn", Lt, T[-1]) - T[-2])
+        return torch.relu(self.lin(torch.cat(T, 1).permute(0, 2, 3, 1)).permute(0, 3, 1, 2))
+
+
+class BloqueST(nn.Module):
+    def __init__(self, ci, c=(64, 16, 64), p=0.0):
+        super().__init__()
+        self.t1, self.s, self.t2 = ConvTemporalGLU(ci, c[0]), ConvCheb(c[0], c[1]), ConvTemporalGLU(c[1], c[2])
+        self.norma, self.drop = nn.LayerNorm(c[2]), nn.Dropout(p)
+
+    def forward(self, x, Lt):
+        x = self.t2(self.s(self.t1(x), Lt))
+        return self.drop(self.norma(x.permute(0, 2, 3, 1)).permute(0, 3, 1, 2))
+
+
+class STGCN(nn.Module):
+    """Arquitectura publicada (Yu et al., IJCAI 2018), escrita desde su formulación: 2 bloques ST-Conv (convolución
+    temporal con compuerta, Kt = 3 → convolución de Chebyshev, Ks = 3 → convolución temporal con compuerta), canales
+    (64, 16, 64), y capa de salida (convolución temporal sobre el resto de la ventana + capa lineal). Cada pronóstico
+    usa el subgrafo de la estación y sus k = 8 vecinas más cercanas (adaptación declarada en la enmienda 6); la salida
+    es la del nodo de la estación."""
+
+    def __init__(self, L, d, **_):
+        super().__init__()
+        self.b1, self.b2 = BloqueST(d), BloqueST(64)
+        Tr = L - 8
+        self.t_out = ConvTemporalGLU(64, 64, kt=Tr)
+        self.norma = nn.LayerNorm(64)
+        self.fc = nn.Linear(64, 1)
+
+    def forward(self, x):
+        X, Lt = x                                                             # X: (B, L, N, d)
+        h = self.b2(self.b1(X.permute(0, 3, 1, 2), Lt), Lt)
+        h = self.norma(self.t_out(h)[:, :, -1].transpose(1, 2))               # (B, N, 64)
+        return self.fc(h[:, 0]).squeeze(-1)
+
+
 class AtencionProbSparse(nn.Module):
     """Atención ProbSparse de Informer (Zhou et al., AAAI 2021), escrita desde su formulación: para cada consulta se
     estima la medida de dispersión M(q) = max_j(q·k_j/√d) − media_j(q·k_j/√d) con U = c·ln L_K claves muestreadas; solo
@@ -408,7 +471,7 @@ class PatchTST(nn.Module):
 
 
 MODELOS = {"DLinear": DLinear, "TCN": TCN, "Transformer": Transformer, "MLP": MLP, "LSTM": LSTM, "GRU": GRU,
-           "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST, "Informer": Informer}
+           "CNN": CNN, "KAN": KAN, "Mamba": Mamba, "PatchTST": PatchTST, "Informer": Informer, "STGCN": STGCN}
 
 
 def fijar_semilla(s):
@@ -427,9 +490,54 @@ class Datos:
         self.off = torch.arange(-panel.L + 1, 1, device=dispositivo)
         self.h, self.dev, self.L, self.d = panel.horizontes[0], dispositivo, panel.L, panel.X.shape[1]
 
+        self.grafo, self._grafo = None, None
+
+    def activar_grafo(self, panel, ruta_panel, k=K_VECINOS):
+        """Prepara la entrada de STGCN: para cada fila, las filas de sus k estaciones más cercanas en la misma hora
+        (−1 si esa estación no tiene la ventana completa) y, por estación, la matriz L̃ de su subgrafo (ella + k
+        vecinas). Pesos w_ij = exp(−d_ij² / σ²) con d en km (haversine) y σ = mediana de las distancias a las k
+        vecinas; L̃ = −D^(−1/2) W D^(−1/2) (laplaciano normalizado reescalado con λ_max ≈ 2, como en el artículo)."""
+        import pandas as pd
+        coords = (pd.read_csv(ruta_panel, usecols=["CodigoEstacion", "lat", "lon"], dtype={"CodigoEstacion": str})
+                  .drop_duplicates("CodigoEstacion").set_index("CodigoEstacion"))
+        est = list(dict.fromkeys(panel.estacion.tolist()))                     # orden de aparición en el panel
+        lat, lon = np.radians(coords.loc[est, "lat"].to_numpy()), np.radians(coords.loc[est, "lon"].to_numpy())
+        dl, dn = lat[:, None] - lat[None], lon[:, None] - lon[None]
+        a = np.sin(dl / 2) ** 2 + np.cos(lat[:, None]) * np.cos(lat[None]) * np.sin(dn / 2) ** 2
+        D = 2 * 6371 * np.arcsin(np.sqrt(a))
+        np.fill_diagonal(D, np.inf)
+        vec = np.argsort(D, 1)[:, :k]                                          # (S, k)
+        sigma = np.median(np.take_along_axis(D, vec, 1))
+        nodos = np.concatenate([np.arange(len(est))[:, None], vec], 1)           # (S, k+1), el nodo 0 es la estación
+        Dn = D.copy(); np.fill_diagonal(Dn, 0)
+        sub = Dn[nodos[:, :, None], nodos[:, None, :]]                          # (S, k+1, k+1)
+        W = np.exp(-(sub / sigma) ** 2) * (1 - np.eye(k + 1))
+        g = 1 / np.sqrt(W.sum(-1))
+        Lt = -(g[:, :, None] * W * g[:, None, :])
+        # fila de cada estación en la hora t: inicio + (t − t0); válida si la estación tiene la ventana completa
+        pos = {e: i for i, e in enumerate(est)}
+        inicio = np.array([np.flatnonzero(panel.estacion == e)[0] for e in est])
+        fin = np.array([np.flatnonzero(panel.estacion == e)[-1] + 1 for e in est])
+        t0 = panel.tiempo[inicio]
+        s_fila = np.array([pos[e] for e in panel.estacion])
+        filas_vec = np.full((len(panel.estacion), k), -1, dtype=np.int64)
+        for j in range(k):
+            sj = vec[s_fila, j]
+            r = inicio[sj] + ((panel.tiempo - t0[sj]) // np.timedelta64(1, "h")).astype(np.int64)
+            ok = (r - (panel.L - 1) >= inicio[sj]) & (r < fin[sj])
+            filas_vec[ok, j] = r[ok]
+        self._grafo = dict(vec=torch.tensor(filas_vec, device=self.dev),
+                          Lt=torch.tensor(Lt, dtype=torch.float32, device=self.dev),
+                          est=torch.tensor(s_fila, device=self.dev))
+
     def __call__(self, idx):
         idx = torch.as_tensor(idx, device=self.dev)
-        return self.X[idx[:, None] + self.off], self.y[idx + self.h]
+        x = self.X[idx[:, None] + self.off]
+        if self.grafo is not None:                                            # (B, L, k+1, d) y L̃ de cada subgrafo
+            fv = self.grafo["vec"][idx]                                        # (B, k)
+            xv = self.X[fv.clamp(min=0)[:, :, None] + self.off] * (fv >= 0)[:, :, None, None]
+            x = (torch.cat([x[:, None], xv], 1).transpose(1, 2), self.grafo["Lt"][self.grafo["est"][idx]])
+        return x, self.y[idx + self.h]
 
 
 @torch.no_grad()
@@ -442,6 +550,17 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
              frac=1.0, semilla_muestra=7):
     """Adam + MSE; ajusta con `ajuste`, parada temprana con `parada`, evalúa en `evaluacion` del pliegue.
     Con frac < 1 se usa una submuestra fija de las ventanas de ajuste (la misma para todas las arquitecturas)."""
+    if nombre == "STGCN":                       # solo STGCN recibe las ventanas de las estaciones vecinas
+        assert datos._grafo is not None, "llamar datos.activar_grafo(panel, ruta_panel) antes de entrenar STGCN"
+        datos.grafo = datos._grafo
+        try:
+            return _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra)
+        finally:
+            datos.grafo = None
+    return _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra)
+
+
+def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra):
     fijar_semilla(semilla)
     m = MODELOS[nombre](datos.L, datos.d, **(hp or {})).to(datos.dev)
     opt = torch.optim.Adam(m.parameters(), lr=lr, weight_decay=wd)

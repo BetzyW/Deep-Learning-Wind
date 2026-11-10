@@ -69,6 +69,8 @@ if __name__ == "__main__":
     p = preparar_panel(cfg)
     for f in pliegues(p, cfg, "prueba"):
         datos = Datos(p, f)
+        if "STGCN" in a.modelos:
+            datos.activar_grafo(p, cfg["panel"])
         y_ev = objetivos(p, f["evaluacion"])[:, 0]
         for nombre in a.modelos:
             registrar_hardware(nombre, "corridas finales")
