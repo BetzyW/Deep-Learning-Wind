@@ -10,7 +10,8 @@ Para cada modelo:
   * Semillas: 1000–1005 son las declaradas para el E2 (R = 6); 1006–1009 se agregan para el E3 (≥ 10 semillas) y se
     reportan aparte.
 Se guardan, por corrida: métricas (resultados/e2/finales/{modelo}.csv), predicciones por ventana (.npz, para DM, MCS,
-Wilcoxon por estación, etc.) y el modelo entrenado (.pt, para exportarlo a ONNX en el E3). Se reanuda donde quedó.
+Wilcoxon por estación, etc.) y un modelo entrenado por arquitectura (.pt: primera semilla, último origen), para
+exportarlo a ONNX en el E3. Se reanuda donde quedó.
 Uso: python src/finales.py Transformer KAN ...   [--semillas 1000-1009]
 """
 import argparse, json, os, sys, time
@@ -88,7 +89,10 @@ if __name__ == "__main__":
                 err = r["pred"] - y_ev
                 base = f"{SALIDA}/{nombre}/{f['origen']}_{s}"
                 np.savez_compressed(base + ".npz", tau=f["evaluacion"], pred=r["pred"].astype(np.float32))
-                torch.save(dict(estado=r["estado"], hp=c, semilla=s, origen=f["origen"]), base + ".pt")
+                if s == semillas[0] and f["origen"] == cfg["origenes_prueba"][-1]:
+                    # un solo modelo guardado por arquitectura (primera semilla, último origen: el que más datos vio),
+                    # que es el que se exporta en el E3; así el Drive no se llena con 40 copias por modelo
+                    torch.save(dict(estado=r["estado"], hp=c, semilla=s, origen=f["origen"]), base + ".pt")
                 fila = dict(clave=clave, modelo=nombre, origen=f["origen"], semilla=s, declarada_e2=int(s <= 1005),
                             rmse=float(np.sqrt(np.mean(err ** 2))), mae=float(np.mean(np.abs(err))),
                             rmse_parada=r["rmse_parada"], rmse_train=r["historia_train"][-1], epocas=r["epocas"],
