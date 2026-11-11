@@ -52,6 +52,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--k", type=int, required=True)
     ap.add_argument("--origenes", choices=["ultimo", "todos"], required=True)
+    ap.add_argument("--hasta", default=None, help="HH:MM: no empieza corridas nuevas después de esa hora (PC de noche)")
     ap.add_argument("modelos", nargs="+")
     a = ap.parse_args()
     torch.backends.cuda.matmul.allow_tf32 = True
@@ -75,6 +76,9 @@ if __name__ == "__main__":
                     clave = f"{id_}|{f['origen']}|{s}"
                     if clave in hechos:
                         continue
+                    if a.hasta and a.hasta <= time.strftime("%H:%M") < "18:00":   # de noche no corta antes de medianoche
+                        print(f"[{time.strftime('%H:%M')}] Hora de parada ({a.hasta}): se retoma en la próxima corrida")
+                        sys.exit(0)
                     t0 = time.time()
                     try:
                         r = entrenar(nombre, datos, f, s, hp=arquitectura(id_), lr=hp["lr"], wd=hp["wd"],
