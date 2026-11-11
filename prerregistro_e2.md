@@ -208,6 +208,13 @@ configuración por defecto del artículo: D = 512, 8 cabezas, feed-forward 2048,
 incrustación de calendario, porque el panel no trae esas variables. Implementación propia desde la formulación
 (`src/modelos_e2.py`). Recibe el mismo ajuste previo de hiperparámetros que los demás (T = 20, semilla 7).
 
+**Nota del 10 de noviembre (memoria, antes de cualquier resultado de Informer).** Con D = 512 y feed-forward 2048, los
+lotes de 512–2048 ventanas y la predicción de a 4096 no caben en una GPU de 24 GB (L4): todas las configuraciones del
+ajuste previo fallaron por memoria y se descartaron sin resultados. Informer procesa ahora cada lote en trozos de 256
+ventanas con acumulación del gradiente: el gradiente es el de la media del lote completo (verificado numéricamente), el
+tamaño de lote del ajuste previo no cambia y solo la BatchNorm de la destilación calcula sus estadísticas sobre 256
+ventanas por vez.
+
 ## Enmienda 6 — 9 de noviembre de 2026 (STGCN nunca entrenado)
 
 Configuración de STGCN (Yu et al., 2018, *IJCAI*), arquitectura publicada sin búsqueda (sección 14.2): 2 bloques

@@ -388,7 +388,13 @@ class Informer(nn.Module):
     feed-forward 2048, 2 capas de codificador con destilación, 1 capa de decodificador, factor c = 5, dropout 0.05.
     Decodificador generativo: recibe las últimas 48 h (label_len) y 24 posiciones en cero; la salida en la última
     posición es el pronóstico a τ + 24. Incrustación por convolución (k = 3) más posición sinusoidal; sin incrustación
-    de calendario (el panel no la trae), adaptación declarada en la enmienda 5."""
+    de calendario (el panel no la trae), adaptación declarada en la enmienda 5.
+
+    `trozo`: cada lote se procesa en trozos de 256 ventanas con acumulación del gradiente (mismo gradiente medio del
+    lote; solo la BatchNorm de la destilación ve 256 ventanas por vez). Con D = 512 y feed-forward 2048 un lote de
+    2048 ventanas no cabe en 24 GB (L4) y la predicción de a 4096 tampoco."""
+
+    trozo = 256
 
     def __init__(self, L, d, D=512, H=8, F=2048, p=0.05, etiqueta=48, h=24, **_):
         super().__init__()
@@ -569,6 +575,7 @@ class Datos:
 @torch.no_grad()
 def predecir(m, datos, idx, bs=4096):
     m.eval()
+    bs = min(bs, getattr(m, "trozo", bs))                 # modelos grandes (Informer) predicen en trozos menores
     return np.concatenate([m(datos(b)[0]).float().cpu().numpy() for b in np.array_split(idx, max(1, len(idx) // bs))])
 
 
@@ -602,10 +609,19 @@ def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd
     for ep in range(epocas):
         m.train()
         sse, n = 0.0, 0
+        trozo = getattr(m, "trozo", None)
         for b in np.array_split(rng.permutation(aj), len(aj) // bs):
-            x, y = datos(b)
-            opt.zero_grad(); loss = ((m(x) - y) ** 2).mean(); loss.backward(); opt.step()
-            sse += loss.item() * len(b); n += len(b)
+            opt.zero_grad()
+            if trozo is None or len(b) <= trozo:
+                x, y = datos(b)
+                loss = ((m(x) - y) ** 2).mean(); loss.backward()
+                sse += loss.item() * len(b)
+            else:                                          # acumulación: el gradiente es el de la media del lote
+                for t in np.array_split(b, -(-len(b) // trozo)):
+                    x, y = datos(t)
+                    parte = ((m(x) - y) ** 2).sum() / len(b); parte.backward()
+                    sse += parte.item() * len(b)
+            opt.step(); n += len(b)
         rmse_pa = float(np.sqrt(np.mean((predecir(m, datos, pa) - y_pa) ** 2)))
         hist_tr.append(float(np.sqrt(sse / n))); hist.append(rmse_pa)
         if not np.isfinite(rmse_pa):
