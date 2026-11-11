@@ -1,0 +1,25 @@
+{
+  "panel": "datos/panel_multivariado_causal.csv",
+  "estacion": "0013035501",
+  "estacion_nombre": "AEROPUERTO LOS GARZONES (Montería, Córdoba)",
+  "criterio_estacion": "la de menos horas faltantes de velocidad en las últimas 12 408 h (indicación del profesor Rubio)",
+  "n_observaciones": 12000,
+  "ffill_max_horas": 3,
+  "holdout_fraccion": 0.10,
+
+  "estrategia": "forwardChaining",
+  "salto": 24,
+  "entradas": [24, 48, 96, 192],
+  "horizonte": 24,
+
+  "neuronas": [32, 64, 128, 256],
+  "max_capas": 3,
+  "dropout": 0.5,
+  "epocas": 30,
+  "lote": 32,
+  "tasa_aprendizaje": 0.001,
+  "gap_ratio_max": 0.15,
+  "semilla_base": 1000,
+
+  "salida": "resultados/tsxv"
+}
