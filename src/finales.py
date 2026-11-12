@@ -47,6 +47,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("modelos", nargs="+")
     ap.add_argument("--semillas", default="1000-1009")
+    ap.add_argument("--hasta", default=None, help="HH:MM: no empieza corridas nuevas después de esa hora (PC de noche)")
     a = ap.parse_args()
     s0, s1 = map(int, a.semillas.split("-"))
     semillas = list(range(s0, s1 + 1))
@@ -84,6 +85,9 @@ if __name__ == "__main__":
                 clave = f"{f['origen']}|{s}"
                 if clave in hechos:
                     continue
+                if a.hasta and a.hasta <= time.strftime("%H:%M") < "18:00":   # de noche no corta antes de medianoche
+                    print(f"[{time.strftime('%H:%M')}] Hora de parada ({a.hasta}): se retoma en la próxima corrida")
+                    sys.exit(0)
                 r = entrenar(nombre, datos, f, s, hp=hp_arq, lr=c["hp"]["lr"], wd=c["hp"]["wd"], bs=c["hp"]["bs"],
                              epocas=50, paciencia=5)
                 err = r["pred"] - y_ev
