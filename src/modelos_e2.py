@@ -32,32 +32,39 @@ class DLinear(nn.Module):
 
 
 class BloqueTCN(nn.Module):
-    def __init__(self, c_in, c_out, k, dil, drop):
+    def __init__(self, c_in, c_out, k, dil, drop, residual=True):
         super().__init__()
         self.pad = (k - 1) * dil                                         # causal: solo mira al pasado
         self.conv1 = nn.Conv1d(c_in, c_out, k, dilation=dil)
         self.conv2 = nn.Conv1d(c_out, c_out, k, dilation=dil)
         self.drop = nn.Dropout(drop)
-        self.res = nn.Conv1d(c_in, c_out, 1) if c_in != c_out else nn.Identity()
+        if residual:
+            self.res = nn.Conv1d(c_in, c_out, 1) if c_in != c_out else nn.Identity()
+        else:                                                            # ablación: bloque sin conexión residual
+            self.res = None
 
     def forward(self, x):
         y = torch.relu(self.conv1(nn.functional.pad(x, (self.pad, 0))))
         y = torch.relu(self.conv2(nn.functional.pad(y, (self.pad, 0))))
-        return self.drop(torch.relu(y + self.res(x)))
+        return self.drop(torch.relu(y if self.res is None else y + self.res(x)))
 
 
 class TCN(nn.Module):
     """Bai et al. (2018): bloques residuales de convoluciones causales dilatadas; aquí 3 bloques (w_i canales)."""
 
-    def __init__(self, L, d, w=(64, 64, 64), b=(0, 1, 0), k=7, **_):
+    def __init__(self, L, d, w=(64, 64, 64), b=(0, 1, 0), k=7, dilatar=True, residual=True, solo_vel=False, **_):
         super().__init__()
         canales = [d] + list(w)
         # dilataciones 1, 4, 16 → campo receptivo 1 + 2(k−1)(1+4+16) = 253 ≥ 168 con k = 7
-        self.bloques = nn.Sequential(*[BloqueTCN(canales[i], canales[i + 1], k, 4 ** i, P_DROPOUT * b[i])
-                                       for i in range(3)])
+        # (ablación sin dilatación: 1, 1, 1 → campo receptivo 1 + 2·6·3 = 37 h)
+        self.bloques = nn.Sequential(*[BloqueTCN(canales[i], canales[i + 1], k, 4 ** i if dilatar else 1,
+                                                 P_DROPOUT * b[i], residual) for i in range(3)])
         self.salida = nn.Linear(w[-1], 1)
+        self.solo_vel = solo_vel                                         # ablación: covariables fijas en su media (0)
 
     def forward(self, x):
+        if self.solo_vel:
+            x = torch.cat([x[..., :1], torch.zeros_like(x[..., 1:])], -1)
         return self.salida(self.bloques(x.transpose(1, 2))[:, :, -1]).squeeze(-1)
 
 

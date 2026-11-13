@@ -226,3 +226,22 @@ distancias a las 8 vecinas (el artículo fija σ y un umbral para su red de auto
 completa de 168 h entra con ceros; (3) la salida es la del nodo de la estación (pronóstico directo a τ + 24).
 Recibe el mismo ajuste previo que los demás (T = 20, semilla 7). Es el único modelo del Top 10 que usa la información
 de las estaciones vecinas, lo que se reporta al interpretar su desempeño.
+
+## Enmienda 7 — 12 de noviembre de 2026 (estudio de ablación; benchmark de prueba ya calculado)
+
+Motivo: la sección 4.6 del enunciado pide un estudio de ablación sobre el mejor modelo (al menos tres componentes, con
+el mismo número de semillas e inferencia sobre cada diferencia), que no estaba en el preregistro original. Se declara
+**después** de conocer los resultados de prueba del benchmark, por lo que es un análisis secundario: no cambia la
+elección de modelos, las configuraciones ni las conclusiones confirmatorias de las familias F1 a F3.
+
+1. **Modelo:** TCN, primer lugar en el rango medio de Friedman entre estaciones (la estación es la unidad de
+   independencia); su configuración final queda fija (w = (64, 64, 16), b = (1, 1, 0), mismos hiperparámetros).
+2. **Componentes**, elegidos por el diseño de la TCN (Bai et al., 2018) y por la entrada declarada en la sección 1, no
+   por resultados de prueba, y quitados uno a la vez: (a) dilatación (todas en 1; campo receptivo de 253 a 37 h);
+   (b) conexiones residuales; (c) covariables exógenas (dirección y temperatura fijadas en su media de entrenamiento).
+3. **Protocolo:** el de las corridas finales: 4 orígenes de prueba de 2025, reentrenando en cada uno, semillas
+   1000–1005 (R = 6), máximo 50 épocas, paciencia 5. El modelo completo son las corridas finales de TCN ya hechas.
+4. **Inferencia:** por componente, Wilcoxon de rangos con signo sobre la diferencia de RMSE por estación y
+   Diebold–Mariano con HLN; Holm sobre los 3 contrastes; α = 0.05. Un componente "aporta" si quitarlo sube el RMSE de
+   forma significativa tras Holm; se reporta además si el aumento supera δ = 0.02 m/s.
+5. **Código:** `src/ablacion.py`; resultados en `resultados/e2/ablacion/`.
