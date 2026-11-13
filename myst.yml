@@ -26,5 +26,7 @@ project:
         - file: e2_03_modelos.md
         - file: e2_05_metodos.md
         - file: e2_06_resultados.md
+        - file: e2_07_discusion.md
+        - file: e2_08_conclusiones.md
 site:
   template: book-theme
