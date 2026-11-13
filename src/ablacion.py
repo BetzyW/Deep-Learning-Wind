@@ -86,10 +86,12 @@ def analizar():
         c, b = completo.loc[comun], a.loc[comun]
         rmse_est = lambda d: d.assign(e2=(d.pred - d.y) ** 2).groupby("estacion").e2.mean().pipe(np.sqrt)
         w = wilcoxon_estaciones(rmse_est(b), rmse_est(c))
-        err = lambda d: d.assign(e=d.pred - d.y).groupby("tiempo").e.mean()
-        ec, eb = err(c), err(b)
+        # d_t = pérdida cuadrática media entre estaciones (ablación − completo); se pasa su raíz porque la función
+        # eleva al cuadrado su entrada (igual que en estadistica_e2.py).
+        perd = lambda d: d.assign(e2=(d.pred - d.y) ** 2).groupby("tiempo").e2.mean()
+        ec, eb = perd(c), perd(b)
         idx = ec.index.intersection(eb.index)
-        dm = diebold_mariano_hln(eb.loc[idx].to_numpy(), ec.loc[idx].to_numpy())
+        dm = diebold_mariano_hln(np.sqrt(eb.loc[idx].to_numpy()), np.sqrt(ec.loc[idx].to_numpy()))
         filas.append(dict(ablacion=nombre, n_ventanas=len(comun),
                           rmse_completo=float(np.sqrt(((c.pred - c.y) ** 2).mean())),
                           rmse_ablacion=float(np.sqrt(((b.pred - b.y) ** 2).mean())),

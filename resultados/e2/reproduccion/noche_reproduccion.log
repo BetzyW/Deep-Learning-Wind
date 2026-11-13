@@ -1,0 +1,8 @@
+== Reproduccion vie 13/11/2026  2:17:12,93 
+[02:26] Transformer 2025-01-01 s1000: original 0.8040, reentrenado 0.8039
+[02:26] KAN 2025-01-01 s1000: original 0.8215, reentrenado 0.8216
+[02:26] DLinear 2025-01-01 s1000: original 0.8083, reentrenado 0.8083
+[02:27] MLP 2025-01-01 s1000: original 0.8164, reentrenado 0.8173
+[02:29] TCN 2025-01-01 s1000: original 0.8024, reentrenado 0.8024
+Reproducción completa
+== Fin vie 13/11/2026  2:29:46,79 

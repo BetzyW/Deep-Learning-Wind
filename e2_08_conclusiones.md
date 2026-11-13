@@ -34,9 +34,14 @@ extremos, no más capacidad.
    consecuencia esperable de entrenar con error cuadrático y el problema más claro que dejan abierto todos los modelos.
 4. **El límite está en los datos.** El techo casi alcanzado, los errores compartidos entre modelos y el peso de la
    época del año frente al del modelo apuntan a lo mismo.
-5. **La búsqueda de arquitectura aportó poco** frente a su costo (`44.6` horas de GPU): casi todos los finalistas
+5. **Lo que sí importa es ver el ciclo diario.** Elegir una arquitectura u otra mueve el error en milésimas, pero
+   quitarle a la TCN la dilatación (y con ella el acceso a los días anteriores) lo sube en `0.025` m/s, más que δ.
+   Los gradientes integrados coinciden: los modelos usan el nivel reciente y la misma hora de días anteriores. Esa
+   dependencia los hace frágiles ante horas faltantes y cambios de nivel, y sus intervalos cubren de menos cuando
+   pronostican viento alto.
+6. **La búsqueda de arquitectura aportó poco** frente a su costo (`44.6` horas de GPU): casi todos los finalistas
    fueron equivalentes, y el cribado corto no anticipó el orden de la confirmación.
-6. **El rigor del protocolo es lo que permite afirmar todo lo anterior.** Hicimos todo lo siguiente:
+7. **El rigor del protocolo es lo que permite afirmar todo lo anterior.** Hicimos todo lo siguiente:
    - Preregistramos las preguntas, las métricas y el análisis, y registramos cada enmienda.
    - Probamos que no hubiera fuga de información.
    - Reentrenamos los modelos en cada origen.

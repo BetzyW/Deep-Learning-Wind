@@ -151,14 +151,112 @@ KAN, y el índice de Jaccard entre los errores grandes de los modelos profundos 
 Cuando todos fallan en las mismas ventanas, el límite está en los datos (dificultad intrínseca), no en la
 arquitectura, lo que coincide con el γ cercano a cero.
 
+## Diagnóstico de los tres mejores modelos
+
+Esta sección analiza a fondo los tres primeros del ranking de Friedman (TCN, Transformer y KAN), con Ridge como
+referencia cuando aplica (`src/f2a_analisis.py` y `src/f2a_gpu.py`).
+
+### Residuos y calibración
+
+En casi todas las estaciones los residuos de los tres modelos y de Ridge rechazan las pruebas de ruido blanco: están
+autocorrelacionados (Ljung–Box a 24 rezagos, 100 % de las estaciones), son heterocedásticos (ARCH-LM, 98 %), no son
+normales (Jarque–Bera, 92 %) y no son independientes (BDS, 100 %). La regresión de Mincer–Zarnowitz
+{cite}`mincer1969` del valor observado sobre el pronóstico, con todas las ventanas, no rechaza que TCN (a = `−0.004`,
+b = `1.006`, p = `0.22`) y Transformer (p = `0.61`) sean insesgados. Sí lo rechaza para KAN (b = `1.026`,
+p < `0.001`) y Ridge (p = `0.001`). Por estación, el sesgo se rechaza en cerca de la mitad de las estaciones en los
+cuatro modelos.
+
+**Estabilidad en el tiempo.** La prueba de fluctuación de Giacomini y Rossi {cite}`giacomini2010` sobre la diferencia
+de pérdida frente a Ridge rechaza la estabilidad en TCN (máximo `5.34`) y Transformer (`7.46`), con valor crítico de
+`3.43`, pero no en KAN (`3.27`).
+
+**Error fuera y dentro de la muestra.** En el último origen de prueba, el RMSE de prueba es `0.83` veces el de las
+ventanas de ajuste en los tres modelos y en las tres semillas evaluadas. El error de prueba es menor porque el
+trimestre octubre–diciembre es el de vientos más suaves, no porque el modelo generalice mejor de lo que ajusta; lo
+que sí muestra es que no hay sobreajuste visible.
+
+### Intervalos de predicción
+
+Construimos intervalos conformales por estación con los residuos absolutos del último origen de validación (2024-10-01)
+y los evaluamos en la prueba de 2025. La cobertura condicional se mide por terciles del valor pronosticado.
+
+```{include} tablas/e2_intervalos.md
+```
+
+La cobertura marginal queda entre 1 y 3 puntos por debajo de la nominal, porque los residuos de validación vienen de
+un solo trimestre y 2025 tiene más variabilidad. El problema está en la **cobertura condicional**: cuando el modelo
+pronostica viento alto, el intervalo al 90 % cubre solo el 82 %, y cuando pronostica viento bajo cubre el 93 %. Es la
+heterocedasticidad que detectó ARCH-LM: el error crece con el nivel del viento, y un intervalo de ancho fijo por
+estación no la captura. La PIT tampoco es uniforme (Kolmogorov–Smirnov, p < `0.001`). Los tres modelos tienen el mismo
+CRPS (`0.358`–`0.361` m/s), así que tampoco en incertidumbre hay un ganador.
+
+### Robustez
+
+Perturbamos la entrada de prueba del último origen de tres formas: ruido gaussiano, horas faltantes (puestas en la
+media del escalado) y un quiebre de nivel de la velocidad en las últimas 72 h. Los niveles están en unidades de
+desviación estándar del escalado, y cada valor es la media de 3 semillas. El índice de degradación es el área bajo la
+curva del aumento relativo de RMSE frente al nivel, promediada entre las tres perturbaciones (menor es mejor).
+
+```{include} tablas/e2_robustez.md
+```
+
+Los tres modelos toleran bien el ruido (menos del 5 % con σ = 0.5). Son sensibles a las horas faltantes y, sobre
+todo, a un cambio de nivel reciente: un quiebre de 1 σ en las últimas 72 h aumenta el RMSE en un 58–68 %, porque
+los tres modelos se apoyan en el nivel más reciente. **La TCN es la más robusta** en las tres perturbaciones (índice
+`0.291` frente a `0.321` de KAN y `0.338` del Transformer). En la práctica, la sensibilidad a los faltantes importa
+porque el panel del IDEAM tiene muchos huecos.
+
+### Interpretabilidad
+
+Calculamos gradientes integrados sobre 2 000 ventanas de prueba por modelo y semilla, por hora de la ventana y por
+variable. Para comprobar que las atribuciones son fieles, borramos el 10 % de las horas más importantes y lo
+comparamos con borrar el 10 % al azar:
+
+| Modelo | Cambio del pronóstico al borrar las horas más importantes | Al borrar horas al azar | Estabilidad entre semillas (Spearman) | Peso de la velocidad |
+|---|---|---|---|---|
+| TCN | `0.55`–`0.65` | `0.08` | `0.86`–`0.91` | `53` % |
+| Transformer | `0.68`–`0.74` | `0.09`–`0.11` | `0.53`–`0.68` | `57` % |
+| KAN | `0.56`–`0.62` | `0.09` | `0.76`–`0.77` | `49` % |
+
+Las atribuciones son **fieles**: borrar las horas que señalan cambia el pronóstico entre 6 y 8 veces más que borrar
+horas al azar. Coinciden con lo que se sabe del viento en la región. Las horas más importantes en los tres
+modelos son la más reciente (t) y las de la misma hora del día en los días anteriores (t − 24, t − 48, …, t − 144);
+es decir, los modelos usan el nivel actual y el **ciclo diario** de la brisa, que es el patrón dominante en el
+Caribe. La velocidad pesa cerca de la mitad, y la dirección y la temperatura el resto. Las atribuciones de la TCN son
+las más estables entre semillas, y las del Transformer las menos.
+
 ## Estudio de ablación
 
-*(Se completa con `python src/ablacion.py --analizar` al terminar las corridas: TCN sin dilatación, sin conexiones
-residuales y sin covariables, 4 orígenes × 6 semillas, con Wilcoxon, Diebold–Mariano y Holm.)*
+Tomamos la TCN, primera en el ranking de Friedman, con su configuración final fija, y le quitamos un componente a la
+vez. Cada variante se reentrenó en los cuatro orígenes de prueba con las 6 semillas declaradas, y se comparó con la
+TCN completa con Wilcoxon por estación, Diebold–Mariano y Holm sobre las tres variantes (`src/ablacion.py`). Como se
+declaró en la enmienda 7, es un análisis secundario hecho después de ver la prueba.
+
+```{include} tablas/e2_ablacion.md
+```
+
+- **La dilatación es lo que más importa.** Sin ella, el RMSE sube `0.025` m/s, más que δ, y empeora en 60 de las 62
+  estaciones (biserial `0.95`). Con dilataciones 1, 4 y 16 y núcleo de 7, el campo receptivo de la TCN es de 253 h y
+  cubre la ventana de 168 h. Sin dilatación baja a 37 h. El modelo todavía ve t − 24, pero pierde t − 48, …, t − 144,
+  que los gradientes integrados señalan entre las horas más importantes. Es la única diferencia de todo el E2 que supera el margen de relevancia, y no viene de elegir otra
+  arquitectura sino de quitarle a una su acceso al ciclo diario.
+- **Las covariables ayudan poco.** Sin dirección ni temperatura el RMSE sube `0.006` m/s: es significativo, pero
+  menor que δ.
+- **Las conexiones residuales no importan** en una red de tres capas: `0.001` m/s, apenas significativo.
 
 ## Reproducción independiente
 
-Recalculamos el RMSE y el MAE de las 520 corridas finales de los 13 modelos de Deep Learning directamente desde las predicciones guardadas y los datos
-del panel, por un camino de código distinto al del entrenamiento: la discrepancia máxima es de `1.3e-07` m/s, solo
-redondeo. *(Se agrega el reentrenamiento en otro equipo de corridas hechas en Colab, `src/reproducir.py
---reentrenar`.)*
+**Desde las predicciones.** Recalculamos el RMSE y el MAE de las 520 corridas finales de los 13 modelos de Deep Learning
+directamente desde las predicciones guardadas y los datos del panel, por un camino de código distinto al del
+entrenamiento. La discrepancia máxima es de `1.3e-07` m/s, que es solo redondeo.
+
+**Reentrenando en otro equipo.** Volvimos a entrenar desde cero en el PC del equipo (RTX 4060 Ti) cinco corridas que
+se habían hecho en Colab (A100), con la misma semilla y la misma configuración:
+
+```{include} tablas/e2_reproduccion.md
+```
+
+Las cinco paran en la misma época. TCN y DLinear reproducen el RMSE exacto, Transformer y KAN difieren en menos de
+`0.0001` m/s y el MLP en `0.0009` m/s, todos muy por debajo del error estándar entre semillas (`0.0017` m/s). Las
+diferencias vienen de operaciones no deterministas de la GPU, que cambian con el hardware; los resultados del E2 no
+dependen del equipo en que se corrieron.

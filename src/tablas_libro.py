@@ -84,9 +84,70 @@ def errores():
     return "\n".join(s)
 
 
+def ablacion():
+    t = pd.read_csv(f"{E}/ablacion/ablacion_inferencia.csv")
+    nombres = dict(sin_dilatacion="Sin dilatación (d = 1)", sin_residual="Sin conexiones residuales",
+                   sin_covariables="Sin covariables (solo velocidad)")
+    s = ["| Variante de TCN | RMSE (m/s) | Aumento de RMSE | Δ medio por estación | Biserial | p Wilcoxon (Holm) "
+         "| DM (p Holm) |", "|---|---|---|---|---|---|---|",
+         f"| TCN completa | {f(t.rmse_completo.iloc[0])} | — | — | — | — | — |"]
+    for r in t.sort_values("aumento_rmse", ascending=False).itertuples():
+        s.append(f"| {nombres[r.ablacion]} | {f(r.rmse_ablacion)} | {f(r.aumento_rmse, 4)} | "
+                 f"{f(r.wilcoxon_diferencia_media, 4)} | {f(r.wilcoxon_biserial, 2)} | {fp(r.wilcoxon_p_holm)} | "
+                 f"`{r.dm_estadistico:.2f}` ({fp(r.dm_p_holm)}) |")
+    return "\n".join(s)
+
+
+def reproduccion():
+    t = pd.read_csv(f"{E}/reproduccion/reentrenadas.csv")
+    s = ["| Modelo | Origen | Semilla | RMSE original (Colab) | RMSE reentrenado (PC) | Diferencia | Épocas (orig. / reentr.) |",
+         "|---|---|---|---|---|---|---|"]
+    for r in t.itertuples():
+        s.append(f"| {r.modelo} | {r.origen} | {r.semilla} | {f(r.rmse_original, 4)} | {f(r.rmse_reentrenado, 4)} | "
+                 f"`{r.dif_rmse:+.5f}` | {r.epocas_original} / {r.epocas_reentrenado} |")
+    return "\n".join(s)
+
+
+def intervalos():
+    a = json.load(open(f"{E}/f2a/analisis.json"))["intervalos"]
+    c = pd.read_csv(f"{E}/f2a/cobertura_condicional.csv")
+    cc = c.groupby(["modelo", "nivel", "grupo"]).apply(lambda d: np.average(d.cobertura, weights=d.n)).unstack()
+    s = ["| Modelo | Nivel nominal | Cobertura | Ancho medio (m/s) | Cobertura: tercil bajo / medio / alto del pronóstico "
+         "| CRPS (m/s) |", "|---|---|---|---|---|---|"]
+    for m, v in a.items():
+        for n in ["0.5", "0.8", "0.9"]:
+            t = cc.loc[(m, float(n))]
+            s.append(f"| {m} | `{float(n):.0%}` | `{v['cobertura'][n]:.1%}` | {f(v['ancho_medio'][n], 2)} | "
+                     f"`{t.tercil_bajo:.1%}` / `{t.tercil_medio:.1%}` / `{t.tercil_alto:.1%}` | "
+                     + (f(v["crps"]) if n == "0.5" else "") + " |")
+    return "\n".join(s)
+
+
+def robustez():
+    r = json.load(open(f"{E}/f2a/gpu_resultados.json"))
+    rob = pd.DataFrame([dict(modelo=m, **d) for m, v in r["robustez"].items() for d in v])
+    t = rob.groupby(["tipo", "nivel", "modelo"]).rmse.mean().unstack()
+    base = t.loc[("ninguna", 0.0)]
+    nombre = dict(ruido="Ruido gaussiano (σ)", faltantes="Horas faltantes (fracción)",
+                  quiebre="Quiebre de nivel en las últimas 72 h (σ)")
+    ms = list(t.columns)
+    s = ["| Perturbación | Nivel | " + " | ".join(ms) + " |", "|---|---|" + "---|" * len(ms),
+         "| Ninguna | — | " + " | ".join(f(base[m]) for m in ms) + " |"]
+    for tipo in ["ruido", "faltantes", "quiebre"]:
+        for nivel in sorted(t.loc[tipo].index):
+            s.append(f"| {nombre[tipo]} | `{nivel}` | " + " | ".join(
+                f"{f(t.loc[(tipo, nivel), m])} (`{t.loc[(tipo, nivel), m] / base[m] - 1:+.0%}`)" for m in ms) + " |")
+    # índice de degradación: área bajo la curva del aumento relativo de RMSE, promediada entre perturbaciones
+    auc = {m: np.mean([np.trapezoid(np.r_[0, t.loc[tp][m].values / base[m] - 1], np.r_[0, sorted(t.loc[tp].index)])
+                       / max(t.loc[tp].index) for tp in nombre]) for m in ms}
+    s.append("| **Índice de degradación (AUC media)** | — | " + " | ".join(f"**{f(auc[m])}**" for m in ms) + " |")
+    return "\n".join(s)
+
+
 if __name__ == "__main__":
     t1, t2 = principal()
-    tablas = dict(principal=t1, familias=t2, f3=f3(), busqueda=busqueda(), errores=errores())
+    tablas = dict(principal=t1, familias=t2, f3=f3(), busqueda=busqueda(), errores=errores(), ablacion=ablacion(), intervalos=intervalos(), robustez=robustez(),
+                  reproduccion=reproduccion())
     print("\n\n".join(f"## {k}\n\n{v}" for k, v in tablas.items()))
     if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde tablas/
         os.makedirs("tablas", exist_ok=True)

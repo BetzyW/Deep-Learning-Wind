@@ -1,0 +1,36 @@
+== F2a GPU jue 12/11/2026 20:59:08,59 
+[21:01] TCN validación 2024-10-01 s1000 (103 s)
+[21:05] TCN validación 2024-10-01 s1001 (243 s)
+[21:07] TCN validación 2024-10-01 s1002 (161 s)
+[21:09] TCN validación 2024-10-01 s1003 (113 s)
+[21:11] TCN validación 2024-10-01 s1004 (113 s)
+[21:13] TCN validación 2024-10-01 s1005 (144 s)
+[21:22] Transformer validación 2024-10-01 s1000 (529 s)
+[21:33] Transformer validación 2024-10-01 s1001 (659 s)
+[21:43] Transformer validación 2024-10-01 s1002 (585 s)
+[21:52] Transformer validación 2024-10-01 s1003 (520 s)
+[22:00] Transformer validación 2024-10-01 s1004 (523 s)
+[22:12] Transformer validación 2024-10-01 s1005 (714 s)
+[22:13] KAN validación 2024-10-01 s1000 (25 s)
+[22:13] KAN validación 2024-10-01 s1001 (22 s)
+[22:13] KAN validación 2024-10-01 s1002 (25 s)
+[22:14] KAN validación 2024-10-01 s1003 (25 s)
+[22:14] KAN validación 2024-10-01 s1004 (31 s)
+[22:15] KAN validación 2024-10-01 s1005 (30 s)
+[22:22] TCN prueba 2025-10-01 s1001 guardado (395 s)
+[22:26] TCN prueba 2025-10-01 s1002 guardado (277 s)
+[22:39] Transformer prueba 2025-10-01 s1001 guardado (796 s)
+[22:53] Transformer prueba 2025-10-01 s1002 guardado (808 s)
+[22:54] KAN prueba 2025-10-01 s1001 guardado (39 s)
+[22:54] KAN prueba 2025-10-01 s1002 guardado (39 s)
+[22:54] TCN s1000: fuera/dentro 0.826, fidelidad 0.653 vs 0.081
+[22:55] TCN s1001: fuera/dentro 0.844, fidelidad 0.556 vs 0.085
+[22:55] TCN s1002: fuera/dentro 0.833, fidelidad 0.547 vs 0.080
+[22:56] Transformer s1000: fuera/dentro 0.833, fidelidad 0.737 vs 0.103
+[22:57] Transformer s1001: fuera/dentro 0.827, fidelidad 0.739 vs 0.108
+[22:58] Transformer s1002: fuera/dentro 0.830, fidelidad 0.685 vs 0.092
+[22:58] KAN s1000: fuera/dentro 0.828, fidelidad 0.624 vs 0.092
+[22:58] KAN s1001: fuera/dentro 0.831, fidelidad 0.591 vs 0.093
+[22:58] KAN s1002: fuera/dentro 0.834, fidelidad 0.565 vs 0.090
+Listo: resultados/e2/f2a/gpu_resultados.json
+== Fin jue 12/11/2026 22:58:42,80 

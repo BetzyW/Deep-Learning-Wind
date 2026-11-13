@@ -62,8 +62,15 @@ frente a un valor crítico de `3.43`), pero no en la de KAN (`3.27`). La ventaja
 en partes del año y no se mantiene igual todo el tiempo. Esto concuerda con el rechazo de la prueba condicional de
 Giacomini–White: la conclusión de RQ1 es un promedio sobre 2025, no una propiedad que valga en cada trimestre.
 
-*(Se completa con los intervalos conformales, la cobertura condicional, la robustez ante perturbaciones y la
-interpretabilidad por gradientes integrados de las corridas de esta noche, `src/f2a_gpu.py` y `src/f2a_analisis.py`.)*
+**Los modelos usan lo que se espera, y les falta lo mismo.** Los gradientes integrados muestran que los tres mejores
+modelos se apoyan en el nivel más reciente y en la misma hora de los días anteriores, es decir, en el ciclo diario de la
+brisa. La ablación lo confirma por otro camino: quitarle a la TCN la dilatación, y con ella el acceso a los días
+anteriores, empeora el RMSE en `0.025` m/s. Es la única diferencia de todo el E2 que supera δ. Lo que los modelos
+aprenden es, en esencia, nivel más ciclo diario, y eso también lo puede representar un modelo lineal sobre los
+rezagos, lo que explica por qué Ridge queda tan cerca. Esa misma dependencia del nivel reciente es la que los hace
+frágiles ante un quiebre de nivel o ante horas faltantes, y la que hace que sus intervalos, de ancho fijo, cubran de
+menos justo cuando pronostican viento alto. La incertidumbre crece con el nivel del viento, y un modelo para el E3
+debería modelarla en lugar de suponerla constante.
 
 ## Los preentrenados: el modelo o nuestra adaptación
 
