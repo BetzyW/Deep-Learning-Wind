@@ -23,6 +23,8 @@ project:
         - file: e2_01_introduccion.md
         - file: e2_02_datos.md
         - file: e2_04_revision.md
+        - file: e2_03_modelos.md
         - file: e2_05_metodos.md
+        - file: e2_06_resultados.md
 site:
   template: book-theme

@@ -7,8 +7,9 @@ cada cambio posterior está registrado como una enmienda fechada con su motivo.
 ## Preregistro y enmiendas
 
 El preregistro fija las preguntas, las hipótesis, las métricas, la partición, el presupuesto de ajuste, la búsqueda de
-arquitectura y las pruebas estadísticas. Durante el trabajo hubo seis enmiendas, todas antes de elegir finalistas y sin
-abrir el conjunto de prueba:
+arquitectura y las pruebas estadísticas. Durante el trabajo hubo siete enmiendas. Las seis primeras se hicieron antes de elegir
+finalistas y sin abrir el conjunto de prueba; la séptima agrega un análisis secundario (la ablación) después de ver
+los resultados de prueba, y así se declara:
 
 | Enmienda | Fecha | Qué cambió | Motivo |
 |---|---|---|---|
@@ -18,6 +19,7 @@ abrir el conjunto de prueba:
 | 4 | 9-nov | Mamba se sustituye por PatchTST (11.º del ranking) | Mamba no tiene núcleos para Windows y en PyTorch puro es inviable |
 | 5 | 9-nov | Configuración de Informer | Adaptaciones al panel (sin calendario) |
 | 6 | 9-nov | Configuración de STGCN con subgrafo de 8 vecinas | El panel no es una red sincronizada |
+| 7 | 12-nov | Estudio de ablación de TCN (sin dilatación, sin residuales, sin covariables) | Análisis secundario, declarado después de ver la prueba |
 
 ## Partición con origen móvil
 

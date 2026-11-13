@@ -201,8 +201,14 @@ if __name__ == "__main__":
     # serie horaria de pérdidas (media entre estaciones en cada hora) para DM, GW, CW y MCS
     perd = pd.DataFrame({m: datos[m].assign(e2=(datos[m].pred - datos[m].y) ** 2).groupby("tiempo").e2.mean()
                          for m in modelos}).dropna()
-    err = {m: datos[m].assign(e=datos[m].pred - datos[m].y).groupby("tiempo").e.mean().loc[perd.index].to_numpy()
-           for m in modelos}
+    # DM y GW usan d_t = pérdida cuadrática media entre estaciones del modelo − la del rival; como sus funciones
+    # elevan al cuadrado su entrada, se les pasa la raíz de esa pérdida (así d_t es exactamente la diferencia de
+    # pérdidas). Clark–West necesita errores y pronósticos de una misma serie: se aplica a la serie del promedio entre
+    # estaciones en cada hora.
+    err = {m: np.sqrt(perd[m].to_numpy()) for m in modelos}
+    e_med = {m: datos[m].assign(e=datos[m].pred - datos[m].y).groupby("tiempo").e.mean().loc[perd.index].to_numpy()
+             for m in modelos}
+    f_med = {m: datos[m].groupby("tiempo").pred.mean().loc[perd.index].to_numpy() for m in modelos}
     top10 = [m for m in modelos if m not in {"Persistencia", "Naive_semanal", "Media_misma_hora_7_d",
                                               "ETS_por_estación", "Ridge", "Gradient_boosting"}]
     resultados = {}
@@ -212,8 +218,10 @@ if __name__ == "__main__":
             w = wilcoxon_estaciones(rmse_est[m], rmse_est[rival])
             dm = diebold_mariano_hln(err[m], err[rival])
             gw = giacomini_white(err[m], err[rival])
+            cw = clark_west(e_med[rival], e_med[m], f_med[rival], f_med[m])
             filas.append(dict(modelo=m, rival=rival, **{f"wilcoxon_{k}": v for k, v in w.items()},
-                              dm_estadistico=dm["estadistico"], dm_p=dm["p"], gw_p=gw["p"]))
+                              dm_estadistico=dm["estadistico"], dm_p=dm["p"], gw_p=gw["p"],
+                              cw_estadistico=cw["estadistico"], cw_p=cw["p"]))
         t = pd.DataFrame(filas)
         t["wilcoxon_p_holm"] = holm(t.wilcoxon_p)
         t["supera_con_relevancia"] = (t.wilcoxon_p_holm < ALFA) & (t.wilcoxon_diferencia_media < -DELTA)
