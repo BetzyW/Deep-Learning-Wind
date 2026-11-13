@@ -98,6 +98,45 @@ def tost(d, delta=DELTA):
     return dict(diferencia_media=float(m), p=float(max(p1, p2)), equivalentes=bool(max(p1, p2) < ALFA))
 
 
+def rq2_equivalencia(rmse_est, preentrenados, desde_cero):
+    """RQ2 (H2): el mejor preentrenado con ajuste fino frente al mejor entrenado desde cero, TOST con ±δ sobre la
+    diferencia de RMSE por estación. 'Mejor' = menor RMSE medio entre estaciones (la misma unidad de la prueba)."""
+    pre = min(preentrenados, key=lambda m: rmse_est[m].mean())
+    cero = min(desde_cero, key=lambda m: rmse_est[m].mean())
+    d = (rmse_est[pre] - rmse_est[cero]).to_numpy()
+    se = d.std(ddof=1) / np.sqrt(len(d))
+    t90 = stats.t.ppf(0.95, len(d) - 1)
+    return dict(preentrenado=pre, desde_cero=cero, n_estaciones=len(d), **tost(d),
+                ic90=[float(d.mean() - t90 * se), float(d.mean() + t90 * se)], delta=DELTA,
+                wilcoxon=wilcoxon_estaciones(rmse_est[pre], rmse_est[cero]))
+
+
+def familia_f3(datos, modelos, umbral=6.0, minimo=30, B=2000, semilla=0):
+    """RQ3 (H3, familia F3): sesgo (predicho − observado) en las ventanas con observación ≥ umbral m/s. Por modelo:
+    sesgo medio de cada estación con al menos `minimo` ventanas fuertes; Wilcoxon unilateral (H1: sesgo < 0, es decir,
+    subestimación) entre estaciones, con Holm en la familia; sesgo agregado con IC 95 % por bootstrap de estaciones."""
+    rng = np.random.default_rng(semilla)
+    filas = []
+    for m in modelos:
+        d = datos[m]
+        f = d[d.y >= umbral].assign(sesgo=lambda x: x.pred - x.y)
+        g = f.groupby("estacion").sesgo.agg(["sum", "size"])
+        g = g[g["size"] >= minimo]
+        por_est = (g["sum"] / g["size"]).to_numpy()
+        idx = rng.integers(0, len(g), (B, len(g)))
+        boot = g["sum"].to_numpy()[idx].sum(1) / g["size"].to_numpy()[idx].sum(1)
+        w = stats.wilcoxon(por_est, alternative="less")
+        filas.append(dict(modelo=m, n_estaciones=len(g), n_ventanas=int(g["size"].sum()),
+                          sesgo_agregado=float(g["sum"].sum() / g["size"].sum()),
+                          ic95_inf=float(np.quantile(boot, .025)), ic95_sup=float(np.quantile(boot, .975)),
+                          sesgo_mediano_estaciones=float(np.median(por_est)),
+                          estaciones_subestiman=float((por_est < 0).mean()), wilcoxon_p=float(w.pvalue)))
+    t = pd.DataFrame(filas)
+    t["wilcoxon_p_holm"] = holm(t.wilcoxon_p)
+    t["subestima"] = t.wilcoxon_p_holm < ALFA
+    return t
+
+
 def friedman_nemenyi(R):
     """R: DataFrame estaciones × modelos con el RMSE. Devuelve Friedman y la diferencia crítica de Nemenyi."""
     f = stats.friedmanchisquare(*[R[c].to_numpy() for c in R.columns])
@@ -182,6 +221,19 @@ if __name__ == "__main__":
         resultados[fam] = t
     resultados["friedman"] = friedman_nemenyi(rmse_est[top10 + ["Ridge", "Persistencia"]])
     resultados["mcs"] = mcs(perd[top10 + ["Ridge", "Persistencia"]])
+    # RQ2: equivalencia del mejor preentrenado con el mejor entrenado desde cero (TOST)
+    pre = [m for m in ["Chronos", "Moirai"] if m in top10]
+    resultados["rq2_tost"] = rq2_equivalencia(rmse_est, pre, [m for m in top10 if m not in pre])
+    # RQ3 / F3: subestimación de los vientos fuertes (≥ 6 m/s), familia de los modelos del Top 10 con Holm;
+    # Ridge y la persistencia se reportan como referencia, fuera de la familia
+    f3 = familia_f3(datos, top10)
+    ref = familia_f3(datos, ["Ridge", "Persistencia"]).assign(subestima=np.nan, wilcoxon_p_holm=np.nan)
+    pd.concat([f3, ref]).to_csv("resultados/e2/estadistica/familia_F3.csv", index=False)
+    otros = f3[(f3.modelo != "DLinear") & f3.subestima]
+    resultados["rq3"] = dict(dlinear_subestima=bool(f3.set_index("modelo").subestima.get("DLinear", False)),
+                             otros_que_subestiman=otros.modelo.tolist(),
+                             h3_se_cumple=bool(f3.set_index("modelo").subestima.get("DLinear", False)
+                                               and len(otros) >= 2))
     json.dump({k: v for k, v in resultados.items() if isinstance(v, dict)},
               open("resultados/e2/estadistica/resumen.json", "w"), indent=1, ensure_ascii=False)
     print(json.dumps({k: v for k, v in resultados.items() if isinstance(v, dict)}, indent=1, ensure_ascii=False))
