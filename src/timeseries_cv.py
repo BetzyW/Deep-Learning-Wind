@@ -174,7 +174,7 @@ class AdamPorPliegue:
             p.grad = None
 
 
-def entrenar_configuracion(P, capas, mascara, cfg, semilla, dev, iniciales=None):
+def entrenar_configuracion(P, capas, mascara, cfg, semilla, dev, iniciales=None, con_pred=False):
     """Entrena la configuración en los F modelos a la vez. Devuelve las curvas por época (promedio entre modelos,
     escala estandarizada) y el RMSE de validación en m/s de cada modelo en cada época (épocas × F)."""
     gen = torch.Generator(device=dev).manual_seed(semilla)
@@ -220,6 +220,9 @@ def entrenar_configuracion(P, capas, mascara, cfg, semilla, dev, iniciales=None)
             rmse_ms = torch.sqrt(((pred * P.sy + P.my - P.Ycv_ms) ** 2).mean((1, 2)))
         curva_cv.append(rmse.mean().item())
         cv_ms.append(rmse_ms.cpu().numpy())
+    if con_pred:                       # predicciones de validación en m/s de la última época, (F, V, O)
+        return (np.array(curva_tr), np.array(curva_cv), np.stack(cv_ms),
+                (pred * P.sy + P.my).cpu().numpy())
     return np.array(curva_tr), np.array(curva_cv), np.stack(cv_ms)               # cv_ms: (épocas, F)
 
 

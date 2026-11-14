@@ -151,6 +151,60 @@ KAN, y el índice de Jaccard entre los errores grandes de los modelos profundos 
 Cuando todos fallan en las mismas ventanas, el límite está en los datos (dificultad intrínseca), no en la
 arquitectura, lo que coincide con el γ cercano a cero.
 
+## Validación cruzada con forward chaining (sugerencia del profesor)
+
+Al revisar el E1, el profesor Rubio observó que las curvas de aprendizaje de entrenamiento y de validación estaban muy
+separadas. Sugirió aplicar la validación cruzada para series de tiempo de la sección 2.21 del curso con una muestra
+reducida, para que el cómputo cupiera. La muestra es una sola estación, la de menos datos faltantes (Aeropuerto Los
+Garzones, Montería), con las últimas 12 000 h (19-ago-2024 a 31-dic-2025). Reservamos el 10 % final como holdout y
+partimos el resto con *forward chaining* de la librería `tsxv`, con salto de 24 h, lo que da entre 334 y 401 pliegues
+según la entrada. Probamos una rejilla de MLP (1 a 3 capas de {32, 64, 128, 256} neuronas, con dropout de 0.5
+activable por capa; 584 configuraciones) con entradas de 24, 48, 96 y 192 h. Seleccionamos con el criterio del curso,
+gap_ratio = |RMSE de entrenamiento final − mejor RMSE de validación| / mejor RMSE de validación < 0.15
+(`src/timeseries_cv.py`, `src/tsxv_extras.py`).
+
+| Entrada | Configuraciones con gap_ratio < 0.15 | Ganadora | gap_ratio | RMSE validación (media por pliegue) | RMSE holdout | K-Fold | Group K-Fold (meses) |
+|---|---|---|---|---|---|---|---|
+| 24 h | `398` de 584 | w256-32-256 | `0.074` | `0.583` | `0.528` | `0.608` | `0.630` |
+| 48 h | `364` de 584 | w256-32-256 | `0.107` | `0.586` | `0.541` | `0.609` | `0.634` |
+| 96 h | `312` de 584 | w256-256-128 | `0.146` | `0.590` | `0.529` | `0.607` | `0.639` |
+| 192 h | **`0`** de 584 | (la de menor gap) w64-32-32 | `0.226` | `0.611` | `0.544` | `0.630` | `0.649` |
+
+```{figure} figuras/tsxv_curvas.png
+:name: fig-tsxv-curvas
+Curvas de aprendizaje de la ganadora de cada entrada (promedio sobre los pliegues). La línea punteada marca la época de
+mejor validación.
+```
+
+Lo que muestra:
+
+- **La brecha crece con la longitud de la entrada.** Con 24 h pasa el filtro el 68 % de las configuraciones; con
+  192 h, ninguna. Con una sola estación, cada pliegue tiene como mucho unas 400 ventanas de entrenamiento. Con 192
+  entradas por ventana, una red de miles de parámetros memoriza el entrenamiento y las curvas se separan. Es el
+  fenómeno que el profesor vio en el E1.
+- **Más historia no ayuda en esta muestra.** La mejor entrada es la de 24 h, y el RMSE empeora al alargarla.
+- **Los residuos no son ruido blanco.** La prueba BDS sobre los residuos de validación encadenados rechaza la
+  independencia en todas las configuraciones (p < `0.001`). El MAPE (solo con viento > 0.5 m/s) es de cerca del 35 %.
+- **El esquema de validación cambia el número.** K-Fold barajado da un RMSE parecido al de *forward chaining* agregado
+  (`0.61`), pero con poca dispersión, porque cada pliegue mezcla todas las épocas del año. Group K-Fold por meses deja
+  fuera bloques enteros de tiempo: da un error mayor (`0.63`–`0.65`) y una dispersión entre pliegues cuatro veces
+  mayor, que es la estimación más honesta para un pronóstico futuro.
+
+**Qué pasa con el criterio del profesor en el benchmark completo.** Aplicamos el mismo gap_ratio a los entrenamientos
+de la fase 2 del E2, que usan las 62 estaciones (decenas de miles de ventanas por origen) y una entrada de 168 h. La
+brecha mediana es de solo 1–6 % según el modelo, y pasan el filtro entre el 96 y el 100 % de los entrenamientos:
+
+| Modelo | MLP | CNN | LSTM | GRU | TCN | KAN | Transformer |
+|---|---|---|---|---|---|---|---|
+| gap_ratio mediano | `0.009` | `0.022` | `0.022` | `0.056` | `0.014` | `0.031` | `0.013` |
+| Pasan < 0.15 | 100 % | 100 % | 100 % | 96 % | 100 % | 98 % | 100 % |
+
+Con todo el panel, las curvas de entrenamiento y validación quedan juntas incluso con 168 h de entrada. La brecha que
+aparece con 192 h en la muestra reducida viene del poco número de ventanas, no de la longitud de la entrada en sí.
+Esto respalda dos decisiones del E2: entrenar con todas las estaciones y evaluar con origen móvil, que es *forward
+chaining* por trimestres. Para el E3, la muestra reducida sirve para explorar barato, pero las conclusiones deben
+confirmarse con el panel completo.
+
 ## Diagnóstico de los tres mejores modelos
 
 Esta sección analiza a fondo los tres primeros del ranking de Friedman (TCN, Transformer y KAN), con Ridge como
