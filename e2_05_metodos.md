@@ -60,7 +60,29 @@ Todos los modelos entrenables reciben el **mismo presupuesto de ajuste previo**:
 ({512, 1 024, 2 048}), evaluadas con la arquitectura de referencia (64, 64, 64) con dropout (0, 1, 0) en el último origen
 de validación.
 
-Los modelos sin arquitectura definida en su artículo pasan por la búsqueda en dos fases de la sección 14 del
+### Qué modelos pasan por la búsqueda
+
+La sección 14 del enunciado dice que, si el artículo define la arquitectura, se usa tal como está y la búsqueda no
+aplica a ese modelo. El nombre del modelo no basta para reclamar esa exención: hay que mostrar que el artículo define
+una arquitectura para un problema como el nuestro y que nuestra adaptación conserva su cuerpo. La clasificación quedó
+fijada en el preregistro antes de entrenar:
+
+| Modelo | Qué define el artículo | ¿Búsqueda? | Qué conservamos y qué adaptamos |
+|---|---|---|---|
+| DLinear | Descomposición con media móvil de 25 y dos capas lineales de la ventana al horizonte | No | Se conserva todo; la salida es un solo paso (τ + 24) y la ventana es la común de 168 h |
+| Informer | D = 512, 8 cabezas, feed-forward 2 048, 2 capas de codificador con destilación, 1 de decodificador, ProbSparse con c = 5 | No | Se conservan la atención ProbSparse, la destilación y el decodificador generativo con sus tamaños; sin incrustación de calendario (el panel no la trae) y lotes procesados por trozos con el mismo gradiente (enmienda 5) |
+| PatchTST | Parches de 16 con paso 8, 3 capas, 16 cabezas, D = 128, feed-forward 256, RevIN e independencia de canal | No | Se conservan los parches, el codificador y RevIN con sus tamaños; ventana de 168 h en lugar de 336 y un ajuste afín de 2 parámetros a la salida (enmienda 4) |
+| STGCN | 2 bloques ST-Conv (Kt = 3, Chebyshev con Ks = 3), canales (64, 16, 64) | No | Se conservan los bloques y los canales; el grafo es la estación y sus 8 vecinas, porque el panel no es una red sincronizada (enmienda 6) |
+| Chronos, Moirai | Modelo base preentrenado con pesos públicos | Solo el cabezal | El modelo base se usa congelado, sin cambios; el cabezal denso que agregamos no está definido en el artículo y pasa por la búsqueda (sección 14.2) |
+| Transformer | Codificador–decodificador de 6 + 6 capas con D = 512, diseñado para traducción | Sí | El artículo no define una arquitectura para pronóstico de series; solo se toma el bloque de atención |
+| GRU | La unidad recurrente, dentro de un codificador–decodificador de traducción | Sí | Define la celda, no una red para nuestro problema |
+| TCN | El bloque residual de convoluciones causales dilatadas; la profundidad y los canales cambian según la tarea | Sí | Se conserva el bloque; los anchos se buscan |
+| KAN | La capa de funciones B-spline aprendibles; la forma de la red se elige para cada problema | Sí | No evalúa series de tiempo; se conserva la capa y se buscan los anchos |
+| MLP, LSTM, CNN 1D | Modelos base del E1, sin artículo que fije la arquitectura | Sí | Diseño propio |
+
+### Búsqueda en dos fases
+
+Los modelos sin arquitectura definida para este problema pasan por la búsqueda en dos fases de la sección 14 del
 enunciado. El espacio es de 3 capas con anchos {16, 32, 64, 128, 256} y dropout de 0.2 en cualquier posición:
 5³ × 2³ = 1 000 arquitecturas.
 
@@ -77,6 +99,16 @@ se pierde: la mejor arquitectura de la muestra quedó a **0.001 m/s** (MLP) y **
 1 000, muy por debajo del margen de relevancia δ = 0.02 m/s. Los 10 finalistas sí cambian (comparten 1 y 0), lo que es
 esperable con una muestra del 20 % y muestra que el ranking dentro del cribado es ruidoso; por eso la fase 2 confirma
 con 5 semillas (`resultados/e2/sensibilidad_muestra.json`).
+
+**Origen móvil en el ajuste: lo que hicimos y lo que no.** El enunciado pide usar el origen móvil también para elegir
+hiperparámetros. Lo cumplimos en la evaluación: cada modelo se reentrena y se evalúa en los cuatro orígenes de prueba.
+En la selección no lo cumplimos del todo. El ajuste previo, la fase 1 y la fase 2 usan solo el último origen de
+validación (2024-10-01). El preregistro original pedía los cuatro orígenes en la fase 2, y la enmienda 3 lo redujo a
+uno por el presupuesto de cómputo (de 420 a 55 entrenamientos por modelo). La consecuencia es que la configuración
+elegida es la mejor para el cuarto trimestre de 2024, no un promedio sobre las estaciones del año. Dos resultados
+indican que el efecto es pequeño. Casi todos los finalistas son equivalentes al mejor con ±δ, así que elegir con otro
+origen cambiaría poco. Además, la dispersión entre configuraciones es mucho menor que la diferencia entre
+trimestres. Lo declaramos como desviación del enunciado.
 
 ## Corridas finales
 
