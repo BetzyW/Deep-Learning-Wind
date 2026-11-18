@@ -6,7 +6,7 @@ Se corre en Colab en una sesión aparte, porque sus bibliotecas exigen otras ver
 Con --medir N se pronostican N ventanas al azar (semilla 7) del último origen de validación y se reporta el tiempo por
 ventana, para estimar el costo antes de la corrida completa (sin --medir). Ventana de contexto L = 168 h de la serie de
 velocidad (la misma de todos los modelos; ambos son univariados), horizonte 24 h; el pronóstico puntual es la mediana
-de las trayectorias muestreadas. Las predicciones se guardan por ventana para las pruebas estadísticas.
+de las trayectorias muestreadas (Moirai con parche de 32, el mismo de embeber.py: "auto" falla con L = 168). Las predicciones se guardan por ventana para las pruebas estadísticas.
 Salida: resultados/e2/preentrenados/{modelo}_{etapa}_{origen}.npz y un resumen .json.
 """
 import argparse, json, os, sys, time
@@ -40,9 +40,9 @@ def cargar(nombre, dispositivo):
 
     def predecir(ctx):
         nonlocal L
-        if L is None or L.context_length != ctx.shape[1]:
+        if L is None:                                                  # el contexto mide siempre p.L = 168 h
             L = MoiraiForecast(module=MoiraiModule.from_pretrained(PESOS[nombre]), prediction_length=H,
-                               context_length=ctx.shape[1], patch_size="auto", num_samples=100, target_dim=1,
+                               context_length=ctx.shape[1], patch_size=32, num_samples=100, target_dim=1,
                                feat_dynamic_real_dim=0, past_feat_dynamic_real_dim=0).to(dispositivo).eval()
         x = torch.tensor(np.nan_to_num(ctx), device=dispositivo).unsqueeze(-1)
         obs = torch.tensor(~np.isnan(ctx), device=dispositivo).unsqueeze(-1)
