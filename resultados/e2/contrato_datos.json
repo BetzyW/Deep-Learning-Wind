@@ -1,0 +1,150 @@
+{
+ "esquema": {
+  "CodigoEstacion": {
+   "tipo": "texto de 10 dígitos",
+   "unidad": "—",
+   "rango": "código IDEAM",
+   "fuente": "IDEAM"
+  },
+  "hora": {
+   "tipo": "fecha-hora (UTC−5)",
+   "unidad": "h",
+   "rango": "2020-01-01 00:00 a 2025-12-31 23:00, en punto",
+   "fuente": "IDEAM, agregada a la hora"
+  },
+  "vel": {
+   "tipo": "real",
+   "unidad": "m/s",
+   "rango": [
+    0.0,
+    40.0
+   ],
+   "fuente": "IDEAM: velocidad del viento (media horaria)"
+  },
+  "dir_sin": {
+   "tipo": "real",
+   "unidad": "—",
+   "rango": [
+    -1.0,
+    1.0
+   ],
+   "fuente": "IDEAM: dirección, media vectorial horaria"
+  },
+  "dir_cos": {
+   "tipo": "real",
+   "unidad": "—",
+   "rango": [
+    -1.0,
+    1.0
+   ],
+   "fuente": "IDEAM: dirección, media vectorial horaria"
+  },
+  "temp": {
+   "tipo": "real",
+   "unidad": "°C",
+   "rango": [
+    -5.0,
+    50.0
+   ],
+   "fuente": "IDEAM: temperatura del aire (media horaria)"
+  },
+  "lat": {
+   "tipo": "real",
+   "unidad": "grados",
+   "rango": [
+    7.0,
+    13.0
+   ],
+   "fuente": "IDEAM: catálogo de estaciones"
+  },
+  "lon": {
+   "tipo": "real",
+   "unidad": "grados",
+   "rango": [
+    -77.0,
+    -71.0
+   ],
+   "fuente": "IDEAM: catálogo de estaciones"
+  }
+ },
+ "pasos": [
+  {
+   "paso": "Archivo del panel (salida del proyecto de ML)",
+   "filas": 1308726,
+   "estaciones": 76
+  },
+  {
+   "paso": "Contrato validado (tipos, rangos y obligatorias)",
+   "filas": 1308726,
+   "estaciones": 76
+  },
+  {
+   "paso": "Sin la estación 1501500054 (anemómetro bloqueado)",
+   "filas": 1305501,
+   "estaciones": 75
+  },
+  {
+   "paso": "Rejilla horaria regular por estación (las horas sin registro quedan como faltantes)",
+   "filas": 2904241,
+   "estaciones": 75
+  },
+  {
+   "paso": "Relleno hacia adelante de máximo 3 h (solo mira el pasado)",
+   "filas": 2904241,
+   "filas_completadas": 62370
+  },
+  {
+   "paso": "Ventanas válidas: 168 h de entrada completas y objetivo observado a 24 h",
+   "ventanas": 686491,
+   "estaciones": 70
+  },
+  {
+   "paso": "Validación 2024-01-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 389326,
+   "ventanas_evaluacion": 8459,
+   "estaciones_evaluacion": 10
+  },
+  {
+   "paso": "Validación 2024-04-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 397905,
+   "ventanas_evaluacion": 9485,
+   "estaciones_evaluacion": 16
+  },
+  {
+   "paso": "Validación 2024-07-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 407558,
+   "ventanas_evaluacion": 22696,
+   "estaciones_evaluacion": 16
+  },
+  {
+   "paso": "Validación 2024-10-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 430542,
+   "ventanas_evaluacion": 37727,
+   "estaciones_evaluacion": 43
+  },
+  {
+   "paso": "Prueba 2025-01-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 468479,
+   "ventanas_evaluacion": 29192,
+   "estaciones_evaluacion": 40
+  },
+  {
+   "paso": "Prueba 2025-04-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 498501,
+   "ventanas_evaluacion": 42269,
+   "estaciones_evaluacion": 42
+  },
+  {
+   "paso": "Prueba 2025-07-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 540986,
+   "ventanas_evaluacion": 58827,
+   "estaciones_evaluacion": 49
+  },
+  {
+   "paso": "Prueba 2025-10-01: entrenamiento / evaluación",
+   "ventanas_entrenamiento": 600677,
+   "ventanas_evaluacion": 84998,
+   "estaciones_evaluacion": 56
+  }
+ ]
+}

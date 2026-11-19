@@ -28,5 +28,6 @@ project:
         - file: e2_06_resultados.md
         - file: e2_07_discusion.md
         - file: e2_08_conclusiones.md
+        - file: e2_09_apendices.md
 site:
   template: book-theme

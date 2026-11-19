@@ -189,11 +189,101 @@ def cero_disparos():
     return "\n".join(s), "\n".join(c), "\n".join(k)
 
 
+VENTANAS_PRUEBA = {"2025-01-01": 29192, "2025-04-01": 42269, "2025-07-01": 58827, "2025-10-01": 84998}
+GRUPOS = [("Línea base trivial", ["Persistencia", "Naive_semanal", "Media_misma_hora_7_d", "ETS_por_estación"]),
+          ("Clásico fuerte", ["Ridge", "Gradient_boosting"]),
+          ("Modelos base del E1", ["MLP", "CNN", "LSTM"]),
+          ("Top 10", ["Transformer", "KAN", "TCN", "STGCN", "Chronos", "GRU", "Informer", "DLinear", "Moirai",
+                      "PatchTST"])]
+
+
+def indice_robustez():
+    r = json.load(open(f"{E}/f2a/gpu_resultados.json"))
+    rob = pd.DataFrame([dict(modelo=m, **d) for m, v in r["robustez"].items() for d in v])
+    t = rob.groupby(["tipo", "nivel", "modelo"]).rmse.mean().unstack()
+    base = t.loc[("ninguna", 0.0)]
+    return {m: np.mean([np.trapezoid(np.r_[0, t.loc[tp][m].values / base[m] - 1], np.r_[0, sorted(t.loc[tp].index)])
+                        / max(t.loc[tp].index) for tp in ["ruido", "faltantes", "quiebre"]]) for m in t.columns}
+
+
+def tabla_a2():
+    """Tabla principal según la plantilla A.2 del enunciado."""
+    ic = pd.read_csv(f"{E}/f2a/rmse_ic_bootstrap.csv").set_index("modelo")
+    rang = json.load(open(f"{E}/estadistica/resumen.json"))["friedman"]["rangos_medios"]
+    mz = json.load(open(f"{E}/estadistica/ruta_evidencias.json"))["mincer_zarnowitz"]
+    costo = pd.read_csv(f"{E}/costo_cpu.csv").set_index("modelo")
+    rob = indice_robustez()
+    s = ["| Grupo | Modelo | RMSE por semilla, media ± DE (m/s) | RMSE e IC 95 % (bootstrap de estaciones) | "
+         "Calibración: MZ pendiente b (p) | Robustez (índice) | Parámetros | MFLOPs por ventana | "
+         "Latencia CPU (ms por ventana) | Rango medio |", "|---|---|---|---|---|---|---|---|---|---|"]
+    for grupo, ms in GRUPOS:
+        for i, m in enumerate(ms):
+            if m not in ic.index:
+                continue
+            ruta = f"{E}/finales/{m}.csv"
+            if os.path.exists(ruta):
+                d = pd.read_csv(ruta)
+                d = d[d.declarada_e2 == 1]
+                n = d.origen.map(VENTANAS_PRUEBA)
+                por_sem = d.assign(sse=n * d.rmse ** 2, n=n).groupby("semilla")[["sse", "n"]].sum()
+                r = np.sqrt(por_sem.sse / por_sem.n)
+                media = f"`{r.mean():.3f}` ± `{r.std(ddof=1):.4f}`"
+            else:
+                media = "— (determinista)"
+            c = costo.loc[m] if m in costo.index else None
+            s.append(f"| {grupo if i == 0 else ''} | {m.replace('_', ' ')} | {media} | "
+                     f"{f(ic.loc[m, 'rmse'])} [{ic.loc[m, 'ic_inf']:.3f}, {ic.loc[m, 'ic_sup']:.3f}] | "
+                     + (f"`{mz[m]['b']:.3f}` ({fp(mz[m]['p_conjunto'])})" if m in mz else "—") + " | "
+                     + (f(rob[m]) if m in rob else "—") + " | "
+                     + (f"`{int(c.parametros):,}`".replace(",", " ") if c is not None else "—") + " | "
+                     + (f"`{c.mflops_ventana:.2f}`" if c is not None else "—") + " | "
+                     + (f"`{c.ms_ventana_lote1:.2f}` / `{c.ms_ventana_lote1024:.4f}`" if c is not None else "—")
+                     + " | " + (f"{rang[m]:.2f}" if m in rang else "—") + " |")
+    return "\n".join(s)
+
+
+def evidencias_b():
+    r = json.load(open(f"{E}/estadistica/ruta_evidencias.json"))
+    s = ["| Modelo | Brecha mediana (gap_ratio) | Máxima | p Wilcoxon H0: brecha ≥ 0.15 (Holm) | "
+         "CV entre semillas, media por origen | p Friedman entre semillas |", "|---|---|---|---|---|---|"]
+    for x in r["brecha_y_semillas"]:
+        s.append(f"| {x['modelo']} | {f(x['gap_mediano'])} | {f(x['gap_max'])} | {fp(x['p_wilcoxon_gap_holm'])} | "
+                 f"`{x['cv_semillas_medio']:.2%}` | {fp(x['p_semillas'])} |")
+    v = ["| Modelo | Estaciones | RMSE validación (2024-10) − prueba (2025) | IC 95 % | p Wilcoxon |",
+         "|---|---|---|---|---|"]
+    for m, x in r["validacion_vs_prueba"].items():
+        v.append(f"| {m} | {x['estaciones']} | {f(x['diferencia_media'])} | [{x['ic95'][0]:.3f}, {x['ic95'][1]:.3f}] | "
+                 f"{fp(x['p_wilcoxon'])} |")
+    return "\n".join(s), "\n".join(v)
+
+
+def contrato():
+    r = json.load(open(f"{E}/contrato_datos.json", encoding="utf-8"))
+    e = ["| Columna | Tipo | Unidad | Rango permitido | Fuente |", "|---|---|---|---|---|"]
+    for c, v in r["esquema"].items():
+        rango = f"[{v['rango'][0]}, {v['rango'][1]}]" if isinstance(v["rango"], list) else v["rango"]
+        e.append(f"| `{c}` | {v['tipo']} | {v['unidad']} | {rango} | {v['fuente']} |")
+    p_ = ["| Paso | Filas | Ventanas | Estaciones |", "|---|---|---|---|"]
+    n = lambda x: f"`{x:,}`".replace(",", " ") if x is not None else "—"
+    for x in r["pasos"]:
+        if "ventanas_entrenamiento" in x:
+            p_.append(f"| {x['paso']} | — | {n(x['ventanas_entrenamiento'])} / {n(x['ventanas_evaluacion'])} | "
+                      f"{x['estaciones_evaluacion']} (evaluación) |")
+        else:
+            extra = f" (`{x['filas_completadas']:,}` filas completadas)".replace(",", " ") if "filas_completadas" in x else ""
+            p_.append(f"| {x['paso']}{extra} | {n(x.get('filas'))} | {n(x.get('ventanas'))} | "
+                      f"{x.get('estaciones', '—')} |")
+    return "\n".join(e), "\n".join(p_)
+
+
 if __name__ == "__main__":
     t1, t2 = principal()
+    k1, k2 = contrato()
     c1, c2, c3 = cero_disparos()
+    b1, b2 = evidencias_b()
     tablas = dict(principal=t1, familias=t2, f3=f3(), busqueda=busqueda(), errores=errores(), ablacion=ablacion(), intervalos=intervalos(), robustez=robustez(),
-                  reproduccion=reproduccion(), origenes=origenes(), cero_rmse=c1, cero_pruebas=c2, cero_cobertura=c3)
+                  reproduccion=reproduccion(), origenes=origenes(), cero_rmse=c1, cero_pruebas=c2, cero_cobertura=c3,
+                  a2=tabla_a2(), brecha=b1, val_prueba=b2, esquema=k1, poblaciones=k2)
     print("\n\n".join(f"## {k}\n\n{v}" for k, v in tablas.items()))
     if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde tablas/
         os.makedirs("tablas", exist_ok=True)

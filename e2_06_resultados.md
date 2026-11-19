@@ -22,6 +22,18 @@ difieren mucho entre sí (de `0.53` a más de `1.0` m/s), y esa variación domin
 modelos se hacen pareadas por estación, que es lo que hacen Wilcoxon y Friedman. El MASE divide el MAE de cada modelo
 entre el de la persistencia.
 
+La misma tabla con el formato de la plantilla A.2 del enunciado agrega la variación entre semillas, la calibración,
+la robustez y el costo. La columna de media ± DE trata cada semilla por separado, mientras que la del IC usa el
+pronóstico promedio de las 6 semillas, que es un poco mejor. Para la calibración damos la pendiente b de
+Mincer–Zarnowitz y el p conjunto de a = 0 y b = 1. El índice de robustez es el aumento relativo medio del RMSE ante
+las tres perturbaciones; solo se midió en los tres mejores. La latencia está medida en CPU con 4 hilos, por ventana,
+con lote 1 y con lote 1 024 (`src/costo_inferencia.py`). En Chronos y Moirai, el costo es solo el del cabezal. Como
+referencia del modelo base, su pronóstico sin entrenar tarda unos 3 ms por ventana (Chronos, en una A100) y de 0.3 a
+0.5 ms (Moirai, en una L4).
+
+```{include} tablas/e2_a2.md
+```
+
 Tres grupos se distinguen con claridad:
 
 1. **Los modelos de Deep Learning entrenados desde cero y los clásicos fuertes** quedan todos entre `0.692` y `0.704`
@@ -148,6 +160,35 @@ Lo que dicen estos resultados:
   ninguno tiene todas las capas en un extremo, así que no hay señal de que el espacio se quedara corto.
 - **El costo real** de las fases de búsqueda fue de `44.6` horas de GPU entre el PC y Colab (la estimación previa era
   de 40 horas para las fases 1 y 2), sin contar las corridas finales.
+
+Los coeficientes de cada factor (anchos y dropout por capa, con interacciones de dropout), con su IC 95 % y su p
+ajustado por Holm, están en `resultados/e2/busqueda_analisis/{modelo}_coeficientes.csv` y `{modelo}_anova.csv`.
+
+**Frente de Pareto.** La figura muestra el costo y el error de cada arquitectura de la fase 1 (`src/pareto_ganador.py`).
+La línea es el frente de Pareto: las arquitecturas que ninguna otra mejora a la vez en parámetros y en error.
+
+```{figure} figuras/e2_pareto.png
+:name: fig-pareto
+RMSE de validación de la fase 1 frente al número de parámetros (escala logarítmica). Los círculos son los finalistas
+y la estrella es la arquitectura elegida. En GRU y Transformer la elegida es la referencia (64, 64, 64) / (0, 1, 0),
+que entra directo a la fase 2 y por eso no aparece en la fase 1.
+```
+
+- **De las 7 elegidas que pasaron por la fase 1, 5 están sobre el frente** (MLP, LSTM, TCN, Chronos y Moirai). Las de
+  CNN y KAN quedan algo por encima. La regla de desempate, que prefiere la de menos parámetros entre las que empatan
+  a menos de δ/2, empuja la elección hacia la parte barata del frente.
+- **En CNN el frente sigue bajando hasta los modelos más grandes**, pero la ganancia final es de milésimas. Pagar diez
+  veces más parámetros por menos de `0.01` m/s no compensa.
+- **En Chronos y Moirai el frente es casi plano.** Un cabezal pequeño rinde igual que uno grande, porque el límite lo
+  pone la representación congelada.
+
+**Sesgo del ganador.** La "mejor" de la fase 2 se eligió por tener el menor RMSE en un solo origen, y el mínimo de
+varios valores ruidosos siempre es optimista. Lo medimos con la validación de la sección siguiente. Comparamos la
+ventaja de la mejor frente a la elegida y a la peor, primero en el origen donde se eligió y luego en los otros tres
+(`resultados/e2/busqueda_analisis/sesgo_ganador.csv`). En promedio, la ventaja baja de `0.011` m/s a `0.008` m/s, es
+decir, cerca de un tercio era suerte. La ventaja se mantiene en 13 de los 16 contrastes. En CNN, Transformer y Moirai
+se invierte frente a una de las rivales. Por eso no reportamos el RMSE de validación del ganador como estimación de su
+desempeño: el desempeño se mide solo en la prueba, con las corridas finales.
 
 ## Validación de la selección con origen móvil
 

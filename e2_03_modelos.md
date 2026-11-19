@@ -8,8 +8,9 @@ temperatura), escaladas con el entrenamiento de cada origen, y todos producen un
 
 Los parámetros y las operaciones por ventana corresponden a la configuración final de cada modelo en nuestro problema
 (arquitectura ganadora de la búsqueda o arquitectura publicada). Las operaciones se midieron con el contador de
-operaciones de PyTorch sobre una ventana; en la LSTM se calcularon a mano, porque el contador no ve la celda
-recurrente optimizada.
+operaciones de PyTorch sobre una ventana, en modo de entrenamiento, porque en evaluación PyTorch usa para la atención
+un núcleo fusionado que el contador no registra. En la LSTM se calcularon con la fórmula de sus compuertas, porque el
+contador no ve la celda recurrente optimizada (`src/costo_inferencia.py`, `resultados/e2/costo_cpu.csv`).
 
 | Modelo | Familia | Configuración final | Parámetros | MFLOPs por ventana | Costo en la longitud L |
 |---|---|---|---|---|---|
@@ -19,10 +20,10 @@ recurrente optimizada.
 | STGCN | Grafos | Publicada (2 bloques ST, 8 vecinas) | `1 358 881` | `167.4` | O(L · K · \|E\| · c) |
 | Chronos | Preentrenado | T5-small congelado + cabezal (32, 16, 256) | `21 553` (cabezal) | `0.04` (cabezal) | O(L²) en el modelo base |
 | GRU | Recurrente | w = (64, 64, 64), dropout (0, 1, 0) | `63 425` | `20.9` | O(L · w²), secuencial |
-| Informer | Atención | Publicada (D = 512, 2 + 1 capas) | `11 312 641` | `2 519.8` | O(L log L · D) |
+| Informer | Atención | Publicada (D = 512, 2 + 1 capas) | `11 312 641` | `2 532.2` | O(L log L · D) |
 | DLinear | MLP profundo | Publicada | `338` | ≈ 0 | O(L) |
 | Moirai | Preentrenado | Moirai-1.0-R small congelado + cabezal (32, 128, 32) | `20 705` (cabezal) | `0.04` (cabezal) | O((L/P)²) en el modelo base |
-| PatchTST | Atención | Publicada (parches de 16, paso 8) | `404 995` | `8.35` | O((L/P)² · D) |
+| PatchTST | Atención | Publicada (parches de 16, paso 8) | `404 995` | `17.3` | O((L/P)² · D) |
 
 Los modelos base del E1 (MLP, CNN 1D y LSTM) entran al benchmark con la misma búsqueda de arquitectura; se describieron
 en el capítulo 4 y aquí solo se resumen en la tabla de resultados.
