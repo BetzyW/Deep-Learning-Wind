@@ -27,7 +27,8 @@ la robustez y el costo. La columna de media ± DE trata cada semilla por separad
 pronóstico promedio de las 6 semillas, que es un poco mejor. Para la calibración damos la pendiente b de
 Mincer–Zarnowitz y el p conjunto de a = 0 y b = 1. El índice de robustez es el aumento relativo medio del RMSE ante
 las tres perturbaciones; solo se midió en los tres mejores. La latencia está medida en CPU con 4 hilos, por ventana,
-con lote 1 y con lote 1 024 (`src/costo_inferencia.py`). En Chronos y Moirai, el costo es solo el del cabezal. Como
+con lote 1 y con lote 1 024 (`src/costo_inferencia.py`); entre dos mediciones varía hasta un 30 % con lote 1, así que
+solo importa el orden de magnitud. En Chronos y Moirai, el costo es solo el del cabezal. Como
 referencia del modelo base, su pronóstico sin entrenar tarda unos 3 ms por ventana (Chronos, en una A100) y de 0.3 a
 0.5 ms (Moirai, en una L4).
 

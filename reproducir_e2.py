@@ -1,7 +1,7 @@
 """Reproducción del Entregable 2 con un solo comando.
 
     python reproducir_e2.py              análisis: regenera todas las tablas, figuras y pruebas del libro a partir de
-                                         las predicciones guardadas (CPU, unos 30 a 60 minutos) y compila el libro
+                                         las predicciones guardadas (CPU, unos 10 minutos) y compila el libro
     python reproducir_e2.py --todo       además reentrena todo desde los datos (GPU; días de cómputo, ver el
                                          capítulo de métodos), en el orden en que se hizo
     python reproducir_e2.py --listar     solo muestra los pasos, sin correr nada
@@ -56,7 +56,8 @@ ANALISIS = [
     ("Costo: parámetros, FLOPs y latencia en CPU", PY_DL, ["src/costo_inferencia.py"]),
     ("Fichas de modelo (sección 11.3)", PY_ML, ["src/fichas_modelo.py"]),
     ("Tablas del libro", PY_ML, ["src/tablas_libro.py", "--escribir"]),
-    ("Libro (Jupyter Book 2; necesita Node.js)", None, ["jupyter-book", "build", "--html"]),
+    ("Libro: comprueba el contenido (Jupyter Book 2, necesita Node.js); el HTML lo genera GitHub Actions al publicar",
+     None, ["jupyter-book", "build"]),
 ]
 
 

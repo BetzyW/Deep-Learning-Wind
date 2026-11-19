@@ -167,7 +167,8 @@ Las diferencias que quedan entre equipos vienen de operaciones de la GPU y son d
 independiente y validación con origen móvil).
 
 **Un solo comando.** `python reproducir_e2.py` regenera todo el análisis, las tablas, las figuras y el libro a partir
-de las predicciones guardadas. `python reproducir_e2.py --todo` además reentrena todo desde los datos, en el orden en
+de las predicciones guardadas. Lo probamos el 18 de noviembre: tardó unos 6 minutos en CPU y reprodujo todos los
+archivos de resultados sin cambios, salvo las latencias, que son mediciones de tiempo. `python reproducir_e2.py --todo` además reentrena todo desde los datos, en el orden en
 que se hizo. Ese modo incluye los dos pasos que se corren en Colab y se reanuda donde quedó. Con `--listar` se ven los
 pasos sin correr nada.
 
