@@ -67,8 +67,45 @@ Ridge queda fuera por poco (p = `0.054`), y CNN, DLinear, Chronos, Moirai y la p
 El mejor preentrenado (Chronos) es peor que el mejor modelo desde cero (Transformer) por `0.127` m/s de RMSE medio por
 estación, con IC 90 % de [`0.087`, `0.166`]. El TOST con ±δ no declara equivalencia (p ≈ `1.0`) y Wilcoxon confirma
 la dirección (p < `0.001`) {cite}`schuirmann1987`. **H2 se rechaza**: en nuestra adaptación, los preentrenados no son
-equivalentes a los modelos desde cero, sino claramente peores. El capítulo de discusión explica por qué esto refleja
-sobre todo la forma de resumir su representación y no necesariamente a los modelos.
+equivalentes a los modelos desde cero, sino claramente peores.
+
+### Chronos y Moirai sin entrenar (análisis secundario)
+
+Para saber si el resultado se debe a los modelos o a nuestra adaptación, evaluamos Chronos y Moirai con sus pesos
+oficiales y su propio decodificador, sin ningún entrenamiento (*zero-shot*, enmienda 9). Usan el mismo contexto de
+168 h de la velocidad, y el pronóstico es la mediana de sus trayectorias. Moirai corrió en una L4 de Colab (de 13 a 25 s por
+origen) y Chronos en una A100 (de 1.5 a 4 min por origen), sobre las mismas ventanas que el benchmark (`src/preentrenados.py`, `src/cero_disparos.py`).
+La tabla da el RMSE (m/s) de cada origen de prueba de 2025; en los modelos de Deep Learning se promedia el pronóstico
+de las 6 semillas declaradas:
+
+```{include} tablas/e2_cero_rmse.md
+```
+
+Las pruebas, con la estación como unidad. La diferencia es la del modelo sin entrenar menos la del rival, así que un
+valor negativo lo favorece. Es un análisis exploratorio, así que no aplicamos Holm:
+
+```{include} tablas/e2_cero_pruebas.md
+```
+
+- **Sin entrenar son mejores que con nuestro cabezal**, en los 4 orígenes. En Moirai la mejora es grande y clara
+  (`0.238` m/s por estación). En Chronos el RMSE global baja en todos los orígenes, pero por estación la diferencia
+  no es significativa (p = `0.219`), porque en algunas estaciones el cabezal sí le ayuda.
+- **Los dos le ganan a la persistencia**, que Moirai con cabezal no lograba.
+- **Siguen lejos de los modelos entrenados.** Moirai sin entrenar, el mejor de los dos, queda `0.038` m/s por encima
+  del Transformer y `0.031` m/s por encima de Ridge. El TOST no declara equivalencia con ninguno. **H2 se rechaza
+  también con los modelos en su uso original.**
+
+Los dos modelos también dan cuantiles, así que medimos su intervalo del 80 % (cuantiles 0.1 a 0.9) y el sesgo en las
+4 136 ventanas con viento observado de 6 m/s o más:
+
+```{include} tablas/e2_cero_cobertura.md
+```
+
+El intervalo de Moirai sale bien calibrado sin ningún ajuste (`81.3` %). Es incluso más cercano al 80 % que los
+intervalos conformales de los modelos entrenados, que cubren cerca del `77` % (sección de intervalos). El de Chronos
+es demasiado estrecho. En vientos
+fuertes, Moirai subestima `0.37` m/s menos que los modelos entrenados con error cuadrático, que coinciden en `−1.23`
+m/s. El capítulo de discusión explica qué dice esto sobre la adaptación y qué sugiere para el E3.
 
 ## RQ3: la limitación del paper guía
 
@@ -111,6 +148,42 @@ Lo que dicen estos resultados:
   ninguno tiene todas las capas en un extremo, así que no hay señal de que el espacio se quedara corto.
 - **El costo real** de las fases de búsqueda fue de `44.6` horas de GPU entre el PC y Colab (la estimación previa era
   de 40 horas para las fases 1 y 2), sin contar las corridas finales.
+
+## Validación de la selección con origen móvil
+
+La fase 2 eligió cada arquitectura con un solo origen de validación (2024-10-01, enmienda 3). Para medir qué tanto
+depende la elección de ese trimestre, volvimos a entrenar tres finalistas de cada modelo en los otros tres orígenes
+de validación de 2024, con las semillas 2001 y 2002 y el mismo presupuesto de la fase 2 (enmienda 8). Las tres
+arquitecturas se fijaron por regla antes de correr: la **elegida**, la **mejor** de la fase 2 y la **peor** de los
+10 finalistas. En KAN la mejor de la fase 2 es la elegida. En Transformer la elegida es la referencia
+(64, 64, 64) / (0, 1, 0), que gana por tener menos parámetros y es a la vez la peor de la fase 2. Por eso esos dos
+modelos tienen dos filas. Son 150 entrenamientos y `12.2` horas de GPU, la
+mitad del Transformer en el PC. La tabla da el RMSE de validación (m/s), con la media de las 2 semillas en cada origen:
+
+```{include} tablas/e2_origenes.md
+```
+
+Lo que muestra:
+
+- **La elección con un solo origen se sostiene en 8 de 9 modelos.** En la media de los 4 orígenes, la elegida queda
+  a menos de `0.013` m/s de la mejor de las tres, y en los 7 modelos entrenados desde cero a menos de `0.006` m/s,
+  lejos de δ = 0.02 m/s. En KAN y en Transformer la elegida es incluso la mejor. En el Transformer esto significa que
+  la peor de la fase 2 resultó la mejor en los otros trimestres.
+- **El orden entre arquitecturas cambia de un trimestre a otro.** En CNN, la peor de la fase 2 es la mejor en el
+  primer trimestre de 2024, y en GRU y TCN las tres se alternan. Las diferencias son de milésimas, así que esos
+  cambios son ruido y no un error de selección.
+- **El trimestre pesa mucho más que la arquitectura.** Entre orígenes, el RMSE de una misma arquitectura varía entre
+  `0.11` y `0.16` m/s. Entre las tres arquitecturas de un modelo, la diferencia de la media de los 4 orígenes es de
+  `0.03` m/s como mucho. Es el
+  mismo patrón que vemos en la prueba, donde el origen explica casi toda la varianza.
+- **La excepción son los cabezales de Moirai.** Su elegida queda `0.027` m/s por encima de la mejor de las tres, que es
+  la peor de la fase 2. Con un solo origen, la selección del cabezal de Moirai fue ruidosa. No cambia ninguna
+  conclusión: cualquier cabezal de Moirai queda muy por detrás de Moirai sin entrenar (sección de RQ2) y de los
+  modelos desde cero.
+- **El equipo no cambia el resultado.** Las 9 corridas de GRU que hicimos primero en el PC difieren en milésimas de
+  las mismas corridas en Colab (`resultados/e2/busqueda/GRU_origenes_pc_rtx4060.csv`), y el Transformer combina
+  6 corridas del PC y 6 de Colab. Lo que sí cambia es el tiempo: una corrida del Transformer tardó de 37 a 104 minutos
+  en el PC y de 3 a 5 minutos en la A100 de Colab.
 
 ## Techo de desempeño, potencia y varianza
 

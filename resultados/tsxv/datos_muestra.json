@@ -1,0 +1,36 @@
+{
+  "estacion": "0013035501",
+  "desde": "2024-08-19 00:00:00",
+  "hasta": "2025-12-31 23:00:00",
+  "n": 12000,
+  "n_cv": 10800,
+  "n_holdout": 1200,
+  "faltantes": 727,
+  "dispositivo": "cuda",
+  "pliegues": {
+    "24": {
+      "tsxv": 447,
+      "usados": 401,
+      "descartados_por_faltantes": 46,
+      "ventanas_entrenamiento_max": 402
+    },
+    "48": {
+      "tsxv": 445,
+      "usados": 389,
+      "descartados_por_faltantes": 56,
+      "ventanas_entrenamiento_max": 390
+    },
+    "96": {
+      "tsxv": 441,
+      "usados": 366,
+      "descartados_por_faltantes": 75,
+      "ventanas_entrenamiento_max": 367
+    },
+    "192": {
+      "tsxv": 433,
+      "usados": 334,
+      "descartados_por_faltantes": 99,
+      "ventanas_entrenamiento_max": 335
+    }
+  }
+}

@@ -7,9 +7,9 @@ cada cambio posterior está registrado como una enmienda fechada con su motivo.
 ## Preregistro y enmiendas
 
 El preregistro fija las preguntas, las hipótesis, las métricas, la partición, el presupuesto de ajuste, la búsqueda de
-arquitectura y las pruebas estadísticas. Durante el trabajo hubo siete enmiendas. Las seis primeras se hicieron antes de elegir
-finalistas y sin abrir el conjunto de prueba; la séptima agrega un análisis secundario (la ablación) después de ver
-los resultados de prueba, y así se declara:
+arquitectura y las pruebas estadísticas. Durante el trabajo hubo nueve enmiendas. Las seis primeras se hicieron antes de elegir
+finalistas y sin abrir el conjunto de prueba. Las otras tres agregan análisis secundarios después de ver los
+resultados de prueba, y así se declaran:
 
 | Enmienda | Fecha | Qué cambió | Motivo |
 |---|---|---|---|
@@ -20,6 +20,8 @@ los resultados de prueba, y así se declara:
 | 5 | 9-nov | Configuración de Informer | Adaptaciones al panel (sin calendario) |
 | 6 | 9-nov | Configuración de STGCN con subgrafo de 8 vecinas | El panel no es una red sincronizada |
 | 7 | 12-nov | Estudio de ablación de TCN (sin dilatación, sin residuales, sin covariables) | Análisis secundario, declarado después de ver la prueba |
+| 8 | 14-nov | Validación de la selección en los otros 3 orígenes de validación | Medir el efecto de elegir con un solo origen (enmienda 3) |
+| 9 | 9-nov (código), 17-nov (corrida) | Chronos y Moirai sin entrenar, con su propio decodificador | Separar el modelo de nuestra adaptación (RQ2) |
 
 ## Partición con origen móvil
 
@@ -105,10 +107,12 @@ hiperparámetros. Lo cumplimos en la evaluación: cada modelo se reentrena y se 
 En la selección no lo cumplimos del todo. El ajuste previo, la fase 1 y la fase 2 usan solo el último origen de
 validación (2024-10-01). El preregistro original pedía los cuatro orígenes en la fase 2, y la enmienda 3 lo redujo a
 uno por el presupuesto de cómputo (de 420 a 55 entrenamientos por modelo). La consecuencia es que la configuración
-elegida es la mejor para el cuarto trimestre de 2024, no un promedio sobre las estaciones del año. Dos resultados
-indican que el efecto es pequeño. Casi todos los finalistas son equivalentes al mejor con ±δ, así que elegir con otro
-origen cambiaría poco. Además, la dispersión entre configuraciones es mucho menor que la diferencia entre
-trimestres. Lo declaramos como desviación del enunciado.
+elegida es la mejor para el cuarto trimestre de 2024, no un promedio sobre las estaciones del año. Lo declaramos como
+desviación del enunciado y medimos su efecto después (enmienda 8). En los 9 modelos con selección de arquitectura
+volvimos a entrenar tres finalistas en los otros tres orígenes de validación (2024-01, 2024-04 y 2024-07), con
+2 semillas: la **elegida**, la **mejor** de la fase 2 y la **peor** de los 10 finalistas. Las tres se fijaron por regla
+antes de correr. La elección con un solo origen se sostiene si, en la media de los 4 orígenes, la elegida queda a
+δ = 0.02 m/s o menos de la mejor de las tres. Los resultados están en el capítulo de resultados.
 
 ## Corridas finales
 
@@ -141,6 +145,7 @@ El cómputo se planificó con un presupuesto fijo, que también debía alcanzar 
 |---|---|
 | PC del equipo: NVIDIA RTX 4060 Ti (8 GB) | Solo de noche y en horarios disponibles; fase 1 de MLP, CNN, GRU, LSTM y parte de la TCN |
 | Google Colab Pro+: NVIDIA A100 (40 GB) | 600 unidades de cómputo por un mes, sin posibilidad de comprar más; ≈ 6.7 unidades por hora de A100 |
+| Google Colab Pro+: NVIDIA L4 (24 GB) | La asigna Colab cuando no hay A100 libre; la usamos para la validación con origen móvil de GRU, LSTM, Chronos y Moirai y para Moirai sin entrenar |
 
 Cada resultado guarda el equipo y la GPU que lo produjo (`resultados/e2/busqueda/hardware.jsonl`). El presupuesto de
 cada modelo se mide en arquitecturas, épocas y semillas, no en horas, de modo que no depende del equipo; los tiempos de

@@ -144,10 +144,56 @@ def robustez():
     return "\n".join(s)
 
 
+def origenes():
+    """Validación de la selección con origen móvil (enmienda 8): RMSE de validación por origen, media de 2 semillas."""
+    import contextlib, io
+    from validacion_origenes import resumen
+    with contextlib.redirect_stdout(io.StringIO()):
+        t = resumen(["MLP", "KAN", "CNN", "GRU", "LSTM", "TCN", "Transformer", "Chronos", "Moirai"])
+    o = [c for c in t.columns if c.startswith("20")]
+    s = ["| Modelo | Arquitectura | " + " | ".join(o) + " | Media de los 4 | Elegida − mejor de las 3 |",
+         "|---|---|" + "---|" * (len(o) + 2)]
+    for m, g in t.groupby("modelo", sort=False):
+        g = g.set_index("papel").loc[[x for x in ["elegida", "mejor", "peor"] if x in set(g.papel)]]
+        gap = g.loc["elegida", "media_4_origenes"] - g.media_4_origenes.min()
+        for i, (papel, r) in enumerate(g.iterrows()):
+            s.append(f"| {m if i == 0 else ''} | {papel} | " + " | ".join(f"`{r[c]:.4f}`" for c in o)
+                     + f" | `{r.media_4_origenes:.4f}` | " + (f"`{gap:.4f}`" + (" **> δ**" if gap > 0.02 else "")
+                                                              if i == 0 else "") + " |")
+    return "\n".join(s)
+
+
+def cero_disparos():
+    r = json.load(open(f"{E}/preentrenados/cero_disparos.json"))
+    o = sorted(r["Moirai"]["rmse_por_origen"])
+    fila = lambda nombre, d: f"| {nombre} | " + " | ".join(f"`{d[k]:.3f}`" for k in o) + " |"
+    s = ["| Modelo | " + " | ".join(o) + " |", "|---|" + "---|" * len(o)]
+    for m in ["Transformer", "TCN", "Ridge"]:
+        s.append(fila(m, r[m]["rmse_por_origen"]))
+    for m in ["Moirai", "Chronos"]:
+        s.append(fila(f"**{m} sin entrenar**", r[m]["rmse_por_origen"]))
+    for m in ["Chronos", "Moirai"]:
+        s.append(fila(f"{m} con cabezal", r[m]["rmse_cabezal_por_origen"]))
+    s.append(fila("Persistencia", r["Persistencia"]["rmse_por_origen"]))
+    c = ["| Sin entrenar | Rival | Δ RMSE medio por estación | p Wilcoxon | p TOST (±δ) |", "|---|---|---|---|---|"]
+    for m in ["Moirai", "Chronos"]:
+        for k, v in r[m]["contra"].items():
+            c.append(f"| {m} | {k if k != 'cabezal' else m + ' con cabezal'} | {f(v['diferencia_media'], 3)} | "
+                     f"{fp(v['p'])} | {fp(v['tost']['p'])} |")
+    k = ["| Modelo | Cobertura del 80 % | Con viento ≥ 6 m/s | Sesgo con viento ≥ 6 m/s (m/s) |", "|---|---|---|---|"]
+    for m in ["Moirai", "Chronos"]:
+        k.append(f"| {m} sin entrenar | `{r[m]['cobertura_80']:.1%}` | `{r[m]['cobertura_80_fuerte']:.1%}` | "
+                 f"{f(r[m]['sesgo_fuerte'], 2)} |")
+    for m in ["Transformer", "TCN", "Ridge", "Persistencia"]:
+        k.append(f"| {m} | — | — | {f(r[m]['sesgo_fuerte'], 2)} |")
+    return "\n".join(s), "\n".join(c), "\n".join(k)
+
+
 if __name__ == "__main__":
     t1, t2 = principal()
+    c1, c2, c3 = cero_disparos()
     tablas = dict(principal=t1, familias=t2, f3=f3(), busqueda=busqueda(), errores=errores(), ablacion=ablacion(), intervalos=intervalos(), robustez=robustez(),
-                  reproduccion=reproduccion())
+                  reproduccion=reproduccion(), origenes=origenes(), cero_rmse=c1, cero_pruebas=c2, cero_cobertura=c3)
     print("\n\n".join(f"## {k}\n\n{v}" for k, v in tablas.items()))
     if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde tablas/
         os.makedirs("tablas", exist_ok=True)

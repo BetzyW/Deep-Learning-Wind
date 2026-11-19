@@ -245,3 +245,37 @@ elección de modelos, las configuraciones ni las conclusiones confirmatorias de 
    Diebold–Mariano con HLN; Holm sobre los 3 contrastes; α = 0.05. Un componente "aporta" si quitarlo sube el RMSE de
    forma significativa tras Holm; se reporta además si el aumento supera δ = 0.02 m/s.
 5. **Código:** `src/ablacion.py`; resultados en `resultados/e2/ablacion/`.
+
+## Enmienda 8 — validación de la selección con origen móvil (diseño y código del 14 de noviembre de 2026, commit `c2232ca`; registrada aquí el 18 de noviembre; prueba ya abierta)
+
+Motivo: la enmienda 3 redujo la fase 2 a un origen de validación (2024-10-01), y el enunciado pide usar el origen
+móvil también para elegir la arquitectura. Este análisis mide si la elección habría cambiado con los otros tres
+orígenes de validación. Se hace **después** de conocer la prueba, así que es secundario: no cambia ninguna
+configuración ni las corridas finales, y solo usa datos de validación (2024).
+
+1. **Modelos:** los 9 con selección de arquitectura (MLP, KAN, CNN, GRU, LSTM, TCN, Transformer y los cabezales de
+   Chronos y Moirai). DLinear, Informer, PatchTST y STGCN usan arquitecturas publicadas y no pasan por la búsqueda.
+2. **Arquitecturas, fijadas por regla antes de correr:** la **elegida** (regla del preregistro), la **mejor** por RMSE
+   medio de la fase 2 (si es distinta) y la **peor** de los 10 finalistas.
+3. **Protocolo:** el de la fase 2 (presupuesto completo, mismos hiperparámetros) en los orígenes 2024-01-01,
+   2024-04-01 y 2024-07-01, con las semillas 2001 y 2002; el origen 2024-10-01 se toma de la fase 2 con las mismas
+   semillas.
+4. **Criterio:** la elección con un solo origen se sostiene si, en la media de los 4 orígenes, la elegida queda a
+   δ = 0.02 m/s o menos de la mejor de las tres.
+5. **Código:** `src/validacion_origenes.py`; resultados en `resultados/e2/busqueda/{modelo}_origenes.csv`.
+
+## Enmienda 9 — Chronos y Moirai sin entrenar (código del 9 de noviembre de 2026, commit `42941cb`; corrido el 17 y registrado aquí el 18 de noviembre; prueba ya abierta)
+
+Motivo: el capítulo de discusión dejó abierta la pregunta de si el mal resultado de Chronos y Moirai se debe a los
+modelos o a nuestra adaptación (modelo base congelado, promedio de la representación y cabezal denso). El código para
+evaluarlos con su propio decodificador existía desde el 9 de noviembre, pero no se corrió antes de abrir la prueba ni
+estaba declarado. Se agrega como análisis **secundario**: H2 se sigue contestando con la adaptación declarada.
+
+1. **Modelos:** `amazon/chronos-t5-small` y `Salesforce/moirai-1.0-R-small`, pesos oficiales sin ningún ajuste;
+   contexto de 168 h de la velocidad, horizonte 24 h, pronóstico puntual = mediana de las trayectorias, intervalo del
+   80 % = cuantiles 0.1 y 0.9. Moirai con parche de 32 h (el valor `"auto"` falla con 168 h de contexto).
+2. **Evaluación:** los 4 orígenes de prueba de 2025, sobre las mismas ventanas que el benchmark.
+3. **Inferencia:** Wilcoxon sobre la diferencia de RMSE por estación frente a su versión con cabezal, al mejor modelo
+   desde cero, a Ridge y a la persistencia, y TOST con ±δ frente al mejor desde cero; sin corrección, porque es
+   exploratorio.
+4. **Código:** `src/preentrenados.py` (Colab) y `src/cero_disparos.py`; resultados en `resultados/e2/preentrenados/`.

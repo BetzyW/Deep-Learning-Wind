@@ -1,0 +1,22 @@
+{
+ "jaccard": {
+  "TCN|Transformer": 0.8303859887774188,
+  "TCN|KAN": 0.83108654050606,
+  "TCN|Ridge": 0.787677488997758,
+  "TCN|Persistencia": 0.4165023011176857,
+  "Transformer|KAN": 0.8027213732468076,
+  "Transformer|Ridge": 0.7748557295960429,
+  "Transformer|Persistencia": 0.4420052205341008,
+  "KAN|Ridge": 0.7769799017787132,
+  "KAN|Persistencia": 0.40143753862165416,
+  "Ridge|Persistencia": 0.4445189406637613
+ },
+ "proporcion_grandes_compartidos_por_los_tres": 0.856101072971341,
+ "umbral_error_grande": {
+  "TCN": 1.1006250977516174,
+  "Transformer": 1.0979691743850708,
+  "KAN": 1.1042838096618652,
+  "Ridge": 1.1109015345573425,
+  "Persistencia": 1.3666667938232422
+ }
+}

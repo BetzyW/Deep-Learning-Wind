@@ -8,7 +8,7 @@ qué los modelos quedan tan juntos, discute lo que pasó con los preentrenados y
 | Pregunta | Hipótesis | Resultado | Evidencia principal |
 |---|---|---|---|
 | RQ1 | H1: algún modelo del Top 10 supera a Ridge por más de δ | **Se rechaza** | 7 modelos ganan con significancia tras Holm, pero la mayor diferencia es `0.0073` m/s < δ = `0.02` |
-| RQ2 | H2: el mejor preentrenado es equivalente al mejor desde cero | **Se rechaza** | Chronos es peor por `0.127` m/s (IC 90 % [`0.087`, `0.166`]); el TOST no declara equivalencia |
+| RQ2 | H2: el mejor preentrenado es equivalente al mejor desde cero | **Se rechaza** | Chronos es peor por `0.127` m/s (IC 90 % [`0.087`, `0.166`]); el TOST no declara equivalencia. Sin entrenar, Moirai sigue peor por `0.038` m/s |
 | RQ3 | H3: la subestimación en vientos ≥ 6 m/s aparece en DLinear y en al menos otros dos modelos | **Se cumple** | Sesgo negativo en todos los modelos y en todas las estaciones con viento fuerte, de `−1.15` a `−1.28` m/s |
 
 **RQ1: ganancias reales pero pequeñas.** El resultado del Entregable 1 se mantiene a una escala mucho mayor. Allí tres
@@ -19,9 +19,9 @@ cuatro veces menor que δ (diferencia mínima detectable de `0.0045` m/s), así 
 no es falta de datos. Con estas entradas, la mejor red no le saca a un modelo lineal bien ajustado una diferencia que
 importe en la práctica.
 
-**RQ2: los preentrenados, tal como los adaptamos, no sirven aquí.** Chronos apenas mejora a la persistencia y Moirai es
-peor que ella. Antes de concluir que los modelos fundacionales no sirven para el viento, hay que separar el modelo de
-nuestra forma de usarlo; lo discutimos en su propia sección más abajo.
+**RQ2: los preentrenados no alcanzan a los modelos entrenados.** Con nuestra adaptación, Chronos apenas mejora a la
+persistencia y Moirai es peor que ella. Sin entrenar los dos mejoran, pero siguen por detrás de los modelos desde cero
+y de Ridge. Lo discutimos en su propia sección más abajo.
 
 **RQ3: la limitación del paper guía es de toda la familia.** DLinear subestima los vientos fuertes, pero también lo hacen
 el Transformer, la TCN, la KAN, Ridge y los demás, con magnitudes casi iguales. Esto es lo que se espera de cualquier
@@ -88,10 +88,27 @@ presupuesto de ajuste y la misma salida, pero tiene tres consecuencias que expli
   recibe una representación sin la escala original y tiene que recuperarla.
 
 Por eso la respuesta a RQ2 debe leerse como "**los preentrenados congelados con un resumen por promedio** no son
-equivalentes a los modelos desde cero", no como un juicio general sobre los modelos fundacionales. Hay dos
-comparaciones que separarían el modelo de la adaptación: usar su pronóstico *zero-shot* original, o resumir la
-representación con el último estado en lugar del promedio. Las dejamos declaradas como trabajo pendiente y no
-cambiamos la adaptación después de ver la prueba, porque eso habría sido ajustar al conjunto de prueba.
+equivalentes a los modelos desde cero", no como un juicio general sobre los modelos fundacionales.
+
+Para separar el modelo de la adaptación, corrimos además Chronos y Moirai **sin entrenar**, con su propio
+decodificador (enmienda 9, análisis secundario). El resultado responde la pregunta en dos partes:
+
+- **La adaptación sí los empeoró.** Sin entrenar, Moirai baja su RMSE medio por estación en `0.238` m/s frente a su
+  versión con cabezal y Chronos en `0.056` m/s. Los dos pasan a ganarle con claridad a la persistencia, cosa que
+  Moirai con cabezal no lograba. El promedio sobre las horas y la pérdida de la escala les quitaban justo la
+  información del nivel reciente.
+- **Aun así, no alcanzan a los modelos entrenados.** Moirai sin entrenar queda `0.038` m/s por encima del Transformer
+  y `0.031` m/s por encima de Ridge, y el TOST tampoco declara equivalencia. La conclusión de H2 se sostiene con la
+  adaptación declarada y también con el uso original de los modelos.
+
+Hay un punto a su favor que no esperábamos. El intervalo del 80 % de Moirai, que sale de sus propios cuantiles, cubre
+el `81.3` % de los casos sin ninguna calibración. En las mismas ventanas con viento fuerte, Moirai subestima menos
+(`−0.86` m/s) que los modelos entrenados con error cuadrático (`−1.23` m/s el Transformer, la TCN y Ridge). Un modelo que pronostica una distribución y no solo la media
+sufre menos el sesgo de RQ3. Es una pista para el E3. Chronos, en cambio, da intervalos demasiado estrechos (cobertura
+de `54.2` %).
+
+No cambiamos la adaptación declarada después de ver la prueba, porque eso habría sido ajustar al conjunto de prueba.
+La otra comparación posible, resumir la representación con el último estado en lugar del promedio, queda pendiente.
 
 ## Costo frente a beneficio
 
@@ -110,8 +127,12 @@ modelo lineal no puede usar bien (relaciones espaciales no lineales, regímenes 
   el mejor de las 1 000. Como casi todos los finalistas son equivalentes, el efecto sobre las conclusiones es pequeño.
 - **La muestra de 200 arquitecturas** en cinco modelos (enmiendas 2 y 3). En MLP y CNN, que tienen las 1 000, el mejor
   de la muestra quedó a `0.001`–`0.004` m/s del mejor de todas, muy por debajo de δ.
-- **Enmiendas.** Hubo siete; las seis primeras se hicieron antes de abrir la prueba y la séptima (la ablación) se
-  declara como análisis secundario hecho después.
+- **Elegir con un solo origen.** La fase 2 eligió la arquitectura solo con el cuarto trimestre de 2024. Al repetirla
+  en los otros tres trimestres, la elegida quedó a δ o menos de la mejor en 8 de 9 modelos. La excepción son los
+  cabezales de Moirai, que no cambian ninguna conclusión.
+- **Enmiendas.** Hubo nueve. Las seis primeras se hicieron antes de abrir la prueba; la séptima (la ablación), la
+  octava (la validación de la selección) y la novena (los preentrenados sin entrenar) se declaran como análisis
+  secundarios hechos después.
 - **Fuga de información.** La partición con embargo, el reentrenamiento en cada origen y el escalado por origen se
   verificaron con 9 pruebas automáticas.
 
