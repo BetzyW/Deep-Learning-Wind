@@ -1,0 +1,45 @@
+DLinear      semilla 3000 | RMSE val 0.7357 | épocas 16 | 7 s | 338 parámetros
+TCN          semilla 3000 | RMSE val 0.7306 | épocas 9 | 163 s | 145,921 parámetros
+Transformer  semilla 3000 | RMSE val 0.7277 | épocas 8 | 1015 s | 100,801 parámetros
+DLinear      semilla 3001 | RMSE val 0.7354 | épocas 11 | 5 s | 338 parámetros
+TCN          semilla 3001 | RMSE val 0.7317 | épocas 9 | 158 s | 145,921 parámetros
+Transformer  semilla 3001 | RMSE val 0.7323 | épocas 9 | 576 s | 100,801 parámetros
+DLinear      semilla 3002 | RMSE val 0.7370 | épocas 12 | 5 s | 338 parámetros
+TCN          semilla 3002 | RMSE val 0.7335 | épocas 12 | 208 s | 145,921 parámetros
+Transformer  semilla 3002 | RMSE val 0.7319 | épocas 7 | 447 s | 100,801 parámetros
+DLinear      semilla 3003 | RMSE val 0.7362 | épocas 11 | 5 s | 338 parámetros
+TCN          semilla 3003 | RMSE val 0.7335 | épocas 11 | 190 s | 145,921 parámetros
+Transformer  semilla 3003 | RMSE val 0.7348 | épocas 8 | 510 s | 100,801 parámetros
+DLinear      semilla 3004 | RMSE val 0.7362 | épocas 23 | 9 s | 338 parámetros
+TCN          semilla 3004 | RMSE val 0.7338 | épocas 7 | 121 s | 145,921 parámetros
+Transformer  semilla 3004 | RMSE val 0.7313 | épocas 7 | 447 s | 100,801 parámetros
+{
+ "rmse_medio": {
+  "DLinear": 0.7361007690429687,
+  "TCN": 0.7326151251792907,
+  "Transformer": 0.7316360950469971
+ },
+ "rmse_sd": {
+  "DLinear": 0.0006368371036330074,
+  "TCN": 0.001426224631602427,
+  "Transformer": 0.0025556217381395912
+ },
+ "pares": {
+  "DLinear-TCN": {
+   "media": 0.0034856438636779786,
+   "sigma_d": 0.0010598966218298598,
+   "R_necesario": 1
+  },
+  "DLinear-Transformer": {
+   "media": 0.00446467399597168,
+   "sigma_d": 0.0024751084289488957,
+   "R_necesario": 1
+  },
+  "TCN-Transformer": {
+   "media": 0.0009790301322937013,
+   "sigma_d": 0.0018739511722901522,
+   "R_necesario": 1
+  }
+ },
+ "R_final": 6
+}

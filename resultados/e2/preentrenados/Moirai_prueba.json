@@ -1,0 +1,42 @@
+[
+ {
+  "modelo": "Moirai",
+  "origen": "2025-01-01",
+  "ventanas": 29192,
+  "rmse": 0.839485664473856,
+  "cobertura_80": 0.8136133187174568,
+  "segundos": 13.8,
+  "seg_por_1000": 0.47,
+  "gpu": "NVIDIA L4"
+ },
+ {
+  "modelo": "Moirai",
+  "origen": "2025-04-01",
+  "ventanas": 42269,
+  "rmse": 0.7778219676316253,
+  "cobertura_80": 0.8040407863919184,
+  "segundos": 12.6,
+  "seg_por_1000": 0.3,
+  "gpu": "NVIDIA L4"
+ },
+ {
+  "modelo": "Moirai",
+  "origen": "2025-07-01",
+  "ventanas": 58827,
+  "rmse": 0.7560391499899872,
+  "cobertura_80": 0.8159008618491509,
+  "segundos": 17.4,
+  "seg_por_1000": 0.3,
+  "gpu": "NVIDIA L4"
+ },
+ {
+  "modelo": "Moirai",
+  "origen": "2025-10-01",
+  "ventanas": 84998,
+  "rmse": 0.6512436901982502,
+  "cobertura_80": 0.815195651662392,
+  "segundos": 25.1,
+  "seg_por_1000": 0.3,
+  "gpu": "NVIDIA L4"
+ }
+]

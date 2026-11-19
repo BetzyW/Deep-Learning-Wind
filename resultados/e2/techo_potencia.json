@@ -1,0 +1,59 @@
+{
+ "techo": {
+  "mejor": "Transformer",
+  "rmse_mejor": 0.6917155385017395,
+  "rmse_persistencia": 0.8507266044616699,
+  "conjunto": {
+   "modelos": [
+    "MLP",
+    "CNN",
+    "LSTM",
+    "GRU",
+    "TCN",
+    "Transformer",
+    "KAN",
+    "Informer",
+    "DLinear",
+    "PatchTST",
+    "STGCN",
+    "Ridge",
+    "Gradient_boosting"
+   ],
+   "rmse": 0.6899809837341309,
+   "gamma": 0.010790681324679332
+  },
+  "oraculo_por_estacion": {
+   "rmse": 0.6879008297163798,
+   "gamma": 0.02342816296330913
+  },
+  "predictibilidad": {
+   "n_estaciones": 47,
+   "spearman_omega_vs_rmse_relativo": 0.4626503237742831,
+   "p": 0.0010591554785106564
+  }
+ },
+ "potencia": {
+  "contraste": "Transformer - Ridge",
+  "n_estaciones": 62,
+  "de_diferencias": 0.009585673904190246,
+  "diferencia_media": -0.007277976935483881,
+  "m_holm": 10,
+  "potencia": 0.8,
+  "diferencia_minima_detectable": 0.004545418921652816,
+  "delta": 0.02,
+  "de_entre_semillas_media": 0.0042735415995453045,
+  "error_estandar_media_6_semillas": 0.0017446660522405734
+ },
+ "componentes_varianza": {
+  "modelo": 0.5469190020770429,
+  "origen": 0.40474147045135134,
+  "modelo:origen": 0.04595514758371598,
+  "Residual": 0.0023843798878897815
+ },
+ "componentes_varianza_sin_preentrenados": {
+  "modelo": 0.00274212827933345,
+  "origen": 0.9947378118045516,
+  "modelo:origen": 0.0006264984034844338,
+  "Residual": 0.0018935615126305237
+ }
+}

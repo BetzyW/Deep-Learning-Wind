@@ -1,0 +1,42 @@
+[
+ {
+  "modelo": "Chronos",
+  "origen": "2025-01-01",
+  "ventanas": 29192,
+  "rmse": 0.8787271976470947,
+  "cobertura_80": 0.5333310496026309,
+  "segundos": 88.8,
+  "seg_por_1000": 3.04,
+  "gpu": "NVIDIA A100-SXM4-40GB"
+ },
+ {
+  "modelo": "Chronos",
+  "origen": "2025-04-01",
+  "ventanas": 42269,
+  "rmse": 0.7968569397926331,
+  "cobertura_80": 0.5383377889233244,
+  "segundos": 117.6,
+  "seg_por_1000": 2.78,
+  "gpu": "NVIDIA A100-SXM4-40GB"
+ },
+ {
+  "modelo": "Chronos",
+  "origen": "2025-07-01",
+  "ventanas": 58827,
+  "rmse": 0.7965388894081116,
+  "cobertura_80": 0.5334285277168647,
+  "segundos": 163.5,
+  "seg_por_1000": 2.78,
+  "gpu": "NVIDIA A100-SXM4-40GB"
+ },
+ {
+  "modelo": "Chronos",
+  "origen": "2025-10-01",
+  "ventanas": 84998,
+  "rmse": 0.6773524284362793,
+  "cobertura_80": 0.5531188969152215,
+  "segundos": 236.0,
+  "seg_por_1000": 2.78,
+  "gpu": "NVIDIA A100-SXM4-40GB"
+ }
+]

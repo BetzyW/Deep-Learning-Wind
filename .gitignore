@@ -10,3 +10,7 @@ literatura/scopus.csv
 literatura/wos.txt
 literatura/tamiz2.json
 literatura/ieee.csv
+literatura/e2/scopus_*.csv
+literatura/e2/wos_*.txt
+literatura/e2/s2_*.json
+literatura/e2/arxiv_*.json

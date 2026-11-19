@@ -18,5 +18,15 @@ project:
     - file: 04_modelos.ipynb
     - file: 05_benchmark.ipynb
     - file: 06_discusion.md
+    - title: Entregable 2
+      children:
+        - file: e2_01_introduccion.md
+        - file: e2_02_datos.md
+        - file: e2_04_revision.md
+        - file: e2_03_modelos.md
+        - file: e2_05_metodos.md
+        - file: e2_06_resultados.md
+        - file: e2_07_discusion.md
+        - file: e2_08_conclusiones.md
 site:
   template: book-theme

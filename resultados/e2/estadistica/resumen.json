@@ -1,0 +1,101 @@
+{
+ "friedman": {
+  "estadistico": 524.62890625,
+  "p": 0.0,
+  "rangos_medios": {
+   "TCN": 3.645,
+   "Transformer": 3.677,
+   "KAN": 5.371,
+   "Informer": 5.5,
+   "STGCN": 5.661,
+   "MLP": 5.855,
+   "PatchTST": 6.71,
+   "LSTM": 7.016,
+   "Ridge": 8.129,
+   "GRU": 8.5,
+   "DLinear": 8.742,
+   "CNN": 9.919,
+   "Chronos": 12.677,
+   "Persistencia": 14.274,
+   "Moirai": 14.323
+  },
+  "diferencia_critica": 2.723901712679759
+ },
+ "mcs": {
+  "incluidos": [
+   "GRU",
+   "Informer",
+   "KAN",
+   "LSTM",
+   "MLP",
+   "PatchTST",
+   "STGCN",
+   "TCN",
+   "Transformer"
+  ],
+  "excluidos": [
+   "CNN",
+   "Chronos",
+   "DLinear",
+   "Moirai",
+   "Persistencia",
+   "Ridge"
+  ],
+  "pvalores": {
+   "Persistencia": 0.0,
+   "Moirai": 0.0,
+   "Chronos": 0.0,
+   "CNN": 0.003,
+   "DLinear": 0.0245,
+   "Ridge": 0.054,
+   "PatchTST": 0.1635,
+   "KAN": 0.4465,
+   "STGCN": 0.4465,
+   "MLP": 0.5205,
+   "LSTM": 0.5205,
+   "GRU": 0.5205,
+   "Informer": 0.5205,
+   "TCN": 0.5205,
+   "Transformer": 1.0
+  }
+ },
+ "rq2_tost": {
+  "preentrenado": "Chronos",
+  "desde_cero": "Transformer",
+  "n_estaciones": 62,
+  "diferencia_media": 0.1267080008983612,
+  "p": 0.9999838991340175,
+  "equivalentes": false,
+  "ic90": [
+   0.08701864433354378,
+   0.16639735746317863
+  ],
+  "delta": 0.02,
+  "wilcoxon": {
+   "estadistico": 7.0,
+   "p": 1.0664570788965211e-11,
+   "diferencia_mediana": 0.06097006797790527,
+   "diferencia_media": 0.1267080008983612,
+   "biserial": 0.992831541218638,
+   "n_estaciones": 62
+  }
+ },
+ "rq3": {
+  "dlinear_subestima": true,
+  "otros_que_subestiman": [
+   "CNN",
+   "Chronos",
+   "GRU",
+   "Informer",
+   "KAN",
+   "LSTM",
+   "MLP",
+   "Moirai",
+   "PatchTST",
+   "STGCN",
+   "TCN",
+   "Transformer"
+  ],
+  "h3_se_cumple": true
+ }
+}

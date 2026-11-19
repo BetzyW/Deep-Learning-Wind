@@ -1,0 +1,29 @@
+rango,modelo,familia,anio,venue,doi,citas,citas_por_anio,estudios_viento,protagonista_viento,implementacion,repositorio,c1_citas,c2_recencia,c3_desempeno_viento,c4_implementacion,c5_representatividad,puntaje,top10
+1,Transformer,Atención,2017,Neural Information Processing Systems,10.48550/arXiv.1706.03762,201644,20164.4,75,36,1.0,PyTorch nn.Transformer,1.0,0.3,1.0,1.0,1.0,0.86,True
+2,KAN,MLP profundo,2024,International Conference on Learning Representations,10.48550/arXiv.2404.19756,2354,784.667,8,3,1.0,KindXiaoming/pykan; neuralforecast,0.46,1.0,0.384,1.0,1.0,0.769,True
+3,TCN,Convolucional,2018,arXiv.org,10.48550/arXiv.1803.01271,7740,860.0,27,7,1.0,locuslab/TCN; neuralforecast,0.475,0.4,0.576,1.0,1.0,0.69,True
+4,STGCN,Grafos,2017,International Joint Conference on Artificial Intelligence,10.24963/ijcai.2018/505,5720,572.0,34,13,1.0,VeritasYin/STGCN_IJCAI-18; torch-geometric-temporal,0.407,0.3,0.731,1.0,1.0,0.688,True
+5,Chronos,Preentrenado,2024,Trans. Mach. Learn. Res.,10.48550/arXiv.2403.07815,1267,422.333,0,0,1.0,amazon-science/chronos-forecasting,0.357,1.0,0.0,1.0,1.0,0.671,True
+6,Mamba,Espacio de estados,2023,arXiv.org,arXiv:2312.00752,10103,2525.75,3,1,0.5,state-spaces/mamba (núcleos CUDA para Linux),0.654,0.9,0.192,0.5,1.0,0.649,True
+7,GRU,Recurrente,2014,Conference on Empirical Methods in Natural Language Processing,10.3115/v1/D14-1179,28375,2182.692,31,8,1.0,PyTorch nn.GRU,0.63,0.0,0.608,1.0,1.0,0.648,True
+8,Informer,Atención,2020,AAAI Conference on Artificial Intelligence,10.48550/arXiv.2012.07436,9573,1367.571,19,7,1.0,zhouhaoyi/Informer2020; neuralforecast,0.552,0.6,0.576,1.0,0.5,0.646,True
+9,DLinear,MLP profundo,2022,AAAI Conference on Artificial Intelligence,10.48550/arXiv.2205.13504,5141,1028.2,1,0,1.0,cure-lab/LTSF-Linear; neuralforecast,0.505,0.8,0.0,1.0,0.5,0.561,True
+10,Moirai,Preentrenado,2024,International Conference on Machine Learning,10.48550/arXiv.2402.02592,892,297.333,0,0,1.0,SalesforceAIResearch/uni2ts,0.299,1.0,0.0,1.0,0.5,0.56,True
+11,PatchTST,Atención,2022,International Conference on Learning Representations,10.48550/arXiv.2211.14730,5298,1059.6,3,1,1.0,yuqinie98/PatchTST; neuralforecast,0.51,0.8,0.192,1.0,0.25,0.55,False
+12,TimesNet,Convolucional,2022,International Conference on Learning Representations,10.48550/arXiv.2210.02186,2964,592.8,0,0,1.0,thuml/Time-Series-Library; neuralforecast,0.413,0.8,0.0,1.0,0.5,0.543,False
+13,TimeGrad,Generativo probabilístico,2021,International Conference on Machine Learning,10.48550/arXiv.2101.12072,663,110.5,5,2,0.5,zalandoresearch/pytorch-ts,0.135,0.7,0.304,0.5,1.0,0.528,False
+14,Graph WaveNet,Grafos,2019,International Joint Conference on Artificial Intelligence,10.48550/arXiv.1906.00121,3778,472.25,34,13,0.5,nnzhan/Graph-WaveNet,0.376,0.5,0.731,0.5,0.5,0.521,False
+15,Autoformer,Atención,2021,Neural Information Processing Systems,10.48550/arXiv.2106.13008,6161,1026.833,6,1,1.0,thuml/Autoformer; neuralforecast,0.505,0.7,0.192,1.0,0.125,0.504,False
+16,TimesFM,Preentrenado,2023,International Conference on Machine Learning,10.48550/arXiv.2310.10688,1087,271.75,0,0,1.0,google-research/timesfm,0.284,0.9,0.0,1.0,0.25,0.487,False
+17,iTransformer,Atención,2023,International Conference on Learning Representations,10.48550/arXiv.2310.06625,2761,690.25,0,0,1.0,thuml/iTransformer; neuralforecast,0.439,0.9,0.0,1.0,0.062,0.48,False
+18,TiDE,MLP profundo,2023,Trans. Mach. Learn. Res.,10.48550/arXiv.2304.08424,759,189.75,0,0,1.0,google-research; neuralforecast,0.224,0.9,0.0,1.0,0.25,0.475,False
+19,DeepAR,Recurrente,2017,International Journal of Forecasting,10.48550/arXiv.1704.04110,3425,342.5,3,1,1.0,GluonTS; pytorch-forecasting,0.322,0.3,0.192,1.0,0.5,0.463,False
+20,FEDformer,Atención,2022,International Conference on Machine Learning,10.48550/arXiv.2201.12740,3970,794.0,2,0,1.0,MAZiqing/FEDformer; neuralforecast,0.462,0.8,0.0,1.0,0.031,0.459,False
+21,TSMixer,MLP profundo,2023,Trans. Mach. Learn. Res.,10.48550/arXiv.2303.06053,554,138.5,1,0,1.0,google-research; neuralforecast,0.172,0.9,0.0,1.0,0.125,0.439,False
+22,TFT,Atención,2019,International Journal of Forecasting,10.48550/arXiv.1912.09363,3734,466.75,6,2,1.0,google-research; pytorch-forecasting; neuralforecast,0.374,0.5,0.304,1.0,0.016,0.439,False
+23,Time-LLM,Preentrenado,2023,International Conference on Learning Representations,10.48550/arXiv.2310.01728,1325,331.25,4,1,0.5,KimMeen/Time-LLM,0.317,0.9,0.192,0.5,0.125,0.407,False
+24,xLSTM,Recurrente,2024,Neural Information Processing Systems,arXiv:2405.04517,737,245.667,2,0,0.5,NX-AI/xlstm,0.267,1.0,0.0,0.5,0.25,0.403,False
+25,N-BEATS,MLP profundo,2019,International Conference on Learning Representations,10.48550/arXiv.1905.10437,1901,237.625,1,1,1.0,ServiceNow/N-BEATS; neuralforecast,0.262,0.5,0.192,1.0,0.062,0.403,False
+26,N-HiTS,MLP profundo,2022,AAAI Conference on Artificial Intelligence,10.48550/arXiv.2201.12886,559,111.8,0,0,1.0,neuralforecast (oficial),0.137,0.8,0.0,1.0,0.031,0.394,False
+27,WaveNet,Convolucional,2016,Speech Synthesis Workshop,10.48550/arXiv.1609.03499,8691,790.091,2,1,0.5,solo implementaciones de terceros,0.461,0.2,0.192,0.5,0.25,0.321,False
+28,Lag-Llama,Preentrenado,2023,,arXiv:2310.08278,194,48.5,0,0,0.5,time-series-foundation-models/lag-llama,0.0,0.9,0.0,0.5,0.062,0.292,False

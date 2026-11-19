@@ -1,0 +1,47 @@
+{
+ "particion_descrita": {
+  "n": 23,
+  "pct": 11.2
+ },
+ "semillas_o_repeticiones": {
+  "n": 2,
+  "pct": 1.0
+ },
+ "pruebas_estadisticas": {
+  "n": 4,
+  "pct": 2.0
+ },
+ "codigo_publico": {
+  "n": 1,
+  "pct": 0.5
+ },
+ "datos_publicos": {
+  "n": 10,
+  "pct": 4.9
+ },
+ "descomposicion": {
+  "n": 84,
+  "pct": 41.0
+ },
+ "compara_persistencia": {
+  "n": 5,
+  "pct": 2.4
+ },
+ "multiestacion": {
+  "n": 50,
+  "pct": 24.4
+ },
+ "horizonte_24h_o_mas": {
+  "n": 14,
+  "pct": 6.8
+ },
+ "incertidumbre": {
+  "n": 41,
+  "pct": 20.0
+ },
+ "n_estudios": 205,
+ "persistencia_y_pruebas": 0,
+ "multiestacion_y_24h": 3,
+ "preentrenado_y_persistencia_y_pruebas": 0,
+ "semillas_y_pruebas": 0
+}

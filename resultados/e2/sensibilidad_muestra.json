@@ -1,0 +1,36 @@
+{
+ "MLP": {
+  "arquitecturas_validas": 1000,
+  "en_muestra": 200,
+  "finalistas_compartidos": 1,
+  "mejor_completo": {
+   "id": "w16-128-256_d000",
+   "rmse": 0.7486134171485901
+  },
+  "mejor_muestra": {
+   "id": "w16-64-256_d001",
+   "rmse": 0.749664843082428,
+   "rango_en_las_1000": 3
+  },
+  "diferencia_rmse": 0.0010514259338378906,
+  "peor_finalista_muestra_rango": 74,
+  "de_rmse_entre_arquitecturas": 0.027270144028396066
+ },
+ "CNN": {
+  "arquitecturas_validas": 1000,
+  "en_muestra": 200,
+  "finalistas_compartidos": 0,
+  "mejor_completo": {
+   "id": "w256-256-256_d010",
+   "rmse": 0.7461371421813965
+  },
+  "mejor_muestra": {
+   "id": "w256-256-128_d100",
+   "rmse": 0.7504673600196838,
+   "rango_en_las_1000": 19
+  },
+  "diferencia_rmse": 0.0043302178382873535,
+  "peor_finalista_muestra_rango": 67,
+  "de_rmse_entre_arquitecturas": 0.05971612351364662
+ }
+}

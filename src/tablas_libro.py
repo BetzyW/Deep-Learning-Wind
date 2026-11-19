@@ -1,0 +1,201 @@
+"""Tablas en Markdown para los capítulos de resultados del E2, armadas directamente desde los archivos de resultados
+(así los números del libro no se copian a mano). Imprime cada tabla; `--escribir` las guarda en
+resultados/e2/tablas_libro.md.
+Uso: python src/tablas_libro.py [--escribir]      (ml_env)
+"""
+import json, os, sys
+import numpy as np
+import pandas as pd
+
+sys.path.insert(0, os.path.dirname(__file__))
+E = "resultados/e2"
+f = lambda x, n=3: f"`{x:.{n}f}`"
+fp = lambda p: "`< 0.001`" if p < 0.001 else f"`{p:.3f}`"
+
+
+def principal():
+    from origen_movil import leer_config, preparar_panel
+    from estadistica_e2 import cargar
+    p = preparar_panel(leer_config())
+    ic = pd.read_csv(f"{E}/f2a/rmse_ic_bootstrap.csv").set_index("modelo")
+    r = json.load(open(f"{E}/estadistica/resumen.json"))
+    rang = r["friedman"]["rangos_medios"]
+    f1 = pd.read_csv(f"{E}/estadistica/familia_F1.csv").set_index("modelo")
+    f2 = pd.read_csv(f"{E}/estadistica/familia_F2.csv").set_index("modelo")
+    pers = cargar(p, "Persistencia").dropna(subset=["y"])
+    mae_p = float((pers.pred - pers.y).abs().mean())
+    filas = []
+    for m in ic.index:
+        d = cargar(p, m).dropna(subset=["y"])
+        mae = float((d.pred - d.y).abs().mean())
+        filas.append((ic.loc[m, "rmse"], f"| {m.replace('_', ' ')} | {f(ic.loc[m, 'rmse'])} | "
+                      f"[{ic.loc[m, 'ic_inf']:.3f}, {ic.loc[m, 'ic_sup']:.3f}] | {f(mae)} | {f(mae / mae_p)} | "
+                      + (f"{rang[m]:.2f}" if m in rang else "—") + " | "
+                      + ("sí" if m in r["mcs"]["incluidos"] else ("no" if m in r["mcs"]["excluidos"] else "—"))
+                      + " |"))
+    t = ["| Modelo | RMSE (m/s) | IC 95 % (bootstrap de estaciones) | MAE (m/s) | MASE | Rango medio (Friedman) | En el MCS |",
+         "|---|---|---|---|---|---|---|"] + [x for _, x in sorted(filas)]
+    fam = ["| Modelo | Δ RMSE medio vs Ridge | p Wilcoxon (Holm) | DM (p) | p CW | Δ RMSE medio vs persistencia "
+           "| p Wilcoxon (Holm) | DM (p) |", "|---|---|---|---|---|---|---|---|"]
+    for m in f1.sort_values("wilcoxon_diferencia_media").index:
+        a, b = f1.loc[m], f2.loc[m]
+        fam.append(f"| {m} | {f(a.wilcoxon_diferencia_media, 4)} | {fp(a.wilcoxon_p_holm)} | "
+                   f"`{a.dm_estadistico:.2f}` ({fp(a.dm_p)}) | {fp(a.cw_p)} | {f(b.wilcoxon_diferencia_media, 3)} | "
+                   f"{fp(b.wilcoxon_p_holm)} | `{b.dm_estadistico:.2f}` ({fp(b.dm_p)}) |")
+    return "\n".join(t), "\n".join(fam)
+
+
+def f3():
+    t = pd.read_csv(f"{E}/estadistica/familia_F3.csv")
+    s = ["| Modelo | Sesgo agregado (m/s) | IC 95 % | Estaciones que subestiman | p (Holm) |", "|---|---|---|---|---|"]
+    for r in t.itertuples():
+        s.append(f"| {r.modelo} | {f(r.sesgo_agregado, 2)} | [{r.ic95_inf:.2f}, {r.ic95_sup:.2f}] | "
+                 f"`{r.estaciones_subestiman:.0%}` | " + ("—" if pd.isna(r.wilcoxon_p_holm) else fp(r.wilcoxon_p_holm))
+                 + " |")
+    return "\n".join(s)
+
+
+def busqueda():
+    r = json.load(open(f"{E}/busqueda_analisis/resumen.json"))
+    c = pd.read_csv(f"{E}/busqueda_analisis/costo.csv").set_index("modelo")
+    s = ["| Modelo | Arquitecturas | R² efectos | Factor principal (prop. SC) | DE entre arquitecturas / entre semillas | "
+         "ρ fase 1–fase 2 | Ganador | Equivalentes (TOST) | Horas GPU |", "|---|---|---|---|---|---|---|---|---|"]
+    for m, v in r.items():
+        if m == "costo_total_horas":
+            continue
+        fac = max(v["anova"].items(), key=lambda x: x[1]["prop_ss"])
+        rho = v["fase2"]["spearman_fase1_fase2"]
+        s.append(f"| {m} | `{v['n_arquitecturas']}` | {f(v['r2'], 2)} | {fac[0].replace('C(', '').replace(')', '')} "
+                 f"(`{fac[1]['prop_ss']:.2f}`) | {f(v['razon_arquitecturas_semillas'], 1)} | "
+                 + (f"{f(rho['rho'], 2)}" if rho else "—") + f" | {v['fase2']['ganador']} | "
+                 f"`{len(v['fase2']['equivalentes_tost'])}` de `{v['fase2']['n_finalistas']}` | "
+                 f"{f(c.loc[m, 'horas_total'], 1)} |")
+    return "\n".join(s)
+
+
+def errores():
+    t = pd.read_csv(f"{E}/errores/taxonomia.csv")
+    piv = t.pivot_table(index="categoria", columns="modelo", values="frecuencia")
+    base = t.groupby("categoria").frecuencia_en_todas.first()
+    s = ["| Categoría | TCN | Transformer | KAN | En todas las ventanas |", "|---|---|---|---|---|"]
+    for c in piv.sort_values("TCN", ascending=False).index:
+        s.append(f"| {c.replace('_', ' ')} | " + " | ".join(f"`{piv.loc[c, m]:.0%}`" for m in ["TCN", "Transformer", "KAN"])
+                 + f" | `{base[c]:.1%}` |")
+    return "\n".join(s)
+
+
+def ablacion():
+    t = pd.read_csv(f"{E}/ablacion/ablacion_inferencia.csv")
+    nombres = dict(sin_dilatacion="Sin dilatación (d = 1)", sin_residual="Sin conexiones residuales",
+                   sin_covariables="Sin covariables (solo velocidad)")
+    s = ["| Variante de TCN | RMSE (m/s) | Aumento de RMSE | Δ medio por estación | Biserial | p Wilcoxon (Holm) "
+         "| DM (p Holm) |", "|---|---|---|---|---|---|---|",
+         f"| TCN completa | {f(t.rmse_completo.iloc[0])} | — | — | — | — | — |"]
+    for r in t.sort_values("aumento_rmse", ascending=False).itertuples():
+        s.append(f"| {nombres[r.ablacion]} | {f(r.rmse_ablacion)} | {f(r.aumento_rmse, 4)} | "
+                 f"{f(r.wilcoxon_diferencia_media, 4)} | {f(r.wilcoxon_biserial, 2)} | {fp(r.wilcoxon_p_holm)} | "
+                 f"`{r.dm_estadistico:.2f}` ({fp(r.dm_p_holm)}) |")
+    return "\n".join(s)
+
+
+def reproduccion():
+    t = pd.read_csv(f"{E}/reproduccion/reentrenadas.csv")
+    s = ["| Modelo | Origen | Semilla | RMSE original (Colab) | RMSE reentrenado (PC) | Diferencia | Épocas (orig. / reentr.) |",
+         "|---|---|---|---|---|---|---|"]
+    for r in t.itertuples():
+        s.append(f"| {r.modelo} | {r.origen} | {r.semilla} | {f(r.rmse_original, 4)} | {f(r.rmse_reentrenado, 4)} | "
+                 f"`{r.dif_rmse:+.5f}` | {r.epocas_original} / {r.epocas_reentrenado} |")
+    return "\n".join(s)
+
+
+def intervalos():
+    a = json.load(open(f"{E}/f2a/analisis.json"))["intervalos"]
+    c = pd.read_csv(f"{E}/f2a/cobertura_condicional.csv")
+    cc = c.groupby(["modelo", "nivel", "grupo"]).apply(lambda d: np.average(d.cobertura, weights=d.n)).unstack()
+    s = ["| Modelo | Nivel nominal | Cobertura | Ancho medio (m/s) | Cobertura: tercil bajo / medio / alto del pronóstico "
+         "| CRPS (m/s) |", "|---|---|---|---|---|---|"]
+    for m, v in a.items():
+        for n in ["0.5", "0.8", "0.9"]:
+            t = cc.loc[(m, float(n))]
+            s.append(f"| {m} | `{float(n):.0%}` | `{v['cobertura'][n]:.1%}` | {f(v['ancho_medio'][n], 2)} | "
+                     f"`{t.tercil_bajo:.1%}` / `{t.tercil_medio:.1%}` / `{t.tercil_alto:.1%}` | "
+                     + (f(v["crps"]) if n == "0.5" else "") + " |")
+    return "\n".join(s)
+
+
+def robustez():
+    r = json.load(open(f"{E}/f2a/gpu_resultados.json"))
+    rob = pd.DataFrame([dict(modelo=m, **d) for m, v in r["robustez"].items() for d in v])
+    t = rob.groupby(["tipo", "nivel", "modelo"]).rmse.mean().unstack()
+    base = t.loc[("ninguna", 0.0)]
+    nombre = dict(ruido="Ruido gaussiano (σ)", faltantes="Horas faltantes (fracción)",
+                  quiebre="Quiebre de nivel en las últimas 72 h (σ)")
+    ms = list(t.columns)
+    s = ["| Perturbación | Nivel | " + " | ".join(ms) + " |", "|---|---|" + "---|" * len(ms),
+         "| Ninguna | — | " + " | ".join(f(base[m]) for m in ms) + " |"]
+    for tipo in ["ruido", "faltantes", "quiebre"]:
+        for nivel in sorted(t.loc[tipo].index):
+            s.append(f"| {nombre[tipo]} | `{nivel}` | " + " | ".join(
+                f"{f(t.loc[(tipo, nivel), m])} (`{t.loc[(tipo, nivel), m] / base[m] - 1:+.0%}`)" for m in ms) + " |")
+    # índice de degradación: área bajo la curva del aumento relativo de RMSE, promediada entre perturbaciones
+    auc = {m: np.mean([np.trapezoid(np.r_[0, t.loc[tp][m].values / base[m] - 1], np.r_[0, sorted(t.loc[tp].index)])
+                       / max(t.loc[tp].index) for tp in nombre]) for m in ms}
+    s.append("| **Índice de degradación (AUC media)** | — | " + " | ".join(f"**{f(auc[m])}**" for m in ms) + " |")
+    return "\n".join(s)
+
+
+def origenes():
+    """Validación de la selección con origen móvil (enmienda 8): RMSE de validación por origen, media de 2 semillas."""
+    import contextlib, io
+    from validacion_origenes import resumen
+    with contextlib.redirect_stdout(io.StringIO()):
+        t = resumen(["MLP", "KAN", "CNN", "GRU", "LSTM", "TCN", "Transformer", "Chronos", "Moirai"])
+    o = [c for c in t.columns if c.startswith("20")]
+    s = ["| Modelo | Arquitectura | " + " | ".join(o) + " | Media de los 4 | Elegida − mejor de las 3 |",
+         "|---|---|" + "---|" * (len(o) + 2)]
+    for m, g in t.groupby("modelo", sort=False):
+        g = g.set_index("papel").loc[[x for x in ["elegida", "mejor", "peor"] if x in set(g.papel)]]
+        gap = g.loc["elegida", "media_4_origenes"] - g.media_4_origenes.min()
+        for i, (papel, r) in enumerate(g.iterrows()):
+            s.append(f"| {m if i == 0 else ''} | {papel} | " + " | ".join(f"`{r[c]:.4f}`" for c in o)
+                     + f" | `{r.media_4_origenes:.4f}` | " + (f"`{gap:.4f}`" + (" **> δ**" if gap > 0.02 else "")
+                                                              if i == 0 else "") + " |")
+    return "\n".join(s)
+
+
+def cero_disparos():
+    r = json.load(open(f"{E}/preentrenados/cero_disparos.json"))
+    o = sorted(r["Moirai"]["rmse_por_origen"])
+    fila = lambda nombre, d: f"| {nombre} | " + " | ".join(f"`{d[k]:.3f}`" for k in o) + " |"
+    s = ["| Modelo | " + " | ".join(o) + " |", "|---|" + "---|" * len(o)]
+    for m in ["Transformer", "TCN", "Ridge"]:
+        s.append(fila(m, r[m]["rmse_por_origen"]))
+    for m in ["Moirai", "Chronos"]:
+        s.append(fila(f"**{m} sin entrenar**", r[m]["rmse_por_origen"]))
+    for m in ["Chronos", "Moirai"]:
+        s.append(fila(f"{m} con cabezal", r[m]["rmse_cabezal_por_origen"]))
+    s.append(fila("Persistencia", r["Persistencia"]["rmse_por_origen"]))
+    c = ["| Sin entrenar | Rival | Δ RMSE medio por estación | p Wilcoxon | p TOST (±δ) |", "|---|---|---|---|---|"]
+    for m in ["Moirai", "Chronos"]:
+        for k, v in r[m]["contra"].items():
+            c.append(f"| {m} | {k if k != 'cabezal' else m + ' con cabezal'} | {f(v['diferencia_media'], 3)} | "
+                     f"{fp(v['p'])} | {fp(v['tost']['p'])} |")
+    k = ["| Modelo | Cobertura del 80 % | Con viento ≥ 6 m/s | Sesgo con viento ≥ 6 m/s (m/s) |", "|---|---|---|---|"]
+    for m in ["Moirai", "Chronos"]:
+        k.append(f"| {m} sin entrenar | `{r[m]['cobertura_80']:.1%}` | `{r[m]['cobertura_80_fuerte']:.1%}` | "
+                 f"{f(r[m]['sesgo_fuerte'], 2)} |")
+    for m in ["Transformer", "TCN", "Ridge", "Persistencia"]:
+        k.append(f"| {m} | — | — | {f(r[m]['sesgo_fuerte'], 2)} |")
+    return "\n".join(s), "\n".join(c), "\n".join(k)
+
+
+if __name__ == "__main__":
+    t1, t2 = principal()
+    c1, c2, c3 = cero_disparos()
+    tablas = dict(principal=t1, familias=t2, f3=f3(), busqueda=busqueda(), errores=errores(), ablacion=ablacion(), intervalos=intervalos(), robustez=robustez(),
+                  reproduccion=reproduccion(), origenes=origenes(), cero_rmse=c1, cero_pruebas=c2, cero_cobertura=c3)
+    print("\n\n".join(f"## {k}\n\n{v}" for k, v in tablas.items()))
+    if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde tablas/
+        os.makedirs("tablas", exist_ok=True)
+        for k, v in tablas.items():
+            open(f"tablas/e2_{k}.md", "w", encoding="utf-8").write(v + "\n")

@@ -1,0 +1,23 @@
+{
+  "panel": "datos/panel_multivariado_causal.csv",
+  "columnas": ["vel", "dir_sin", "dir_cos", "temp"],
+  "excluir_estaciones": ["1501500054"],
+  "ffill_max_horas": 3,
+
+  "frecuencia": "1h",
+  "L": 168,
+  "horizontes": [24],
+  "estrategia_multipaso": "directa",
+  "covariables_futuras": "ninguna (solo el calendario, que es determinista)",
+
+  "inicio": "2020-01-01",
+  "ventana_entrenamiento": "expansiva",
+  "embargo_horas": 24,
+  "parada_temprana_horas": 2160,
+  "origenes_validacion": ["2024-01-01", "2024-04-01", "2024-07-01", "2024-10-01"],
+  "origenes_prueba": ["2025-01-01", "2025-04-01", "2025-07-01", "2025-10-01"],
+  "fin": "2026-01-01",
+  "reentrenar_en_cada_origen": true,
+
+  "rezagos_vel": [0, 1, 2, 3, 6, 12, 18, 23, 24, 47, 48, 71, 72, 95, 96, 119, 120, 143, 144, 167]
+}
