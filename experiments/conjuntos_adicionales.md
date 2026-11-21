@@ -16,8 +16,8 @@ instrucciones exactas para obtenerlos y sus huellas.
 
 **Regla de selección de las estaciones de Kansas (fijada antes de descargar los datos):** todas las estaciones de
 `isd-history.csv` con país US, estado KS, identificadores USAF y WBAN válidos, inicio de registro antes del
-1-ene-2019 y fin después del 1-ene-2025. Salen 34; se usan todas. El catálogo de NOAA en AWS termina en agosto de
-2025, por eso el periodo es 2019–2024.
+1-ene-2019 y fin después del 1-ene-2025. Salen 34 y se descargan todas; por cómputo se usan 10 (ver el recorte más
+abajo). El catálogo de NOAA en AWS termina en agosto de 2025, por eso los datos llegan hasta 2024.
 
 **Protocolo común en los tres conjuntos** (se detalla en `protocolo.md`): el mismo de los benchmarks, adaptado a la
 longitud de cada conjunto. Ventana de 168 h, horizonte de 24 h, partición cronológica con origen móvil y embargo,
