@@ -121,3 +121,4 @@
 {"fecha": "2026-11-16 23:08:34", "modelo": "GRU", "etapa": "validación con origen móvil", "equipo": "AMD-MSI-1TB-R8700F", "gpu": "NVIDIA GeForce RTX 4060 Ti", "torch": "2.14.1+cu126", "cuda": "12.6", "python": "3.11.16"}
 {"fecha": "2026-11-17 22:00:07", "modelo": "TCN", "etapa": "validación con origen móvil", "equipo": "AMD-MSI-1TB-R8700F", "gpu": "NVIDIA GeForce RTX 4060 Ti", "torch": "2.14.1+cu126", "cuda": "12.6", "python": "3.11.16"}
 {"fecha": "2026-11-18 00:17:16", "modelo": "Transformer", "etapa": "validación con origen móvil", "equipo": "AMD-MSI-1TB-R8700F", "gpu": "NVIDIA GeForce RTX 4060 Ti", "torch": "2.14.1+cu126", "cuda": "12.6", "python": "3.11.16"}
+{"fecha": "2026-11-20 23:14:12", "modelo": "PADRE", "etapa": "diseño (desarrollo)", "equipo": "AMD-MSI-1TB-R8700F", "gpu": "NVIDIA GeForce RTX 4060 Ti", "torch": "2.14.1+cu126", "cuda": "12.6", "python": "3.11.16"}
