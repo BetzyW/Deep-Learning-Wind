@@ -1,0 +1,56 @@
+{
+ "ffill_max_horas": 3,
+ "frecuencia": "1h",
+ "L": 168,
+ "horizontes": [
+  24
+ ],
+ "estrategia_multipaso": "directa",
+ "covariables_futuras": "ninguna",
+ "ventana_entrenamiento": "expansiva",
+ "embargo_horas": 24,
+ "reentrenar_en_cada_origen": true,
+ "excluir_estaciones": [],
+ "contrato": false,
+ "rezagos_vel": [
+  0,
+  1,
+  2,
+  3,
+  6,
+  12,
+  18,
+  23,
+  24,
+  47,
+  48,
+  71,
+  72,
+  95,
+  96,
+  119,
+  120,
+  143,
+  144,
+  167
+ ],
+ "columnas": [
+  "potencia",
+  "vel",
+  "dir_sin",
+  "dir_cos",
+  "temp"
+ ],
+ "inicio": "2000-01-01",
+ "fin": "2000-09-02",
+ "parada_temprana_horas": 336,
+ "origenes_validacion": [
+  "2000-07-03",
+  "2000-07-18"
+ ],
+ "origenes_prueba": [
+  "2000-08-02",
+  "2000-08-17"
+ ],
+ "panel": "datos/e3/sdwpf/panel.csv"
+}

@@ -1,0 +1,55 @@
+{
+ "ffill_max_horas": 3,
+ "frecuencia": "1h",
+ "L": 168,
+ "horizontes": [
+  24
+ ],
+ "estrategia_multipaso": "directa",
+ "covariables_futuras": "ninguna",
+ "ventana_entrenamiento": "expansiva",
+ "embargo_horas": 24,
+ "reentrenar_en_cada_origen": true,
+ "excluir_estaciones": [],
+ "contrato": false,
+ "rezagos_vel": [
+  0,
+  1,
+  2,
+  3,
+  6,
+  12,
+  18,
+  23,
+  24,
+  47,
+  48,
+  71,
+  72,
+  95,
+  96,
+  119,
+  120,
+  143,
+  144,
+  167
+ ],
+ "columnas": [
+  "vel",
+  "dir_sin",
+  "dir_cos",
+  "temp"
+ ],
+ "inicio": "2021-01-01",
+ "fin": "2025-01-01",
+ "parada_temprana_horas": 2160,
+ "origenes_validacion": [
+  "2024-01-01",
+  "2024-04-01"
+ ],
+ "origenes_prueba": [
+  "2024-07-01",
+  "2024-10-01"
+ ],
+ "panel": "datos/e3/noaa_kansas/panel.csv"
+}

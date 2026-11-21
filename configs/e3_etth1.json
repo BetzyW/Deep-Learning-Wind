@@ -1,0 +1,58 @@
+{
+ "ffill_max_horas": 3,
+ "frecuencia": "1h",
+ "L": 168,
+ "horizontes": [
+  24
+ ],
+ "estrategia_multipaso": "directa",
+ "covariables_futuras": "ninguna",
+ "ventana_entrenamiento": "expansiva",
+ "embargo_horas": 24,
+ "reentrenar_en_cada_origen": true,
+ "excluir_estaciones": [],
+ "contrato": false,
+ "rezagos_vel": [
+  0,
+  1,
+  2,
+  3,
+  6,
+  12,
+  18,
+  23,
+  24,
+  47,
+  48,
+  71,
+  72,
+  95,
+  96,
+  119,
+  120,
+  143,
+  144,
+  167
+ ],
+ "columnas": [
+  "OT",
+  "HUFL",
+  "HULL",
+  "MUFL",
+  "MULL",
+  "LUFL",
+  "LULL"
+ ],
+ "inicio": "2016-07-01",
+ "fin": "2018-03-01",
+ "parada_temprana_horas": 720,
+ "origenes_validacion": [
+  "2017-11-01",
+  "2017-12-01"
+ ],
+ "origenes_prueba": [
+  "2018-01-01",
+  "2018-02-01"
+ ],
+ "panel": "datos/e3/etth1/panel.csv"
+}

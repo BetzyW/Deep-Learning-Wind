@@ -57,8 +57,9 @@ def preparar_panel(cfg, df=None):
     if df is None:
         df = pd.read_csv(cfg["panel"], usecols=["CodigoEstacion", "hora"] + cols,
                          dtype={"CodigoEstacion": str}, parse_dates=["hora"])
-        from contrato_datos import validar                                  # contrato de datos (sección 10.2)
-        validar(df)
+        if cfg.get("contrato", True):                                       # contrato del panel del IDEAM (10.2)
+            from contrato_datos import validar
+            validar(df)
     df = df[~df.CodigoEstacion.isin(cfg.get("excluir_estaciones", []))]
     X, tiempo, estacion, tau, ofs = [], [], [], [], 0
     for cod, g in df.groupby("CodigoEstacion", sort=True):
