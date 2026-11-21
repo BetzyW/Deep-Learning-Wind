@@ -1,0 +1,28 @@
+fecha,cadena,proposito,base,consulta,resultados,revisados
+2026-11-20,C1,mecanismo + problema,OpenAlex,twin neural network regression wind speed,8,8
+2026-11-20,C1,mecanismo + problema,Semantic Scholar,twin neural network regression wind speed,-1,0
+2026-11-20,C1,mecanismo + problema,arXiv,"all:""twin neural network"" AND all:wind",0,0
+2026-11-20,C2,mecanismo + problema (sinónimos),OpenAlex,pairwise difference regression wind speed forecasting,0,0
+2026-11-20,C2,mecanismo + problema (sinónimos),Semantic Scholar,pairwise difference regression wind speed forecasting,-1,0
+2026-11-20,C2,mecanismo + problema (sinónimos),arXiv,"all:""pairwise difference"" AND all:wind",0,0
+2026-11-20,C3,mecanismo + problema (siamesa),OpenAlex,siamese network regression wind speed forecasting,0,0
+2026-11-20,C3,mecanismo + problema (siamesa),Semantic Scholar,siamese network regression wind speed forecasting,-1,0
+2026-11-20,C3,mecanismo + problema (siamesa),arXiv,"all:siamese AND all:""wind speed""",0,0
+2026-11-20,C4,análogos + redes neuronales + viento,OpenAlex,analog ensemble neural network wind speed forecasting,4,4
+2026-11-20,C4,análogos + redes neuronales + viento,Semantic Scholar,analog ensemble neural network wind speed forecasting,3807,50
+2026-11-20,C4,análogos + redes neuronales + viento,arXiv,"all:""analog ensemble"" AND all:""neural network""",3,3
+2026-11-20,C5,diferencias entre pares + series de tiempo,OpenAlex,twin neural network regression time series forecasting,19,19
+2026-11-20,C5,diferencias entre pares + series de tiempo,Semantic Scholar,twin neural network regression time series forecasting,-1,0
+2026-11-20,C5,diferencias entre pares + series de tiempo,arXiv,"all:""twin neural network"" AND all:forecasting",0,0
+2026-11-20,C6,mecanismo en otras aplicaciones (origen),OpenAlex,twin neural network regression,582,50
+2026-11-20,C6,mecanismo en otras aplicaciones (origen),Semantic Scholar,twin neural network regression,-1,0
+2026-11-20,C6,mecanismo en otras aplicaciones (origen),arXiv,"all:""twin neural network regression""",5,5
+2026-11-20,C7,PADRE (origen del equipo),OpenAlex,pairwise difference regression PADRE,2,2
+2026-11-20,C7,PADRE (origen del equipo),Semantic Scholar,pairwise difference regression PADRE,-1,0
+2026-11-20,C7,PADRE (origen del equipo),arXiv,"all:""pairwise difference regression""",1,1
+2026-11-20,C8,anclas por análogos + aprendizaje profundo,OpenAlex,analog anchors deep learning forecasting difference,0,0
+2026-11-20,C8,anclas por análogos + aprendizaje profundo,Semantic Scholar,analog anchors deep learning forecasting difference,-1,0
+2026-11-20,C8,anclas por análogos + aprendizaje profundo,arXiv,all:analog AND all:anchor AND all:forecasting,1,1
+2026-11-20,C9,español,OpenAlex,red neuronal gemela regresión velocidad del viento,0,0
+2026-11-20,C9,español,Semantic Scholar,red neuronal gemela regresión velocidad del viento,-1,0
+2026-11-20,C9,español,arXiv,"all:""red neuronal"" AND all:viento",0,0

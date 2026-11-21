@@ -604,8 +604,12 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
 
 def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra):
     fijar_semilla(semilla)
-    extra = dict(mu_y=datos.mu_y, sd_y=datos.sd_y) if nombre == "PatchTST" else {}
+    extra = dict(mu_y=datos.mu_y, sd_y=datos.sd_y) if nombre in ("PatchTST", "PADRE") else {}
+    if nombre == "PADRE" and "PADRE" not in MODELOS:                 # modelo original del E3 (src/original_model.py)
+        from original_model import PadreTCN
+        MODELOS["PADRE"] = PadreTCN
     m = MODELOS[nombre](datos.L, datos.d, **(hp or {}), **extra).to(datos.dev)
+    aux = getattr(m, "perdida_aux", None)                            # pérdida por ancla del modelo original
     opt = torch.optim.Adam(m.parameters(), lr=lr, weight_decay=wd)
     aj, pa, ev = pliegue["ajuste"], pliegue["parada"], pliegue["evaluacion"]
     if frac < 1:
@@ -621,12 +625,16 @@ def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd
             opt.zero_grad()
             if trozo is None or len(b) <= trozo:
                 x, y = datos(b)
-                loss = ((m(x) - y) ** 2).mean(); loss.backward()
-                sse += loss.item() * len(b)
+                mse = ((m(x) - y) ** 2).mean()
+                loss = mse + aux(y) if aux is not None else mse
+                loss.backward()
+                sse += mse.item() * len(b)                     # el RMSE de entrenamiento no incluye la pérdida auxiliar
             else:                                          # acumulación: el gradiente es el de la media del lote
                 for t in np.array_split(b, -(-len(b) // trozo)):
                     x, y = datos(t)
-                    parte = ((m(x) - y) ** 2).sum() / len(b); parte.backward()
+                    parte = ((m(x) - y) ** 2).sum() / len(b)
+                    total = parte + aux(y) * len(t) / len(b) if aux is not None else parte
+                    total.backward()
                     sse += parte.item() * len(b)
             opt.step(); n += len(b)
         rmse_pa = float(np.sqrt(np.mean((predecir(m, datos, pa) - y_pa) ** 2)))
