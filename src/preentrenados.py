@@ -60,15 +60,17 @@ if __name__ == "__main__":
     ap.add_argument("--medir", type=int, default=0)
     ap.add_argument("--etapa", choices=["validacion", "prueba"], default="validacion")
     ap.add_argument("--lote", type=int, default=256)
+    ap.add_argument("--config", default="configs/e2.json", help="configs/e3_{conjunto}.json para los conjuntos del E3")
+    ap.add_argument("--salida", default="resultados/e2/preentrenados")
     a = ap.parse_args()
     dispositivo = "cuda" if torch.cuda.is_available() else "cpu"
-    cfg = leer_config()
+    cfg = leer_config(a.config)
     p = preparar_panel(cfg)
     folds = pliegues(p, cfg, a.etapa)
     if a.medir:
         folds = folds[-1:]
     predecir = cargar(a.modelo, dispositivo)
-    os.makedirs("resultados/e2/preentrenados", exist_ok=True)
+    os.makedirs(a.salida, exist_ok=True)
     resumen = []
     for f in folds:
         ev = f["evaluacion"]
@@ -84,10 +86,10 @@ if __name__ == "__main__":
         rmse = float(np.sqrt(np.mean((q[:, 1] - y) ** 2)))
         cob = float(np.mean((y >= q[:, 0]) & (y <= q[:, 2])))
         sufijo = "medicion" if a.medir else a.etapa
-        np.savez_compressed(f"resultados/e2/preentrenados/{a.modelo}_{sufijo}_{f['origen']}.npz", tau=ev, y=y, q=q)
+        np.savez_compressed(f"{a.salida}/{a.modelo}_{sufijo}_{f['origen']}.npz", tau=ev, y=y, q=q)
         fila = dict(modelo=a.modelo, origen=f["origen"], ventanas=len(ev), rmse=rmse, cobertura_80=cob,
                     segundos=round(seg, 1), seg_por_1000=round(1000 * seg / len(ev), 2),
                     gpu=torch.cuda.get_device_name(0) if dispositivo == "cuda" else "cpu")
         print(json.dumps(fila, ensure_ascii=False), flush=True)
         resumen.append(fila)
-    json.dump(resumen, open(f"resultados/e2/preentrenados/{a.modelo}_{sufijo}.json", "w"), indent=1)
+    json.dump(resumen, open(f"{a.salida}/{a.modelo}_{sufijo}.json", "w"), indent=1)

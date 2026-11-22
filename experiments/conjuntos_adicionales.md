@@ -33,5 +33,14 @@ modelo original). Por eso, en los conjuntos adicionales:
   conjunto. Ningún modelo, incluido el original, recibe ajuste en estos conjuntos, así que el presupuesto es el mismo
   para todos;
 * se mantienen las **10 semillas** (1000–1009) que exige el enunciado.
+
+**Cómo obtenerlos y correrlos.** `python src/e3_descargar.py` baja los archivos de las fuentes de la tabla y compara
+cada uno con su huella en `experiments/e3_sha256.csv` (207 archivos; la lista de las 34 estaciones candidatas está en
+`experiments/e3_estaciones_kansas.csv`). Luego `python src/e3_conjuntos.py` arma los paneles y
+`python src/e3_adicionales.py {conjunto} {modelos}` hace las corridas (`--baselines` para los clásicos). Chronos y
+Moirai se evalúan aquí solo sin entrenar (cero disparos, `preentrenados.py --config`): su versión con cabezal necesita
+calcular los embeddings de cada conjunto y no cabe en el presupuesto (se declara). STGCN usa k = min(8, series − 1)
+vecinas; en ETTh1, con una sola serie, el grafo tiene un nodo y STGCN queda como una red convolucional temporal.
+
 Ventanas resultantes: NOAA ≈ 300 000 (10 estaciones), SDWPF ≈ 152 000 (134 turbinas, de las que entre 21 y 132 tienen
 ventanas completas en cada bloque) y ETTh1 ≈ 17 000.

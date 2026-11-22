@@ -540,6 +540,12 @@ class Datos:
         coords = (pd.read_csv(ruta_panel, usecols=["CodigoEstacion", "lat", "lon"], dtype={"CodigoEstacion": str})
                   .drop_duplicates("CodigoEstacion").set_index("CodigoEstacion"))
         est = list(dict.fromkeys(panel.estacion.tolist()))                     # orden de aparición en el panel
+        k = min(k, len(est) - 1)                     # conjuntos del E3 con pocas series; con una sola, grafo de un nodo
+        if k == 0:
+            self._grafo = dict(vec=torch.full((len(panel.estacion), 0), -1, dtype=torch.long, device=self.dev),
+                               Lt=torch.zeros(1, 1, 1, device=self.dev),
+                               est=torch.zeros(len(panel.estacion), dtype=torch.long, device=self.dev))
+            return
         lat, lon = np.radians(coords.loc[est, "lat"].to_numpy()), np.radians(coords.loc[est, "lon"].to_numpy())
         dl, dn = lat[:, None] - lat[None], lon[:, None] - lon[None]
         a = np.sin(dl / 2) ** 2 + np.cos(lat[:, None]) * np.cos(lat[None]) * np.sin(dn / 2) ** 2
