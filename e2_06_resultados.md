@@ -1,4 +1,4 @@
-# Resultados (Entregable 2)
+# Resultados
 
 Todos los números de este capítulo salen de las predicciones de prueba de 2025: 215 286 ventanas de 62 estaciones en
 cuatro orígenes trimestrales, con cada modelo reentrenado desde cero en cada origen. El pronóstico de un modelo de

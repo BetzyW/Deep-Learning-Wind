@@ -1,4 +1,4 @@
-# Métodos (Entregable 2)
+# Métodos
 
 Este capítulo describe cómo se entrenaron y compararon los modelos. Todo lo que aquí se afirma quedó fijado en el
 preregistro antes de ver resultados de prueba (`prerregistro_e2.md`, publicado con la etiqueta `prerregistro-e2`), y

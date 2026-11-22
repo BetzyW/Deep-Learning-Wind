@@ -1,4 +1,4 @@
-# Apéndices (Entregable 2)
+# Apéndices
 
 Este capítulo reúne los entregables formales que pide el enunciado y que no caben en el cuerpo del informe: la ficha
 de ruta metodológica, la trazabilidad del EDA, el contrato de datos, las fichas de modelo, el registro de
