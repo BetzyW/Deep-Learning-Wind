@@ -1,4 +1,4 @@
-# Introducción y preguntas (Entregable 2)
+# Introducción y preguntas
 
 En el Entregable 1 tres redes base (MLP, LSTM y CNN 1D) redujeron en ≈ 17 % el error de la persistencia a 24 h en las
 estaciones del Caribe colombiano, pero una regresión lineal las igualó: el margen de mejora no estaba en cambiar de

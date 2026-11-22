@@ -1,4 +1,4 @@
-# Conclusiones (Entregable 2)
+# Conclusiones
 
 ## Resumen estructurado
 

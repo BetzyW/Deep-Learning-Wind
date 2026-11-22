@@ -1,4 +1,4 @@
-# Datos, predictibilidad y auditoría de fuga (Entregable 2)
+# Datos, predictibilidad y auditoría de fuga
 
 ## Data Card
 

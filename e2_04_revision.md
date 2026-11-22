@@ -1,4 +1,4 @@
-# Revisión sistemática, Top 10 y paper guía (Entregable 2)
+# Revisión sistemática, Top 10 y paper guía
 
 La revisión del E1 eligió tres modelos base. Esta amplía la búsqueda a las arquitecturas recientes de Deep Learning
 para elegir, con criterios fijados antes de calcular, los 10 modelos del benchmark, el paper guía y el hueco de

@@ -1,4 +1,4 @@
-# Discusión (Entregable 2)
+# Discusión
 
 Este capítulo interpreta los resultados del capítulo anterior: responde cada pregunta de investigación, explica por
 qué los modelos quedan tan juntos, discute lo que pasó con los preentrenados y declara las amenazas a la validez.

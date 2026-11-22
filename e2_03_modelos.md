@@ -1,4 +1,4 @@
-# Los diez modelos del Top 10 (Entregable 2)
+# Los diez modelos del Top 10
 
 Este capítulo describe cada modelo del Top 10 tal como lo usamos: de dónde viene, cómo fluye la información, qué
 calcula, qué aportó frente a lo anterior, qué problema resolvía en su artículo y cuánto cuesta. Todos reciben la misma
