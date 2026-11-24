@@ -25,7 +25,10 @@ from origen_movil import leer_config, objetivos, pliegues, preparar_panel, rezag
 
 CONJUNTOS = ["etth1", "sdwpf", "noaa_kansas"]           # del más pequeño al más grande
 LIGEROS = ["MLP", "DLinear", "KAN", "CNN", "TCN", "PADRE", "PatchTST"]
-PESADOS = ["LSTM", "GRU", "Transformer", "Informer", "STGCN"]
+PESADOS = ["LSTM", "GRU", "Transformer", "STGCN", "Informer"]   # Informer al final: es el más costoso
+# Recorte por cómputo declarado el 23-nov-2026 (experiments/conjuntos_adicionales.md): Informer tarda ≈ 50 min por
+# corrida en SDWPF; en SDWPF y NOAA se corren solo las 3 primeras semillas en los orígenes que no estaban hechos.
+SEMILLAS_RECORTE = {"Informer": {"sdwpf": 3, "noaa_kansas": 3}}
 FINALES_E2 = "resultados/e2/finales"
 
 
@@ -114,7 +117,7 @@ def correr(conjunto, modelos, semillas, hasta, con_baselines):
         ruta_y = f"{salida}/objetivos_{f['origen']}.npz"
         if not os.path.exists(ruta_y):
             np.savez_compressed(ruta_y, tau=ev, y=y_ev, serie=p.estacion[ev], persistencia=p.X[ev, 0])
-        pend = [(m, s) for m in modelos for s in semillas
+        pend = [(m, s) for m in modelos for s in semillas[:SEMILLAS_RECORTE.get(m, {}).get(conjunto, len(semillas))]
                 if f"{f['origen']}|{s}" not in ya_hechos(f"{salida}/{m}.csv", "clave")]
         if not pend:
             continue

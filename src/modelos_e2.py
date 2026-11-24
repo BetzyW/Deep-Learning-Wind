@@ -594,7 +594,14 @@ class Datos:
 def predecir(m, datos, idx, bs=4096):
     m.eval()
     bs = min(bs, getattr(m, "trozo", bs))                 # modelos grandes (Informer) predicen en trozos menores
-    return np.concatenate([m(datos(b)[0]).float().cpu().numpy() for b in np.array_split(idx, max(1, len(idx) // bs))])
+    try:
+        return np.concatenate([m(datos(b)[0]).float().cpu().numpy()
+                               for b in np.array_split(idx, max(1, len(idx) // bs))])
+    except torch.cuda.OutOfMemoryError:     # STGCN en SDWPF (E3): sin memoria con 4 096 ventanas; misma predicción
+        if bs <= 64:                        # en trozos más pequeños (no cambia el resultado, solo la memoria)
+            raise
+        torch.cuda.empty_cache()
+        return predecir(m, datos, idx, bs // 2)
 
 
 def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, paciencia=5, bs=1024, wd=0.0,

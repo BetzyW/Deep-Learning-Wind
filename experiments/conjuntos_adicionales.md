@@ -63,3 +63,16 @@ origen). Si se les quita ese sesgo, su RMSE baja a `2.2`–`3.0`. Los modelos qu
 valor (PatchTST con normalización por instancia, PADRE con sus anclas y DLinear corregido) tienen sesgos menores de
 `0.5`. No los corregimos porque cambiar su salida sería rediseñarlos, no corregir una desviación de su versión
 publicada; lo discutimos como una limitación de los modelos sin normalización ante cambios de nivel.
+
+**Recorte de Informer (23-nov-2026, antes de correr Informer en el segundo origen de SDWPF y en NOAA; se declara).**
+En Colab, Informer tardó unos 50 minutos por corrida en SDWPF. Completar sus 10 semillas en lo que faltaba (el
+segundo origen de SDWPF y los dos de NOAA, que tiene casi el doble de ventanas) costaba unas 38 horas de GPU, unas
+190 de las 280 unidades disponibles, y no dejaba margen para el resto del E3. Por eso Informer se corre con **3
+semillas** (1000–1002) en esos tres orígenes; en ETTh1 y en el primer origen de SDWPF conserva las 10 que ya tenía.
+Los demás modelos mantienen sus 10 semillas. En las tablas, la media y la dispersión de Informer en SDWPF y NOAA se
+reportan con el número de corridas de cada origen. La cola de Colab deja Informer al final para que, si el
+presupuesto se agota, los modelos que falten sean solo los suyos.
+
+**Falta de memoria de STGCN en SDWPF (23-nov-2026).** Con 134 turbinas, STGCN se quedó sin memoria de GPU al
+predecir en lotes de 4 096 ventanas. `predecir` ahora reintenta en lotes de la mitad: la predicción es la misma y
+solo cambia la memoria usada.
