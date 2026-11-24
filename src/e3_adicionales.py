@@ -51,7 +51,10 @@ def configuracion(nombre):
         sys.exit(f"Falta {ruta}: la configuración de {nombre} se fija antes de correr los conjuntos adicionales")
     c = json.load(open(ruta))
     if nombre == "PADRE":
-        return c["hp"], c["arquitectura"]
+        arq = c["arquitectura"]
+        return c["hp"], {**arq, "w": tuple(arq["w"]), "b": tuple(arq["b"])}
+    if nombre == "DLinear":            # salida desnormalizada como en el paper (corrección declarada del E3)
+        return c["hp"], dict(desnormalizar=True)
     from fase2 import arquitectura
     return c["hp"], (arquitectura(c["arquitectura"]["id"]) if c["arquitectura"] else None)
 

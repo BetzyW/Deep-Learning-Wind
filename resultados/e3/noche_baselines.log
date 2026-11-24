@@ -1,0 +1,33 @@
+sdwpf: 152,066 ventanas válidas, 134 series (1 s)
+C:\Users\USER\miniconda3\envs\ml_env\Lib\site-packages\statsmodels\tsa\holtwinters\model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+[23:05] sdwpf Persistencia 2000-08-02 → RMSE 436.7198
+[23:05] sdwpf Naive semanal 2000-08-02 → RMSE 464.9991
+[23:05] sdwpf Media misma hora 7 d 2000-08-02 → RMSE 344.4635
+[23:05] sdwpf ETS por estación 2000-08-02 → RMSE 436.7028
+[23:05] sdwpf Ridge 2000-08-02 → RMSE 339.0037
+[23:05] sdwpf Gradient boosting 2000-08-02 → RMSE 328.2298
+C:\Users\USER\miniconda3\envs\ml_env\Lib\site-packages\statsmodels\tsa\holtwinters\model.py:1065: ConvergenceWarning: Optimization failed to converge. Check mle_retvals.
+  res = self._optimize_parameters(res, use_brute, method, minimize_kwargs)
+[23:05] sdwpf Persistencia 2000-08-17 → RMSE 447.2797
+[23:05] sdwpf Naive semanal 2000-08-17 → RMSE 453.3529
+[23:05] sdwpf Media misma hora 7 d 2000-08-17 → RMSE 349.1671
+[23:05] sdwpf ETS por estación 2000-08-17 → RMSE 447.1978
+[23:05] sdwpf Ridge 2000-08-17 → RMSE 362.4473
+[23:05] sdwpf Gradient boosting 2000-08-17 → RMSE 421.3385
+Conjuntos adicionales: completo
+noaa_kansas: 282,582 ventanas válidas, 10 series (0 s)
+[23:05] noaa_kansas Persistencia 2024-07-01 → RMSE 2.7960
+[23:05] noaa_kansas Naive semanal 2024-07-01 → RMSE 3.2143
+[23:05] noaa_kansas Media misma hora 7 d 2024-07-01 → RMSE 2.3775
+[23:05] noaa_kansas ETS por estación 2024-07-01 → RMSE 2.6684
+[23:05] noaa_kansas Ridge 2024-07-01 → RMSE 2.1554
+[23:05] noaa_kansas Gradient boosting 2024-07-01 → RMSE 2.1524
+[23:05] noaa_kansas Persistencia 2024-10-01 → RMSE 3.4200
+[23:05] noaa_kansas Naive semanal 2024-10-01 → RMSE 3.6966
+[23:05] noaa_kansas Media misma hora 7 d 2024-10-01 → RMSE 2.7965
+[23:05] noaa_kansas ETS por estación 2024-10-01 → RMSE 3.2978
+[23:05] noaa_kansas Ridge 2024-10-01 → RMSE 2.6530
+[23:05] noaa_kansas Gradient boosting 2024-10-01 → RMSE 2.7119
+Conjuntos adicionales: completo
+== Fin dom 22/11/2026 23:05:44,07 

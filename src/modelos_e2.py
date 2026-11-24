@@ -18,17 +18,22 @@ P_DROPOUT = 0.2
 class DLinear(nn.Module):
     """Arquitectura publicada: tendencia = media móvil (k = 25, con relleno en los bordes); dos capas lineales L → 1."""
 
-    def __init__(self, L, d, kernel=25, **_):
+    def __init__(self, L, d, kernel=25, desnormalizar=False, mu_y=0.0, sd_y=1.0, **_):
         super().__init__()
         self.k = kernel
         self.tendencia, self.resto = nn.Linear(L, 1), nn.Linear(L, 1)
+        # Corrección del E3 (conjuntos adicionales): como en el paper, la salida vive en la escala estandarizada y se
+        # desnormaliza con la media y la desviación del entrenamiento (fijas). En el E2 (desnormalizar=False) la
+        # salida iba directo en m/s: con el viento (media ≈ 5 m/s y millones de ventanas) el sesgo aprende el nivel,
+        # pero en ETTh1 (nivel ≈ 16 y pocas ventanas) no alcanza y el RMSE se dispara (experiments/conjuntos_adicionales.md).
+        self.mu, self.sd = (float(mu_y), float(sd_y)) if desnormalizar else (0.0, 1.0)
 
     def forward(self, x):
         v = x[..., 0]                                                    # canal de velocidad (independiente)
         pad = (self.k - 1) // 2
         vp = torch.cat([v[:, :1].repeat(1, pad), v, v[:, -1:].repeat(1, self.k - 1 - pad)], 1)
         t = vp.unfold(1, self.k, 1).mean(-1)
-        return (self.tendencia(t) + self.resto(v - t)).squeeze(-1)
+        return (self.tendencia(t) + self.resto(v - t)).squeeze(-1) * self.sd + self.mu
 
 
 class BloqueTCN(nn.Module):
@@ -610,7 +615,7 @@ def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, pacie
 
 def _entrenar(nombre, datos, pliegue, semilla, hp, lr, epocas, paciencia, bs, wd, frac, semilla_muestra):
     fijar_semilla(semilla)
-    extra = dict(mu_y=datos.mu_y, sd_y=datos.sd_y) if nombre in ("PatchTST", "PADRE") else {}
+    extra = dict(mu_y=datos.mu_y, sd_y=datos.sd_y) if nombre in ("PatchTST", "PADRE", "DLinear") else {}
     if nombre == "PADRE" and "PADRE" not in MODELOS:                 # modelo original del E3 (src/original_model.py)
         from original_model import PadreTCN
         MODELOS["PADRE"] = PadreTCN

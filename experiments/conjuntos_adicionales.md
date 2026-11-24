@@ -44,3 +44,22 @@ vecinas; en ETTh1, con una sola serie, el grafo tiene un nodo y STGCN queda como
 
 Ventanas resultantes: NOAA ≈ 300 000 (10 estaciones), SDWPF ≈ 152 000 (134 turbinas, de las que entre 21 y 132 tienen
 ventanas completas en cada bloque) y ETTh1 ≈ 17 000.
+
+**Corrección de DLinear (23-nov-2026, después de las primeras corridas; se declara).** En ETTh1, DLinear dio RMSE
+`10.4`, cinco veces el de la persistencia (`2.06`), con una predicción media de `−7.0` frente a un valor real de `2.3`.
+La causa es de implementación: en el E2 su salida iba directo en las unidades de la serie, mientras que el artículo
+(Zeng et al., 2023) trabaja sobre la serie escalada y desescala la predicción. Con el viento (media ≈ 5 m/s y millones
+de ventanas) el sesgo de la capa lineal alcanza a aprender el nivel; en ETTh1 (nivel ≈ 16 en el entrenamiento y unas
+17 000 ventanas) se detiene a las 6 épocas sin lograrlo. Corregimos DLinear para que desescale su salida con la media
+y la desviación del entrenamiento (fijas, sin parámetros nuevos) y repetimos sus 60 corridas en los tres conjuntos.
+RMSE medio antes y después: ETTh1 `10.415` → `1.997`; SDWPF `388.3` → `379.5`; NOAA `2.476` → `2.479`. Las corridas
+descartadas se conservan en `resultados/e3/adicionales/{conjunto}/descartado_DLinear_salida_cruda/`. Los resultados
+del E2 no cambian: allí DLinear se corrió con la versión original.
+
+**Sesgo de nivel en ETTh1 (se reporta tal cual).** MLP, CNN, TCN y KAN también quedan peor que la persistencia en
+ETTh1, y no por un error: la serie no es estacionaria (media del objetivo `15.9` en el entrenamiento y `2.3` en el
+primer origen de prueba) y estos modelos predicen un nivel desplazado (sesgo medio entre `+1.7` y `+3.8` en el primer
+origen). Si se les quita ese sesgo, su RMSE baja a `2.2`–`3.0`. Los modelos que desescalan o se anclan al último
+valor (PatchTST con normalización por instancia, PADRE con sus anclas y DLinear corregido) tienen sesgos menores de
+`0.5`. No los corregimos porque cambiar su salida sería rediseñarlos, no corregir una desviación de su versión
+publicada; lo discutimos como una limitación de los modelos sin normalización ante cambios de nivel.

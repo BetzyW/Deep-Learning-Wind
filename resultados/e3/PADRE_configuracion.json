@@ -1,0 +1,27 @@
+{
+ "hp": {
+  "lr": 0.0008500480482468623,
+  "wd": 1e-05,
+  "bs": 1024
+ },
+ "arquitectura": {
+  "w": [
+   64,
+   64,
+   16
+  ],
+  "b": [
+   1,
+   1,
+   0
+  ],
+  "K": 6,
+  "lam": 0.0,
+  "antisimetrica": true,
+  "pesos": "aprendidos"
+ },
+ "rmse_val_ajuste": 0.7401773929595947,
+ "id_ajuste": 14,
+ "diseno": "V6 (design_log.md)",
+ "fijada": "2026-11-22 23:11:52"
+}
