@@ -1,6 +1,6 @@
 # Declaración del estándar de profundidad (sección 2 y Apéndice A.1 del enunciado del E3)
 
-**Estado: borrador.** Se fija con un tag de Git (`e3-estandar`) antes de congelar el protocolo; después no puede
+**Estado: listo para el tag (24-nov-2026).** Se fija con un tag de Git (`e3-estandar`) antes de congelar el protocolo; después no puede
 reducirse.
 
 | Campo | Contenido |
@@ -12,5 +12,6 @@ reducirse.
 | Compromisos: métrica y margen | RMSE por estación como métrica primaria; MAE, sesgo con viento ≥ 6 m/s, CRPS y cobertura como secundarias; δ = 0.02 m/s (heredado del E1) |
 | Compromisos: conjuntos adicionales | Tres conjuntos públicos de pronóstico a 24 pasos, distintos del panel en al menos dos ejes; se fijan con su fuente, licencia, versión y hash antes de descargarlos para el experimento (propuesta en `experiments/protocolo.md`) |
 | Compromisos: propiedad a demostrar | Proposición 1: la diferencia es exactamente antisimétrica, D(a, b) = −D(b, a) y D(a, a) = 0, para cualquier valor de los parámetros. Proposición 2: el pronóstico es una combinación convexa de los pronósticos de las anclas, así que queda entre el menor y el mayor de ellos, y su dispersión ponderada es cero si y solo si todas las anclas coinciden. Supuestos: ninguno sobre los datos para las dos proposiciones; la consecuencia práctica (que la antisimetría reduce el error) es una hipótesis que se contrasta con la ablación |
-| Hallazgo alternativo (sección 14.5.9) | Si el modelo no supera a toda la familia, el trabajo se sostiene en: (a) la reducción de la subestimación de los vientos fuertes frente a la TCN y a Ridge, con intervalos calibrados, sin empeorar el RMSE en más de δ (TOST); y (b) la explicación de por qué con estas entradas ningún mecanismo supera el techo de desempeño medido en el E2 |
-| Fecha y tag | Borrador del 20-nov-2026; tag pendiente |
+| Hallazgo alternativo (sección 14.5.9) | Si el modelo no supera a toda la familia, el trabajo se sostiene en: (a) intervalos de predicción al 90 % con menor *interval score* de Winkler que los de cada rival construidos con el mismo método, sin empeorar el RMSE frente a la TCN en más de δ (TOST); y (b) la explicación de por qué con estas entradas ningún mecanismo supera el techo de desempeño medido en el E2 |
+| Cambio respecto del borrador del 20-nov | El borrador planteaba en (a) la reducción de la subestimación de los vientos fuertes. En la partición de desarrollo esa hipótesis no se cumplió en ninguna variante (`design_log.md`, ronda 2), así que el hallazgo alternativo se reformuló sobre la calibración antes del tag. Los requisitos del estándar (demostración, conjuntos, familia, pruebas, potencia y semillas) no cambian |
+| Fecha y tag | Borrador del 20-nov-2026, actualizado el 24-nov-2026; tag `e3-estandar` |
