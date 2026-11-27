@@ -1,0 +1,12 @@
+{
+ "ventanas": 84998,
+ "origen": "2025-10-01",
+ "max_dif_pronostico_onnx_vs_pytorch": 2.384185791015625e-06,
+ "max_dif_dispersion_onnx_vs_pytorch": 4.76837158203125e-07,
+ "max_dif_pronostico_onnx_vs_entrenamiento": 0.0010786056518554688,
+ "max_dif_dispersion_onnx_vs_entrenamiento": 0.00044167041778564453,
+ "rmse_onnx": 0.6174755692481995,
+ "tolerancia": 0.0001,
+ "fecha": "2026-11-27 07:30",
+ "aprobada": true
+}

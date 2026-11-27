@@ -9,7 +9,10 @@ LSTM no la ve el contador, así que en ella los FLOPs se calculan con la fórmul
 entrenamiento, porque en evaluación la atención de PyTorch usa un núcleo fusionado que el contador no registra.
 Los pesos son aleatorios: el costo no depende de los valores, solo de la arquitectura.
 Salida: resultados/e2/costo_{cpu|gpu}.csv
-Uso: python src/costo_inferencia.py [--gpu]      (dl_env)
+E3 (--e3): los mismos 13 más el modelo original (PADRE-TCN, configuración V6 de resultados/e3/PADRE_configuracion.json),
+medidos juntos en la misma sesión para que las latencias sean comparables; salida en resultados/e3/costo_{cpu|gpu}.csv
+(el archivo del E2 no se toca).
+Uso: python src/costo_inferencia.py [--gpu] [--e3]      (dl_env)
 """
 import json, os, sys, time
 import numpy as np
@@ -34,6 +37,11 @@ def entrada(nombre, B, dev):
 
 
 def construir(nombre, dev):
+    if nombre == "PADRE":
+        from original_model import PadreTCN
+        arq = json.load(open("resultados/e3/PADRE_configuracion.json"))["arquitectura"]
+        arq = {**arq, "w": tuple(arq["w"]), "b": tuple(arq["b"])}
+        return PadreTCN(L, D, **arq).to(dev).eval()
     c = json.load(open(f"resultados/e2/finales/{nombre}_configuracion.json"))
     hp = arquitectura(c["arquitectura"]["id"]) if c["arquitectura"] else {}
     extra = dict(mu_y=0.0, sd_y=1.0) if nombre == "PatchTST" else {}
@@ -92,9 +100,10 @@ if __name__ == "__main__":
     if dev == "cpu":
         torch.set_num_threads(4)
     filas = []
-    for nombre in TOP13:
+    e3 = "--e3" in sys.argv
+    for nombre in TOP13 + (["PADRE"] if e3 else []):
         r = medir(nombre, dev)
         r["equipo"] = torch.cuda.get_device_name() if dev == "cuda" else f"CPU, {torch.get_num_threads()} hilos"
         print(r, flush=True)
         filas.append(r)
-    pd.DataFrame(filas).to_csv(f"resultados/e2/costo_{dev}.csv", index=False)
+    pd.DataFrame(filas).to_csv(f"resultados/{'e3' if e3 else 'e2'}/costo_{dev}.csv", index=False)

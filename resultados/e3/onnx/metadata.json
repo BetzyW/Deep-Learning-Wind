@@ -1,0 +1,78 @@
+{
+ "modelo": "PADRE-TCN, diseño congelado V6 (experiments/design_log.md)",
+ "tarea": "velocidad del viento a 24 h por estación, panel IDEAM del Caribe colombiano",
+ "entrada": {
+  "nombre": "x",
+  "forma": [
+   "lote",
+   168,
+   4
+  ],
+  "tipo": "float32",
+  "columnas": [
+   "vel",
+   "dir_sin",
+   "dir_cos",
+   "temp"
+  ],
+  "orden_temporal": "fila 0 = hora τ − 167, fila 167 = hora de emisión τ",
+  "escalado": "(valor − media) / desviación por columna; faltantes → 0 después de escalar",
+  "media": [
+   1.9653972387313843,
+   0.04971293732523918,
+   0.05315819010138512,
+   27.357139587402344
+  ],
+  "desviacion": [
+   1.4876629114151,
+   0.6328931450843811,
+   0.6136963963508606,
+   4.279599189758301
+  ]
+ },
+ "salidas": {
+  "pronostico": "velocidad en τ + 24 h, m/s, forma (lote,)",
+  "dispersion": "desviación ponderada entre anclas, m/s, forma (lote,); base de los intervalos conformales (s = √(dispersión² + std24²), ver src/estadistica_e3.py)"
+ },
+ "horizonte_horas": 24,
+ "ventana_horas": 168,
+ "entrenamiento": {
+  "origen": "2025-10-01",
+  "semilla": 1000,
+  "hp": {
+   "lr": 0.0008500480482468623,
+   "wd": 1e-05,
+   "bs": 1024
+  },
+  "arquitectura": {
+   "w": [
+    64,
+    64,
+    16
+   ],
+   "b": [
+    1,
+    1,
+    0
+   ],
+   "K": 6,
+   "lam": 0.0,
+   "antisimetrica": true,
+   "pesos": "aprendidos"
+  },
+  "escalador_ajustado_con": "filas de entrada del entrenamiento de ese origen"
+ },
+ "versiones": {
+  "python": "3.11.16",
+  "torch": "2.14.1+cu126",
+  "onnx": "1.23.2",
+  "onnxruntime": "1.32.0",
+  "opset": 17
+ },
+ "sha256": {
+  "2025-10-01_1000.pt": "d6cde945c5e4277c5020a7bf051d1d35203a8dc0241acb52c4d401fbf1bd8c72",
+  "padre_v6.onnx": "293107b4fa310c0e40bc9b0aa91c311b3f72bef7c34ad24faf55029e19fdbc97"
+ },
+ "ida_y_vuelta": "ida_y_vuelta.json",
+ "licencia_datos": "datos del IDEAM (ver e2_02_datos.md)"
+}
