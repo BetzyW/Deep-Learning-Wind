@@ -29,5 +29,8 @@ project:
         - file: e2_07_discusion.md
         - file: e2_08_conclusiones.md
         - file: e2_09_apendices.md
+    - title: Entregable 3
+      children:
+        - file: e3_05_modelo_diseno.md
 site:
   template: book-theme
