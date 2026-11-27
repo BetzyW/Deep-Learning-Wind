@@ -600,8 +600,10 @@ def predecir(m, datos, idx, bs=4096):
     except torch.cuda.OutOfMemoryError:     # STGCN en SDWPF (E3): sin memoria con 4 096 ventanas; misma predicción
         if bs <= 64:                        # en trozos más pequeños (no cambia el resultado, solo la memoria)
             raise
-        torch.cuda.empty_cache()
-        return predecir(m, datos, idx, bs // 2)
+    # el reintento va FUERA del except: dentro, la excepción conserva los tensores del intento fallido y la memoria
+    # nunca se libera (en Colab T4 quedaban 14 GB ocupados aun con trozos de 64)
+    torch.cuda.empty_cache()
+    return predecir(m, datos, idx, bs // 2)
 
 
 def entrenar(nombre, datos, pliegue, semilla, hp=None, lr=1e-3, epocas=50, paciencia=5, bs=1024, wd=0.0,
