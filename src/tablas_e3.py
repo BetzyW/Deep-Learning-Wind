@@ -1,5 +1,5 @@
 """Tablas en Markdown para los capítulos del E3, armadas directamente desde los archivos de resultados (los números del
-libro no se copian a mano). Cada tabla se escribe en tablas/e3_{nombre}.md y el capítulo la incluye con {include}.
+libro no se copian a mano). Cada tabla se escribe en book/tablas/e3_{nombre}.md y el capítulo la incluye con {include}.
 Uso: python src/tablas_e3.py [nombre ...]      (ml_env; sin nombres, todas)
 """
 import json, os, sys
@@ -70,8 +70,8 @@ def verificacion():
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion)
 
 if __name__ == "__main__":
-    os.makedirs("tablas", exist_ok=True)
+    os.makedirs("book/tablas", exist_ok=True)
     for n in (sys.argv[1:] or TABLAS):
         t = TABLAS[n]()
-        open(f"tablas/e3_{n}.md", "w", encoding="utf-8").write(t)
-        print(f"== tablas/e3_{n}.md\n{t}")
+        open(f"book/tablas/e3_{n}.md", "w", encoding="utf-8").write(t)
+        print(f"== book/tablas/e3_{n}.md\n{t}")

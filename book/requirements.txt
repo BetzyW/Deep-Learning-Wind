@@ -1,0 +1,5 @@
+# Dependencias para construir el libro (Jupyter Book 1, formato clásico): jupyter-book build book/
+jupyter-book==1.0.4.post1
+sphinx-proof==0.4.1
+sphinxcontrib-bibtex==2.7.0
+sphinxcontrib-mermaid==2.1.1

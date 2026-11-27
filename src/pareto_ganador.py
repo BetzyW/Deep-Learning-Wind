@@ -5,7 +5,7 @@
 2. Sesgo del ganador: la "mejor" de la fase 2 se eligió por tener el menor RMSE en 2024-10-01. Si esa ventaja fuera
    real, se mantendría en los otros tres orígenes de validación (enmienda 8). Se compara la ventaja de la mejor sobre
    la elegida y sobre la peor en el origen de selección y en los otros tres.
-Salida: figuras/e2_pareto.png y resultados/e2/busqueda_analisis/sesgo_ganador.csv
+Salida: book/figuras/e2_pareto.png y resultados/e2/busqueda_analisis/sesgo_ganador.csv
 Uso: python src/pareto_ganador.py      (ml_env; no usa GPU)
 """
 import contextlib, io, json, os, sys
@@ -52,7 +52,7 @@ def figura():
         ax.set_ylabel("RMSE de validación, fase 1")
     ejes[0, 0].legend(fontsize=7, loc="upper right")
     fig.tight_layout()
-    fig.savefig("figuras/e2_pareto.png", dpi=120)
+    fig.savefig("book/figuras/e2_pareto.png", dpi=120)
 
 
 def sesgo_ganador():

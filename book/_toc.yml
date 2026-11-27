@@ -1,0 +1,29 @@
+# Tabla de contenidos (Jupyter Book 1). El E3 se organiza en los capítulos 0–11 del cuadro 7 del enunciado.
+format: jb-book
+root: index
+parts:
+  - caption: Entregable 1
+    chapters:
+      - file: 01_problema
+      - file: 02_eda
+      - file: 03_literatura
+      - file: 04_modelos
+      - file: 05_benchmark
+      - file: 06_discusion
+  - caption: Entregable 2
+    chapters:
+      - file: e2_01_introduccion
+      - file: e2_02_datos
+      - file: e2_04_revision
+      - file: e2_03_modelos
+      - file: e2_05_metodos
+      - file: e2_06_resultados
+      - file: e2_07_discusion
+      - file: e2_08_conclusiones
+      - file: e2_09_apendices
+  - caption: Entregable 3
+    chapters:
+      - file: e3_05_modelo_diseno
+  - caption: Referencias
+    chapters:
+      - file: bibliografia

@@ -1,0 +1,43 @@
+# Jupyter Book 1 (formato clásico que pide la sección 11.2 del enunciado del E3).
+# Construir desde la raíz del repositorio:  jupyter-book build book/
+title: Pronóstico de viento a 24 h con Deep Learning
+author: Betzaida Ruiz
+copyright: "2026"
+language: es
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"      # los notebooks se suben ya ejecutados; los entrenamientos costosos se versionan precalculados
+
+bibtex_bibfiles:
+  - references.bib
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - colon_fence
+    - dollarmath
+    - deflist
+    - linkify
+    - substitution
+
+sphinx:
+  extra_extensions:
+    - sphinx_proof
+    - sphinxcontrib.mermaid
+  config:
+    bibtex_reference_style: author_year
+    bibtex_default_style: plain
+    numfig: true
+    math_numfig: true
+    math_eqref_format: "({number})"
+    suppress_warnings: ["myst.header"]
+    html_show_copyright: false
+
+repository:
+  url: https://github.com/BetzyW/Deep-Learning-Wind
+  path_to_book: book
+  branch: e3
+
+html:
+  use_repository_button: true

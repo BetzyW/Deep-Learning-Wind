@@ -285,7 +285,7 @@ if __name__ == "__main__":
                   reproduccion=reproduccion(), origenes=origenes(), cero_rmse=c1, cero_pruebas=c2, cero_cobertura=c3,
                   a2=tabla_a2(), brecha=b1, val_prueba=b2, esquema=k1, poblaciones=k2)
     print("\n\n".join(f"## {k}\n\n{v}" for k, v in tablas.items()))
-    if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde tablas/
-        os.makedirs("tablas", exist_ok=True)
+    if "--escribir" in sys.argv:                 # el libro las incluye con {include} desde book/tablas/
+        os.makedirs("book/tablas", exist_ok=True)
         for k, v in tablas.items():
-            open(f"tablas/e2_{k}.md", "w", encoding="utf-8").write(v + "\n")
+            open(f"book/tablas/e2_{k}.md", "w", encoding="utf-8").write(v + "\n")

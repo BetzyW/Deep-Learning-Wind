@@ -4,7 +4,7 @@ Cada ficha junta: identificación, preentrenamiento, arquitectura y costo (`cost
 finales con el espacio explorado, arquitectura seleccionada (si hubo búsqueda), entrenamiento, cómputo, resultados por
 ejecución e incidencias. Lo único escrito a mano son la familia, la referencia, la fuente de pesos y las incidencias,
 que vienen de los capítulos de modelos y del preregistro.
-Salida: tablas/e2_fichas.md
+Salida: book/tablas/e2_fichas.md
 Uso: python src/fichas_modelo.py      (ml_env)
 """
 import json, os, subprocess
@@ -84,5 +84,5 @@ if __name__ == "__main__":
     commit = subprocess.run(["git", "log", "-1", "--format=%h", "--", "src/modelos_e2.py"], capture_output=True,
                             text=True).stdout.strip()
     texto = "\n\n".join(ficha(m, costo, commit) for m in INFO)
-    open("tablas/e2_fichas.md", "w", encoding="utf-8").write(texto + "\n")
+    open("book/tablas/e2_fichas.md", "w", encoding="utf-8").write(texto + "\n")
     print(texto[:3000])

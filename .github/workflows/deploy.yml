@@ -1,5 +1,5 @@
 # Publica el libro en GitHub Pages en cada push a main.
-# El notebook se sube ya ejecutado, así que aquí no se vuelve a correr el análisis.
+# Jupyter Book 1 (formato clásico, sección 11.2 del enunciado). Los notebooks se suben ya ejecutados, así que aquí no se vuelve a correr el análisis.
 name: deploy-book
 on:
   push:
@@ -23,13 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: 20.x
-      - run: npm install -g jupyter-book
-      - run: jupyter-book build --html
+          python-version: "3.12"
+      - run: pip install -r book/requirements.txt
+      - run: jupyter-book build book/ --warningiserror
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_build/html
+          path: ./book/_build/html
       - id: deployment
         uses: actions/deploy-pages@v4

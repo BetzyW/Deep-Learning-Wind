@@ -56,8 +56,8 @@ ANALISIS = [
     ("Costo: parámetros, FLOPs y latencia en CPU", PY_DL, ["src/costo_inferencia.py"]),
     ("Fichas de modelo (sección 11.3)", PY_ML, ["src/fichas_modelo.py"]),
     ("Tablas del libro", PY_ML, ["src/tablas_libro.py", "--escribir"]),
-    ("Libro: comprueba el contenido (Jupyter Book 2, necesita Node.js); el HTML lo genera GitHub Actions al publicar",
-     None, ["jupyter-book", "build"]),
+    ("Libro (Jupyter Book 1, formato clásico; dependencias en book/requirements.txt)",
+     None, ["jupyter-book", "build", "book/"]),
 ]
 
 
@@ -87,4 +87,4 @@ if __name__ == "__main__":
         correr(ENTRENAMIENTO)
     print("\n== Análisis ==")
     correr(ANALISIS)
-    print("\nListo. El libro queda en _build/html.")
+    print("\nListo. El libro queda en book/_build/html.")
