@@ -1,0 +1,48 @@
+{
+ "PADRE": {
+  "corridas": 40,
+  "brecha_absoluta_media": 0.025013708452553473,
+  "brecha_absoluta_max": 0.08738488908325981,
+  "gap_ratio_mediana": 0.023368106230308265,
+  "gap_ratio_max": 0.10841695105202621,
+  "rmse_entrenamiento_medio": 0.723801080008178,
+  "rmse_parada_medio": 0.7488147884607315,
+  "rmse_prueba_medio": 0.7238654375076294,
+  "estaciones": 61,
+  "proporcion_rechaza_5": {
+   "ljung_box": 1.0,
+   "arch_lm": 0.9836065573770492,
+   "jarque_bera": 0.9180327868852459,
+   "bds": 1.0,
+   "mz": 0.5573770491803278
+  },
+  "mincer_zarnowitz": {
+   "a": -0.0029340968154783244,
+   "b": 1.0018429787051364,
+   "p_conjunto": 0.9155292056408333
+  }
+ },
+ "TCN": {
+  "corridas": 40,
+  "brecha_absoluta_media": -0.0026633676681190018,
+  "brecha_absoluta_max": 0.056484379735660784,
+  "gap_ratio_mediana": 0.03364549221932055,
+  "gap_ratio_max": 0.07084190230478823,
+  "rmse_entrenamiento_medio": 0.7477168169412284,
+  "rmse_parada_medio": 0.7450534492731095,
+  "rmse_prueba_medio": 0.7206314757466317,
+  "estaciones": 61,
+  "proporcion_rechaza_5": {
+   "ljung_box": 1.0,
+   "arch_lm": 0.9836065573770492,
+   "jarque_bera": 0.9180327868852459,
+   "bds": 1.0,
+   "mz": 0.4426229508196721
+  },
+  "mincer_zarnowitz": {
+   "a": -0.00736228397183967,
+   "b": 1.0081955184592348,
+   "p_conjunto": 0.17111360476158285
+  }
+ }
+}
