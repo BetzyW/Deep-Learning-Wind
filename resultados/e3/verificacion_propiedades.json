@@ -1,0 +1,25 @@
+{
+ "modelo": "resultados/e3/confirmatorias/V6/2025-10-01_1000.pt",
+ "origen": "2025-10-01",
+ "ventanas": 20000,
+ "float32": {
+  "max_abs_D_qa_mas_D_aq": 0.0,
+  "max_abs_D_aa": 0.0,
+  "max_abs_D_qa": 2.4601988792419434,
+  "peor_violacion_cota_convexa": -0.016812443733215332,
+  "peso_minimo": 0.013906504027545452,
+  "max_abs_suma_pesos_menos_1": 2.384185791015625e-07,
+  "dispersion_minima": 0.015486272983253002,
+  "dispersion_con_anclas_iguales": 0.0
+ },
+ "float64": {
+  "max_abs_D_qa_mas_D_aq": 0.0,
+  "max_abs_D_aa": 0.0,
+  "max_abs_D_qa": 2.460198688760695,
+  "peor_violacion_cota_convexa": -0.016812452237216113,
+  "peso_minimo": 0.013906515553388746,
+  "max_abs_suma_pesos_menos_1": 4.440892098500626e-16,
+  "dispersion_minima": 0.0154862862009341,
+  "dispersion_con_anclas_iguales": 0.0
+ }
+}
