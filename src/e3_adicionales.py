@@ -28,7 +28,9 @@ LIGEROS = ["MLP", "DLinear", "KAN", "CNN", "TCN", "PADRE", "PatchTST"]
 PESADOS = ["LSTM", "GRU", "Transformer", "STGCN", "Informer"]   # Informer al final: es el más costoso
 # Recorte por cómputo declarado el 23-nov-2026 (experiments/conjuntos_adicionales.md): Informer tarda ≈ 50 min por
 # corrida en SDWPF; en SDWPF y NOAA se corren solo las 3 primeras semillas en los orígenes que no estaban hechos.
-SEMILLAS_RECORTE = {"Informer": {"sdwpf": 3, "noaa_kansas": 3}}
+# Recorte de STGCN declarado el 26-nov-2026 (mismo documento): en la T4 de Colab (sin L4 ni A100 disponibles) tarda
+# ≈ 43 min por corrida en SDWPF; se corren 3 semillas en SDWPF y NOAA (en SDWPF origen 1 ya estaban hechas 1000–1002).
+SEMILLAS_RECORTE = {"Informer": {"sdwpf": 3, "noaa_kansas": 3}, "STGCN": {"sdwpf": 3, "noaa_kansas": 3}}
 FINALES_E2 = "resultados/e2/finales"
 
 

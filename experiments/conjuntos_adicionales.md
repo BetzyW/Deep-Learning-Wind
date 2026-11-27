@@ -73,6 +73,16 @@ Los demás modelos mantienen sus 10 semillas. En las tablas, la media y la dispe
 reportan con el número de corridas de cada origen. La cola de Colab deja Informer al final para que, si el
 presupuesto se agota, los modelos que falten sean solo los suyos.
 
+**Recorte de STGCN (26-nov-2026, después de 3 semillas en el primer origen de SDWPF y antes de los demás orígenes;
+se declara).** Colab no tuvo GPU L4, A100, G4 ni H100 disponibles entre el 24 y el 26 de noviembre, y la cola corrió
+en una T4. Allí STGCN tardó unos 43 minutos por corrida en SDWPF (2 544–2 569 s en las semillas 1000–1002). Con las
+10 semillas, lo que faltaba de los pesados sumaba unas 60 horas de T4, sin margen antes de la entrega del 1-dic. Por
+eso STGCN se corre, como Informer, con **3 semillas** (1000–1002) en SDWPF (los dos orígenes) y en NOAA; en ETTh1
+conserva las 10. La decisión se tomó por costo y antes de ver resultados de STGCN en los orígenes recortados; las
+semillas 1000–1002 son las primeras de la lista, no se eligieron. Es una desviación posterior al tag `e3-protocolo` y
+se reporta como tal en el informe; en las tablas, la media y la dispersión de STGCN en SDWPF y NOAA se reportan con 3
+corridas por origen.
+
 **Falta de memoria de STGCN en SDWPF (23-nov-2026).** Con 134 turbinas, STGCN se quedó sin memoria de GPU al
 predecir en lotes de 4 096 ventanas. `predecir` ahora reintenta en lotes de la mitad: la predicción es la misma y
 solo cambia la memoria usada.
