@@ -214,8 +214,58 @@ def equidad():
                   "Corridas (semillas × orígenes)", "Épocas medias", "Minutos por corrida"], filas)
 
 
+# ---------------------------------------------------------------- capítulo 6: implementación, ablación e interpretabilidad
+
+def ablacion():
+    t = pd.read_csv(f"{EST}/ablacion.csv")
+    q = pd.read_csv(f"{E3}/confirmatorias/V6.csv").parametros.iloc[0]
+    params = {v: pd.read_csv(f"{E3}/confirmatorias/{v}.csv").parametros.iloc[0] for v in ["V3", "V4", "V5", "V1"]}
+    filas = []
+    for _, r in t.iterrows():
+        filas.append([r.componente if "componente" in r else r.rival,
+                      "RMSE" if r.metrica == "rmse" else "Winkler", f(r.media_base, 4), f(r.media_rival, 4),
+                      f"`{r.diferencia:+.4f}`", fp(r.wilcoxon_p_holm), fp(r.dm_p_holm), fp(r.bootstrap_p_holm),
+                      fp(r.p_max_holm), f"`{int(params.get(r.rival, q)):,}`".replace(",", " "),
+                      "contribuye" if r.rechaza_las_tres else "sin efecto detectable"])
+    return tabla(["Componente retirado", "Métrica", "V6 (completo)", "Variante", "Δ (V6 − variante)",
+                  "p Wilcoxon (Holm)", "p DM-HLN (Holm)", "p bootstrap (Holm)", "p máx. (Holm)",
+                  "Parámetros de la variante", "Conclusión"], filas)
+
+
+def interpretabilidad():
+    e2 = json.load(open("resultados/e2/f2a/gpu_resultados.json"))["interpretabilidad"]
+    e3 = json.load(open(f"{E3}/interpretabilidad/resultados.json"))["interpretabilidad"]
+    from scipy.stats import spearmanr
+    L, anc = 168, [168 - 1 - 24 * j for j in range(7)]
+    filas = []
+    for m, d in [("PADRE-TCN", e3), ("Transformer", e2["Transformer"]), ("TCN", e2["TCN"]), ("KAN", e2["KAN"])]:
+        h = np.array(d["importancia_hora"])
+        rng = lambda xs: f"`{min(xs):.2f}`–`{max(xs):.2f}`"
+        filas.append([m, rng([x["cambio_top"] for x in d["fidelidad"]]),
+                      rng([x["cambio_azar"] for x in d["fidelidad"]]), rng(d["spearman_horas"]),
+                      f"`{h[anc].sum() * 100:.0f} %`", f"`{d['importancia_variable'][0] * 100:.0f} %`",
+                      "—" if d is e3 else f"`{spearmanr(e3['importancia_hora'], d['importancia_hora'])[0]:.2f}`"])
+    return tabla(["Modelo", "Cambio del pronóstico al borrar el 10 % de horas más importantes (m/s)",
+                  "Al borrar horas al azar", "Estabilidad entre semillas (Spearman)",
+                  "Atribución en las 7 horas ancla (τ − 24 j)", "Peso de la velocidad",
+                  "Spearman del perfil horario con PADRE-TCN"], filas)
+
+
+def anclas():
+    a = json.load(open(f"{E3}/interpretabilidad/resultados.json"))["anclas"]
+    W = np.array([v["peso_medio"] for v in a.values()])
+    Wf = np.array([v["peso_medio_fuerte"] for v in a.values()])
+    F = np.array([v["frecuencia_mayor_peso"] for v in a.values()])
+    filas = [[f"j = {j + 1} (hace {j + 1} día{'s' if j else ''})", f"`{W[:, j].mean():.3f}` ± `{W[:, j].std():.3f}`",
+              f"`{Wf[:, j].mean():.3f}` ± `{Wf[:, j].std():.3f}`", f"`{F[:, j].mean() * 100:.1f} %`"]
+             for j in range(W.shape[1])]
+    return tabla(["Ancla", "Peso medio wⱼ (todas las ventanas)", "Peso medio con viento ≥ 6 m/s",
+                  "Ventanas en que es el ancla de mayor peso"], filas)
+
+
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion, h1=h1, h2a=h2a, pruebas=pruebas,
-              h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad)
+              h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad,
+              ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas)
 
 if __name__ == "__main__":
     os.makedirs("book/tablas", exist_ok=True)
