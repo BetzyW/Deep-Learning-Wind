@@ -14,7 +14,7 @@ Prueba de ida y vuelta, sobre todas las ventanas reales de prueba de ese origen:
   1. onnxruntime (CPU) frente a PyTorch (CPU, mismos pesos): diferencia máxima < 1e-4 m/s en ambas salidas;
   2. onnxruntime frente al pronóstico guardado en el entrenamiento (2025-10-01_1000.npz, calculado en GPU con TF32):
      se reporta la diferencia (no se exige 1e-4, porque TF32 redondea distinto).
-Salida: resultados/e3/onnx/{padre_v6.onnx, metadata.json, ida_y_vuelta.json}
+Salida: artifacts/{padre_v6.onnx, metadata.json, ida_y_vuelta.json} (carpeta que pide el enunciado)
 Uso: python src/exportar_onnx.py      (dl_env; no necesita GPU)
 """
 import hashlib, json, os, platform, sys, time
@@ -27,7 +27,7 @@ from original_model import PadreTCN  # noqa: E402
 
 PT = "resultados/e3/confirmatorias/V6/2025-10-01_1000.pt"
 NPZ = "resultados/e3/confirmatorias/V6/2025-10-01_1000.npz"
-SALIDA = "resultados/e3/onnx"
+SALIDA = "artifacts"
 OPSET = 17
 TOL = 1e-4
 

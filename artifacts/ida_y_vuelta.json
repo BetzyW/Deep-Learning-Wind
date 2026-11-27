@@ -7,6 +7,6 @@
  "max_dif_dispersion_onnx_vs_entrenamiento": 0.00044167041778564453,
  "rmse_onnx": 0.6174755692481995,
  "tolerancia": 0.0001,
- "fecha": "2026-11-27 07:30",
+ "fecha": "2026-11-27 07:36",
  "aprobada": true
 }
