@@ -1,0 +1,136 @@
+cargando Transformer
+cargando KAN
+cargando TCN
+cargando STGCN
+cargando Chronos
+cargando GRU
+cargando Informer
+cargando DLinear
+cargando Moirai
+cargando PatchTST
+cargando Ridge
+cargando Gradient_boosting
+cargando Persistencia
+cargando V6
+cargando V3
+cargando V4
+cargando V5
+cargando V1
+pruebas H1
+pruebas H2a
+pruebas de la ablación
+
+H1 (RMSE)
+             rival  media_base  media_rival  diferencia  ic95_serie_inf  ic95_serie_sup  wilcoxon_p_holm  dm_p_holm  bootstrap_p_holm  rechaza_las_tres   cliff
+      Transformer      0.7239       0.7189      0.0050          0.0038          0.0132           0.0022     0.0000            0.0200              True  0.0114
+              KAN      0.7239       0.7243     -0.0004         -0.0079          0.0032           1.0000     1.0000            1.0000             False  0.0010
+              TCN      0.7239       0.7206      0.0032          0.0008          0.0078           0.0146     0.0718            0.1600             False  0.0052
+            STGCN      0.7239       0.7297     -0.0059         -0.0125         -0.0021           0.0406     0.0135            0.0513             False -0.0151
+          Chronos      0.7239       0.8962     -0.1724         -0.3593         -0.1983           0.0000     0.0000            0.0012              True -0.1639
+              GRU      0.7239       0.7276     -0.0037         -0.0088          0.0075           0.0000     1.0000            1.0000             False -0.0239
+         Informer      0.7239       0.7242     -0.0004         -0.0041          0.0035           0.0406     1.0000            1.0000             False -0.0083
+          DLinear      0.7239       0.7257     -0.0019         -0.0156          0.0017           0.1104     0.3713            0.9911             False -0.0088
+           Moirai      0.7239       1.0389     -0.3150         -0.6887         -0.4412           0.0000     0.0000            0.0012              True -0.3777
+         PatchTST      0.7239       0.7237      0.0002         -0.0077          0.0033           0.8953     1.0000            1.0000             False -0.0057
+            Ridge      0.7239       0.7223      0.0015         -0.0085          0.0058           1.0000     1.0000            1.0000             False -0.0068
+Gradient_boosting      0.7239       0.7270     -0.0031         -0.0137          0.0001           1.0000     0.3713            0.5067             False  0.0005
+
+H2a (Winkler)
+             rival  media_base  media_rival  diferencia  ic95_serie_inf  ic95_serie_sup  wilcoxon_p_holm  dm_p_holm  bootstrap_p_holm  rechaza_las_tres   cliff
+      Transformer       2.991       3.1531     -0.1621         -0.1765         -0.1343              0.0        0.0            0.0012              True -0.0879
+              KAN       2.991       3.1706     -0.1796         -0.2069         -0.1457              0.0        0.0            0.0012              True -0.0916
+              TCN       2.991       3.1629     -0.1718         -0.1905         -0.1423              0.0        0.0            0.0012              True -0.0952
+            STGCN       2.991       3.1979     -0.2069         -0.2248         -0.1689              0.0        0.0            0.0012              True -0.1025
+          Chronos       2.991       3.8907     -0.8997         -1.0250         -0.6911              0.0        0.0            0.0012              True -0.2555
+              GRU       2.991       3.1786     -0.1876         -0.2036         -0.1475              0.0        0.0            0.0012              True -0.1035
+         Informer       2.991       3.1712     -0.1802         -0.1981         -0.1523              0.0        0.0            0.0012              True -0.0952
+          DLinear       2.991       3.1869     -0.1959         -0.2258         -0.1662              0.0        0.0            0.0012              True -0.0916
+           Moirai       2.991       4.6098     -1.6188         -1.7939         -1.4297              0.0        0.0            0.0012              True -0.5312
+         PatchTST       2.991       3.1758     -0.1847         -0.2069         -0.1552              0.0        0.0            0.0012              True -0.0921
+            Ridge       2.991       3.1659     -0.1749         -0.1989         -0.1505              0.0        0.0            0.0012              True -0.0905
+Gradient_boosting       2.991       3.1926     -0.2016         -0.2356         -0.1629              0.0        0.0            0.0012              True -0.0957
+
+Ablación
+                  componente  media_base  media_rival  diferencia  ic95_serie_inf  ic95_serie_sup  wilcoxon_p_holm  dm_p_holm  bootstrap_p_holm  rechaza_las_tres   cliff
+             anclas (K = 1)      0.7239       0.7216      0.0022         -0.0005          0.0089           0.1771     0.0817            0.2796             False -0.0120
+            pesos uniformes      0.7239       0.7244     -0.0006         -0.0053          0.0002           0.0027     0.0866            0.2796             False -0.0104
+           sin antisimetría      0.7239       0.7235      0.0003         -0.0004          0.0031           0.0112     0.0909            0.2796             False  0.0068
+pérdida por ancla (λ = 0.5)      0.7239       0.7221      0.0018          0.0001          0.0047           0.0112     0.0866            0.1784             False  0.0068
+   normalización solo std24      2.9910       3.1771     -0.1861         -0.2047         -0.1559           0.0000     0.0000            0.0005              True -0.0989
+{
+ "H2b": {
+  "n_pares": 40,
+  "delta": 0.02,
+  "diferencia_media": 0.00323396173511111,
+  "p": 7.632697726833715e-22,
+  "equivalentes": true,
+  "ic90": [
+   0.001768983787345442,
+   0.004698939682876779
+  ]
+ },
+ "H2": {
+  "aceptada": true
+ },
+ "mcs": {
+  "nivel": 0.9,
+  "reps": 2000,
+  "bloque": 168,
+  "incluidos": [
+   "DLinear",
+   "GRU",
+   "Gradient_boosting",
+   "Informer",
+   "KAN",
+   "PADRE",
+   "PatchTST",
+   "Ridge",
+   "TCN",
+   "Transformer"
+  ],
+  "excluidos": [
+   "Chronos",
+   "Moirai",
+   "STGCN"
+  ],
+  "pvalores": {
+   "Moirai": 0.0,
+   "Chronos": 0.0,
+   "STGCN": 0.0195,
+   "Gradient_boosting": 0.222,
+   "DLinear": 0.222,
+   "Informer": 0.5245,
+   "KAN": 0.5245,
+   "PatchTST": 0.5245,
+   "PADRE": 0.5245,
+   "GRU": 0.5245,
+   "Ridge": 0.5245,
+   "TCN": 0.5245,
+   "Transformer": 1.0
+  }
+ },
+ "exploratorias": {
+  "rho_disp_err_medio": 0.4262408602049451,
+  "rho_disp_err_min": 0.3906725245930027,
+  "rho_disp_err_fuerte_medio": 0.23810997342322288,
+  "cobertura_total": 0.8977938519231097,
+  "cobertura_por_trimestre": {
+   "2025-01-01": 0.896,
+   "2025-04-01": 0.8809,
+   "2025-07-01": 0.9009,
+   "2025-10-01": 0.9134
+  },
+  "cobertura_std24_por_trimestre": {
+   "2025-01-01": 0.9038,
+   "2025-04-01": 0.8806,
+   "2025-07-01": 0.8947,
+   "2025-10-01": 0.9148
+  },
+  "cobertura_fuerte": 0.7362979944731294,
+  "sesgo_fuerte": -1.2117745554856452,
+  "sesgo_fuerte_tcn": -1.2247722112189985,
+  "brecha_train_parada": 0.025013708452553473,
+  "rmse_parada_medio": 0.7488147884607315,
+  "rmse_prueba_medio": 0.7238654375076294
+ }
+}

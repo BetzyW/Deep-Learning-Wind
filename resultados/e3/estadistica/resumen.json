@@ -1,0 +1,149 @@
+{
+ "protocolo": "experiments/protocolo.md (tag e3-protocolo)",
+ "replicas_bootstrap": 10000,
+ "bloque_horas": 168,
+ "n_horas": 6630,
+ "n_estaciones": 62,
+ "razon_nadeau_bengio": 0.09933712640750084,
+ "H1": {
+  "contrastes": 12,
+  "rechazos_las_tres": 3,
+  "mejor_con_relevancia": 2,
+  "estado": "rechazada",
+  "condiciones_que_fallan": [
+   "c1_menor_rmse_que_los_12",
+   "c2_tres_pruebas_y_delta",
+   "c3_ic_inferior_mayor_que_0",
+   "c5_brecha_menor_que_delta"
+  ],
+  "regla_R3": {
+   "c1_menor_rmse_que_los_12": false,
+   "c2_tres_pruebas_y_delta": false,
+   "c3_ic_inferior_mayor_que_0": false,
+   "c4_conjuntos_adicionales": "pendiente (modelos pesados en Colab)",
+   "c5_supera_persistencia": true,
+   "c5_brecha_menor_que_delta": false,
+   "c6_robusta": true
+  }
+ },
+ "H2a": {
+  "contrastes": 12,
+  "rechazos_las_tres": 12,
+  "menor_winkler_que_todos": true,
+  "aceptada": true
+ },
+ "H2b": {
+  "n_pares": 40,
+  "delta": 0.02,
+  "diferencia_media": 0.00323396173511111,
+  "p": 7.632697726833715e-22,
+  "equivalentes": true,
+  "ic90": [
+   0.001768983787345442,
+   0.004698939682876779
+  ]
+ },
+ "H2": {
+  "aceptada": true
+ },
+ "ablacion": [
+  {
+   "componente": "anclas (K = 1)",
+   "diferencia": 0.0022313018913139304,
+   "p_max_holm": 0.27957204279572045,
+   "rechaza_las_tres": false
+  },
+  {
+   "componente": "pesos uniformes",
+   "diferencia": -0.0005552023608277334,
+   "p_max_holm": 0.27957204279572045,
+   "rechaza_las_tres": false
+  },
+  {
+   "componente": "sin antisimetría",
+   "diferencia": 0.0003252196564436094,
+   "p_max_holm": 0.27957204279572045,
+   "rechaza_las_tres": false
+  },
+  {
+   "componente": "pérdida por ancla (λ = 0.5)",
+   "diferencia": 0.0017877793631063676,
+   "p_max_holm": 0.17838216178382163,
+   "rechaza_las_tres": false
+  },
+  {
+   "componente": "normalización solo std24",
+   "diferencia": -0.18606242382367677,
+   "p_max_holm": 0.0004999500049995,
+   "rechaza_las_tres": true
+  }
+ ],
+ "persistencia": [
+  {
+   "diferencia": -0.1498225858010117,
+   "p_max_holm": 9.999000099990002e-05,
+   "rechaza_las_tres": true
+  }
+ ],
+ "mcs": {
+  "nivel": 0.9,
+  "reps": 2000,
+  "bloque": 168,
+  "incluidos": [
+   "DLinear",
+   "GRU",
+   "Gradient_boosting",
+   "Informer",
+   "KAN",
+   "PADRE",
+   "PatchTST",
+   "Ridge",
+   "TCN",
+   "Transformer"
+  ],
+  "excluidos": [
+   "Chronos",
+   "Moirai",
+   "STGCN"
+  ],
+  "pvalores": {
+   "Moirai": 0.0,
+   "Chronos": 0.0,
+   "STGCN": 0.0195,
+   "Gradient_boosting": 0.222,
+   "DLinear": 0.222,
+   "Informer": 0.5245,
+   "KAN": 0.5245,
+   "PatchTST": 0.5245,
+   "PADRE": 0.5245,
+   "GRU": 0.5245,
+   "Ridge": 0.5245,
+   "TCN": 0.5245,
+   "Transformer": 1.0
+  }
+ },
+ "exploratorias": {
+  "rho_disp_err_medio": 0.4262408602049451,
+  "rho_disp_err_min": 0.3906725245930027,
+  "rho_disp_err_fuerte_medio": 0.23810997342322288,
+  "cobertura_total": 0.8977938519231097,
+  "cobertura_por_trimestre": {
+   "2025-01-01": 0.896,
+   "2025-04-01": 0.8809,
+   "2025-07-01": 0.9009,
+   "2025-10-01": 0.9134
+  },
+  "cobertura_std24_por_trimestre": {
+   "2025-01-01": 0.9038,
+   "2025-04-01": 0.8806,
+   "2025-07-01": 0.8947,
+   "2025-10-01": 0.9148
+  },
+  "cobertura_fuerte": 0.7362979944731294,
+  "sesgo_fuerte": -1.2117745554856452,
+  "sesgo_fuerte_tcn": -1.2247722112189985,
+  "brecha_train_parada": 0.025013708452553473,
+  "rmse_parada_medio": 0.7488147884607315,
+  "rmse_prueba_medio": 0.7238654375076294
+ }
+}
