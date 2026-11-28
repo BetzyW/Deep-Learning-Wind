@@ -23,10 +23,13 @@ parts:
       - file: e2_09_apendices
   - caption: Entregable 3
     chapters:
+      - file: e3_00_introduccion
       - file: e3_05_modelo_diseno
       - file: e3_06_modelo_implementacion
       - file: e3_07_validacion
       - file: e3_08_evaluacion_ampliada
+      - file: e3_09_dashboard
+      - file: e3_10_conclusiones
   - caption: Referencias
     chapters:
       - file: bibliografia
