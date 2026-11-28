@@ -4,7 +4,8 @@ Bases: OpenAlex (índice de Microsoft Academic ampliado; cubre Scopus/WoS en bue
 Scopus y Web of Science exigen credenciales institucionales y se consultan aparte desde el navegador.
 Cada cadena combina (i) el mecanismo, (ii) el problema y (iii) sinónimos; hay cadenas del mecanismo en otras
 aplicaciones para identificar su origen. Se registra la fecha, el número de resultados y los 50 primeros títulos.
-Salida: literatura/e3/busquedas.csv (registro) y literatura/e3/resultados.csv (títulos para revisar)
+Salida: literatura/e3/busquedas_{fecha}.csv (registro) y literatura/e3/resultados_{fecha}.csv (títulos para revisar);
+la fecha en el nombre conserva cada repetición de la búsqueda (la primera fue el 20-nov-2026).
 Uso: python literatura/e3/buscar_novedad.py      (desde la raíz del repositorio)
 """
 import csv, json, os, time, urllib.parse, urllib.request
@@ -90,7 +91,7 @@ if __name__ == "__main__":
                                 candidato=int(any(k in t for k in CLAVES) and ("wind" in t or "viento" in t))))
             print(f"{cid} {base:16s} {n:>7}", flush=True)
             time.sleep(3)
-    for nombre, filas in [("busquedas.csv", reg), ("resultados.csv", res)]:
+    for nombre, filas in [(f"busquedas_{fecha}.csv", reg), (f"resultados_{fecha}.csv", res)]:
         with open(os.path.join(CARPETA, nombre), "w", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=list(filas[0]))
             w.writeheader(); w.writerows(filas)
