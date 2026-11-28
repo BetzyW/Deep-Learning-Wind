@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Si usa este software o sus resultados, cítelo así."
+title: "Pronóstico de viento a 24 h con Deep Learning: PADRE-TCN, regresión por diferencias con anclas diarias causales"
+authors:
+  - family-names: Ruiz
+    given-names: Betzaida
+version: "e3"
+date-released: "2026-11-28"
+license: MIT
+repository-code: "https://github.com/BetzyW/Deep-Learning-Wind"
+keywords:
+  - wind speed forecasting
+  - deep learning
+  - pairwise difference regression
+  - twin neural network regression
+  - conformal prediction
