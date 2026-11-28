@@ -1,0 +1,229 @@
+cadena,base,anio,titulo,id,candidato
+C1,OpenAlex,2022,On wavelet transform based convolutional neural network and twin support vector regression for wind power ramp event prediction,https://doi.org/10.1016/j.suscom.2022.100795,1
+C1,OpenAlex,2021,Regression Analysis on Global Wind Speed Using Reanalysis Data,https://doi.org/10.37109/weik.2021.25.4.165,0
+C1,OpenAlex,2026,A Hybrid physics-informed digital twin for offshore wind-farm flow prediction: integrating CFD simulations with deep regression forest and probabilistic surrogate models,https://doi.org/10.1186/s44147-026-01268-0,1
+C1,OpenAlex,2021,Machine intelligent and deep learning techniques for large training data in short‐term wind speed and ramp event forecasting,https://doi.org/10.1002/2050-7038.12818,0
+C1,OpenAlex,2026,Digital twin-enabled crop yield prediction in semi-arid agriculture: a continuous feedback machine learning framework,https://doi.org/10.1007/s00704-026-06150-w,0
+C1,OpenAlex,2015,"Impact of Climate and Urbanization on Dengue Transmission in Different Regions (Lahore, Karachi and Twin Cities) of Pakistan",https://openalex.org/W2305748802,0
+C1,OpenAlex,2022,Using machine learning to separate atmospherically generated noise from marsquakes,https://doi.org/10.5194/epsc2022-833,0
+C1,OpenAlex,2026,Learning-Based Multi-Objective Operation of Microgrid with Renewable Uncertainty and Demand-side Management,https://openalex.org/W7203562258,0
+C3,Semantic Scholar,2025,"Comparative Analysis of Machine Learning Models for Wind Speed Forecasting: Support Vector Machines, Fine Tree, and Linear Regression Approaches",10.1016/j.ijft.2025.101217,0
+C3,Semantic Scholar,2025,Short-term extreme wind speed forecasting using dual-output LSTM-based regression and classification model,10.1016/j.jweia.2025.106035,0
+C3,Semantic Scholar,2020,"A compound framework for wind speed forecasting based on comprehensive feature selection, quantile regression incorporated into convolutional simplified long short-term memory network and residual error correction",10.1016/j.enconman.2020.113234,0
+C3,Semantic Scholar,2019,Wind speed forecasting based on Quantile Regression Minimal Gated Memory Network and Kernel Density Estimation,10.1016/J.ENCONMAN.2019.06.024,0
+C3,Semantic Scholar,2019,"Smart wind speed deep learning based multi-step forecasting model using singular spectrum analysis, convolutional Gated Recurrent Unit network and Support Vector Regression",10.1016/J.RENENE.2019.05.039,0
+C3,Semantic Scholar,2020,"Wind Speed Forecasting using Regression, Time Series and Neural Network Models: A Case Study of Suva",10.14264/CCEE311,0
+C3,Semantic Scholar,2024,A Novel Ensemble Wind Speed Forecasting System Based on Artificial Neural Network for Intelligent Energy Management,10.1109/ACCESS.2024.3430830,0
+C3,Semantic Scholar,2024,A novel analysis of random forest regression model for wind speed forecasting,10.1080/23311916.2024.2434617,0
+C3,Semantic Scholar,2024,Short-term wind speed forecasting using an optimized three-phase convolutional neural network fused with bidirectional long short-term memory network model,10.1016/j.apenergy.2024.122624,0
+C3,Semantic Scholar,2024,Hybrid deep learning and quantum-inspired neural network for day-ahead spatiotemporal wind speed forecasting,10.1016/j.eswa.2023.122645,0
+C3,Semantic Scholar,2024,TCNFormer: Temporal Convolutional Network Former for Short-Term Wind Speed Forecasting,10.48550/arXiv.2408.15737,0
+C3,Semantic Scholar,2024,Wind Speed Forecasting Using an Ensemble Deep Random Vector Functional Link Neural Network Based on Parsimonious Channel Mixing,10.1109/IJCNN60899.2024.10650817,0
+C3,Semantic Scholar,2023,Adapting a deep convolutional RNN model with imbalanced regression loss for improved spatio-temporal forecasting of extreme wind speed events in the short to medium range,10.5194/gmd-16-251-2023,0
+C3,Semantic Scholar,2025,Multifeature-Driven Multistep Wind Speed Forecasting Using NARXR and Modified VMD Approaches,10.3390/forecast7010012,0
+C3,Semantic Scholar,2025,"Accurate wind speed forecasting through ensemble models: A real-world case study in Sfax, Tunisia",10.1177/0309524X251395411,0
+C3,Semantic Scholar,2023,Exploring Time Series Models for Wind Speed Forecasting: A Comparative Analysis,10.3390/en16237785,0
+C3,Semantic Scholar,2020,Multi-step wind speed forecasting based on hybrid multi-stage decomposition model and long short-term memory neural network,10.1016/j.enconman.2020.112869,0
+C3,Semantic Scholar,2023,Adaptive Graph-Learning Convolutional Network for Multi-Node Offshore Wind Speed Forecasting,10.3390/jmse11040879,0
+C3,Semantic Scholar,2023,A Hybrid Neural Network Model for Short-Term Wind Speed Forecasting,10.3390/en16041841,0
+C3,Semantic Scholar,2021,Robust penalized extreme learning machine regression with applications in wind speed forecasting,10.1007/s00521-021-06370-3,0
+C3,Semantic Scholar,2024,"Wind-Speed Multi-Step Forecasting Based on Variational Mode Decomposition, Temporal Convolutional Network, and Transformer Model",10.3390/en17091996,0
+C3,Semantic Scholar,2023,A convolutional Transformer-based truncated Gaussian density network with data denoising for wind speed forecasting,10.1016/j.apenergy.2022.120601,0
+C3,Semantic Scholar,2023,A novel ensemble system for short-term wind speed forecasting based on Two-stage Attention-Based Recurrent Neural Network,10.1016/j.renene.2022.12.120,0
+C3,Semantic Scholar,2024,"Evaluating Wind Speed Forecasting Models: A Comparative Study of CNN, DAN2, Random Forest and XGBOOST in Diverse South African Weather Conditions",10.3390/forecast6030035,0
+C3,Semantic Scholar,2023,Evolving long short-term memory neural network for wind speed forecasting,10.1016/j.ins.2023.03.031,0
+C3,Semantic Scholar,2023,Decomposition-based wind speed forecasting model using causal convolutional network and attention mechanism,10.1016/j.eswa.2023.119878,0
+C3,Semantic Scholar,2023,Dynamic adaptive spatio-temporal graph neural network for multi-node offshore wind speed forecasting,10.1016/j.asoc.2023.110294,0
+C3,Semantic Scholar,2023,Short-term wind speed forecasting based on adaptive secondary decomposition and robust temporal convolutional network,10.1016/j.energy.2023.129618,0
+C3,Semantic Scholar,2023,"A novel wind speed forecasting combined model using variational mode decomposition, sparse auto-encoder and optimized fuzzy cognitive mapping network",10.1016/j.energy.2023.127926,0
+C3,Semantic Scholar,2023,Rolling decomposition method in fusion with echo state network for wind speed forecasting,10.1016/j.renene.2023.119101,0
+C3,Semantic Scholar,2020,"A Combined Model Based on CEEMDAN, Permutation Entropy, Gated Recurrent Unit Network, and an Improved Bat Algorithm for Wind Speed Forecasting",10.1109/ACCESS.2020.3022872,0
+C3,Semantic Scholar,2024,Spatiotemporal wind speed forecasting using conditional local convolution and multidimensional meteorology features,10.1038/s41598-024-78303-8,0
+C3,Semantic Scholar,2024,A Comprehensive Multivariate Wind Speed Forecasting Model Utilizing Deep Learning Neural Networks,10.1007/s13369-024-09203-2,0
+C3,Semantic Scholar,2026,A Hybrid Linear–Gaussian Process Framework with Adaptive Covariance Selection for Spatio-Temporal Wind Speed Forecasting,10.3390/forecast8030036,0
+C3,Semantic Scholar,2025,Machine learning-based wind speed forecasting: a comparative study,10.1038/s41598-025-24640-1,0
+C3,Semantic Scholar,2024,Wind Speed Forecasting using Deep Learning,10.1109/ICSSEECC61126.2024.10649504,0
+C3,Semantic Scholar,2022,Short-term wind speed forecasting based on long short-term memory and improved BP neural network,10.1016/J.IJEPES.2021.107365,0
+C3,Semantic Scholar,2019,"Multi-Step Wind Speed Forecasting Based On Ensemble Empirical Mode Decomposition, Long Short Term Memory Network and Error Correction Strategy",10.3390/EN12101822,0
+C3,Semantic Scholar,2026,A novel approach to multi-horizon wind speed forecasting based on advanced machine learning techniques using sparse meteorological data of indigenous wind farm of Pakistan,10.1177/0309524x261480933,0
+C3,Semantic Scholar,2022,A combined short-term wind speed forecasting model based on CNN-RNN and linear regression optimization considering error,10.1016/j.renene.2022.09.114,0
+C3,Semantic Scholar,2021,"A new hybrid model for wind speed forecasting combining long short-term memory neural network, decomposition methods and grey wolf optimizer",10.1016/j.asoc.2020.106996,0
+C3,Semantic Scholar,2026,Multi-View Graph Neural Networks for Off-Grid Wind Speed Forecasting,10.1109/IJCNN69854.2026.11728405,0
+C3,Semantic Scholar,2021,Wind speed forecasting based on variational mode decomposition and improved echo state network,10.1016/J.RENENE.2020.09.109,0
+C3,Semantic Scholar,2025,"Explainable deep learning techniques for wind speed forecasting in coastal areas: Integrating model configuration, regularization, early stopping, and SHAP analysis",10.1007/s00521-025-11433-w,0
+C3,Semantic Scholar,2021,"A hybrid neural network model for short-term wind speed forecasting based on decomposition, multi-learner ensemble, and adaptive multiple error corrections",10.1016/j.renene.2020.11.002,0
+C3,Semantic Scholar,2021,Hybrid forecasting system based on data area division and deep learning neural network for short-term wind speed forecasting,10.1016/J.ENCONMAN.2021.114136,0
+C3,Semantic Scholar,2022,A novel hybrid approach based on variational heteroscedastic Gaussian process regression for multi-step ahead wind speed forecasting,10.1016/j.ijepes.2021.107717,0
+C3,Semantic Scholar,2022,Wind Speed Forecasting Using Attention-Based Causal Convolutional Network and Wind Energy Conversion,10.3390/en15082881,0
+C3,Semantic Scholar,2018,Data mining-assisted short-term wind speed forecasting by wavelet packet decomposition and Elman neural network,10.1016/J.JWEIA.2018.01.020,0
+C3,Semantic Scholar,2022,Multi-step wind speed forecasting based on a hybrid decomposition technique and an improved back-propagation neural network,10.1007/s11356-022-19388-4,0
+C4,OpenAlex,2020,Improving Wind Forecasts in the Lower Stratosphere by Distilling an Analog Ensemble Into a Deep Neural Network,https://doi.org/10.1029/2020gl089098,1
+C4,OpenAlex,2021,Weather Analogs with a Machine Learning Similarity Metric for Renewable Resource Forecasting,https://doi.org/10.48550/arxiv.2103.04530,0
+C4,OpenAlex,2022,Bayesian Network for Predicting Dustfall in Iraq,https://doi.org/10.47760/cognizance.2022.v02i11.002,0
+C4,OpenAlex,1969,Non-Parametric Estimation of a Multivariate Probability Density,https://doi.org/10.1137/1114019,0
+C4,arXiv,2018,Improving Sentence Representations with Consensus Maximisation,http://arxiv.org/abs/1810.01064v4,0
+C4,arXiv,2021,Weather Analogs with a Machine Learning Similarity Metric for Renewable Resource Forecasting,http://arxiv.org/abs/2103.04530v2,0
+C4,arXiv,2025,AI-informed model-analogs for understanding subseasonal-to-seasonal jet stream and North American temperature predictability,http://arxiv.org/abs/2506.14022v3,0
+C5,OpenAlex,2012,Load forecasting using Twin Gaussian Process model,https://doi.org/10.1109/soli.2012.6273501,0
+C5,OpenAlex,2022,"Advanced multi-input system identification for next generation aircraft loads monitoring using linear regression, neural networks and deep learning",https://doi.org/10.1016/j.ymssp.2022.108809,0
+C5,OpenAlex,2025,A Predictive Greenhouse Digital Twin for Controlled Environment Agriculture,https://doi.org/10.5220/0013479900003929,0
+C5,OpenAlex,2026,AI-Driven Digital Twin Framework for Predictive Healthcare,https://doi.org/10.1201/9781003726913-20,0
+C5,OpenAlex,2026,Degradation-adaptive digital twin for long-term consistency,https://doi.org/10.1016/j.simpat.2026.103276,0
+C5,OpenAlex,2026,A Data-Scarce Digital Twin Framework for Irrigation Decision-Making Using Physics-Constrained Generative AI,https://doi.org/10.1109/icssas68835.2026.11559311,0
+C5,OpenAlex,2026,"The Digital Twin Organization (DTO) A Theory of Organizational State and a Computational Architecture for Predictive, Causally-Informed Change Management",https://doi.org/10.5281/zenodo.21823585,0
+C5,OpenAlex,2026,MACHINE LEARNING-BASED WATER DEMAND FORECASTING FOR EFFICIENT WATER CONSERVATION STRATEGIES: A SYSTEMATIC LITERATURE REVIEW,https://doi.org/10.55041/ijcope.v2i7.144,0
+C5,OpenAlex,2026,Comparative Analysis of Machine Learning Models for Water Level Forecasting towards Flood Early Warning in the Mekong River,https://doi.org/10.37936/ecti-eec.2027251.262931,0
+C5,OpenAlex,2025,Intelligent Analysis of Power Plant Sensors: Forecasting and Anomaly Detection,https://doi.org/10.1007/978-3-032-07690-8_28,0
+C5,OpenAlex,2026,Predictive analytics frameworks for sustainable waste reduction in a data driven economy,https://openalex.org/W7219977500,0
+C5,OpenAlex,2026,Data-Driven estimation of experimental signals in TJ-II: A proof of principle,https://doi.org/10.1016/j.fusengdes.2026.115847,0
+C5,OpenAlex,2025,Machine Learning Driven Performance Prediction of Thermoelectric Generators Using ANN Based Modelling,https://doi.org/10.1109/icercs65898.2025.11581063,0
+C5,OpenAlex,2025,"AI-DRIVEN APPROACHES TO CROP YIELD PREDICTION AND MANAGEMENT: TOWARDS SUSTAINABLE AND SMART AGRICULTURE""",https://doi.org/10.5281/zenodo.18065505,0
+C5,OpenAlex,2026,AI-Driven Predictive Maintenance in Cloud Data Centers: A Deep Learning Framework for Failure Prediction and Service Reliability,https://doi.org/10.53365/nrfhh.3369,0
+C5,OpenAlex,2026,Learning-Based Multi-Objective Operation of Microgrid with Renewable Uncertainty and Demand-side Management,https://openalex.org/W7203562258,0
+C5,OpenAlex,2025,"Investigation of Solid Oxide Fuel Cell Lifetime Improvement Through an Integrated Simulation, Experimental, and Data-Driven Modelling Approach",https://doi.org/10.48780/publications.aston.ac.uk.00049405,0
+C5,OpenAlex,2026,"Data Intelligence: Mathematical Models, Machine Learning and Analytical Discovery",https://doi.org/10.5281/zenodo.22894164,0
+C5,OpenAlex,2015,Seizure Prediction 6 [LINE SEPARATOR]From Mechanisms to Engineered Interventions for Epilepsy,https://doi.org/10.1097/wnp.0000000000000184,0
+C5,OpenAlex,2025,ASAS-NANP symposium: mathematical modeling in animal nutrition: training the future generation in data and predictive analytics for sustainable development. A summary of the 2024 symposium,https://doi.org/10.1093/jas/skaf452,0
+C5,OpenAlex,2025,"Cognitive alignment in cardiovascular AI: designing predictive models that think with, not just for, clinicians",https://doi.org/10.3389/fcvm.2025.1651324,0
+C6,OpenAlex,2022,Twin neural network regression,https://doi.org/10.1002/ail2.78,0
+C6,OpenAlex,2022,Twin neural network regression is a semi-supervised regression algorithm,https://doi.org/10.1088/2632-2153/ac9885,0
+C6,OpenAlex,2026,Inverting Non-injective Functions with Twin Neural Network Regression,https://doi.org/10.1007/s10994-026-07083-1,0
+C6,OpenAlex,2024,Estimation of citrus leaves’ nitrogen content by multispectral unmanned aerial vehicle remote sensing based on semi-supervised twin neural network regression,https://doi.org/10.1117/1.jrs.18.034506,0
+C6,OpenAlex,2024,Twin neural network improved k-nearest neighbor regression,https://doi.org/10.1007/s41060-024-00589-8,0
+C6,OpenAlex,2026,Digital Twin Modeling of Hypersonic Flight Vehicles Based on Dynamic Regression Neural Network,https://doi.org/10.1007/978-981-96-4652-4_65,0
+C6,OpenAlex,2022,On wavelet transform based convolutional neural network and twin support vector regression for wind power ramp event prediction,https://doi.org/10.1016/j.suscom.2022.100795,1
+C6,OpenAlex,2025,"A TEACHING AID CREATED AS A VIRTUAL TWIN USING DESIGN OF EXPERIMENTS, A REGRESSION MODEL, A NEURAL NETWORK, AND ARTIFICIAL INTELLIGENCE",https://doi.org/10.21125/edulearn.2025.1558,0
+C6,OpenAlex,2023,How to get the most out of Twinned Regression Methods,https://doi.org/10.48550/arxiv.2301.01383,0
+C6,OpenAlex,2023,Global Target Tracking Algorithm Based on Improved Twin Neural Network,https://doi.org/10.1109/icpeca56706.2023.10076133,0
+C6,OpenAlex,2021,TGSA: protein–protein association-based twin graph neural networks for drug response prediction with similarity augmentation,https://doi.org/10.1093/bioinformatics/btab650,0
+C6,OpenAlex,2023,Neural network and Sparse identification of Nonlinear Dynamics Integrated Algorithm for Digital Twin identification,https://doi.org/10.1016/j.ifacol.2023.10.503,0
+C6,OpenAlex,2023,Machine learning with neural networks for parameter optimization in twin-field quantum key distribution,https://doi.org/10.1007/s11128-023-04063-5,0
+C6,OpenAlex,2023,Digital Twins for Smart Home Gadget Threat Prediction using Deep Convolution Neural Network,https://doi.org/10.14569/ijacsa.2023.0140270,0
+C6,OpenAlex,2025,"Spatiotemporal Graph Neural Networks and Digital Twins for Urban Drainage Networks: Predictive Inundation, Critical-Node Detection, And Infrastructure Prioritization",https://doi.org/10.63125/awvjew66,0
+C6,OpenAlex,2026,Exploiting Artificial Neural Networks for Digital Twins in Sand Casting,https://doi.org/10.4028/p-xelc2g,0
+C6,OpenAlex,2026,Digital Twin Model of a Solar Panel for Intelligent Monitoring Using Artificial Neural Network,https://doi.org/10.53982/ajerd.2026.0901.08-j,0
+C6,OpenAlex,2026,Unsupervised physics-informed neural network for digital twin construction of LRM temperature fields,https://doi.org/10.1016/j.dte.2026.100121,0
+C6,OpenAlex,2025,Pseudo-Twin Neural Network of Full Multi-Layer Perceptron for Ultra-Short-Term Wind Power Forecasting,https://doi.org/10.3390/electronics14050887,1
+C6,OpenAlex,2026,Causal structure-enhanced branch neural networks for interpretable and robust regression,https://doi.org/10.1016/j.eswa.2026.131851,0
+C6,OpenAlex,2025,PINN-DT: Optimizing Energy Consumption in Smart Building Using Hybrid Physics-Informed Neural Networks and Digital Twin Framework with Blockchain Security,https://doi.org/10.3390/s25196242,0
+C6,OpenAlex,2024,Leveraging Recurrent Neural Networks in Virtual Reality-based Digital Twin Models for Enhanced Predictive Maintenance of Industrial Machines,https://doi.org/10.1109/inmic64792.2024.11004403,0
+C6,OpenAlex,2026,Spatio-temporal graph neural network based digital twin surrogate for throughput estimation in general assembly lines,https://doi.org/10.1016/j.jmsy.2026.04.003,0
+C6,OpenAlex,2024,Foretelling the compressive strength of concrete using twin support vector regression,https://doi.org/10.1007/s41870-024-01913-y,0
+C6,OpenAlex,2025,Designing Neural Dynamics: From Digital Twin Modeling to Regeneration,https://doi.org/10.3390/ijms27010122,0
+C6,OpenAlex,2025,Hybrid Physics-Informed Neural Network for Battery State of Health Prediction: A Data-Driven Digital Twin Approach,https://doi.org/10.2139/ssrn.5388900,0
+C6,OpenAlex,2011,Early Cost Estimating of Road Tunnel Construction Using Neural Networks,https://doi.org/10.1061/(asce)co.1943-7862.0000479,0
+C6,OpenAlex,2023,Neuro-Symbolic Explainable Artificial Intelligence Twin for Zero-Touch IoE in Wireless Network,https://doi.org/10.1109/jiot.2023.3303713,0
+C6,OpenAlex,2026,From ML to physics informed neural networks: scalable digital twin for stress-aware design in photonic structures,https://doi.org/10.1117/12.3080131,0
+C6,OpenAlex,2024,Data-driven Earth-fault Localization via Neural Network Models for Classification and Regression,https://doi.org/10.1109/smartgridcomm60555.2024.10738067,0
+C6,OpenAlex,2025,Self-Referencing Digital Twin for Thermal and Task Management in Package Stacked ESP32-S3 Microcontrollers with Mixture-of-Experts and Neural Networks,https://doi.org/10.3390/computers15010004,0
+C6,OpenAlex,2025,Enhancing Industrial Internet of Things performance through deep transfer learning-based neural network digital twin modeling in data-scarce environments,https://doi.org/10.1016/j.jii.2025.100956,0
+C6,OpenAlex,2018,Stochastic Optimization of PID Parameters for Twin Rotor System with Multiple Nonlinear Regression,https://doi.org/10.1109/ceit.2018.8751870,0
+C6,OpenAlex,2022,"Advanced multi-input system identification for next generation aircraft loads monitoring using linear regression, neural networks and deep learning",https://doi.org/10.1016/j.ymssp.2022.108809,0
+C6,OpenAlex,2025,Infinite Width Limits of Self Supervised Neural Networks,https://doi.org/10.48550/arxiv.2411.11176,0
+C6,OpenAlex,2026,Adaptive neural pose regression enabled by updatable graphics-based digital twin for robust UAV localization in GPS-denied civil infrastructure,https://doi.org/10.1016/j.robot.2026.105570,0
+C6,OpenAlex,2023,EFFICIENCY OF SUPPLEMENTARY OUTPUTS IN SIAMESE NEURAL NETWORKS,https://doi.org/10.20998/2522-9052.2023.3.07,0
+C6,OpenAlex,2025,Linear Regression And Recurrent Neural Network Ensemble For Swift Tensile Load Balancer For Static And Dynamic Clouds,https://doi.org/10.64252/wdn88j18,0
+C6,OpenAlex,2007,Optimization of Whole Milk Powder Processing Variables with Neural Networks and Genetic Algorithms,https://doi.org/10.1205/fbp07074,0
+C6,OpenAlex,2017,DNA methylation-based forensic age prediction using artificial neural networks and next generation sequencing,https://doi.org/10.1016/j.fsigen.2017.02.009,0
+C6,OpenAlex,2021,Digital Twin-Driven Remaining Useful Life Prediction for Gear Performance Degradation: A Review,https://doi.org/10.1115/1.4049537,0
+C6,OpenAlex,2025,A Modular Network Digital Twin for Radio Coverage Prediction: From Theory to Practice,https://doi.org/10.1109/globecom59602.2025.11431914,0
+C6,OpenAlex,2023,Twin chain: A Blockchain based Federated Learning Intrusion Detection System usingOptimized Backpropagation based Neural Network for Edge Assisted IoT Networks,https://doi.org/10.21203/rs.3.rs-3214924/v1,0
+C6,OpenAlex,2023,Digital twin based accuracy compensation,https://doi.org/10.1016/j.cirp.2023.04.088,0
+C6,OpenAlex,2025,Neural Enhanced Digital Twin Framework for Spatiotemporal Anomaly Detection and Predictive Insights in Smart Manufacturing Systems,https://doi.org/10.1109/computingcon64838.2025.11377963,0
+C6,OpenAlex,2026,Surrogate-based Digital Twin Framework for Chemical Accident Simulation Using Graph Neural Network and Augmented Reality,https://doi.org/10.2139/ssrn.7312151,0
+C6,OpenAlex,2024,A conceptual digital twin framework for supply chain recovery and resilience,https://doi.org/10.1016/j.sca.2024.100091,0
+C6,OpenAlex,2020,Drilling Problems Forecast System Based on Neural Network,https://doi.org/10.2118/202546-ms,0
+C6,OpenAlex,2026,"Digital twin of the system for transportation, monitoring, and storage of energy carriers: hydrogen energy, integration of geological data, machine learning, and physics-informed neural networks",https://doi.org/10.36871/2618-9976.2026.08.010,0
+C6,OpenAlex,2021,Deep Learning for Security in Digital Twins of Cooperative Intelligent Transportation Systems,https://doi.org/10.1109/tits.2021.3113779,0
+C6,arXiv,2026,Inverting Non-Injective Functions with Twin Neural Network Regression,http://arxiv.org/abs/2601.05378v2,0
+C6,arXiv,2021,Twin Neural Network Regression is a Semi-Supervised Regression Algorithm,http://arxiv.org/abs/2106.06124v1,0
+C6,arXiv,2020,Twin Neural Network Regression,http://arxiv.org/abs/2012.14873v1,0
+C6,arXiv,2023,Twin Neural Network Improved k-Nearest Neighbor Regression,http://arxiv.org/abs/2310.00664v1,0
+C6,arXiv,2023,How to get the most out of Twinned Regression Methods,http://arxiv.org/abs/2301.01383v1,0
+C7,OpenAlex,2021,Pairwise Difference Regression: A Machine Learning Meta-algorithm for Improved Prediction and Uncertainty Quantification in Chemical Search,https://doi.org/10.1021/acs.jcim.1c00670,0
+C7,OpenAlex,2023,Exploring a general convolutional neural network-based prediction model for critical casting diameter of metallic glasses,https://doi.org/10.1016/j.jallcom.2023.169479,0
+C7,arXiv,2024,$i$REPO: $i$mplicit Reward Pairwise Difference based Empirical Preference Optimization,http://arxiv.org/abs/2405.15230v2,0
+C8,Semantic Scholar,2025,A Hybrid Deep Learning Approach for Multi‐Output Short‐Term Electricity Demand Forecasting,10.1002/cpe.70356,0
+C8,Semantic Scholar,2025,Performance of the Pangu‐Weather Deep Learning Model in Forecasting Tornadic Environments,10.1029/2024GL109611,0
+C8,Semantic Scholar,2026,Deep Learning Forecasting of IRI-2020 Total Electron Content Residuals over China and Adjacent Regions During the Solar Cycle 25 Maximum: Roles of Anchored Output and the Background Field,10.3390/atmos17111151,0
+C8,Semantic Scholar,2026,Ward-Level Urban Climate Risk Intelligence Using Google Earth Engine and Hybrid Deep Learning Forecasting,10.46610/joipai.2026.v12i03.001,0
+C8,Semantic Scholar,2025,S-Transformer: a new deep learning model enhanced by sequential transformer encoders for drought forecasting,10.1007/s12145-025-01845-6,0
+C8,Semantic Scholar,2025,Temporal Modeling of Social Media for Depression Forecasting: Deep Learning Approaches with Pretrained Embeddings,10.3390/app152011274,0
+C8,Semantic Scholar,2024,Transformer Versus LSTM: A Comparison of Deep Learning Models for Karst Spring Discharge Forecasting,10.1029/2022WR032602,0
+C8,Semantic Scholar,2025,Deep Learning-Based Stock Price Forecasting and Anomaly Detection: A Data-Driven Approach,10.1109/ICDICI66477.2025.11135369,0
+C8,Semantic Scholar,2025,Optimizing Deep Learning for NDVI Time-Series Forecasting in Cloud-Affected Grasslands,10.1109/DeSE68208.2025.11367937,0
+C8,Semantic Scholar,2025,Selective Learning for Deep Time Series Forecasting,10.48550/arXiv.2510.25207,0
+C8,Semantic Scholar,2025,Deep learning and smart energy-based lightweight urban power load forecasting model for sustainable urban growth,10.3389/frsc.2024.1487109,0
+C8,Semantic Scholar,2025,Predicting Attainment of Clinically Important Difference in the Japanese Orthopaedic Association Back Pain Evaluation Questionnaire: A Comparison of Deep Learning and Machine Learning.,10.1097/BRS.0000000000005534,0
+C8,Semantic Scholar,2024,"Platform for precise, personalised glucose forecasting through continuous glucose and physical activity monitoring and deep learning.",10.1016/j.medengphy.2024.104241,0
+C8,Semantic Scholar,2025,Deep Learning‐Enhanced High‐Precision Wind Field Concurrent Triboelectric Sensing,10.1002/adma.202514540,0
+C8,Semantic Scholar,2024,Comparison of Deep Learning and Incremental Learning Model for Net Load Forecasting,10.37936/ecti-eec.2024221.249273,0
+C8,Semantic Scholar,2024,Predictive Patterns and Market Efficiency: A Deep Learning Approach to Financial Time Series Forecasting,10.3390/math12193066,0
+C8,Semantic Scholar,2025,Robust Hybrid Deep Learning for Potato Price Forecasting in Agricultural Management,10.1007/s11540-025-09937-y,0
+C8,Semantic Scholar,2024,Embedding the weather prediction errors (WPE) into the photovoltaic (PV) forecasting method using deep learning,10.1002/for.3064,0
+C8,Semantic Scholar,2024,Multi-stage Attention Mechanism based Deep Learning for Wind Power Forecasting,10.23919/CCC63176.2024.10661628,0
+C8,Semantic Scholar,2026,Socio-economic indicators of occupational accidents: a hybrid deep learning forecasting study in an emerging economy,10.1007/s42001-026-00511-1,0
+C8,Semantic Scholar,2026,Deep Learning Forecasting of the U.S. Aggregate Bond Index,10.2139/ssrn.6439038,0
+C8,Semantic Scholar,2022,Adaptation of a Real-Time Deep Learning Approach With an Analog Fault Detection Technique for Reliability Forecasting of Capacitor Banks Used in Mobile Vehicles,10.1109/ACCESS.2022.3228916,0
+C8,Semantic Scholar,2023,Is deeper always better? Evaluating deep learning models for yield forecasting with small data,10.1007/s10661-023-11609-8,0
+C8,Semantic Scholar,2020,Deep Learning for Road Traffic Forecasting: Does it Make a Difference?,10.48550/arXiv.2012.02260,0
+C8,Semantic Scholar,2023,Deep Learning in IoT: An LSTM Approach for NDVI Forecasting,10.1109/ICEEM58740.2023.10319616,0
+C8,Semantic Scholar,2026,Forecasting bunker price using deep learning and dimensionality reduction,10.1108/mabr-12-2024-0093,0
+C8,Semantic Scholar,2026,Computational Frontiers in Volatility Forecasting: A Systematic Review of Deep Learning Approaches in Financial Markets,10.14569/ijacsa.2026.0171020,0
+C8,Semantic Scholar,2026,Climate Analyzer: Deep Learning for Vegetation Stress Detection and Short-Term Risk Forecasting,10.1109/ESCI68015.2026.11493306,0
+C8,Semantic Scholar,2026,Improved performance of short-term wind power forecasting system using a hybrid deep learning model with data pre-processing,10.1007/s10586-026-06393-2,0
+C8,Semantic Scholar,2025,Box-meter integrated solution for power data imputation through device design and deep learning integration,10.1038/s41598-025-18439-3,0
+C8,Semantic Scholar,2019,Analog Forecasting of Extreme‐Causing Weather Patterns Using Deep Learning,10.1029/2019MS001958,0
+C8,Semantic Scholar,2024,Load Forecasting-Based Learning System for Energy Management With Battery Degradation Estimation: A Deep Reinforcement Learning Approach,10.1109/TCE.2024.3371568,0
+C8,Semantic Scholar,2025,Toward Location Reliant Early Earthquake Detection: A Paradigm Deployed Deep Learning Algorithms and Clustered Seismic Indicators,10.1080/13632469.2025.2565617,0
+C8,Semantic Scholar,2025,Forecasting Sovereign Credit Risk Amidst a Political Crisis: A Machine Learning and Deep Learning Approach,10.3390/jrfm18060300,0
+C8,Semantic Scholar,2023,"Deep learning–based long short-term memory recurrent neural networks for monthly rainfall forecasting in Ghana, West Africa",10.1007/s00704-023-04773-x,0
+C8,Semantic Scholar,2026,Hybrid multi-task deep learning framework for joint forecasting of solar and wind power,10.11591/eei.v15i5.12426,0
+C8,Semantic Scholar,2025,Accurate Time-Based Positioning Using Deep Learning With Anchor Selection,10.1109/ACCESS.2025.3631399,0
+C8,Semantic Scholar,2023,Extreme heat wave sampling and prediction with analog Markov chain and comparisons with deep learning,10.1017/eds.2024.7,0
+C8,Semantic Scholar,2025,Advancing Darcy Flow Modeling: Comparing Numerical and Deep Learning Techniques,10.3390/pr13092754,0
+C8,Semantic Scholar,2024,Gated recurrent unit (GRU)-based deep learning method for spectrum estimation and inverse modeling in plasmonic devices,10.1007/s00339-024-07956-z,0
+C8,Semantic Scholar,2022,Forecasting earthquake rupture characteristics with deep learning: a proof of concept using analog laboratory foamquakes,24ee1522a85823508f18079e18f0e20b36f227ee,0
+C8,Semantic Scholar,2023,Deep Learning With Processing Algorithms for Forecasting Tourist Arrivals,10.18421/tem123-57,0
+C8,Semantic Scholar,2023,Deep learning-based heat optimization techniques for forecasting indoor temperature changes,10.1007/s41324-023-00546-w,0
+C8,Semantic Scholar,2023,Tropical Cyclone Intensity Forecasting Using Deep Learning,10.1109/ICMLA58977.2023.00187,0
+C8,Semantic Scholar,2025,Macroeconomic-aware forecasting of construction costs in developing countries: Using gated recurrent unit and long short-term memory deep learning framework,10.1371/journal.pone.0333189,0
+C8,Semantic Scholar,2025,Hybrid-Ensemble Deep-Learning Models to Enhance the Sunspot Prediction and Forecasting of Solar Cycle 26,10.1007/s11207-025-02510-3,0
+C8,Semantic Scholar,2024,Stock price forecasting in Indonesia stock exchange using deep learning: a comparative study,10.11591/ijece.v14i1.pp861-869,0
+C8,Semantic Scholar,2025,All-optical doubly resonant cavities for energy-efficient ReLU function in nanophotonic deep learning,10.1371/journal.pone.0345850,0
+C8,Semantic Scholar,2024,Enhancing House Price Forecasting with State-Action-Reward-State-Action Algorithm and Deep Q-Learning,10.1109/ICSES63445.2024.10763162,0
+C8,Semantic Scholar,2025,Can Deep Learning Models Enhance the Accuracy of Agricultural Price Forecasting? Insights From India,10.1002/isaf.70002,0
+C8,arXiv,2026,BeamGuard: Risk-Aware Multimodal Beam Forecasting and Adaptive Virtual Beamwidth Control for 6G mmWave V2I Links,http://arxiv.org/abs/2608.25433v1,0
+C9,Semantic Scholar,2021,Análisis de estadística descriptiva y distribución de frecuencia de la velocidad del viento,10.36260/rbr.v10i11.1556,0
+C9,Semantic Scholar,2017,Obtención del módulo de elasticidad estático de la madera de Pinus radiata D. Don. mediante la comparación de técnicas de regresión y una red neuronal artificial,0db5a88047e61a1ba996971068fe45bac7f73e7b,0
+C9,Semantic Scholar,2018,"Predicción de la velocidad del viento mediante redes neuronales, para la Estación Meteorológica Chimborazo.",51daa251025c14217d5294bfd8945753a7e48786,0
+C9,Semantic Scholar,2020,Revisión de literatura de modelos computacionales para la predicción de la velocidad del viento de 2004 a 2016,10.36825/riti.08.15.004,0
+C9,Semantic Scholar,2020,Estimación del consumo específico de energía en el torneado de alta velocidad del acero AISI-1045 utilizando redes neuronales // Assessment of the specific energy consumption in high speed turning of AISI-1045 steel using neural networks,8779826d043dfc3b2559c5e8d6276aa4caee54e2,0
+C9,Semantic Scholar,2017,Predicción de la potencia activa a corto plazo de un parque fotovoltaico utilizando una red neuronal artificial,92d2df4474053be9e973896c5f36420a5d9473f9,0
+C9,Semantic Scholar,2025,Control neuronal híbrido ISC-DSC para la máxima extracción de energía en turbinas eólicas marinas,10.17979/ja-cea.2025.46.12141,0
+C9,Semantic Scholar,2024,"Clasificación de Somatotipos usando: Redes Neuronales, Árboles de Decisión y Regresión logística",10.29057/xikua.v12iespecial.12731,0
+C9,Semantic Scholar,2006,Estimación de la velocidad y energía del viento mediante redes neuronales: aplicación a pequeños aerogeneradores en el medio rural,09df9a9edde3ced0b683f2795cd40ee17fe330f3,0
+C9,Semantic Scholar,2023,Metodología basada en ciencia de datos para el desarrollo de pronóstico de la generación de energía de una planta solar fotovoltaica,10.17163/ings.n30.2023.02,0
+C9,Semantic Scholar,2021,ARQUITECTURA NEURONAL PARA PREDICCIÓN DE RADIACIÓN SOLAR EN BASE A VARIABLES METEOROLÓGICAS,10.4995/cigeo2021.2021.12735,0
+C9,Semantic Scholar,2019,Optimización de los parámetros tecnológicos en el proceso de fresado para obtener la mínima rugosidad en el Acero ASI/SAE 1045,8da1a380017bc1a736dc50eeecee78d8e2f0d849,0
+C9,Semantic Scholar,2018,PREDICCIÓN DE POTENCIA FOTOVOLTAICA MEDIANTE REDES NEURONALES WAVELET,71f1ed98c278ee88054d4e4d7ec498eb5a7f2d45,0
+C9,Semantic Scholar,2017,Estimación de irradiancia empleando redes neuronales artificiales con variables meteorológicas y eléctricas de módulos fotovoltaicos,9d6b9d3834f6552eb103baa6025de54998afdf48,0
+C9,Semantic Scholar,2017,Line implementation of a mobile application to control forest fires near residential areas using an artificial neural network,10.12988/CES.2017.711160,0
+C9,Semantic Scholar,2015,Modelación energética y operacional del sistema de agua de alimentar caldera de una central termoeléctrica; Modeling energetic and operational of the boiler feed water system of a power plant,7d4743908d0c1be2fd757f270c94e9b6de1272de,0
+C9,Semantic Scholar,2011,Estudio de la morbilidad en niños menores a cinco años por enfermedad respiratoria aguda y su relación con la concentración de partículas en una zona industrial de la ciudad de Bogotá,061f9eea6a036f09f9645a22fbea584f1b5f4800,0
+C9,Semantic Scholar,2019,Redes neuronales para predecir el comportamiento del conjunto de activos financieros más líquidos del mercado de valores peruano,10.18004/UCSA/2409-8752/2019.006(01)049-064,0
+C9,Semantic Scholar,2018,Metodología para caracterizar espacio-temporalmente la concentración de material particulado en Valles intramontanos con información escasa,c79e7158055f0a204e8cc71745a0fd2e3ef07d2d,0
+C9,Semantic Scholar,2013,Retos en clasificación ordinal: redes neuronales artificiales y métodos basados en proyecciones (challenges in ordinal classification: artificial neural networks and projection-based methods),0340c0c45bf36d53fc488a1c9b29b5134ba012f2,0
+C9,Semantic Scholar,2012,Estimación de la Distribución de Tamaños de Partícula por Turbidimentría. Comparación de Tres Técnicas de Resolución del Problema Inverso,aef238147160c2ceee28302cb1df6f6ad38efa3b,0
+C9,Semantic Scholar,2002,Técnicas de predicción a corto plazo de la demanda de agua. Aplicación al uso agrícola,10.4995/IA.2002.2622,0
+C9,Semantic Scholar,2010,Modelo matemático para evaluar el efecto de los fenómenos atmosféricos en enlaces de radio microondas de 2.4 ghz.,f241df98c56ead89c0810c9a3f7625daecc99034,0
+C9,Semantic Scholar,2010,able utilizando redes neuronales artificiales; UTILIZATION OF ARTIFICIAL NEURAL NETWORK IN THE SIMULATION AND CONTROL OF WIND TURBINE GENERATORS WITH VARIABLE SPEED AND VARIABLE PITCH.,cde7fd6d6ce9da52d626642e2c9f7e7f96d6dfcb,0
+C9,Semantic Scholar,2017,Contribución al conocimiento de los procesos de ventilación natural en invernaderos mediterráneos,f1e41beb857928caf8e2f58d0080da32e0dba479,0
+C9,Semantic Scholar,2014,Análisis del flujo ambiental y propuesta metodológica para simulaciones CFD aplicadas a la ventilación natural de invernaderos,10.4995/THESIS/10251/37194,0
+C9,Semantic Scholar,2005,Sistema de binarización basado en fpga para ocr en aplicaciones de voto electrónico,95d169f14f098783c396705bf14feb0aede430d7,0
+C9,Semantic Scholar,2002,Evaluación de la contaminación atmosférica en Salamanca: periodo 1993-1998,7bff18557d602e1f48d955bb1937f5281b5c7568,0
+C9,Semantic Scholar,2023,Prediction of hourly solar radiation using an Artificial Neural Network model in a district of Peru,10.23919/CISTI58278.2023.10211948,0
+C9,Semantic Scholar,2020,Deep learning architectures applied to wind time series multi-step forecasting,10.5821/dissertation-2117-328183,0
+C9,Semantic Scholar,,Bio-inspired event-driven intelligence for motion estimation,10.5821/dissertation-2117-430026,0
+C9,Semantic Scholar,,"Optimización bayesiana en técnicas de aprendizaje automàtico ""machine learning"" clásicas: redes neuronales y XGBoost y su aplicación como modelos predictores de diabetes en pacientes ecuatorianos",10.5821/dissertation-2117-460594,0
+C9,Semantic Scholar,2012,Aplicación de técnicas de inteligencia artificial a la predicción de contaminantes atmosféricos,10.20868/upm.thesis.11206,0

@@ -1,0 +1,17 @@
+fuente,consulta,total,nombre,descripcion,url
+GitHub,twin neural network regression,3,sjwetzel/PublicTwinNeuralNetworkRegression,,https://github.com/sjwetzel/PublicTwinNeuralNetworkRegression
+GitHub,twin neural network regression,3,sjwetzel/PublicInverseTwinNeuralNetworkRegression,,https://github.com/sjwetzel/PublicInverseTwinNeuralNetworkRegression
+GitHub,twin neural network regression,3,plewtdas/twin-svm,"Advanced ML experiments on MNIST, dataset shift robustness, and regression-as-classification with neural networks",https://github.com/plewtdas/twin-svm
+Hugging Face,twin neural network regression,0,,,
+GitHub,pairwise difference regression,5,benjann/xtrobreg,Stata module providing pairwise-differences and first-differences robust regression estimators,https://github.com/benjann/xtrobreg
+GitHub,pairwise difference regression,5,JacksonBurns/neural-pairwise-regression,Pairwise Difference Learning with Neural Networks,https://github.com/JacksonBurns/neural-pairwise-regression
+GitHub,pairwise difference regression,5,xiejh23/Tobitlasso,l1-penalized pairwise difference estimation for a high-dimensional censored regression model,https://github.com/xiejh23/Tobitlasso
+GitHub,pairwise difference regression,5,khan-arisha/Taylor-Swift-Analysis,"A project for Intro to Statistics with Andy Poppick at Carleton College. In R through ANOVA F-test, pairwise difference test, and Linear regression anlaysis, I checked a) if Taylor Swift’s songs have ",https://github.com/khan-arisha/Taylor-Swift-Analysis
+GitHub,pairwise difference regression,5,habh2/paper-recommender-system,"Recommender system that learns reading taste from pairwise paper comparisons. Built with SPECTER2 embeddings, BERTopic, and logistic regression on topic difference vectors. Orchestrated on Kubernetes ",https://github.com/habh2/paper-recommender-system
+Hugging Face,pairwise difference regression,0,,,
+GitHub,siamese regression wind,0,,,
+Hugging Face,siamese regression wind,0,,,
+GitHub,analog ensemble neural network wind,0,,,
+Hugging Face,analog ensemble neural network wind,0,,,
+GitHub,pairwise difference wind forecasting,0,,,
+Hugging Face,pairwise difference wind forecasting,0,,,

@@ -369,12 +369,40 @@ def errores():
                   "Peores 5 % de PADRE-TCN que también son peores 5 % del otro"], filas)
 
 
+# ---------------------------------------------------------------- capítulo 4: matriz de novedad
+
+# Relevancia tras leer título y resumen de los candidatos marcados (trabajos que combinan el mecanismo con el viento
+# y que hay que contrastar en la declaración de novedad); decisión manual, documentada en el capítulo.
+RELEVANTES = {("C4", "OpenAlex"): ("1", "Destilación de un ensamble de análogos en una red profunda (Candido et al., 2020): "
+                                         "análogos, pero sin regresión por diferencias"),
+              ("C6", "OpenAlex"): ("1", "Red «pseudo-gemela» para potencia eólica (Yang et al., 2025): dos ramas de "
+                                        "rasgos, sin diferencias ni anclas"),
+              ("C1", "OpenAlex"): ("0", "«Twin SVR» es otro método (máquinas de soporte gemelas), no una red gemela"),
+              ("C7", "OpenAlex"): ("0", "Fuente original del mecanismo (PADRE, química)"),
+              ("C6", "arXiv"): ("0", "Fuente y extensiones de TNNR (física y química)")}
+
+
+def matriz_novedad():
+    r = pd.read_csv("literatura/e3/busquedas_2026-11-27.csv")
+    filas = []
+    for _, x in r.iterrows():
+        rel, obs = RELEVANTES.get((x.cadena, x.base), ("0", ""))
+        res = "límite de tasa (429)" if x.resultados == -1 else f"{int(x.resultados):,}".replace(",", " ")
+        filas.append([x.base, f"{x.cadena}: `{x.consulta}`", res, str(int(x.revisados)), rel if x.resultados != -1 else "—",
+                      obs or (x.proposito if x.resultados != 0 else "sin resultados")])
+    e2 = [["Scopus (E2, 5-nov)", "T5: siamese / twin / pairwise difference + regression + transfer", "70", "66", "0",
+           "66 títulos exportados nombran el mecanismo; ninguno es de viento"],
+          ["Web of Science (E2, 5-nov)", "T5: la misma cadena", "44", "—", "—",
+           "Registrada en el E2; sin revisión individual de títulos"]]
+    return tabla(["Base", "Cadena", "Resultados", "Revisados", "Relevantes", "Observación"], filas + e2)
+
+
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion, h1=h1, h2a=h2a, pruebas=pruebas,
               h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad,
               ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas,
               adicionales_resumen=adicionales_resumen, adicionales_contrastes=adicionales_contrastes,
               friedman=friedman, sensibilidad=sensibilidad, estabilidad=estabilidad, regimenes=regimenes,
-              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores)
+              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores, matriz_novedad=matriz_novedad)
 
 if __name__ == "__main__":
     os.makedirs("book/tablas", exist_ok=True)

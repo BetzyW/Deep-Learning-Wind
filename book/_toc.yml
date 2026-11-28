@@ -24,6 +24,7 @@ parts:
   - caption: Entregable 3
     chapters:
       - file: e3_00_introduccion
+      - file: e3_04_literatura_novedad
       - file: e3_05_modelo_diseno
       - file: e3_06_modelo_implementacion
       - file: e3_07_validacion
