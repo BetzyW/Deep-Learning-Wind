@@ -1,0 +1,21 @@
+# Integración continua: corre las pruebas unitarias (pytest) en cada push y en cada pull request.
+# Las pruebas usan paneles sintéticos; la del panel real se omite sola si los datos no están (no se versionan).
+name: pruebas
+on:
+  push:
+  pull_request:
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Dependencias (torch en CPU)
+        run: |
+          pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install numpy==2.4.6 pandas==3.0.6 scipy==1.17.1 scikit-learn==1.9.1 statsmodels==0.15.0 onnx onnxruntime pytest
+          pip install --no-deps timeseries-cv==0.1.5
+      - name: Pruebas
+        run: pytest -q tests

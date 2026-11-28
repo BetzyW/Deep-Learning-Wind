@@ -30,6 +30,7 @@ parts:
       - file: e3_08_evaluacion_ampliada
       - file: e3_09_dashboard
       - file: e3_10_conclusiones
+      - file: e3_11_reproducibilidad
   - caption: Referencias
     chapters:
       - file: bibliografia
