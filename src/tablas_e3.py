@@ -406,12 +406,48 @@ def ranking():
                   "Cambio del RMSE", "Cambio de puesto"], filas)
 
 
+def seleccion():
+    """Tabla maestra de mejores configuraciones (sección 5.1 del enunciado): elegidas con validación, medidas en prueba."""
+    from scipy import stats as st
+    costo = pd.read_csv(f"{E3}/costo_cpu.csv").set_index("modelo")
+    filas = []
+    for m in ["PADRE"] + FAMILIA[:10]:
+        if m == "PADRE":
+            c = json.load(open(f"{E3}/PADRE_configuracion.json"))
+            arq, val = "V6 (K = 6, antisimétrica, λ = 0)", c["rmse_val_ajuste"]
+            d = pd.read_csv(f"{E3}/confirmatorias/V6.csv")
+        else:
+            c = json.load(open(f"resultados/e2/finales/{m}_configuracion.json"))
+            arq = c["arquitectura"]["id"] if c["arquitectura"] else "la del artículo"
+            h = pd.read_csv(f"resultados/e2/busqueda/{m}_hp.csv")
+            fila = h[(np.isclose(h.lr, c["hp"]["lr"])) & (h.wd == c["hp"]["wd"]) & (h.bs == c["hp"]["bs"])]
+            val = float(fila.rmse_val.iloc[0]) if len(fila) else np.nan
+            d = pd.read_csv(f"resultados/e2/finales/{m}.csv")
+        d = d[d.semilla.between(1000, 1009)]
+        sem = d.groupby("semilla").rmse.mean()
+        t = st.t.ppf(0.975, len(sem) - 1) * sem.std(ddof=1) / np.sqrt(len(sem))
+        hp = c["hp"]
+        filas.append([("PADRE-TCN" if m == "PADRE" else m), arq, f"`{hp['lr']:.1e}` / `{hp['wd']:g}` / {hp['bs']}",
+                      f(val, 4), f"{f(sem.mean(), 4)} ± `{sem.std(ddof=1):.4f}`",
+                      f"[`{sem.mean() - t:.4f}`, `{sem.mean() + t:.4f}`]",
+                      f"`{int(costo.loc[m, 'parametros']):,}`".replace(",", " "),
+                      f(costo.loc[m, "mflops_ventana"], 1 if costo.loc[m, "mflops_ventana"] >= 1 else 3),
+                      f(costo.loc[m, "ms_ventana_lote1"], 2)])
+    b = pd.read_csv("resultados/e2/baselines_prueba_por_origen.csv")
+    for m in ["Ridge", "Gradient boosting"]:
+        g = b[b.modelo == m]
+        filas.append([m, "rezagos del E2", "—", "—", f"{f(g.rmse.mean(), 4)} (determinista)", "—", "—", "—", "—"])
+    return tabla(["Modelo", "Arquitectura elegida (validación)", "lr / wd / lote", "RMSE de validación (ajuste)",
+                  "RMSE de prueba: media ± DE (10 semillas)", "IC 95 % de la media", "Parámetros", "MFLOPs por ventana",
+                  "ms por ventana en CPU (lote 1)"], filas)
+
+
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion, h1=h1, h2a=h2a, pruebas=pruebas,
               h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad,
               ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas,
               adicionales_resumen=adicionales_resumen, adicionales_contrastes=adicionales_contrastes,
               friedman=friedman, sensibilidad=sensibilidad, estabilidad=estabilidad, regimenes=regimenes,
-              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores, matriz_novedad=matriz_novedad, ranking=ranking)
+              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores, matriz_novedad=matriz_novedad, ranking=ranking, seleccion=seleccion)
 
 if __name__ == "__main__":
     os.makedirs("book/tablas", exist_ok=True)
