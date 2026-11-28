@@ -1,0 +1,133 @@
+== timeseries-cv mar 10/11/2026 21:43:30,95 
+Estación 0013035501 · 2024-08-19 00:00:00 → 2025-12-31 23:00:00 · 12,000 h · faltantes tras relleno 727 · validación cruzada 10,800 h · holdout 1,200 h (desde 2025-11-12 00:00:00) · dispositivo cuda
+I=24: tsxv generó 447 pliegues; se usan 401 (46 tocan huecos > 3 h); hasta 402 ventanas de entrenamiento
+  I24|w32_d0: val 1.0673 (época 30) · gap_ratio 0.116 · holdout 0.549 m/s · 1.7 s
+  I24|w64-32_d01: val 1.0271 (época 30) · gap_ratio 0.069 · holdout 0.537 m/s · 2.3 s
+  I24|w128-128_d10: val 1.0065 (época 18) · gap_ratio 0.135 · holdout 0.531 m/s · 3.7 s
+  I24|w32-32-32_d011: val 1.0335 (época 30) · gap_ratio 0.033 · holdout 0.540 m/s · 2.8 s
+  I24|w32-32-256_d100: val 1.0032 (época 30) · gap_ratio 0.083 · holdout 0.531 m/s · 3.4 s
+  I24|w32-64-128_d101: val 1.0081 (época 30) · gap_ratio 0.040 · holdout 0.531 m/s · 3.3 s
+  I24|w32-128-64_d110: val 1.0105 (época 30) · gap_ratio 0.036 · holdout 0.537 m/s · 3.3 s
+  I24|w32-256-32_d111: val 1.0295 (época 30) · gap_ratio 0.031 · holdout 0.541 m/s · 4.3 s
+  I24|w64-32-32_d000: val 1.0283 (época 22) · gap_ratio 0.177 · holdout 0.557 m/s · 2.7 s
+  I24|w64-32-256_d001: val 1.0033 (época 17) · gap_ratio 0.193 · holdout 0.539 m/s · 3.7 s
+  I24|w64-64-128_d010: val 1.0005 (época 22) · gap_ratio 0.126 · holdout 0.537 m/s · 3.1 s
+  I24|w64-128-64_d011: val 1.0056 (época 30) · gap_ratio 0.055 · holdout 0.532 m/s · 3.7 s
+  I24|w64-256-32_d100: val 1.0034 (época 24) · gap_ratio 0.099 · holdout 0.534 m/s · 4.8 s
+  I24|w64-256-256_d101: val 0.9997 (época 20) · gap_ratio 0.095 · holdout 0.531 m/s · 12.6 s
+  I24|w128-32-128_d110: val 0.9995 (época 30) · gap_ratio 0.046 · holdout 0.529 m/s · 2.9 s
+  I24|w128-64-64_d111: val 1.0266 (época 30) · gap_ratio 0.027 · holdout 0.536 m/s · 3.4 s
+  I24|w128-128-64_d000: val 1.0163 (época 10) · gap_ratio 0.375 · holdout 0.584 m/s · 4.6 s
+  I24|w128-256-32_d001: val 1.0133 (época 29) · gap_ratio 0.132 · holdout 0.536 m/s · 6.8 s
+  I24|w128-256-256_d010: val 1.0024 (época 8) · gap_ratio 0.320 · holdout 0.568 m/s · 14.3 s
+  I24|w256-32-128_d011: val 1.0018 (época 30) · gap_ratio 0.079 · holdout 0.538 m/s · 3.9 s
+  I24|w256-64-64_d100: val 1.0022 (época 18) · gap_ratio 0.155 · holdout 0.546 m/s · 4.8 s
+  I24|w256-128-32_d101: val 1.0081 (época 30) · gap_ratio 0.054 · holdout 0.531 m/s · 6.7 s
+  I24|w256-128-256_d110: val 0.9904 (época 20) · gap_ratio 0.114 · holdout 0.536 m/s · 10.7 s
+  I24|w256-256-128_d111: val 0.9980 (época 30) · gap_ratio 0.055 · holdout 0.530 m/s · 14.5 s
+I=48: tsxv generó 445 pliegues; se usan 389 (56 tocan huecos > 3 h); hasta 390 ventanas de entrenamiento
+  I48|w32_d0: val 1.1167 (época 30) · gap_ratio 0.174 · holdout 0.551 m/s · 1.8 s
+  I48|w64-32_d01: val 1.0303 (época 30) · gap_ratio 0.075 · holdout 0.545 m/s · 2.7 s
+  I48|w128-128_d10: val 1.0121 (época 23) · gap_ratio 0.165 · holdout 0.534 m/s · 3.9 s
+  I48|w32-32-32_d011: val 1.0368 (época 30) · gap_ratio 0.033 · holdout 0.539 m/s · 3.4 s
+  I48|w32-32-256_d100: val 0.9962 (época 27) · gap_ratio 0.090 · holdout 0.525 m/s · 3.8 s
+  I48|w32-64-128_d101: val 1.0094 (época 30) · gap_ratio 0.038 · holdout 0.530 m/s · 3.1 s
+  I48|w32-128-64_d110: val 1.0041 (época 30) · gap_ratio 0.026 · holdout 0.526 m/s · 3.2 s
+  I48|w32-256-32_d111: val 1.0147 (época 30) · gap_ratio 0.013 · holdout 0.540 m/s · 3.9 s
+  I48|w64-32-32_d000: val 1.0310 (época 16) · gap_ratio 0.223 · holdout 0.584 m/s · 2.9 s
+  I48|w64-32-256_d001: val 1.0018 (época 16) · gap_ratio 0.240 · holdout 0.580 m/s · 3.7 s
+  I48|w64-64-128_d010: val 1.0047 (época 20) · gap_ratio 0.154 · holdout 0.542 m/s · 3.4 s
+  I48|w64-128-64_d011: val 1.0062 (época 30) · gap_ratio 0.054 · holdout 0.530 m/s · 3.8 s
+  I48|w64-256-32_d100: val 1.0025 (época 30) · gap_ratio 0.109 · holdout 0.543 m/s · 5.0 s
+  I48|w64-256-256_d101: val 0.9932 (época 24) · gap_ratio 0.097 · holdout 0.526 m/s · 12.5 s
+  I48|w128-32-128_d110: val 0.9876 (época 30) · gap_ratio 0.037 · holdout 0.527 m/s · 3.3 s
+  I48|w128-64-64_d111: val 1.0190 (época 30) · gap_ratio 0.011 · holdout 0.540 m/s · 3.7 s
+  I48|w128-128-64_d000: val 1.0264 (época 8) · gap_ratio 0.494 · holdout 0.635 m/s · 5.0 s
+  I48|w128-256-32_d001: val 1.0091 (época 30) · gap_ratio 0.132 · holdout 0.545 m/s · 7.2 s
+  I48|w128-256-256_d010: val 0.9979 (época 9) · gap_ratio 0.393 · holdout 0.594 m/s · 14.7 s
+  I48|w256-32-128_d011: val 0.9922 (época 30) · gap_ratio 0.075 · holdout 0.547 m/s · 4.8 s
+  I48|w256-64-64_d100: val 0.9981 (época 18) · gap_ratio 0.190 · holdout 0.548 m/s · 5.6 s
+  I48|w256-128-32_d101: val 1.0017 (época 30) · gap_ratio 0.043 · holdout 0.532 m/s · 7.6 s
+  I48|w256-128-256_d110: val 0.9842 (época 19) · gap_ratio 0.129 · holdout 0.530 m/s · 11.7 s
+  I48|w256-256-128_d111: val 0.9911 (época 30) · gap_ratio 0.043 · holdout 0.532 m/s · 15.3 s
+I=96: tsxv generó 441 pliegues; se usan 366 (75 tocan huecos > 3 h); hasta 367 ventanas de entrenamiento
+  I96|w32_d0: val 1.1588 (época 30) · gap_ratio 0.246 · holdout 0.572 m/s · 1.6 s
+  I96|w64-32_d01: val 1.0620 (época 30) · gap_ratio 0.111 · holdout 0.545 m/s · 2.2 s
+  I96|w128-128_d10: val 1.0480 (época 22) · gap_ratio 0.223 · holdout 0.534 m/s · 4.3 s
+  I96|w32-32-32_d011: val 1.0466 (época 30) · gap_ratio 0.043 · holdout 0.543 m/s · 2.9 s
+  I96|w32-32-256_d100: val 1.0263 (época 20) · gap_ratio 0.133 · holdout 0.530 m/s · 3.2 s
+  I96|w32-64-128_d101: val 1.0297 (época 30) · gap_ratio 0.056 · holdout 0.533 m/s · 2.9 s
+  I96|w32-128-64_d110: val 1.0339 (época 30) · gap_ratio 0.050 · holdout 0.538 m/s · 3.2 s
+  I96|w32-256-32_d111: val 1.0436 (época 30) · gap_ratio 0.040 · holdout 0.541 m/s · 3.6 s
+  I96|w64-32-32_d000: val 1.0638 (época 14) · gap_ratio 0.295 · holdout 0.585 m/s · 2.7 s
+  I96|w64-32-256_d001: val 1.0325 (época 13) · gap_ratio 0.308 · holdout 0.583 m/s · 3.5 s
+  I96|w64-64-128_d010: val 1.0317 (época 23) · gap_ratio 0.202 · holdout 0.551 m/s · 3.2 s
+  I96|w64-128-64_d011: val 1.0326 (época 30) · gap_ratio 0.076 · holdout 0.530 m/s · 3.6 s
+  I96|w64-256-32_d100: val 1.0299 (época 30) · gap_ratio 0.145 · holdout 0.538 m/s · 4.6 s
+  I96|w64-256-256_d101: val 1.0149 (época 25) · gap_ratio 0.127 · holdout 0.521 m/s · 11.1 s
+  I96|w128-32-128_d110: val 1.0208 (época 30) · gap_ratio 0.069 · holdout 0.526 m/s · 3.5 s
+  I96|w128-64-64_d111: val 1.0441 (época 30) · gap_ratio 0.026 · holdout 0.542 m/s · 3.9 s
+  I96|w128-128-64_d000: val 1.0507 (época 7) · gap_ratio 0.586 · holdout 0.630 m/s · 5.1 s
+  I96|w128-256-32_d001: val 1.0315 (época 29) · gap_ratio 0.139 · holdout 0.545 m/s · 7.0 s
+  I96|w128-256-256_d010: val 1.0347 (época 9) · gap_ratio 0.463 · holdout 0.576 m/s · 13.5 s
+  I96|w256-32-128_d011: val 1.0238 (época 30) · gap_ratio 0.097 · holdout 0.542 m/s · 5.4 s
+  I96|w256-64-64_d100: val 1.0308 (época 23) · gap_ratio 0.256 · holdout 0.552 m/s · 6.3 s
+  I96|w256-128-32_d101: val 1.0343 (época 30) · gap_ratio 0.065 · holdout 0.538 m/s · 8.1 s
+  I96|w256-128-256_d110: val 1.0131 (época 20) · gap_ratio 0.173 · holdout 0.523 m/s · 11.7 s
+  I96|w256-256-128_d111: val 1.0260 (época 30) · gap_ratio 0.061 · holdout 0.529 m/s · 14.8 s
+I=192: tsxv generó 433 pliegues; se usan 334 (99 tocan huecos > 3 h); hasta 335 ventanas de entrenamiento
+  I192|w32_d0: val 1.5282 (época 24) · gap_ratio 0.487 · holdout 0.602 m/s · 1.4 s
+  I192|w64-32_d01: val 1.3939 (época 30) · gap_ratio 0.333 · holdout 0.547 m/s · 2.4 s
+  I192|w128-128_d10: val 1.3718 (época 26) · gap_ratio 0.437 · holdout 0.540 m/s · 4.9 s
+  I192|w32-32-32_d011: val 1.3481 (época 30) · gap_ratio 0.260 · holdout 0.544 m/s · 2.6 s
+  I192|w32-32-256_d100: val 1.3428 (época 18) · gap_ratio 0.363 · holdout 0.530 m/s · 3.0 s
+  I192|w32-64-128_d101: val 1.3452 (época 30) · gap_ratio 0.278 · holdout 0.540 m/s · 2.8 s
+  I192|w32-128-64_d110: val 1.3438 (época 30) · gap_ratio 0.268 · holdout 0.540 m/s · 2.8 s
+  I192|w32-256-32_d111: val 1.3410 (época 30) · gap_ratio 0.253 · holdout 0.543 m/s · 3.3 s
+  I192|w64-32-32_d000: val 1.3771 (época 9) · gap_ratio 0.497 · holdout 0.605 m/s · 2.7 s
+  I192|w64-32-256_d001: val 1.3526 (época 8) · gap_ratio 0.506 · holdout 0.607 m/s · 3.6 s
+  I192|w64-64-128_d010: val 1.3474 (época 14) · gap_ratio 0.416 · holdout 0.547 m/s · 3.3 s
+  I192|w64-128-64_d011: val 1.3428 (época 30) · gap_ratio 0.288 · holdout 0.533 m/s · 3.7 s
+  I192|w64-256-32_d100: val 1.3440 (época 11) · gap_ratio 0.358 · holdout 0.541 m/s · 4.4 s
+  I192|w64-256-256_d101: val 1.3375 (época 22) · gap_ratio 0.350 · holdout 0.532 m/s · 9.9 s
+  I192|w128-32-128_d110: val 1.3354 (época 30) · gap_ratio 0.291 · holdout 0.534 m/s · 4.3 s
+  I192|w128-64-64_d111: val 1.3452 (época 30) · gap_ratio 0.240 · holdout 0.543 m/s · 4.9 s
+  I192|w128-128-64_d000: val 1.3615 (época 4) · gap_ratio 0.739 · holdout 0.596 m/s · 5.5 s
+  I192|w128-256-32_d001: val 1.3453 (época 23) · gap_ratio 0.327 · holdout 0.531 m/s · 7.2 s
+  I192|w128-256-256_d010: val 1.3537 (época 6) · gap_ratio 0.618 · holdout 0.596 m/s · 12.6 s
+  I192|w256-32-128_d011: val 1.3392 (época 30) · gap_ratio 0.299 · holdout 0.542 m/s · 6.7 s
+  I192|w256-64-64_d100: val 1.3536 (época 14) · gap_ratio 0.463 · holdout 0.561 m/s · 7.4 s
+  I192|w256-128-32_d101: val 1.3429 (época 29) · gap_ratio 0.272 · holdout 0.542 m/s · 9.0 s
+  I192|w256-128-256_d110: val 1.3279 (época 30) · gap_ratio 0.383 · holdout 0.528 m/s · 11.9 s
+  I192|w256-256-128_d111: val 1.3386 (época 30) · gap_ratio 0.267 · holdout 0.542 m/s · 14.6 s
+2336 configuraciones evaluadas
+
+Entrada 24 h: 398 de 584 pasan gap_ratio < 0.15
+     arquitectura  parametros  best_val_rmse  best_val_rmse_ms  gap_ratio  holdout_rmse_ms
+ w256-32-256_d110       29240       0.990356          0.582978   0.073923         0.527781
+w256-128-256_d110       78488       0.990392          0.582949   0.114163         0.535644
+w256-128-256_d101       78488       0.990563          0.582432   0.129736         0.541242
+ w256-32-256_d101       29240       0.991976          0.584104   0.106345         0.535335
+ w256-32-128_d110       21944       0.992197          0.583015   0.060500         0.527257
+
+Entrada 48 h: 364 de 584 pasan gap_ratio < 0.15
+    arquitectura  parametros  best_val_rmse  best_val_rmse_ms  gap_ratio  holdout_rmse_ms
+w256-32-256_d011       35384       0.979278          0.585930   0.106733         0.541261
+w256-64-128_d101       40408       0.979300          0.586038   0.082560         0.532121
+w256-32-256_d101       35384       0.979515          0.585623   0.118302         0.537114
+w256-64-256_d110       51800       0.980008          0.586972   0.098663         0.531601
+w64-128-256_d101       50648       0.981762          0.586914   0.067460         0.533216
+
+Entrada 96 h: 312 de 584 pasan gap_ratio < 0.15
+     arquitectura  parametros  best_val_rmse  best_val_rmse_ms  gap_ratio  holdout_rmse_ms
+w256-256-128_d101      126616       1.008446          0.589882   0.146024         0.528787
+w256-128-128_d110       77336       1.009557          0.590001   0.128957         0.525820
+ w256-64-256_d110       64088       1.009563          0.591352   0.140692         0.524350
+ w256-32-256_d110       47672       1.011187          0.590039   0.122032         0.524389
+w256-128-128_d101       77336       1.011493          0.592549   0.130229         0.532331
+
+Entrada 192 h: 0 de 584 pasan gap_ratio < 0.15
+Empty DataFrame
+Columns: [arquitectura, parametros, best_val_rmse, best_val_rmse_ms, gap_ratio, holdout_rmse_ms]
+Index: []
+== Fin mi� 11/11/2026  1:24:51,66 

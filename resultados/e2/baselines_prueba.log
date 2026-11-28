@@ -1,0 +1,24 @@
+  ETS: 40 estaciones ajustadas en 4 s
+origen 2025-01-01: entrenamiento 468,479, evaluación 29,192 | ridge 0 s, boosting 7 s
+  ETS: 39 estaciones ajustadas en 3 s
+origen 2025-04-01: entrenamiento 498,501, evaluación 42,269 | ridge 0 s, boosting 4 s
+  ETS: 44 estaciones ajustadas en 3 s
+origen 2025-07-01: entrenamiento 540,986, evaluación 58,827 | ridge 0 s, boosting 5 s
+  ETS: 46 estaciones ajustadas en 3 s
+origen 2025-10-01: entrenamiento 600,677, evaluación 84,998 | ridge 0 s, boosting 5 s
+origen                2025-01-01  2025-04-01  2025-07-01  2025-10-01
+modelo                                                              
+ETS por estación           0.939       0.875       0.865       0.733
+Gradient boosting          0.814       0.756       0.717       0.622
+Media misma hora 7 d       0.844       0.799       0.751       0.646
+Naive semanal              1.101       1.093       0.978       0.874
+Persistencia               0.953       0.891       0.892       0.759
+Ridge                      0.807       0.744       0.719       0.620
+                           n   rmse    mae  mase_vs_persistencia
+modelo                                                          
+Ridge                 215286  0.700  0.489                 0.837
+Gradient boosting     215286  0.703  0.489                 0.837
+Media misma hora 7 d  215286  0.735  0.504                 0.863
+ETS por estación      215286  0.828  0.565                 0.968
+Persistencia          215286  0.851  0.583                 1.000
+Naive semanal         215286  0.981  0.663                 1.137
