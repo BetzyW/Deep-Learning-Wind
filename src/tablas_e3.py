@@ -263,9 +263,118 @@ def anclas():
                   "Ventanas en que es el ancla de mayor peso"], filas)
 
 
+# ---------------------------------------------------------------- capítulo 8: evaluación ampliada
+
+AD = f"{E3}/adicionales/analisis.json"
+AMP = f"{E3}/ampliada.json"
+NOMC = {"etth1": "ETTh1", "sdwpf": "SDWPF", "noaa_kansas": "NOAA Kansas"}
+
+
+def adicionales_resumen():
+    a = json.load(open(AD, encoding="utf-8"))
+    filas = []
+    for c, n in NOMC.items():
+        r = a[c]
+        t = pd.DataFrame(r["contrastes"])
+        dec = 1 if c == "sdwpf" else 3
+        filas.append([n, f(r["rmse_padre"], dec), f"{r['rango_padre']} de {r['de']}", f"{nom(r['mejor'])} ({f(r['rmse_mejor'], dec)})",
+                      f(r["rmse_persistencia"], dec), str(int((t.padre_mejor & t.significativo).sum())),
+                      str(int((~t.padre_mejor & t.significativo).sum())),
+                      ", ".join(nom(x) for x in r["peor_significativo"]) or "—"])
+    return tabla(["Conjunto", "RMSE de PADRE-TCN", "Puesto entre 11", "Mejor modelo (RMSE)", "Persistencia",
+                  "Rivales que supera (significativo)", "Rivales que lo superan (significativo)", "Cuáles lo superan"],
+                 filas)
+
+
+def adicionales_contrastes():
+    a = json.load(open(AD, encoding="utf-8"))
+    filas = []
+    for c, n in NOMC.items():
+        for r in a[c]["contrastes"]:
+            concl = ("PADRE mejor" if r["padre_mejor"] else "rival mejor") if r["significativo"] else "sin diferencia"
+            filas.append([n, nom(r["rival"]), str(r["pares"]), f"`{r['diferencia_relativa'] * 100:+.1f} %`",
+                          fp(r["t_p_holm"]), fp(r["wilcoxon_p_holm"]), concl])
+    return tabla(["Conjunto", "Rival", "Pares", "Δ RMSE relativo (PADRE − rival)", "p t pareado (Holm)",
+                  "p Wilcoxon (Holm)", "Conclusión"], filas)
+
+
+def friedman():
+    fr = json.load(open(AD, encoding="utf-8"))["friedman"]
+    filas = [[("PADRE-TCN" if m == "PADRE" else nom(m)), f(v, 2)] for m, v in fr["rangos_medios"].items()]
+    return (tabla(["Modelo", "Rango medio en los 4 conjuntos (1 = mejor)"], filas) +
+            f"\nFriedman: χ² = `{fr['chi2']:.2f}`; Iman–Davenport: F = `{fr['iman_davenport_F']:.2f}`, "
+            f"p = `{fr['p']:.2f}`; diferencia crítica de Nemenyi al 95 %: `{fr['diferencia_critica_nemenyi']:.2f}` rangos.\n")
+
+
+def sensibilidad():
+    s = json.load(open(AMP, encoding="utf-8"))["sensibilidad_hp"]
+    filas = [[("PADRE-TCN" if m == "PADRE" else m), f(v["minimo"], 4), f(v["mediana"], 4), f(v["maximo"], 4),
+              f(v["rango"], 4), f"`{v['rho_lr']:+.2f}`"] for m, v in sorted(s.items(), key=lambda x: x[1]["rango"])]
+    return tabla(["Modelo", "RMSE de validación mínimo", "Mediana", "Máximo", "Rango (máx. − mín.)",
+                  "ρ de Spearman con la tasa de aprendizaje"], filas)
+
+
+def estabilidad():
+    s = json.load(open(AMP, encoding="utf-8"))["estabilidad_semillas"]
+    filas = [[("PADRE-TCN" if m == "PADRE" else m), f(v["media"], 4), f(v["de"], 4), f"`{v['cv'] * 100:.2f} %`",
+              fp(v["friedman_semillas_p"])] for m, v in sorted(s.items(), key=lambda x: x[1]["cv"])]
+    return tabla(["Modelo", "RMSE medio", "DE entre semillas", "Coeficiente de variación",
+                  "p de Friedman entre semillas (orígenes como bloques)"], filas)
+
+
+def regimenes():
+    r = json.load(open(AMP, encoding="utf-8"))["regimenes"]
+    filas = []
+    for k in ["0–2", "2–4", "4–6", "≥ 6"]:
+        fila = [f"{k} m/s", f"`{r['PADRE']['por_rango'][k]['n']:,}`".replace(",", " ")]
+        for m in ["PADRE", "TCN", "Transformer", "Persistencia"]:
+            v = r[m]["por_rango"][k]
+            fila.append(f"{f(v['rmse'])} / `{v['sesgo']:+.2f}`")
+        filas.append(fila)
+    return tabla(["Velocidad observada", "Ventanas", "PADRE-TCN: RMSE / sesgo", "TCN", "Transformer", "Persistencia"],
+                 filas)
+
+
+def trimestres():
+    r = json.load(open(AMP, encoding="utf-8"))["regimenes"]
+    cob = json.load(open(f"{EST}/resumen.json"))["exploratorias"]
+    filas = [[o[:7], *[f(r[m]["por_trimestre"][o], 4) for m in ["PADRE", "TCN", "Transformer", "Persistencia"]],
+              f(cob["cobertura_por_trimestre"][o], 3), f(cob["cobertura_std24_por_trimestre"][o], 3)]
+             for o in ["2025-01-01", "2025-04-01", "2025-07-01", "2025-10-01"]]
+    return tabla(["Trimestre de prueba", "PADRE-TCN", "TCN", "Transformer", "Persistencia",
+                  "Cobertura del intervalo al 90 % (PADRE-TCN)", "Cobertura con std24"], filas)
+
+
+def perturbaciones():
+    e2 = json.load(open("resultados/e2/f2a/gpu_resultados.json"))["robustez"]
+    e3 = json.load(open(f"{E3}/interpretabilidad/resultados.json"))["robustez"]
+    datos = {"PADRE-TCN": e3, "Transformer": e2["Transformer"], "TCN": e2["TCN"]}
+    med = {m: pd.DataFrame(v).groupby(["tipo", "nivel"]).rmse.mean() for m, v in datos.items()}
+    nombres = {"ruido": "Ruido gaussiano (σ en unidades escaladas)", "faltantes": "Horas faltantes (fracción)",
+               "quiebre": "Quiebre de nivel (desviaciones)"}
+    filas = []
+    for (tipo, nivel) in med["PADRE-TCN"].index:
+        if tipo == "ninguna":
+            continue
+        filas.append([nombres[tipo], f"{nivel}"] +
+                     [f"{f(med[m][(tipo, nivel)])} (`{(med[m][(tipo, nivel)] / med[m][('ninguna', 0.0)] - 1) * 100:+.0f} %`)"
+                      for m in datos])
+    return tabla(["Perturbación de la entrada", "Severidad", "PADRE-TCN: RMSE (aumento)", "Transformer", "TCN"], filas)
+
+
+def errores():
+    e = json.load(open(AMP, encoding="utf-8"))["errores_compartidos"]
+    filas = [[m, f(v["correlacion"], 3), f"`{v['solape_peor_5'] * 100:.0f} %`"] for m, v in e.items()]
+    return tabla(["Modelo comparado con PADRE-TCN", "Correlación de los residuos",
+                  "Peores 5 % de PADRE-TCN que también son peores 5 % del otro"], filas)
+
+
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion, h1=h1, h2a=h2a, pruebas=pruebas,
               h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad,
-              ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas)
+              ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas,
+              adicionales_resumen=adicionales_resumen, adicionales_contrastes=adicionales_contrastes,
+              friedman=friedman, sensibilidad=sensibilidad, estabilidad=estabilidad, regimenes=regimenes,
+              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores)
 
 if __name__ == "__main__":
     os.makedirs("book/tablas", exist_ok=True)

@@ -26,6 +26,7 @@ parts:
       - file: e3_05_modelo_diseno
       - file: e3_06_modelo_implementacion
       - file: e3_07_validacion
+      - file: e3_08_evaluacion_ampliada
   - caption: Referencias
     chapters:
       - file: bibliografia
