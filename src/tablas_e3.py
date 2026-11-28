@@ -397,12 +397,21 @@ def matriz_novedad():
     return tabla(["Base", "Cadena", "Resultados", "Revisados", "Relevantes", "Observación"], filas + e2)
 
 
+def ranking():
+    t = pd.read_csv(f"{E3}/ranking_antes_despues.csv")
+    filas = [[nom(r.modelo), f(r.rmse_6, 4), str(r.puesto_6), f(r.rmse_10, 4), str(r.puesto_10),
+              f"`{r.cambio_rmse:+.4f}`", "—" if r.puesto_6 == r.puesto_10 else f"`{r.puesto_6 - r.puesto_10:+d}`"]
+             for _, r in t.iterrows()]
+    return tabla(["Modelo", "RMSE con 6 semillas (E2)", "Puesto", "RMSE con 10 semillas (E3)", "Puesto",
+                  "Cambio del RMSE", "Cambio de puesto"], filas)
+
+
 TABLAS = dict(diseno=diseno, complejidad=complejidad, verificacion=verificacion, h1=h1, h2a=h2a, pruebas=pruebas,
               h2b=h2b, mcs=mcs_tabla, potencia=potencia, r3=r3, adecuacion=adecuacion, equidad=equidad,
               ablacion=ablacion, interpretabilidad=interpretabilidad, anclas=anclas,
               adicionales_resumen=adicionales_resumen, adicionales_contrastes=adicionales_contrastes,
               friedman=friedman, sensibilidad=sensibilidad, estabilidad=estabilidad, regimenes=regimenes,
-              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores, matriz_novedad=matriz_novedad)
+              trimestres=trimestres, perturbaciones=perturbaciones, errores=errores, matriz_novedad=matriz_novedad, ranking=ranking)
 
 if __name__ == "__main__":
     os.makedirs("book/tablas", exist_ok=True)
